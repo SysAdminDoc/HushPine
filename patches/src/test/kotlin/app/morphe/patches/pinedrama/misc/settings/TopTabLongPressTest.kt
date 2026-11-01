@@ -43,12 +43,12 @@ private const val TAB = "LX/Tab;"
 private const val VIEW = "Landroid/view/View;"
 
 /**
- * A long press on For You opens HushPine settings: the settings patch hands every top tab PineDrama
+ * A long press on a top tab opens HushPine settings: the settings patch hands every top tab PineDrama
  * binds to the extension, with the tag of the tab it shows. The site is held to every declared
  * build, and a build that binds its top tabs some other way keeps the rest of the settings patch
- * and leaves For You as PineDrama made it.
+ * and leaves the tabs as PineDrama made them.
  */
-class ForYouLongPressTest {
+class TopTabLongPressTest {
     private val tagRead = ImmutableMethodReference(TAB_MODEL, "tag", emptyList(), "Ljava/lang/String;")
     private val bind = ImmutableMethodReference(TAB_VIEW, "bind", emptyList(), "V")
 
@@ -198,7 +198,7 @@ class ForYouLongPressTest {
         opcode == Opcode.NEW_INSTANCE && (this as ReferenceInstruction).reference.toString() == type
 
     /**
-     * A tab factory shaped like 47.1.4's: the tag read from the model parameter, the view made,
+     * A tab factory shaped like 47.5.3's: the tag read from the model parameter, the view made,
      * a jump to the return when there's no view, the bind, then the return of the tab.
      */
     private fun factory(

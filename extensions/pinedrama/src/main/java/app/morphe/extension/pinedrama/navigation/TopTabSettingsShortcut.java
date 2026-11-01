@@ -27,55 +27,50 @@ import app.morphe.extension.pinedrama.settings.L10n;
 import app.morphe.extension.pinedrama.settings.PineDramaActivityHook;
 
 /**
- * A long press on For You, the feed's name in the strip of tabs across the top of PineDrama's home
- * screen, opens HushPine's settings. The other Hush packages open theirs from the app's logo, and
- * PineDrama's feed shows none, so For You stands in for it.
+ * A long press on any tab in the strip across the top of PineDrama's home screen opens HushPine's
+ * settings. The other Hush packages open theirs from the app's logo, and PineDrama's feed shows
+ * none. Which tabs the strip holds is up to the server (Short Video and AI fiction have taken turns
+ * in the same spot on one install), so the shortcut isn't tied to any one of them.
  *
  * <p>The settings patch hands over every top tab PineDrama binds, with the tag of the tab it shows
  * ({@link #onTopTab}). PineDrama's top tab takes its tap in its own performClick (switch to the tab,
- * or reload For You when it's open) and has no long press or touch listener of its own. The press
+ * or reload it when it's open) and has no long press or touch listener of its own. The press
  * is timed by a touch listener: every touch still reaches the tab as it did, so a tap is PineDrama's,
  * and a press held for the phone's long-press time opens the settings with the long-press
  * vibration. The rest of that touch is kept from the tab, so letting go doesn't also reload the
  * feed.
  *
- * <p>TalkBack can't time a press, so For You also carries a named action, Open HushPine settings,
+ * <p>TalkBack can't time a press, so each tab also carries a named action, Open HushPine settings,
  * in the actions TalkBack lists for it ({@link OpenAction}).
  *
  * <p>No switch reads this, so Pause leaves it working: it's a way back to the switch that resumes
- * HushPine. The other top tabs are left alone, and a tab PineDrama makes long-clickable keeps its own
- * long press.
+ * HushPine. A tab PineDrama makes long-clickable keeps its own long press.
  */
-public final class ForYouTabSettingsShortcut {
-    /** The timer on each top tab that has shown For You, so a tab bound again keeps the one it has. */
+public final class TopTabSettingsShortcut {
+    /** The timer on each top tab, so a tab bound again keeps the one it has. */
     private static final Map<View, Press> PRESSES = new WeakHashMap<>();
 
-    private ForYouTabSettingsShortcut() {
+    private TopTabSettingsShortcut() {
     }
 
     /**
      * Injected where PineDrama's top tab strip finishes binding a tab's view, with the tag of the tab
-     * it now shows. PineDrama reuses these views, so a view that showed For You can come back as
-     * another tab, and the other way around.
+     * it now shows. PineDrama reuses these views, so the tag only goes in the log.
      */
     public static void onTopTab(View tab, String tag) {
         try {
             if (tab == null) return;
-            boolean forYou = NavigationTabOptions.HOT.equals(NavigationTabOptions.normalizeRuntimeTag(tag));
+            Logger.printInfo(() -> "A long press on the top tab " + tag + " opens HushPine settings");
             synchronized (PRESSES) {
-                Press press = PRESSES.get(tab);
-                if (press == null) {
-                    if (!forYou) return;
-                    press = new Press();
+                if (!PRESSES.containsKey(tab)) {
+                    Press press = new Press();
                     tab.setOnTouchListener(press);
                     PRESSES.put(tab, press);
-                    Logger.printInfo(() -> "A long press on For You opens HushPine settings");
                 }
-                press.forYou = forYou;
-                if (forYou) offerToTalkBack(tab, press);
+                offerToTalkBack(tab);
             }
         } catch (Throwable error) {
-            Logger.printException(() -> "Could not watch the For You tab", error);
+            Logger.printException(() -> "Could not watch a top tab", error);
         }
     }
 
@@ -86,19 +81,17 @@ public final class ForYouTabSettingsShortcut {
      */
     static boolean open() {
         if (Utils.getContext() == null) {
-            Logger.printInfo(() -> "No app context yet, so the long press on For You stays PineDrama's");
+            Logger.printInfo(() -> "No app context yet, so the long press on a top tab stays PineDrama's");
             return false;
         }
-        Logger.printInfo(() -> "Settings requested by a long press on For You");
+        Logger.printInfo(() -> "Settings requested by a long press on a top tab");
         PineDramaActivityHook.openSettings();
         return true;
     }
 
-    /** Times a press on one top tab, and opens the settings when the tab is For You. */
+    /** Times a press on one top tab, and opens the settings when it's held. */
     static final class Press implements View.OnTouchListener {
         private final Runnable fire = this::fire;
-        /** Whether the tab shows For You right now. */
-        volatile boolean forYou;
         /** The tab while a press on it is being timed. */
         private View pressed;
         private float downX;
@@ -113,8 +106,8 @@ public final class ForYouTabSettingsShortcut {
                     case MotionEvent.ACTION_DOWN:
                         stop();
                         opened = false;
-                        // Another tab in this view now, or a long press PineDrama gave the tab itself.
-                        if (!forYou || tab.isLongClickable()) return false;
+                        // A long press PineDrama gave the tab itself.
+                        if (tab.isLongClickable()) return false;
                         pressed = tab;
                         downX = event.getX();
                         downY = event.getY();
@@ -134,7 +127,7 @@ public final class ForYouTabSettingsShortcut {
                         return opened;
                 }
             } catch (Throwable error) {
-                Logger.printException(() -> "Could not follow a press on the For You tab", error);
+                Logger.printException(() -> "Could not follow a press on a top tab", error);
                 return false;
             }
         }
@@ -155,7 +148,7 @@ public final class ForYouTabSettingsShortcut {
         private void fire() {
             View tab = pressed;
             pressed = null;
-            if (tab == null || !tab.isAttachedToWindow() || !forYou) return;
+            if (tab == null || !tab.isAttachedToWindow()) return;
             try {
                 // Not asked for, and letting go is PineDrama's tap, as it is without HushPine.
                 if (!open()) return;
@@ -167,26 +160,26 @@ public final class ForYouTabSettingsShortcut {
                 tab.onTouchEvent(cancel);
                 cancel.recycle();
             } catch (Throwable error) {
-                Logger.printException(() -> "The long press on For You failed", error);
+                Logger.printException(() -> "The long press on a top tab failed", error);
             }
         }
     }
 
     /**
-     * Puts the TalkBack action on a tab showing For You. A delegate PineDrama set since the last bind
+     * Puts the TalkBack action on a top tab. A delegate PineDrama set since the last bind
      * is wrapped too, so it keeps answering. One that can't be read is left alone, without the
      * action, rather than replaced.
      */
-    private static void offerToTalkBack(View tab, Press press) {
+    private static void offerToTalkBack(View tab) {
         View.AccessibilityDelegate current;
         try {
             current = delegateOf(tab);
         } catch (Exception unreadable) {
-            Logger.printInfo(() -> "Could not read the For You tab's accessibility delegate, so TalkBack keeps PineDrama's", unreadable);
+            Logger.printInfo(() -> "Could not read a top tab's accessibility delegate, so TalkBack keeps PineDrama's", unreadable);
             return;
         }
         if (current instanceof OpenAction) return;
-        tab.setAccessibilityDelegate(new OpenAction(current, press));
+        tab.setAccessibilityDelegate(new OpenAction(current));
     }
 
     /** The delegate PineDrama gave the tab, or null if it gave none. Android only reads it back from 10 on. */
@@ -198,24 +191,22 @@ public final class ForYouTabSettingsShortcut {
     }
 
     /**
-     * TalkBack's way to the long press: a named action on For You that opens the settings through
+     * TalkBack's way to the long press: a named action on a top tab that opens the settings through
      * the same route. Everything else goes on to the delegate PineDrama gave the tab, if it gave one,
-     * so its own announcements and actions stay as they were. A view showing another tab now, or
-     * one PineDrama made long-clickable, doesn't offer it.
+     * so its own announcements and actions stay as they were. A tab PineDrama made long-clickable
+     * doesn't offer it.
      */
     static final class OpenAction extends View.AccessibilityDelegate {
         /** Outside the standard action bits and Android's own resource ids. */
         static final int ID = 0x48534648;
         private final View.AccessibilityDelegate tikTok;
-        private final Press press;
 
-        OpenAction(View.AccessibilityDelegate tikTok, Press press) {
+        OpenAction(View.AccessibilityDelegate tikTok) {
             this.tikTok = tikTok;
-            this.press = press;
         }
 
         private boolean offered(View host) {
-            return press.forYou && !host.isLongClickable();
+            return !host.isLongClickable();
         }
 
         @Override

@@ -938,7 +938,7 @@
    },
    {
     "id": "pinedrama-runs",
-    "what": "PineDrama started and sits on the Short Video feed with the patch built in.",
+    "what": "PineDrama started and sits on the feed with the patch built in.",
     "steps": [
      {
       "open": "feed"
@@ -3950,7 +3950,7 @@
     "auto": true
    }
   ],
-  "notes": "The baseline is not asserted: whether a photo, verified, AI-labelled or LIVE item would have appeared in ten swipes is up to the Short Video feed, so a pass can be vacuous. Read the [FEED FILTER] lines in the export (probe report) for 'removed' counts to see the filter did work. The ads check is the most reliable because ads are served in nearly every session; if no ad is served in eight videos it is vacuous too. Keyword, creator, sound, region, language, view/like/comment/share ranges and Creator exceptions use text and numbers the probe does not expose per video, so they are not exercised; the unit tests in extensions/pinedrama/src/test cover the rules. The settings rows are on HushPine settings > Feed filter. The restart is needed after changing a restart-flagged switch (remove_ads, hide_image, hide_ai_generated, hide_verified, hide_live). Maximum video length is soft by design: when everything one response sent would go, the video closest to the limit stays (the setting's summary says so), and 47.1.4's Short Video responses are often a single video, so a long one can still play. The length check reads the filter's own removals from the log (Log diagnostics on) instead of the durations on screen (2026-10-16). On PineDrama (#294) the Friends feed, LIVE page, Lemon8 card, play-lag cache insert and Tako entrance hooks have nothing to bind to, so the patch skips them there; the ad hooks, the main feed list and the inserted-item routes are the same as PineDrama's."
+  "notes": "The baseline is not asserted: whether a photo, verified, AI-labelled or LIVE item would have appeared in ten swipes is up to the feed, so a pass can be vacuous. Read the [FEED FILTER] lines in the export (probe report) for 'removed' counts to see the filter did work. The ads check is the most reliable because ads are served in nearly every session; if no ad is served in eight videos it is vacuous too. Keyword, creator, sound, region, language, view/like/comment/share ranges and Creator exceptions use text and numbers the probe does not expose per video, so they are not exercised; the unit tests in extensions/pinedrama/src/test cover the rules. The settings rows are on HushPine settings > Feed filter. The restart is needed after changing a restart-flagged switch (remove_ads, hide_image, hide_ai_generated, hide_verified, hide_live). Maximum video length is soft by design: when everything one response sent would go, the video closest to the limit stays (the setting's summary says so), and the feed's responses are often a single video, so a long one can still play. The length check reads the filter's own removals from the log (Log diagnostics on) instead of the durations on screen (2026-10-16). On PineDrama (#294) the Friends feed, LIVE page, Lemon8 card, play-lag cache insert and Tako entrance hooks have nothing to bind to, so the patch skips them there; the ad hooks, the main feed list and the inserted-item routes are the same as PineDrama's."
  },
  {
   "name": "Fit the video to the screen",
@@ -4263,7 +4263,7 @@
    },
    {
     "id": "pinedrama-runs",
-    "what": "PineDrama started and sits on the Short Video feed with the patch built in.",
+    "what": "PineDrama started and sits on the feed with the patch built in.",
     "steps": [
      {
       "open": "feed"
@@ -4849,7 +4849,7 @@
      },
      {
       "shot": "search-hidden",
-      "review": "Top right of Short Video has no magnifier icon. Failing looks like the magnifier still drawn."
+      "review": "Top right of the feed has no magnifier icon. Failing looks like the magnifier still drawn."
      },
      {
       "set": {
@@ -4928,7 +4928,7 @@
      },
      {
       "shot": "promo-off",
-      "review": "Short Video: if PineDrama serves a floating promotion (coin, 'Free gift' badge, timer pendant) it is visible. If none is served, mark n/a (the 2026-10-09 S25 pass saw a floating Free gift)."
+      "review": "The feed: if PineDrama serves a floating promotion (coin, 'Free gift' badge, timer pendant) it is visible. If none is served, mark n/a (the 2026-10-09 S25 pass saw a floating Free gift)."
      },
      {
       "set": {
@@ -8031,7 +8031,7 @@
     "key": "simspoof_feed_real",
     "default": false,
     "type": "bool",
-    "row": "Keep the Short Video feed on your real SIM"
+    "row": "Keep the feed on your real SIM"
    },
    {
     "key": "region_store_spoof",
@@ -8423,7 +8423,7 @@
    },
    {
     "id": "pinedrama-runs",
-    "what": "PineDrama started and sits on the Short Video feed with the patch built in.",
+    "what": "PineDrama started and sits on the feed with the patch built in.",
     "steps": [
      {
       "open": "feed"
@@ -9077,7 +9077,7 @@
     "auto": true
    }
   ],
-  "notes": "The probe's settings action starts the same activity the row does, so the first three checks prove the page, its sections and the registration; the two entry points a person uses (the row inside Settings and privacy and the Home long press) need the real gesture. Section rows show only when their patches' status flags are set (Section.isAvailable in PineDramaPreferenceFragment.java), which makes the home page a second applied-patch proof. Labels are English. 'Hide new followers' is an Inbox row title near the top of that page. Settings and privacy is a Compose screen on 47.1.4 (SettingContainerActivity), which the probe's findtext can't see into, so the check taps the HushPine row through the dump and reads HushPine's own page (2026-10-16). Settings and privacy is a Compose page whose rows carry their words in the content description with an empty text, so its rows are tapped by label, which matches either (2026-10-16)."
+  "notes": "The probe's settings action starts the same activity the row does, so the first three checks prove the page, its sections and the registration; the two entry points a person uses (the row inside Settings and privacy and the long press on a top tab) need the real gesture. Section rows show only when their patches' status flags are set (Section.isAvailable in PineDramaPreferenceFragment.java), which makes the home page a second applied-patch proof. Labels are English. 'Hide new followers' is an Inbox row title near the top of that page. Settings and privacy is a Compose screen on 47.1.4 (SettingContainerActivity), which the probe's findtext can't see into, so the check taps the HushPine row through the dump and reads HushPine's own page (2026-10-16). Settings and privacy is a Compose page whose rows carry their words in the content description with an empty text, so its rows are tapped by label, which matches either (2026-10-16)."
  },
  {
   "name": "Show LIVE search",
@@ -9901,7 +9901,7 @@
    },
    {
     "id": "start-reaches-feed",
-    "what": "A cold start with the switch on reaches the Short Video feed (no splash ad screen holds it).",
+    "what": "A cold start with the switch on reaches the feed (no splash ad screen holds it).",
     "steps": [
      {
       "set": {
@@ -10819,7 +10819,7 @@
    },
    {
     "id": "pinedrama-runs",
-    "what": "PineDrama started and sits on the Short Video feed with the patch built in.",
+    "what": "PineDrama started and sits on the feed with the patch built in.",
     "steps": [
      {
       "open": "feed"

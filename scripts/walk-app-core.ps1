@@ -22,8 +22,9 @@ $WalkDeniedLabel = '(?i)^\W*(follow|follow back|unfollow|message|send|post|repos
 $WalkLaunchGateLabel = '^(Close|At least 18|Continue)$'
 
 # The labels the walk looks for, read off PineDrama 47.5.3's bottom bar, top tabs and feed buttons,
-# as regexes. Home has no For You: Short Video carries the swipe feed with comment and share
-# buttons, Drama the series. PineDrama takes its language from its own settings, over the phone's
+# as regexes. Home has no For You. The tab between Following and Drama carries the swipe feed with
+# comment and share buttons, and the server picks it (Short Video and AI fiction so far), so MainTab
+# is whatever else sits up there. Drama is the series. PineDrama takes its language from its own settings, over the phone's
 # and Android's per-app locale, so a phone set to another language needs its words added here.
 # HushPine's own titles come from its translation tables instead (Get-WalkTitleLabel).
 $WalkLabels = @{
@@ -32,7 +33,7 @@ $WalkLabels = @{
     Rewards = '^Rewards$'
     Inbox = '^Inbox$'
     Profile = '^Profile$'
-    ShortVideo = '^Short Video$'
+    MainTab = '^(?!Following$|Drama$|Search$).+$'
     Following = '^Following$'
     Drama = '^Drama$'
     Search = '^Search$'
@@ -52,7 +53,7 @@ $WalkLabels = @{
 $WalkProfiles = @{
     'com.ss.android.ttmd.video' = @{
         Package = 'com.ss.android.ttmd.video'; App = 'PineDrama'; Labels = $WalkLabels
-        MainFeed = 'ShortVideo'; MainFeedName = 'Short Video'; OtherFeeds = @('Following', 'Drama'); Tabs = @('Discover', 'Rewards', 'Inbox', 'Profile'); Activity = $false
+        MainFeed = 'MainTab'; MainFeedName = 'Main tab'; OtherFeeds = @('Following', 'Drama'); Tabs = @('Discover', 'Rewards', 'Inbox', 'Profile'); Activity = $false
         LynxTabs = @('Rewards'); GearOpensSettings = $true; HiddenPages = @('Feed tabs', 'Screen time')
     }
 }

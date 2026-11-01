@@ -22,9 +22,10 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 /*
  * PineDrama's feed shows no logo. The other Hush packages open their settings from a long press on the
- * app's logo, and the nearest thing PineDrama's home screen has is For You, the feed's name in the
- * strip of tabs across the top. PineDrama gives that tab a tap (switch to it, or reload it when it's
- * already open) and nothing on a long press, so a held For You only acted as a tap.
+ * app's logo, and the nearest thing PineDrama's home screen has is the strip of tabs across the top.
+ * PineDrama gives those tabs a tap (switch to one, or reload it when it's already open) and nothing
+ * on a long press, so a held tab only acted as a tap. Which tabs the strip holds is up to the server,
+ * so the long press goes on all of them.
  */
 
 /** The ability that owns the strip of feed tabs across the top. Its constructor takes the strip. */
@@ -32,7 +33,7 @@ internal const val TOP_TAB_LAYOUT_ABILITY = "Lcom/ss/android/ugc/aweme/homepage/
 
 /** What gets each top tab once PineDrama has bound it, with the tag of the tab it shows. */
 internal const val TOP_TAB_HOOK =
-    "Lapp/morphe/extension/pinedrama/navigation/ForYouTabSettingsShortcut;->onTopTab(Landroid/view/View;Ljava/lang/String;)V"
+    "Lapp/morphe/extension/pinedrama/navigation/TopTabSettingsShortcut;->onTopTab(Landroid/view/View;Ljava/lang/String;)V"
 
 private const val CONTEXT = "Landroid/content/Context;"
 private const val TAG_GETTER = "tag"
@@ -62,7 +63,7 @@ internal fun topTabStripType(ability: ClassDef): String? =
  * Every place [strip] finishes binding a tab: a method that reads tag() from a tab model it was
  * handed, then calls a method with no arguments on the tab's view as the last thing before it
  * returns. The view is PineDrama's top tab, the class it builds with the strip and a Context. In
- * 47.1.4 that's the strip's one tab factory, which every top tab goes through, new or reused.
+ * 47.5.3 that's the strip's one tab factory, which every top tab goes through, new or reused.
  */
 internal fun topTabBindSites(strip: ClassDef, classOf: (String) -> ClassDef?): List<TopTabBindSite> {
     val sites = mutableListOf<TopTabBindSite>()
@@ -115,7 +116,7 @@ private fun tagRead(method: Method, body: List<Instruction>): Pair<Int, MethodRe
 }
 
 /**
- * Finds where PineDrama binds its top tabs, the way [hookForYouLongPress] does. Every class it needs
+ * Finds where PineDrama binds its top tabs, the way [hookTopTabLongPress] does. Every class it needs
  * comes from [classOf], so a test can hand it any set of classes.
  */
 internal fun findTopTabBind(classOf: (String) -> ClassDef?): TopTabBindLookup {
@@ -149,15 +150,14 @@ internal fun MutableMethod.handTopTabOver(site: TopTabBindSite) {
 }
 
 /**
- * Hands every top tab PineDrama binds to [TOP_TAB_HOOK], so a long press on For You opens HushPine
- * settings. Answers false and changes nothing when this build doesn't bind its top tabs that way
- * exactly once: For You then stays as it is, and the settings row and the Home tab still open the
- * page.
+ * Hands every top tab PineDrama binds to [TOP_TAB_HOOK], so a long press on any of them opens
+ * HushPine settings. Answers false and changes nothing when this build doesn't bind its top tabs
+ * that way exactly once: the tabs then stay as they are, and the settings row still opens the page.
  */
-internal fun BytecodePatchContext.hookForYouLongPress(): Boolean {
+internal fun BytecodePatchContext.hookTopTabLongPress(): Boolean {
     val lookup = findTopTabBind { classDefByOrNull(it) }
     val site = lookup.site ?: run {
-        println("[Settings] Left out the For You long press on ${packageMetadata.buildName}: ${lookup.miss}.")
+        println("[Settings] Left out the top tab long press on ${packageMetadata.buildName}: ${lookup.miss}.")
         return false
     }
     mutableClassDefBy(site.method.definingClass).findMutableMethodOf(site.method).handTopTabOver(site)

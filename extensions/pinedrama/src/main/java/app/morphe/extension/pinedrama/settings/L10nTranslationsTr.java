@@ -1527,10 +1527,10 @@ final class L10nTranslationsTr {
     }
 
     private static void fill12(Map<String, String> table) {
-        table.put("Keep the Short Video feed on your real SIM",
-                "Short Video akışını gerçek SIM'de tut");
         table.put("Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.",
                 "TikTok Minis girdisi, profilinin sağ üstündeki düğmenin açtığı menüde kalır. Altındaki uygulama simgeleri satırı gizlenir, menü kısalır.");
+        table.put("Keep the feed on your real SIM",
+                "Akışı gerçek SIM'de tut");
         table.put("Keep the language picked in PineDrama",
                 "PineDrama'da seçilen dili koru");
         table.put("Keep the screen's refresh rate",
@@ -2984,8 +2984,8 @@ final class L10nTranslationsTr {
                 "Çıkartma kayıt konumu");
         table.put("Sticker saved to %1$s",
                 "Çıkartma şuraya kaydedildi: %1$s");
-        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
-                "Çıkartma araması ve PineDrama'nın geri kalanı yukarıdaki SIM'i görmeye devam eder, Short Video akışı ise telefonunun kendi SIM ülkesi ve operatörüyle video ister. IP adresin ve hesap geçmişin yine de etkilidir.");
+        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
+                "Çıkartma araması ve PineDrama'nın geri kalanı yukarıdaki SIM'i görmeye devam eder, akış ise telefonunun kendi SIM ülkesi ve operatörüyle video ister. IP adresin ve hesap geçmişin yine de etkilidir.");
         table.put("Stickers can't be saved to the folder in that file, so your sticker folder was kept",
                 "Çıkartmalar o dosyadaki klasöre kaydedilemiyor, bu yüzden çıkartma klasörün korundu");
         table.put("Stickers: %1$s",
@@ -3099,8 +3099,8 @@ final class L10nTranslationsTr {
                 "Sistem");
         table.put("Tag saved videos with their details",
                 "Kaydedilen videolara ayrıntılarını etiket olarak yaz");
-        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.",
-                "HushPine'i PineDrama'nın Ayarlar ve gizlilik listesinden çıkarır. Bu ayarları açmak için akışın üstündeki Short Video'ya basılı tut.");
+        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.",
+                "HushPine'i PineDrama'nın Ayarlar ve gizlilik listesinden çıkarır. Bu ayarları açmak için akışın üstündeki herhangi bir sekmeye basılı tut.");
         table.put("Takes PineDrama's AI Cast button off the camera's side toolbar. Open the camera again to see the change.",
                 "PineDrama'nın AI Cast düğmesini kameranın yan araç çubuğundan kaldırır. Değişikliği görmek için kamerayı yeniden açın.");
         table.put("Takes PineDrama's own Auto scroll action out of the video panel and the Auto scroll switch beside videos on tablets and unfolded foldables. Works with Auto-advance off too.",

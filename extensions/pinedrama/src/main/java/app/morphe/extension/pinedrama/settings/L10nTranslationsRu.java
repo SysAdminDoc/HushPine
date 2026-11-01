@@ -1760,10 +1760,10 @@ final class L10nTranslationsRu {
                 "«Продолжать воспроизведение в фоне» включено в настройках воспроизведения HushPine, поэтому PineDrama получает значение 2 для этого ключа, и переопределение здесь не действует, пока тот переключатель не выключен.");
         table.put("Keep the Favorites tab",
                 "Оставлять вкладку Избранное");
-        table.put("Keep the Short Video feed on your real SIM",
-                "Оставить ленту Short Video на настоящей SIM");
         table.put("Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.",
                 "Запись TikTok Minis остаётся в меню, которое открывает кнопка справа вверху вашего профиля, а ряд значков приложений под ней скрывается, и меню становится короче.");
+        table.put("Keep the feed on your real SIM",
+                "Оставить ленту на настоящей SIM");
         table.put("Keep the language picked in PineDrama",
                 "Сохранять язык, выбранный в PineDrama");
         table.put("Keep the screen's refresh rate",
@@ -3277,8 +3277,8 @@ final class L10nTranslationsRu {
                 "Папка для стикеров");
         table.put("Sticker saved to %1$s",
                 "Стикер сохранён в %1$s");
-        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
-                "Поиск стикеров и остальной PineDrama по-прежнему видят SIM, указанную выше, а лента Short Video запрашивает видео со страной и оператором SIM вашего телефона. Ваш IP-адрес и история аккаунта по-прежнему учитываются.");
+        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
+                "Поиск стикеров и остальной PineDrama по-прежнему видят SIM, указанную выше, а лента запрашивает видео со страной и оператором SIM вашего телефона. Ваш IP-адрес и история аккаунта по-прежнему учитываются.");
         table.put("Stickers can't be saved to the folder in that file, so your sticker folder was kept",
                 "Стикеры нельзя сохранить в папку из этого файла, поэтому ваша папка для стикеров осталась прежней");
         table.put("Stickers: %1$s",
@@ -3392,8 +3392,8 @@ final class L10nTranslationsRu {
                 "Система");
         table.put("Tag saved videos with their details",
                 "Записывать сведения в теги сохранённых видео");
-        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.",
-                "Убирает HushPine из раздела «Настройки и конфиденциальность» PineDrama. Чтобы открыть эти настройки, удерживайте Short Video вверху ленты.");
+        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.",
+                "Убирает HushPine из раздела «Настройки и конфиденциальность» PineDrama. Чтобы открыть эти настройки, удерживайте любую вкладку вверху ленты.");
         table.put("Takes PineDrama's AI Cast button off the camera's side toolbar. Open the camera again to see the change.",
                 "Убирает кнопку AI Cast PineDrama с боковой панели камеры. Откройте камеру заново, чтобы увидеть изменение.");
         table.put("Takes PineDrama's own Auto scroll action out of the video panel and the Auto scroll switch beside videos on tablets and unfolded foldables. Works with Auto-advance off too.",

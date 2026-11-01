@@ -109,9 +109,9 @@ public class SimSpoofPreferenceCategory extends ConditionalPreferenceCategory {
         // The region patch's request hooks put the phone's own SIM back on feed requests, and
         // the SIM patch is what put the preset there, so the row needs both in the bundle.
         if (SettingsStatus.simSpoofEnabled && SettingsStatus.regionSpoofEnabled) {
-            addPreference(new TogglePreference(context, "Keep the Short Video feed on your real SIM",
+            addPreference(new TogglePreference(context, "Keep the feed on your real SIM",
                     "Sticker search and the rest of PineDrama still see the SIM above, "
-                            + "while the Short Video feed asks for videos with your phone's own SIM country "
+                            + "while the feed asks for videos with your phone's own SIM country "
                             + "and carrier. Your IP address and account history still count.",
                     Settings.SIM_SPOOF_FEED_REAL));
         }

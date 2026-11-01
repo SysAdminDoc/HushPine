@@ -308,7 +308,7 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
                 context,
                 "Hide the HushPine row",
                 "Take HushPine out of PineDrama's Settings and privacy. To open these settings, press "
-                        + "and hold Short Video at the top of the feed.",
+                        + "and hold any tab at the top of the feed.",
                 Settings.HIDE_SETTINGS_ROW
         ));
         if (SettingsStatus.firstLaunchSetupEnabled) {

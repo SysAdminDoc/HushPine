@@ -1527,10 +1527,10 @@ final class L10nTranslationsDe {
     }
 
     private static void fill12(Map<String, String> table) {
-        table.put("Keep the Short Video feed on your real SIM",
-                "Short-Video-Feed bei der echten SIM lassen");
         table.put("Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.",
                 "Lass den Eintrag TikTok Minis im Menü, das die Schaltfläche oben rechts in deinem Profil öffnet, und blende die Reihe mit App-Symbolen darunter aus, damit das Menü kürzer wird.");
+        table.put("Keep the feed on your real SIM",
+                "Feed bei der echten SIM lassen");
         table.put("Keep the language picked in PineDrama",
                 "In PineDrama gewählte Sprache behalten");
         table.put("Keep the screen's refresh rate",
@@ -2984,8 +2984,8 @@ final class L10nTranslationsDe {
                 "Speicherort für Sticker");
         table.put("Sticker saved to %1$s",
                 "Sticker gespeichert in %1$s");
-        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
-                "Stickersuche und der Rest von PineDrama sehen weiter die SIM oben, während der Short-Video-Feed Videos mit dem SIM-Land und Anbieter deines Handys anfragt. Deine IP-Adresse und dein Kontoverlauf zählen weiterhin.");
+        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
+                "Stickersuche und der Rest von PineDrama sehen weiter die SIM oben, während der Feed Videos mit dem SIM-Land und Anbieter deines Handys anfragt. Deine IP-Adresse und dein Kontoverlauf zählen weiterhin.");
         table.put("Stickers can't be saved to the folder in that file, so your sticker folder was kept",
                 "Im Ordner aus dieser Datei lassen sich keine Sticker speichern, deshalb wurde dein Stickerordner beibehalten");
         table.put("Stickers: %1$s",
@@ -3099,8 +3099,8 @@ final class L10nTranslationsDe {
                 "System");
         table.put("Tag saved videos with their details",
                 "Gespeicherte Videos mit ihren Details versehen");
-        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.",
-                "Nimmt HushPine aus PineDramas Einstellungen und Datenschutz. Um diese Einstellungen zu öffnen, halte Short Video oben im Feed gedrückt.");
+        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.",
+                "Nimmt HushPine aus PineDramas Einstellungen und Datenschutz. Um diese Einstellungen zu öffnen, halte einen beliebigen Tab oben im Feed gedrückt.");
         table.put("Takes PineDrama's AI Cast button off the camera's side toolbar. Open the camera again to see the change.",
                 "Nimmt PineDramas Taste AI Cast aus der seitlichen Werkzeugleiste der Kamera. Öffne die Kamera erneut, um die Änderung zu sehen.");
         table.put("Takes PineDrama's own Auto scroll action out of the video panel and the Auto scroll switch beside videos on tablets and unfolded foldables. Works with Auto-advance off too.",

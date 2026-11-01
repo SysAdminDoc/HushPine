@@ -1445,8 +1445,8 @@ Friends won't see a green dot or Active now while you're in PineDrama. Needs Gho
 Play sounds PineDrama pulled	PineDrama'nın kaldırdığı sesleri çal
 Play the audio on videos PineDrama silenced because their sound was pulled for copyright or in your region. PineDrama may still say the sound isn't available.	Sesi telif hakkı nedeniyle ya da bölgende kaldırıldığı için PineDrama'nın sessize aldığı videolarda sesi çalar. PineDrama yine de sesin kullanılamadığını söyleyebilir.
 Match region fields in requests	İsteklerdeki bölge alanlarını eşleştir
-Keep the Short Video feed on your real SIM	Short Video akışını gerçek SIM'de tut
-Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.	Çıkartma araması ve PineDrama'nın geri kalanı yukarıdaki SIM'i görmeye devam eder, Short Video akışı ise telefonunun kendi SIM ülkesi ve operatörüyle video ister. IP adresin ve hesap geçmişin yine de etkilidir.
+Keep the feed on your real SIM	Akışı gerçek SIM'de tut
+Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.	Çıkartma araması ve PineDrama'nın geri kalanı yukarıdaki SIM'i görmeye devam eder, akış ise telefonunun kendi SIM ülkesi ve operatörüyle video ister. IP adresin ve hesap geçmişin yine de etkilidir.
 Play	Oynat
 Pause	Duraklat
 Posting	Paylaşım
@@ -1803,7 +1803,7 @@ Expanded	Genişletilmiş
 Collapsed	Daraltılmış
 This setting isn't available. Search for another setting.	Bu ayar kullanılamıyor. Başka bir ayar arayın.
 Hide the HushPine row	HushPine satırını gizle
-Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.	HushPine'i PineDrama'nın Ayarlar ve gizlilik listesinden çıkarır. Bu ayarları açmak için akışın üstündeki Short Video'ya basılı tut.
+Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.	HushPine'i PineDrama'nın Ayarlar ve gizlilik listesinden çıkarır. Bu ayarları açmak için akışın üstündeki herhangi bir sekmeye basılı tut.
 Search didn't open. Restart PineDrama and try again.	Arama açılmadı. PineDrama'yı yeniden başlatıp dene.
 Put the comment search away	Yorum aramasını kaldır
 autoplay auto play	otomatik oynatma

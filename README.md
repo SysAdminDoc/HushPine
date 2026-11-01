@@ -41,7 +41,7 @@ If you patched PineDrama with Hushfeed before, patch again with HushPine using t
 
 ## Settings
 
-The HushPine page sits at the top of PineDrama's **Settings and privacy**. Pressing and holding Short Video at the top of the feed opens it too. Switches apply without patching again, though a few finish after PineDrama restarts, and a Restart row shows up when one needs it. Changes made while patching stay in the app. **Backup and restore** on the same page saves your settings to a file.
+The HushPine page sits at the top of PineDrama's **Settings and privacy**. Pressing and holding any tab at the top of the feed opens it too. Switches apply without patching again, though a few finish after PineDrama restarts, and a Restart row shows up when one needs it. Changes made while patching stay in the app. **Backup and restore** on the same page saves your settings to a file.
 
 The page comes in English, German, Spanish, Italian, Indonesian, Brazilian Portuguese, Russian, Turkish, Azerbaijani and Simplified Chinese, and it follows the language PineDrama runs in. Simplified Chinese is a first pass, so corrections are welcome.
 
@@ -126,7 +126,7 @@ There are 97 patches.
 | `Resource and battery governor` | Stops PineDrama reading your phone's motion sensors, which it can use to identify your phone, and stops a background speed test that can use a lot of memory. Starts off. Turn it on in HushPine settings > Privacy. |
 | `Resume videos after scrolling` | When you scroll back to a video, it picks up where you left off instead of starting over. On by default. Turn it off in HushPine settings > Playback. |
 | `Sanitize sharing links` | Removes the tracking codes from PineDrama links you share, so the link carries less about you. It can also swap tiktok.com for another site. On by default. Turn it off in HushPine settings > Privacy. |
-| `Settings` | Adds the HushPine settings page to PineDrama, at the top of Settings and privacy. Pressing and holding Short Video at the top of the feed opens it too. That's where you turn HushPine's features on and off. Works as soon as you patch it in, with no switch. |
+| `Settings` | Adds the HushPine settings page to PineDrama, at the top of Settings and privacy. Pressing and holding any tab at the top of the feed opens it too. That's where you turn HushPine's features on and off. Works as soon as you patch it in, with no switch. |
 | `Show commenter handle and region` | Shows a commenter's @username in place of their display name and the country their account is set to after the comment's time. It can also give each commenter's name a color of its own. Each starts off. Turn them on in HushPine settings > Comments. |
 | `Show LIVE search` | Adds PineDrama's search button inside the LIVE section where PineDrama supports it, so you can look for LIVEs. Starts off. Turn it on in HushPine settings > App. |
 | `Show the progress bar` | Shows the progress bar on videos where PineDrama hides it, so you can see how long a video is and skip around. On by default. Turn it off in HushPine settings > Playback, where you can also show the time beside the bar or give it a bigger handle. Seek bars for video stories and sound previews are there too. |

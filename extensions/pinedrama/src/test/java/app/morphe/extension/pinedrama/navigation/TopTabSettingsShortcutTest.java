@@ -37,22 +37,26 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLooper;
 
 /**
- * A long press on For You at the top of the feed opens HushPine's settings. The settings patch hands
- * every top tab PineDrama binds to {@link ForYouTabSettingsShortcut#onTopTab} with its tag. These build
- * the tab the way TikTok 47.1.4 does: a clickable LinearLayout that takes its tap in performClick,
+ * A long press on any tab at the top of the feed opens HushPine's settings. The settings patch hands
+ * every top tab PineDrama binds to {@link TopTabSettingsShortcut#onTopTab} with its tag. These build
+ * the tab the way PineDrama 47.5.3 does: a clickable LinearLayout that takes its tap in performClick,
  * with no listener of its own.
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 28)
-public class ForYouTabSettingsShortcutTest {
-    /** The tags PineDrama's top tab models answer for For You and Following. */
-    private static final String FOR_YOU = "homepage_hot";
-    private static final String FOLLOWING = "homepage_follow";
+public class TopTabSettingsShortcutTest {
+    /** The tags PineDrama's top tab protocols answer. The server picks which of them the strip holds. */
+    private static final String SHORT_VIDEO = "For You";
+    private static final String AI_FICTION = "homepage_ai_series";
+    private static final String FOLLOWING = "Following";
+    private static final String DRAMA = "Drama";
+    /** A tab this code has never heard of, for the next one the server adds. */
+    private static final String UNSEEN = "homepage_something_new";
 
     private ActivityController<Activity> owner;
     private Activity activity;
 
-    /** PineDrama's top tab: its tap is its own performClick (switch to the tab, or reload For You). */
+    /** PineDrama's top tab: its tap is its own performClick (switch to the tab, or reload it). */
     static final class TopTab extends LinearLayout {
         int taps;
 
@@ -70,7 +74,7 @@ public class ForYouTabSettingsShortcutTest {
     }
 
     @Before public void setUp() {
-        ForYouTabSettingsShortcut.resetForTests();
+        TopTabSettingsShortcut.resetForTests();
         owner = Robolectric.buildActivity(Activity.class).setup().visible();
         activity = owner.get();
         Utils.setContext(activity);
@@ -80,7 +84,7 @@ public class ForYouTabSettingsShortcutTest {
 
     @After public void tearDown() {
         PausedProcess.set(false);
-        ForYouTabSettingsShortcut.resetForTests();
+        TopTabSettingsShortcut.resetForTests();
         owner.pause().stop().destroy();
     }
 
@@ -117,27 +121,30 @@ public class ForYouTabSettingsShortcutTest {
 
     private static void assertOpenedSettings() {
         Intent opened = nextStarted();
-        assertNotNull("a long press on For You didn't open HushPine settings", opened);
+        assertNotNull("a long press on a top tab didn't open HushPine settings", opened);
         assertEquals("morphe_settings", opened.getAction());
         assertNull("it opened settings somewhere other than their home page",
                 opened.getStringExtra("morphe_settings_section"));
     }
 
-    @Test public void aLongPressOnForYouOpensHushPineSettings() {
-        TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+    /** Which tabs the strip holds is up to the server, so none of them is special. */
+    @Test public void aLongPressOnAnyTopTabOpensHushPineSettings() {
+        for (String tag : new String[]{SHORT_VIDEO, AI_FICTION, FOLLOWING, DRAMA, UNSEEN}) {
+            TopTab tab = tab();
+            TopTabSettingsShortcut.onTopTab(tab, tag);
 
-        press(tab, longPress());
+            press(tab, longPress());
 
-        assertOpenedSettings();
-        assertEquals("the long press gave no long-press vibration",
-                HapticFeedbackConstants.LONG_PRESS, Shadows.shadowOf(tab).lastHapticFeedbackPerformed());
-        assertEquals("letting go after the long press was also a tap that reloads the feed", 0, tab.taps);
+            assertOpenedSettings();
+            assertEquals(tag + " gave no long-press vibration",
+                    HapticFeedbackConstants.LONG_PRESS, Shadows.shadowOf(tab).lastHapticFeedbackPerformed());
+            assertEquals("letting go after the long press on " + tag + " was also a tap", 0, tab.taps);
+        }
     }
 
-    @Test public void aTapOnForYouIsStillTikToks() {
+    @Test public void aTapIsStillPineDramas() {
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
 
         press(tab, 80);
 
@@ -145,54 +152,30 @@ public class ForYouTabSettingsShortcutTest {
         assertNull("a tap opened the settings", nextStarted());
     }
 
-    @Test public void otherTopTabsAreLeftAsTheyWere() {
-        TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOLLOWING);
-
-        press(tab, longPress());
-
-        assertNull("a long press on Following opened the settings", nextStarted());
-        assertEquals("a held Following stopped acting as PineDrama's tap", 1, tab.taps);
-    }
-
     /** PineDrama reuses its top tab views, and binds the same one again as tabs come and go. */
-    @Test public void aTabBoundAgainKeepsWorkingAndFollowsTheTabItShows() {
+    @Test public void aTabBoundAgainOpensTheSettingsOnce() {
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, AI_FICTION);
+        TopTabSettingsShortcut.onTopTab(tab, AI_FICTION);
         press(tab, longPress());
         assertOpenedSettings();
+        assertNull("binding the tab twice opened the settings twice", nextStarted());
 
-        ForYouTabSettingsShortcut.onTopTab(tab, FOLLOWING);
-        press(tab, longPress());
-        assertNull("the view showing Following still opened the settings", nextStarted());
-        assertEquals(1, tab.taps);
-
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, SHORT_VIDEO);
         press(tab, longPress());
         assertOpenedSettings();
-        assertEquals("the long press was also a tap", 1, tab.taps);
+        assertNull("the tab's next tag opened the settings twice", nextStarted());
+        assertEquals("the long press was also a tap", 0, tab.taps);
     }
 
-    @Test public void aViewFirstBoundAsAnotherTabOpensTheSettingsOnceItShowsForYou() {
-        TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOLLOWING);
-        ForYouTabSettingsShortcut.onTopTab(tab, "For You");
-
-        press(tab, longPress());
-
-        assertOpenedSettings();
-        assertEquals(0, tab.taps);
-    }
-
-    @Test public void aLongPressTikTokGaveTheTabStaysTikToks() {
+    @Test public void aLongPressPineDramaGaveTheTabStaysPineDramas() {
         TopTab tab = tab();
         AtomicInteger own = new AtomicInteger();
         tab.setOnLongClickListener(view -> {
             own.incrementAndGet();
             return true;
         });
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
 
         press(tab, longPress());
 
@@ -203,63 +186,57 @@ public class ForYouTabSettingsShortcutTest {
     }
 
     /**
-     * TalkBack can't time a press, so For You names the long press as an action TalkBack lists.
-     * The tab keeps its click, the action doesn't tap the tab, and a view that shows another tab
-     * now neither offers nor runs it.
+     * TalkBack can't time a press, so each top tab names the long press as an action TalkBack lists.
+     * The tab keeps its click, and the action doesn't tap the tab.
      */
     @Test public void talkBackGetsANamedActionThatOpensTheSettings() {
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, FOLLOWING);
 
         AccessibilityNodeInfo info = tab.createAccessibilityNodeInfo();
         AccessibilityNodeInfo.AccessibilityAction action = openAction(info);
-        assertNotNull("For You offers TalkBack no way to the settings", action);
+        assertNotNull("a top tab offers TalkBack no way to the settings", action);
         assertTrue("PineDrama's tap went missing from the actions",
                 info.getActionList().contains(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK));
         assertTrue(tab.performAccessibilityAction(action.getId(), null));
         assertOpenedSettings();
         assertEquals("the action tapped the tab as well", 0, tab.taps);
-
-        ForYouTabSettingsShortcut.onTopTab(tab, FOLLOWING);
-        assertNull("Following offers the For You action", openAction(tab.createAccessibilityNodeInfo()));
-        assertFalse(tab.performAccessibilityAction(action.getId(), null));
-        assertNull("the action opened the settings from Following", nextStarted());
     }
 
     /** A delegate PineDrama gave the tab still answers for it under the action. */
-    @Test public void tikToksOwnAccessibilityDelegateStillAnswers() {
+    @Test public void pineDramasOwnAccessibilityDelegateStillAnswers() {
         TopTab tab = tab();
         tab.setAccessibilityDelegate(new View.AccessibilityDelegate() {
             @Override public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info) {
                 super.onInitializeAccessibilityNodeInfo(host, info);
-                info.setContentDescription("For You, selected");
+                info.setContentDescription("Drama, selected");
             }
         });
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
 
         AccessibilityNodeInfo info = tab.createAccessibilityNodeInfo();
-        assertEquals("PineDrama's own description was lost", "For You, selected", String.valueOf(info.getContentDescription()));
+        assertEquals("PineDrama's own description was lost", "Drama, selected", String.valueOf(info.getContentDescription()));
         assertNotNull(openAction(info));
     }
 
     /** PineDrama can set a delegate after the first bind. The next bind wraps it, once. */
-    @Test public void aDelegateTikTokSetsLaterIsWrappedOnTheNextBind() {
+    @Test public void aDelegatePineDramaSetsLaterIsWrappedOnTheNextBind() {
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
         tab.setAccessibilityDelegate(new View.AccessibilityDelegate() {
             @Override public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfo info) {
                 super.onInitializeAccessibilityNodeInfo(host, info);
-                info.setContentDescription("For You, selected");
+                info.setContentDescription("Drama, selected");
             }
         });
         assertNull(openAction(tab.createAccessibilityNodeInfo()));
 
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
 
         AccessibilityNodeInfo info = tab.createAccessibilityNodeInfo();
         assertNotNull("the bind after PineDrama's delegate didn't bring the action back", openAction(info));
-        assertEquals("PineDrama's later delegate was lost", "For You, selected", String.valueOf(info.getContentDescription()));
+        assertEquals("PineDrama's later delegate was lost", "Drama, selected", String.valueOf(info.getContentDescription()));
         long offered = info.getActionList().stream()
                 .filter(action -> "Open HushPine settings".equals(String.valueOf(action.getLabel()))).count();
         assertEquals("binding again stacked the action", 1, offered);
@@ -274,7 +251,7 @@ public class ForYouTabSettingsShortcutTest {
 
     @Test public void slidingOffTheTabLetsGo() {
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
         long down = SystemClock.uptimeMillis();
 
         tab.dispatchTouchEvent(event(MotionEvent.ACTION_DOWN, down, 150, 60));
@@ -283,7 +260,7 @@ public class ForYouTabSettingsShortcutTest {
         tab.dispatchTouchEvent(event(MotionEvent.ACTION_UP, down, 150, 900));
         ShadowLooper.idleMainLooper();
 
-        assertNull("a finger that slid off For You still opened the settings", nextStarted());
+        assertNull("a finger that slid off the tab still opened the settings", nextStarted());
         assertEquals("letting go off the tab was a tap", 0, tab.taps);
     }
 
@@ -291,22 +268,31 @@ public class ForYouTabSettingsShortcutTest {
     @Test public void pauseLeavesItWorking() {
         PausedProcess.set(true);
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(tab, FOR_YOU);
+        TopTabSettingsShortcut.onTopTab(tab, DRAMA);
 
         press(tab, longPress());
 
         assertOpenedSettings();
     }
 
-    @Test public void aMissingTabOrTagChangesNothing() {
+    /** The tag only goes in the log, so a tab that answers none still works. */
+    @Test public void aTabWithoutATagStillOpensTheSettings() {
         TopTab tab = tab();
-        ForYouTabSettingsShortcut.onTopTab(null, FOR_YOU);
-        ForYouTabSettingsShortcut.onTopTab(tab, null);
+        TopTabSettingsShortcut.onTopTab(tab, null);
+
+        press(tab, longPress());
+
+        assertOpenedSettings();
+    }
+
+    @Test public void aMissingTabChangesNothing() {
+        TopTab tab = tab();
+        TopTabSettingsShortcut.onTopTab(null, DRAMA);
 
         press(tab, longPress());
 
         assertNull(nextStarted());
-        assertEquals("a tab without a tag lost PineDrama's tap", 1, tab.taps);
+        assertEquals("a tab nothing was handed over for lost PineDrama's tap", 1, tab.taps);
     }
 
     /** A press the listener can't follow is left to the tab, and doesn't throw into PineDrama. */
@@ -314,6 +300,6 @@ public class ForYouTabSettingsShortcutTest {
         TopTab tab = tab();
 
         assertFalse("a touch it failed on wasn't left to the tab",
-                new ForYouTabSettingsShortcut.Press().onTouch(tab, null));
+                new TopTabSettingsShortcut.Press().onTouch(tab, null));
     }
 }

@@ -768,8 +768,8 @@ Mark saved videos,标记已保存的视频
 Marked as not interested,标记为不感兴趣
 Match locale and timezone to country,将区域设置和时区与国家/地区相匹配
 Match region fields in requests,匹配请求中的地区字段
-Keep the Short Video feed on your real SIM,让 Short Video 信息流使用真实 SIM 卡
-"Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",贴纸搜索和 PineDrama 的其他部分仍会看到上面的 SIM 卡，而 Short Video 信息流会按你手机自己的 SIM 卡国家和运营商请求视频。你的 IP 地址和账号历史仍会起作用.
+Keep the feed on your real SIM,让信息流使用真实 SIM 卡
+"Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",贴纸搜索和 PineDrama 的其他部分仍会看到上面的 SIM 卡，而信息流会按你手机自己的 SIM 卡国家和运营商请求视频。你的 IP 地址和账号历史仍会起作用.
 Match text stickers too,也匹配文字贴纸
 Matches the rule: %1$s,匹配规则：%1$s
 Maximum,最大
@@ -1782,7 +1782,7 @@ Expanded,已展开
 Collapsed,已折叠
 This setting isn't available. Search for another setting.,此设置不可用. 请搜索其他设置.
 Hide the HushPine row,隐藏 HushPine 入口
-"Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.",从 PineDrama 的“设置和隐私”中移除 HushPine。要打开这些设置，请长按信息流顶部的 Short Video.
+"Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.",从 PineDrama 的“设置和隐私”中移除 HushPine。要打开这些设置，请长按信息流顶部的任意标签.
 Search didn't open. Restart PineDrama and try again.,搜索未打开。请重启 PineDrama 后重试.
 Put the comment search away,收起评论搜索
 autoplay auto play,自动播放

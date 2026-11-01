@@ -1527,10 +1527,10 @@ final class L10nTranslationsZh_Hans {
     }
 
     private static void fill12(Map<String, String> table) {
-        table.put("Keep the Short Video feed on your real SIM",
-                "让 Short Video 信息流使用真实 SIM 卡");
         table.put("Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.",
                 "保留个人资料右上角按钮所打开菜单中的 PineDrama 迷你条目，并隐藏其下方的应用图标行，让菜单更短.");
+        table.put("Keep the feed on your real SIM",
+                "让信息流使用真实 SIM 卡");
         table.put("Keep the language picked in PineDrama",
                 "将所选语言保留在 PineDrama 中");
         table.put("Keep the screen's refresh rate",
@@ -2984,8 +2984,8 @@ final class L10nTranslationsZh_Hans {
                 "贴纸目的地");
         table.put("Sticker saved to %1$s",
                 "贴纸已保存至 %1$s");
-        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
-                "贴纸搜索和 PineDrama 的其他部分仍会看到上面的 SIM 卡，而 Short Video 信息流会按你手机自己的 SIM 卡国家和运营商请求视频。你的 IP 地址和账号历史仍会起作用.");
+        table.put("Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.",
+                "贴纸搜索和 PineDrama 的其他部分仍会看到上面的 SIM 卡，而信息流会按你手机自己的 SIM 卡国家和运营商请求视频。你的 IP 地址和账号历史仍会起作用.");
         table.put("Stickers can't be saved to the folder in that file, so your sticker folder was kept",
                 "贴纸无法保存到该文件中的文件夹中，因此你的贴纸文件夹被保留");
         table.put("Stickers: %1$s",
@@ -3099,8 +3099,8 @@ final class L10nTranslationsZh_Hans {
                 "系统");
         table.put("Tag saved videos with their details",
                 "为保存的视频添加详细信息标签");
-        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.",
-                "从 PineDrama 的“设置和隐私”中移除 HushPine。要打开这些设置，请长按信息流顶部的 Short Video.");
+        table.put("Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.",
+                "从 PineDrama 的“设置和隐私”中移除 HushPine。要打开这些设置，请长按信息流顶部的任意标签.");
         table.put("Takes PineDrama's AI Cast button off the camera's side toolbar. Open the camera again to see the change.",
                 "从相机侧边工具栏移除 PineDrama 的 AI Cast 按钮。重新打开相机即可看到变化.");
         table.put("Takes PineDrama's own Auto scroll action out of the video panel and the Auto scroll switch beside videos on tablets and unfolded foldables. Works with Auto-advance off too.",

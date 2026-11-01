@@ -6,10 +6,10 @@
 .DESCRIPTION
     Patches PineDrama from the bundle being released with patch-for-device.ps1 and installs it (or,
     with -AuditBuild, walks the build already installed from that receipt), then opens every screen
-    the patches reach: Short Video, Following and Drama with swipes, the comment and share sheets,
+    the patches reach: the main top tab, Following and Drama with swipes, the comment and share sheets,
     search, and the Discover, Rewards, Inbox and Profile tabs. It then expands every HushPine
     settings section, scrolls it to its end and collapses it, plus Search settings. HushPine opens
-    from Profile's gear, or from a long press on Home when that route has no HushPine row. After
+    from Profile's gear, or from a long press on a top tab when that route has no HushPine row. After
     each step the app has to still be the foreground app on the same process. Logcat's crash lines
     for it decide the rest.
 
@@ -366,7 +366,7 @@ function Test-WalkHushPineHome([string]$HubLabel, [string]$Name) {
 }
 
 # Opens HushPine's home: Profile's menu > Settings and privacy > HushPine first, then a long press
-# on the feed's first top tab (ForYouTabSettingsShortcut) when that route has no HushPine row.
+# on a top tab (TopTabSettingsShortcut) when that route has no HushPine row.
 function Open-WalkHushPine([string]$HubLabel, [int]$Width, [int]$Height) {
     $nodes = Get-WalkScreen 'profile'
     $menu = @(Find-UiNode -Nodes $nodes -Label $WalkLabels.ProfileMenu | Where-Object { $_.Top -lt $Height * 0.15 }) | Select-Object -First 1
@@ -391,7 +391,7 @@ function Open-WalkHushPine([string]$HubLabel, [int]$Width, [int]$Height) {
         }
     }
     $nodes = Restore-WalkTabs 'the settings route' $Height
-    $topTab = @(Find-UiNode -Nodes $nodes -Label $WalkLabels.ShortVideo | Where-Object { $_.Top -lt $Height * 0.2 }) | Select-Object -First 1
+    $topTab = @(Find-UiNode -Nodes $nodes -Label $WalkLabels.MainTab | Where-Object { $_.Bottom -lt $Height * 0.15 }) | Select-Object -First 1
     if (-not $topTab) { Write-WalkLog 'no top tab to long press'; return $false }
     if (-not (Test-WalkTapAllowed -Node $topTab)) { throw "Refused to long press '$($topTab.Text)$($topTab.Desc)'." }
     Write-WalkLog "long press the top tab at $($topTab.X),$($topTab.Y)"
@@ -458,7 +458,7 @@ try {
 
     # The main feed, with swipes.
     $mainName = $appProfile.MainFeedName
-    $main = @(Find-UiNode -Nodes $feed -Label $WalkLabels[$appProfile.MainFeed] | Where-Object { $_.Top -lt $H * 0.15 }) | Select-Object -First 1
+    $main = @(Find-UiNode -Nodes $feed -Label $WalkLabels[$appProfile.MainFeed] | Where-Object { $_.Bottom -lt $H * 0.15 }) | Select-Object -First 1
     if ($main -and -not $main.Selected) { Invoke-WalkTap $main $mainName 3000 }
     $alive = $true
     for ($i = 0; $i -lt 5 -and $alive; $i++) {
@@ -492,7 +492,7 @@ try {
         for ($i = 0; $i -lt 2 -and $alive; $i++) { Invoke-WalkSwipe $W $H; Start-Sleep -Milliseconds 1500; $alive = Test-WalkAlive "$other swipe $($i + 1)" }
         if ($alive) { Complete-WalkScreen "feed: $other" }
         $nodes = Restore-WalkTabs $other $H
-        $main = @(Find-UiNode -Nodes $nodes -Label $WalkLabels[$appProfile.MainFeed] | Where-Object { $_.Top -lt $H * 0.15 }) | Select-Object -First 1
+        $main = @(Find-UiNode -Nodes $nodes -Label $WalkLabels[$appProfile.MainFeed] | Where-Object { $_.Bottom -lt $H * 0.15 }) | Select-Object -First 1
         if ($main) { Invoke-WalkTap $main $mainName 2500 }
     }
 

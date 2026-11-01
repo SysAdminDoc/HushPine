@@ -1571,8 +1571,8 @@ Friends won't see a green dot or Active now while you're in PineDrama. Needs Gho
 Play sounds PineDrama pulled	Воспроизводить звуки, удалённые PineDrama
 Play the audio on videos PineDrama silenced because their sound was pulled for copyright or in your region. PineDrama may still say the sound isn't available.	Воспроизводит звук в видео, которые PineDrama заглушил, потому что их звук удалён из-за авторских прав или в вашем регионе. PineDrama может по-прежнему писать, что звук недоступен.
 Match region fields in requests	Подменять поля региона в запросах
-Keep the Short Video feed on your real SIM	Оставить ленту Short Video на настоящей SIM
-Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.	Поиск стикеров и остальной PineDrama по-прежнему видят SIM, указанную выше, а лента Short Video запрашивает видео со страной и оператором SIM вашего телефона. Ваш IP-адрес и история аккаунта по-прежнему учитываются.
+Keep the feed on your real SIM	Оставить ленту на настоящей SIM
+Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.	Поиск стикеров и остальной PineDrama по-прежнему видят SIM, указанную выше, а лента запрашивает видео со страной и оператором SIM вашего телефона. Ваш IP-адрес и история аккаунта по-прежнему учитываются.
 Play	Воспроизвести
 Pause	Пауза
 Posting	Публикация
@@ -1965,7 +1965,7 @@ Expanded	Развернуто
 Collapsed	Свернуто
 This setting isn't available. Search for another setting.	Эта настройка недоступна. Найдите другую настройку.
 Hide the HushPine row	Скрыть строку HushPine
-Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.	Убирает HushPine из раздела «Настройки и конфиденциальность» PineDrama. Чтобы открыть эти настройки, удерживайте Short Video вверху ленты.
+Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.	Убирает HushPine из раздела «Настройки и конфиденциальность» PineDrama. Чтобы открыть эти настройки, удерживайте любую вкладку вверху ленты.
 Search didn't open. Restart PineDrama and try again.	Поиск не открылся. Перезапустите PineDrama.
 Put the comment search away	Убрать поиск по комментариям
 autoplay auto play	автовоспроизведение автозапуск

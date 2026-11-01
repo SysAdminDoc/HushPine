@@ -346,7 +346,7 @@ private fun BytecodePatchContext.settingsIconResourceId(): Int {
 val settingsPatch = bytecodePatch(
     name = "Settings",
     description = "Adds the HushPine settings page to PineDrama, at the top of Settings and " +
-        "privacy. Pressing and holding Short Video at the top of the feed opens it too. That's where " +
+        "privacy. Pressing and holding any tab at the top of the feed opens it too. That's where " +
         "you turn HushPine's features on and off. Works as soon as you patch it in, with no switch.",
     default = true,
 ) {
@@ -663,7 +663,7 @@ val settingsPatch = bytecodePatch(
         resolveOpenDebugFunction2Method().openMorpheSettingsAtStart("0")
         // A long press on For You, PineDrama's nearest thing to a logo on the feed, opens the page
         // too. A build where it can't be found keeps everything above and leaves For You alone.
-        hookForYouLongPress()
+        hookTopTabLongPress()
         registerForBuildDetails("enableSettings")
     }
 }

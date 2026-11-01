@@ -1435,8 +1435,8 @@ Hide online status,Sembunyikan status online
 Play sounds PineDrama pulled,Putar suara yang ditarik PineDrama
 Play the audio on videos PineDrama silenced because their sound was pulled for copyright or in your region. PineDrama may still say the sound isn't available.,Putar audio pada video yang dibisukan PineDrama karena suaranya ditarik akibat hak cipta atau di wilayah Anda. PineDrama mungkin tetap menyebut suaranya tidak tersedia.
 Match region fields in requests,Samakan kolom wilayah dalam permintaan
-Keep the Short Video feed on your real SIM,Biarkan feed Short Video memakai SIM asli
-"Sticker search and the rest of PineDrama still see the SIM above, while the Short Video feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.","Pencarian stiker dan bagian PineDrama lainnya tetap melihat SIM di atas, sedangkan feed Short Video meminta video dengan negara dan operator SIM ponselmu sendiri. Alamat IP dan riwayat akunmu tetap berpengaruh."
+Keep the feed on your real SIM,Biarkan feed memakai SIM asli
+"Sticker search and the rest of PineDrama still see the SIM above, while the feed asks for videos with your phone's own SIM country and carrier. Your IP address and account history still count.","Pencarian stiker dan bagian PineDrama lainnya tetap melihat SIM di atas, sedangkan feed meminta video dengan negara dan operator SIM ponselmu sendiri. Alamat IP dan riwayat akunmu tetap berpengaruh."
 Play,Putar
 Pause,Jeda
 Posting,Memposting
@@ -1782,7 +1782,7 @@ Expanded,Diperluas
 Collapsed,Diciutkan
 This setting isn't available. Search for another setting.,Setelan ini tidak tersedia. Cari setelan lain.
 Hide the HushPine row,Sembunyikan baris HushPine
-"Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold Short Video at the top of the feed.","Keluarkan HushPine dari Pengaturan dan privasi PineDrama. Untuk membuka pengaturan ini, tekan lama Short Video di bagian atas feed."
+"Take HushPine out of PineDrama's Settings and privacy. To open these settings, press and hold any tab at the top of the feed.","Keluarkan HushPine dari Pengaturan dan privasi PineDrama. Untuk membuka pengaturan ini, tekan lama tab mana pun di bagian atas feed."
 Search didn't open. Restart PineDrama and try again.,"Pencarian tak terbuka. Mulai ulang PineDrama, coba lagi."
 Put the comment search away,Tutup pencarian komentar
 autoplay auto play,putar otomatis autoplay
