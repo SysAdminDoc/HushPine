@@ -44,8 +44,8 @@ public final class PlaybackPreferenceCategory extends ConditionalPreferenceCateg
         if (SettingsStatus.autoAdvanceEnabled) {
             addPreference(new SectionHeadingPreference(context, "Auto-advance"));
             addPreference(new TogglePreference(context, "Auto-advance videos",
-                    "Move to the next video when the current one ends. Pauses, open dialogs and "
-                            + "screen-time holds stop it. Restart PineDrama to apply this.",
+                    "Move to the next video when the current one ends. Pauses and open dialogs "
+                            + "stop it. Restart PineDrama to apply this.",
                     Settings.AUTO_ADVANCE));
             addPreference(new NumberInputPreference(context, "Auto-advance session limit",
                     "Zero means no limit. Counts the videos HushPine advanced past for you, "

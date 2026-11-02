@@ -138,7 +138,7 @@ public class FeedFilterPreferenceCategory extends ConditionalPreferenceCategory 
         ));
         // A kind of post, not an ad: its summary says it goes even when the badge isn't paid.
         addPreference(new TogglePreference(context, "Filter location-tagged videos",
-                "Hide feed videos with place badges, even when they aren't paid ads. To keep the video and hide only its badge, use Hide location labels in Feed screen.",
+                "Hide feed videos with place badges, even when they aren't paid ads.",
                 Settings.FILTER_LOCATION_VIDEOS));
     }
 
@@ -205,13 +205,13 @@ public class FeedFilterPreferenceCategory extends ConditionalPreferenceCategory 
                     + "pattern checked against the handle and display name.", Settings.BLOCKED_CREATORS)
                     .withCheck(AdvancedFeedRules::creatorEntryProblem).withNameKeyboard());
             addPreference(new CreatorListPreference(context, "Creators hidden on this phone",
-                    "Creators you hid from a video. Search the list and remove one at a time.",
+                    "Creators you add here are hidden on this phone. Search the list and remove one at a time.",
                     Settings.LOCAL_HIDDEN_CREATORS));
             addPreference(new InputTextPreference(context, "Creator exceptions",
                     "Separate handles or user IDs with commas. Their videos stay when a filter "
                             + "on post type, labels, age, length or counts would hide them. "
-                            + "Ads, blocked creators, words, sounds, countries, caption "
-                            + "languages and seen videos still apply.",
+                            + "Ads, blocked creators, words, sounds, countries and caption "
+                            + "languages still apply.",
                     Settings.CREATOR_FILTER_EXCEPTIONS)
                     .withCheck(CreatorExceptions::entryProblem)
                     .withNote(CreatorExceptions::conflictNote)
@@ -221,7 +221,7 @@ public class FeedFilterPreferenceCategory extends ConditionalPreferenceCategory 
             addPreference(new TogglePreference(
                     context,
                     "Hide videos with blocked sounds",
-                    "Hide videos that use a sound blocked with the player's sound button, or named below.",
+                    "Hide videos that use a sound named or listed below.",
                     Settings.HIDE_BLOCKED_SOUNDS
             ));
             addPreference(new InputTextPreference(
@@ -234,8 +234,7 @@ public class FeedFilterPreferenceCategory extends ConditionalPreferenceCategory 
             addPreference(new InputTextPreference(
                     context,
                     "Blocked sound ids",
-                    "Sound IDs saved by the player's sound button, separated by commas. Remove "
-                            + "one to unblock it.",
+                    "Sound IDs to hide, separated by commas. Remove one to unblock it.",
                     Settings.BLOCKED_SOUND_IDS
             ).withNameKeyboard());
         }

@@ -4363,11 +4363,11 @@ public class SettingsL10nTest {
                     "Playback", "Comments", "Downloads", "Share sheet", "Inbox",
                     "Privacy", "Region", "App", "Diagnostics", "Backup and restore", "Settings",
                     "Choose what reaches your feed",
-                    "Captions, gestures and on-screen controls", "Quality, speed and auto-advance",
+                    "Buttons, profile grids and gestures", "Quality, speed and auto-advance",
                     "Filters, translation and copy options",
-                    "Quality, files, subtitles and hand-off", "People, shortcuts and sending controls",
+                    "Quality, files, sounds and hand-off", "Duet, Stitch and Add to Story",
                     "Choose which rows and controls appear", "Tracking, device access and links",
-                    "Country and network preferences", "Layout, search, profile and system",
+                    "Country and network preferences", "Appearance, search, profile and system",
                     "Logging, hook status and reports", "Save, restore, reset and undo your settings"}) {
                 strings.add(L10n.t(activity, section));
             }

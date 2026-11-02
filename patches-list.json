@@ -301,7 +301,7 @@
           "description": null,
           "required": false,
           "type": "kotlin.String",
-          "default": "DCIM/TikTok",
+          "default": "DCIM/PineDrama",
           "values": null
         },
         {
@@ -310,7 +310,7 @@
           "description": null,
           "required": false,
           "type": "kotlin.String",
-          "default": "DCIM/TikTok",
+          "default": "DCIM/PineDrama",
           "values": null
         },
         {
@@ -335,7 +335,7 @@
     },
     {
       "name": "Allow Duet and Stitch",
-      "description": "Shows the Duet and Stitch buttons on videos whose creator turned them off, so you can still make one, and Add to Story in the share sheet and on stories when the creator turned off content reuse. PineDrama may still refuse some videos or the upload. Starts off. Turn it on in HushPine settings > Share sheet.",
+      "description": "Shows the Duet and Stitch buttons on videos whose creator turned them off, so you can still make one, and Add to Story in the share sheet when the creator turned off content reuse. PineDrama may still refuse some videos or the upload. Starts off. Turn it on in HushPine settings > Share sheet.",
       "category": "Downloads",
       "use": true,
       "dependencies": [
@@ -1681,7 +1681,7 @@
           "description": null,
           "required": false,
           "type": "kotlin.String",
-          "default": "DCIM/TikTok",
+          "default": "DCIM/PineDrama",
           "values": null
         },
         {
@@ -1690,7 +1690,7 @@
           "description": null,
           "required": false,
           "type": "kotlin.String",
-          "default": "DCIM/TikTok",
+          "default": "DCIM/PineDrama",
           "values": null
         },
         {
@@ -1699,7 +1699,7 @@
           "description": null,
           "required": false,
           "type": "kotlin.String",
-          "default": "DCIM/TikTok",
+          "default": "DCIM/PineDrama",
           "values": null
         },
         {
@@ -3256,7 +3256,7 @@
     },
     {
       "name": "Hide profile shortcuts",
-      "description": "Hides the shortcuts you pick from the row under a profile's bio, like TikTok Studio or Your orders, and can hide the Thoughts bubble, and Balance and the TikTok Minis icons in your profile's menu. It can also turn Thoughts on for accounts PineDrama left out. Starts off. Turn it on in HushPine settings > App, then restart PineDrama.",
+      "description": "Hides the shortcuts you pick from under a profile's bio, if PineDrama shows any there. Starts off. Turn it on in HushPine settings > App, then restart PineDrama.",
       "category": "Feed",
       "use": true,
       "dependencies": [
@@ -3293,24 +3293,6 @@
         }
       ],
       "options": [
-        {
-          "key": "hide_profile_menu_balance",
-          "title": "Default: hide profile menu balance",
-          "description": null,
-          "required": false,
-          "type": "kotlin.Boolean",
-          "default": false,
-          "values": null
-        },
-        {
-          "key": "hide_profile_menu_minis_icons",
-          "title": "Default: hide profile menu minis icons",
-          "description": null,
-          "required": false,
-          "type": "kotlin.Boolean",
-          "default": false,
-          "values": null
-        },
         {
           "key": "hidden_profile_shortcuts",
           "title": "Default: hidden profile shortcuts",

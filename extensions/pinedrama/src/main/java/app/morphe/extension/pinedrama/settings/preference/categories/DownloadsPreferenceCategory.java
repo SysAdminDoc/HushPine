@@ -168,7 +168,7 @@ public class DownloadsPreferenceCategory extends ConditionalPreferenceCategory {
                     new String[]{"As PineDrama sent it (M4A or MP3)", "Opus (.ogg), a smaller file", "MP3 (.mp3), plays anywhere"},
                     new String[]{SoundFormat.ORIGINAL, SoundFormat.OPUS, SoundFormat.MP3})
                     .withNote(SoundFormat.opusPossible()
-                            ? "Applies to Save the sound as well and to Save the original sound on a long press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already."
+                            ? "Applies to Save the sound as well. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already."
                             : "Opus needs Android 10 or later, so it saves sounds as PineDrama sent them. MP3 works on any phone."));
             addPreference(new TogglePreference(context, "Save the cover as well",
                     "Save the video's cover picture at the largest size PineDrama has, each time you tap Download. It goes to your photo folder, named after the video.",
@@ -219,7 +219,7 @@ public class DownloadsPreferenceCategory extends ConditionalPreferenceCategory {
         if (SettingsStatus.advancedDownloadsEnabled || SettingsStatus.downloadEnabled) {
             addPreference(new SectionHeadingPreference(context, "Photos and stickers"));
             addPreference(new TogglePreference(context, "Keep photos as PineDrama sent them",
-                    "Saved photos, covers, story photos and stickers that don't move are the exact "
+                    "Saved photos, covers and stickers that don't move are the exact "
                             + "files PineDrama sent, not a new JPEG or PNG. Some galleries and computers "
                             + "can't open HEIF or WebP.", Settings.KEEP_PHOTOS_AS_SENT));
         }
@@ -249,15 +249,6 @@ public class DownloadsPreferenceCategory extends ConditionalPreferenceCategory {
             addPreference(new TogglePreference(context, "Save a profile picture on a long press",
                     "Press and hold a profile picture to save the full size original to your photo destination.",
                     Settings.SAVE_PROFILE_PICTURE));
-            addPreference(new TogglePreference(context, "Save a story on a long press",
-                    "Press and hold a story to save it. Stories have no save button of their own, "
-                            + "and holding one is how PineDrama pauses it, so this takes that gesture over.",
-                    Settings.SAVE_STORY));
-            addPreference(new SectionHeadingPreference(context, "Stories"));
-            addPreference(new TogglePreference(context, "Save a story from its share sheet",
-                    "Puts a save button in the sheet a story's Share button opens. It saves the story "
-                            + "you're watching, and holding a story still pauses it.",
-                    Settings.SAVE_STORY_FROM_SHARE));
         }
         if (SettingsStatus.advancedDownloadsEnabled) {
             addPreference(new SectionHeadingPreference(context, "Hand-off"));

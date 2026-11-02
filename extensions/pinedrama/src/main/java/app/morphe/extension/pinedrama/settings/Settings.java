@@ -925,10 +925,6 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting HIDE_FEED_TAB_STRIP = new BooleanSetting("hide_feed_tab_strip", FALSE);
     public static final BooleanSetting HIDE_FEED_SEARCH_BUTTON =
             new BooleanSetting("hide_feed_search_button", FALSE, true);
-    /** The Balance cell in your profile's menu (#194). Read each time the menu is built. */
-    public static final BooleanSetting HIDE_PROFILE_MENU_BALANCE = new BooleanSetting("hide_profile_menu_balance", FALSE);
-    /** The row of app icons under TikTok Minis in your profile's menu (#230). Read each time the menu is built. */
-    public static final BooleanSetting HIDE_PROFILE_MENU_MINIS_ICONS = new BooleanSetting("hide_profile_menu_minis_icons", FALSE);
     // Each rewards service getter keeps its first answer until TikTok restarts (#21).
     public static final BooleanSetting HIDE_SEARCH_REWARDS = new BooleanSetting("hide_search_rewards", FALSE, true);
     public static final BooleanSetting HIDE_SEARCH_SUGGESTIONS = new BooleanSetting("hide_search_suggestions", FALSE);

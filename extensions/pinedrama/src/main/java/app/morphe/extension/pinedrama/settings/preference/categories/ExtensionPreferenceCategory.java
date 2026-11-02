@@ -199,7 +199,7 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
             addPreference(new TogglePreference(
                     context,
                     "Hide the rewards shortcut",
-                    "Hide the purple rewards button beside Add friends on your profile.",
+                    "Hide the rewards button on your profile, if PineDrama shows you one.",
                     Settings.HIDE_PROFILE_REWARDS_SHORTCUT
             ));
         }
@@ -208,8 +208,8 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
             addPreference(new InputTextPreference(
                     context,
                     "Hide profile shortcuts by name",
-                    "Comma separated names exactly as the row under a profile's bio shows them, "
-                            + "such as TikTok Studio or Your orders. Restart PineDrama to apply this.",
+                    "Comma separated names, exactly as PineDrama shows them under a profile's bio. "
+                            + "Restart PineDrama to apply this.",
                     Settings.HIDDEN_PROFILE_SHORTCUTS
             ));
             if (SettingsStatus.profileThoughtsEnabled) {
@@ -229,22 +229,6 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
                                 + "for accounts PineDrama hasn't turned them on for. PineDrama's servers may "
                                 + "still refuse to post one. Restart PineDrama to apply this.",
                         Settings.ENABLE_THOUGHTS
-                ));
-            }
-            if (SettingsStatus.profileMenuCellsEnabled) {
-                addPreference(new TogglePreference(
-                        context,
-                        "Hide Balance in the profile menu",
-                        "Hide Balance from the menu your profile's top right button opens. Your coins "
-                                + "and gifts stay as they are.",
-                        Settings.HIDE_PROFILE_MENU_BALANCE
-                ));
-                addPreference(new TogglePreference(
-                        context,
-                        "Hide the TikTok Minis icons in the profile menu",
-                        "Keep the TikTok Minis entry in the menu your profile's top right button opens, "
-                                + "and hide the row of app icons under it so the menu is shorter.",
-                        Settings.HIDE_PROFILE_MENU_MINIS_ICONS
                 ));
             }
         }

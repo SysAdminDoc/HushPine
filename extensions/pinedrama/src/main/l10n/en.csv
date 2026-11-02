@@ -194,7 +194,8 @@ App,App
 App AB,App AB
 AppGallery,AppGallery
 Appearance,Appearance
-"Applies to Save the sound as well and to Save the original sound on a long press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.","Applies to Save the sound as well and to Save the original sound on a long press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already."
+"Appearance, search, profile and system","Appearance, search, profile and system"
+"Applies to Save the sound as well. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.","Applies to Save the sound as well. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already."
 Applies to both video and photo downloads.,Applies to both video and photo downloads.
 Apply,Apply
 Apply enables these overrides. Undo last Lab change puts your previous rules back until you change anything else in the Lab.,Apply enables these overrides. Undo last Lab change puts your previous rules back until you change anything else in the Lab.
@@ -251,6 +252,7 @@ Browse,Browse
 Budgets and reminders,Budgets and reminders
 Build details,Build details
 Build details copied to the clipboard,Build details copied to the clipboard
+"Buttons, profile grids and gestures","Buttons, profile grids and gestures"
 Camera and microphone in use,Camera and microphone in use
 Camera in use,Camera in use
 Can't check yet: %1$s,Can't check yet: %1$s
@@ -259,7 +261,6 @@ Can't send a password to proxy %1$s. Use another.,Can't send a password to proxy
 Can't tell who wrote this. Block them on their profile.,Can't tell who wrote this. Block them on their profile.
 Cancel,Cancel
 Caption languages,Caption languages
-"Captions, gestures and on-screen controls","Captions, gestures and on-screen controls"
 Capture crash reports locally,Capture crash reports locally
 Capture the feed,Capture the feed
 "Capturing. Find the problem, then come back to stop.","Capturing. Find the problem, then come back to stop."
@@ -300,7 +301,7 @@ Close,Close
 Close PineDrama after,Close PineDrama after
 Collapsed,Collapsed
 Color commenter names,Color commenter names
-"Comma separated names exactly as the row under a profile's bio shows them, such as TikTok Studio or Your orders. Restart PineDrama to apply this.","Comma separated names exactly as the row under a profile's bio shows them, such as TikTok Studio or Your orders. Restart PineDrama to apply this."
+"Comma separated names, exactly as PineDrama shows them under a profile's bio. Restart PineDrama to apply this.","Comma separated names, exactly as PineDrama shows them under a profile's bio. Restart PineDrama to apply this."
 Comment export failed,Comment export failed
 Comment media filename,Comment media filename
 Comment sort and dislike styles,Comment sort and dislike styles
@@ -383,7 +384,7 @@ Create,Create
 Creator exceptions,Creator exceptions
 Creators and sounds,Creators and sounds
 Creators hidden on this phone,Creators hidden on this phone
-Creators you hid from a video. Search the list and remove one at a time.,Creators you hid from a video. Search the list and remove one at a time.
+Creators you add here are hidden on this phone. Search the list and remove one at a time.,Creators you add here are hidden on this phone. Search the list and remove one at a time.
 Crop the video until it covers the whole window. On a tall phone the black strip PineDrama leaves under a video goes and so does a little of each side.,Crop the video until it covers the whole window. On a tall phone the black strip PineDrama leaves under a video goes and so does a little of each side.
 Current,Current
 Current %1$s,Current %1$s
@@ -434,6 +435,7 @@ Downloads,Downloads
 "Drag to move, release to place","Drag to move, release to place"
 Drama and Series,Drama and Series
 "Draw a larger handle and a slightly thicker line on the progress bar, so it's easier to see where you are.","Draw a larger handle and a slightly thicker line on the progress bar, so it's easier to see where you are."
+"Duet, Stitch and Add to Story","Duet, Stitch and Add to Story"
 Each area shows how many of the things HushPine looks for were found in this PineDrama and how many are missing.,Each area shows how many of the things HushPine looks for were found in this PineDrama and how many are missing.
 Earlier this session,Earlier this session
 Empty,Empty
@@ -549,8 +551,6 @@ Hidden %1$s on this phone,Hidden %1$s on this phone
 Hidden LIVE categories,Hidden LIVE categories
 Hide,Hide
 Hide AI-generated videos,Hide AI-generated videos
-Hide Balance from the menu your profile's top right button opens. Your coins and gifts stay as they are.,Hide Balance from the menu your profile's top right button opens. Your coins and gifts stay as they are.
-Hide Balance in the profile menu,Hide Balance in the profile menu
 Hide Bulletin board,Hide Bulletin board
 Hide Check your sources warnings,Hide Check your sources warnings
 Hide LIVE replays,Hide LIVE replays
@@ -578,7 +578,7 @@ Hide comment typing suggestions,Hide comment typing suggestions
 Hide controls after each video starts. Tap to restore them.,Hide controls after each video starts. Tap to restore them.
 Hide conversations,Hide conversations
 Hide every direct message conversation. Leaves the Inbox empty apart from whatever else is still turned on.,Hide every direct message conversation. Leaves the Inbox empty apart from whatever else is still turned on.
-"Hide feed videos with place badges, even when they aren't paid ads. To keep the video and hide only its badge, use Hide location labels in Feed screen.","Hide feed videos with place badges, even when they aren't paid ads. To keep the video and hide only its badge, use Hide location labels in Feed screen."
+"Hide feed videos with place badges, even when they aren't paid ads.","Hide feed videos with place badges, even when they aren't paid ads."
 "Hide floating promotion badges, coins, and timer banners on the feed.","Hide floating promotion badges, coins, and timer banners on the feed."
 Hide floating promotions,Hide floating promotions
 Hide gaming LIVEs,Hide gaming LIVEs
@@ -623,7 +623,6 @@ Hide the Products block and product cards in search results.,Hide the Products b
 Hide the Tako bubble,Hide the Tako bubble
 Hide the Tako chat,Hide the Tako chat
 "Hide the Thoughts bubble PineDrama shows above a profile picture, and the prompt to share one on your own profile. Restart PineDrama to apply this.","Hide the Thoughts bubble PineDrama shows above a profile picture, and the prompt to share one on your own profile. Restart PineDrama to apply this."
-Hide the TikTok Minis icons in the profile menu,Hide the TikTok Minis icons in the profile menu
 Hide the add people icon,Hide the add people icon
 Hide the event badge,Hide the event badge
 "Hide the fill-in videos PineDrama sends to the feed without picking them for you. When a whole batch is fill-in, it stays so the feed doesn't run dry.","Hide the fill-in videos PineDrama sends to the feed without picking them for you. When a whole batch is fill-in, it stays so the feed doesn't run dry."
@@ -637,13 +636,13 @@ Hide the magnifying glass at the top right of the feed. Search in Inbox and sugg
 "Hide the notification saying somebody new followed you before it reaches the drawer. Every other notification is left alone, and the follower still appears in the Inbox.","Hide the notification saying somebody new followed you before it reaches the drawer. Every other notification is left alone, and the follower still appears in the Inbox."
 Hide the playlist bar,Hide the playlist bar
 Hide the playlist bar along the bottom of videos that belong to a series.,Hide the playlist bar along the bottom of videos that belong to a series.
-Hide the plus button under the creator's picture in the right column. Ticking Avatar and follow button above hides the picture with it.,Hide the plus button under the creator's picture in the right column. Ticking Avatar and follow button above hides the picture with it.
+Hide the plus button under the creator's picture in the right column.,Hide the plus button under the creator's picture in the right column.
 "Hide the points banner under the search box and the coin counter floating over search results, which PineDrama shows in some regions. Searching works as before.","Hide the points banner under the search box and the coin counter floating over search results, which PineDrama shows in some regions. Searching works as before."
-Hide the purple rewards button beside Add friends on your profile.,Hide the purple rewards button beside Add friends on your profile.
 Hide the quick emoji row and automatic sticker suggestions that appear while you type. The emoji and sticker buttons still work.,Hide the quick emoji row and automatic sticker suggestions that appear while you type. The emoji and sticker buttons still work.
 "Hide the red counts and dots on every bottom tab, Inbox and Profile included, and the bubble over Inbox that counts new likes, followers, comments and who's LIVE. The inbox itself still shows what came in.","Hide the red counts and dots on every bottom tab, Inbox and Profile included, and the bubble over Inbox that counts new likes, followers, comments and who's LIVE. The inbox itself still shows what came in."
+"Hide the rewards button on your profile, if PineDrama shows you one.","Hide the rewards button on your profile, if PineDrama shows you one."
 Hide the rewards shortcut,Hide the rewards shortcut
-Hide the save button in the right column. Ticking Save in the list above hides it too.,Hide the save button in the right column. Ticking Save in the list above hides it too.
+Hide the save button in the right column.,Hide the save button in the right column.
 Hide the save button on the feed,Hide the save button on the feed
 Hide the search bar below videos,Hide the search bar below videos
 Hide the search button on the feed,Hide the search button on the feed
@@ -661,7 +660,7 @@ Hide videos marked as using promotional music.,Hide videos marked as using promo
 Hide videos posted as part of a playlist.,Hide videos posted as part of a playlist.
 Hide videos posted by verified accounts.,Hide videos posted by verified accounts.
 Hide videos that belong to a paid Series.,Hide videos that belong to a paid Series.
-"Hide videos that use a sound blocked with the player's sound button, or named below.","Hide videos that use a sound blocked with the player's sound button, or named below."
+Hide videos that use a sound named or listed below.,Hide videos that use a sound named or listed below.
 "Hide videos with PineDrama's AI-generated label, AI content credentials, a PineDrama AI effect such as AI Alive, or a tag like #ai or #aigenerated.","Hide videos with PineDrama's AI-generated label, AI content credentials, a PineDrama AI effect such as AI Alive, or a tag like #ai or #aigenerated."
 Hide videos with a lot of views and few comments. Works the same way as views per like. Zero turns it off.,Hide videos with a lot of views and few comments. Works the same way as views per like. Zero turns it off.
 "Hide videos with a lot of views and few likes. Lower numbers are stricter, zero turns the rule off, and one video is kept back if everything the feed just sent would go.","Hide videos with a lot of views and few likes. Lower numbers are stricter, zero turns the rule off, and one video is kept back if everything the feed just sent would go."
@@ -719,7 +718,6 @@ Keep photos as PineDrama sent them,Keep photos as PineDrama sent them
 Keep playing in the background,Keep playing in the background
 "Keep playing in the background is on in HushPine's Playback settings, so PineDrama gets 2 for this key and an override here has no effect until that switch is off.","Keep playing in the background is on in HushPine's Playback settings, so PineDrama gets 2 for this key and an override here has no effect until that switch is off."
 Keep the Favorites tab,Keep the Favorites tab
-"Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.","Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter."
 Keep the feed on your real SIM,Keep the feed on your real SIM
 Keep the language picked in PineDrama,Keep the language picked in PineDrama
 Keep the screen's refresh rate,Keep the screen's refresh rate
@@ -755,7 +753,6 @@ Later,Later
 Latest first on Following,Latest first on Following
 Layout not recorded. Try again from Diagnostics.,Layout not recorded. Try again from Diagnostics.
 Layout recorded. Export the report to send it.,Layout recorded. Export the report to send it.
-"Layout, search, profile and system","Layout, search, profile and system"
 Least liked first,Least liked first
 Least viewed first,Least viewed first
 Leave after no touch,Leave after no touch
@@ -838,7 +835,7 @@ Most viewed first,Most viewed first
 Move down,Move down
 Move left,Move left
 Move right,Move right
-"Move to the next video when the current one ends. Pauses, open dialogs and screen-time holds stop it. Restart PineDrama to apply this.","Move to the next video when the current one ends. Pauses, open dialogs and screen-time holds stop it. Restart PineDrama to apply this."
+Move to the next video when the current one ends. Pauses and open dialogs stop it. Restart PineDrama to apply this.,Move to the next video when the current one ends. Pauses and open dialogs stop it. Restart PineDrama to apply this.
 Move up,Move up
 Mute feed videos,Mute feed videos
 Muted,Muted
@@ -955,7 +952,7 @@ Open PineDrama on,Open PineDrama on
 Open and close PineDrama's screens without their slide. Swipes inside a screen still follow your finger.,Open and close PineDrama's screens without their slide. Swipes inside a screen still follow your finger.
 Open external links directly,Open external links directly
 Open messages,Open messages
-Open profile and story website links in your system browser instead of PineDrama's in-app browser.,Open profile and story website links in your system browser instead of PineDrama's in-app browser.
+Open profile website links in your system browser instead of PineDrama's in-app browser.,Open profile website links in your system browser instead of PineDrama's in-app browser.
 Open setting location,Open setting location
 Open the comments at full height,Open the comments at full height
 Open the feed anyway,Open the feed anyway
@@ -998,7 +995,6 @@ Pause,Pause
 Pause HushPine,Pause HushPine
 "Pause HushPine's switches after PineDrama restarts. Your settings stay saved. Changes made when you patched, like the app's name or icon, stay.","Pause HushPine's switches after PineDrama restarts. Your settings stay saved. Changes made when you patched, like the app's name or icon, stay."
 Paused,Paused
-"People, shortcuts and sending controls","People, shortcuts and sending controls"
 Performance,Performance
 Photo,Photo
 Photo and image posts,Photo and image posts
@@ -1010,7 +1006,7 @@ Pick a .ttf or .otf file of up to %1$s MB.,Pick a .ttf or .otf file of up to %1$
 "Pick a folder on internal storage, not an SD card","Pick a folder on internal storage, not an SD card"
 Pick all,Pick all
 Pick for saving,Pick for saving
-"Pick the shortcuts to remove from the row under a profile's bio, such as TikTok Studio or Your orders. Restart PineDrama to apply this.","Pick the shortcuts to remove from the row under a profile's bio, such as TikTok Studio or Your orders. Restart PineDrama to apply this."
+"Pick the shortcuts to remove from under a profile's bio, if PineDrama shows any there. Restart PineDrama to apply this.","Pick the shortcuts to remove from under a profile's bio, if PineDrama shows any there. Restart PineDrama to apply this."
 Pick videos to save from profile grids,Pick videos to save from profile grids
 "Picked %1$s. Save, then tap Pick all for more.","Picked %1$s. Save, then tap Pick all for more."
 Picked videos,Picked videos
@@ -1066,7 +1062,6 @@ Preset applied,Preset applied
 Preset doesn't match the gates. Nothing changed.,Preset doesn't match the gates. Nothing changed.
 Preset saved. Turn on overrides to use it.,Preset saved. Turn on overrides to use it.
 Press and hold a profile picture to save the full size original to your photo destination.,Press and hold a profile picture to save the full size original to your photo destination.
-"Press and hold a story to save it. Stories have no save button of their own, and holding one is how PineDrama pauses it, so this takes that gesture over.","Press and hold a story to save it. Stories have no save button of their own, and holding one is how PineDrama pauses it, so this takes that gesture over."
 Preview shortened. Save report keeps the full report.,Preview shortened. Save report keeps the full report.
 Preview with a made-up post:,Preview with a made-up post:
 Privacy,Privacy
@@ -1093,14 +1088,13 @@ Put back the settings saved before the last restore or reset.,Put back the setti
 Put every setting back to its default straight away. Your current settings are kept for Undo.,Put every setting back to its default straight away. Your current settings are kept for Undo.
 Put the comment search away,Put the comment search away
 "Puts a circle on each video in a profile, Liked or Favorites grid. Pick up to %1$s, then tap Save to save them one after another, with a count and Cancel.","Puts a circle on each video in a profile, Liked or Favorites grid. Pick up to %1$s, then tap Save to save them one after another, with a count and Cancel."
-"Puts a save button in the sheet a story's Share button opens. It saves the story you're watching, and holding a story still pauses it.","Puts a save button in the sheet a story's Share button opens. It saves the story you're watching, and holding a story still pauses it."
 "Puts a ✓ by videos and photo posts you saved with HushPine, on profile grids and next to the time in the feed. Works only while Check for already-saved videos is on.","Puts a ✓ by videos and photo posts you saved with HushPine, on profile grids and next to the time in the feed. Works only while Check for already-saved videos is on."
 "Puts your time zone after the time to the second, like EDT.","Puts your time zone after the time to the second, like EDT."
 Putting seen videos back,Putting seen videos back
 Putting the saved videos back,Putting the saved videos back
 Putting the settings back to their defaults,Putting the settings back to their defaults
 Quality,Quality
-"Quality, files, subtitles and hand-off","Quality, files, subtitles and hand-off"
+"Quality, files, sounds and hand-off","Quality, files, sounds and hand-off"
 "Quality, speed and auto-advance","Quality, speed and auto-advance"
 Reading,Reading
 Reading the font file,Reading the font file
@@ -1183,8 +1177,6 @@ Sample caption to test,Sample caption to test
 Sample category to test,Sample category to test
 Save,Save
 Save a profile picture on a long press,Save a profile picture on a long press
-Save a story from its share sheet,Save a story from its share sheet
-Save a story on a long press,Save a story on a long press
 Save again,Save again
 Save as video,Save as video
 Save box for chat stickers,Save box for chat stickers
@@ -1232,7 +1224,7 @@ Saved 1 seen video to the file,Saved 1 seen video to the file
 Saved in %1$s with %2$s of %3$s subtitles,Saved in %1$s with %2$s of %3$s subtitles
 Saved one original photo,Saved one original photo
 Saved one video,Saved one video
-"Saved photos, covers, story photos and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.","Saved photos, covers, story photos and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP."
+"Saved photos, covers and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.","Saved photos, covers and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP."
 Saved the photos as a video in %1$s,Saved the photos as a video in %1$s
 "Saved to %1$s, but without sound","Saved to %1$s, but without sound"
 Saved videos forgotten. The files are still there.,Saved videos forgotten. The files are still there.
@@ -1308,7 +1300,7 @@ Sent to %1$d/%2$d chats. They won't get another message today.,Sent to %1$d/%2$d
 "Separate account handles or user IDs with commas. Videos from these accounts are always hidden. An entry between slashes, like /^news_/, is a search pattern checked against the handle and display name.","Separate account handles or user IDs with commas. Videos from these accounts are always hidden. An entry between slashes, like /^news_/, is a search pattern checked against the handle and display name."
 "Separate country codes with commas, like GB, IE. Videos posted from anywhere else are hidden. Leave empty for all countries.","Separate country codes with commas, like GB, IE. Videos posted from anywhere else are hidden. Leave empty for all countries."
 "Separate country codes with commas. Videos posted from these are hidden, whatever the list above says.","Separate country codes with commas. Videos posted from these are hidden, whatever the list above says."
-"Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries, caption languages and seen videos still apply.","Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries, caption languages and seen videos still apply."
+"Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries and caption languages still apply.","Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries and caption languages still apply."
 "Separate language codes with commas, like en, es. A video whose original caption is in another language is hidden. Videos with no caption, or only translated ones, always stay.","Separate language codes with commas, like en, es. A video whose original caption is in another language is hidden. Videos with no caption, or only translated ones, always stay."
 "Separate language codes with commas, like es, de. When PineDrama translates for you, captions and comments in these languages stay as they were written. See translation still works when you tap it. PineDrama's own Don't translate list stays the way it is.","Separate language codes with commas, like es, de. When PineDrama translates for you, captions and comments in these languages stay as they were written. See translation still works when you tap it. PineDrama's own Don't translate list stays the way it is."
 "Separate the titles of any other Inbox rows you want to hide with commas, spelled exactly. Use this for anything not listed above.","Separate the titles of any other Inbox rows you want to hide with commas, spelled exactly. Use this for anything not listed above."
@@ -1358,7 +1350,7 @@ Show only videos with this many views.,Show only videos with this many views.
 Show search in LIVE,Show search in LIVE
 Show the country a commenter's account is set to after the comment's time. Comments from accounts PineDrama sends no country for stay as they are.,Show the country a commenter's account is set to after the comment's time. Comments from accounts PineDrama sends no country for stay as they are.
 Show the day each video was posted under its view count on profile grids.,Show the day each video was posted under its view count on profile grids.
-"Show the gallery tab in the comment box, so you can add a photo to a comment like on PineDrama. PineDrama turns it off for everyone. PineDrama's server still decides whether your account can post one.","Show the gallery tab in the comment box, so you can add a photo to a comment like on PineDrama. PineDrama turns it off for everyone. PineDrama's server still decides whether your account can post one."
+"Show the gallery tab in the comment box, so you can add a photo to a comment. PineDrama turns it off for everyone, and its server still decides whether your account can post one.","Show the gallery tab in the comment box, so you can add a photo to a comment. PineDrama turns it off for everyone, and its server still decides whether your account can post one."
 Show the progress bar,Show the progress bar
 Show the progress bar thumbnail,Show the progress bar thumbnail
 "Show the search entry inside PineDrama's LIVE drawer, where available. This doesn't add a search box to video comments.","Show the search entry inside PineDrama's LIVE drawer, where available. This doesn't add a search box to video comments."
@@ -1375,7 +1367,7 @@ Show what is left of the budget,Show what is left of the budget
 Show when the camera or microphone is in use,Show when the camera or microphone is in use
 Show where commenters are from,Show where commenters are from
 Showing %1$s again,Showing %1$s again
-Shows Add to Story in the share sheet and on stories even when the creator turned off content reuse. PineDrama may still refuse to post it.,Shows Add to Story in the share sheet and on stories even when the creator turned off content reuse. PineDrama may still refuse to post it.
+Shows Add to Story in the share sheet even when the creator turned off content reuse. PineDrama may still refuse to post it.,Shows Add to Story in the share sheet even when the creator turned off content reuse. PineDrama may still refuse to post it.
 "Shows PineDrama's full sort menu on every post, with hot, newest, media and creator options, instead of the shorter one your account got. Restart PineDrama to see the change.","Shows PineDrama's full sort menu on every post, with hot, newest, media and creator options, instead of the shorter one your account got. Restart PineDrama to see the change."
 "Shows PineDrama's play, pause, previous and next buttons on the feed. PineDrama normally shows them only to people who use a screen reader. PineDrama can see when you use them.","Shows PineDrama's play, pause, previous and next buttons on the feed. PineDrama normally shows them only to people who use a screen reader. PineDrama can see when you use them."
 "Shows PineDrama's text in the font file you import below. While both are on, this one wins over Use system font. If the file is removed or can't be read, the text goes back to what Use system font shows.","Shows PineDrama's text in the font file you import below. While both are on, this one wins over Use system font. If the file is removed or can't be read, the text goes back to what Use system font shows."
@@ -1406,7 +1398,7 @@ Sort loaded videos on profile grids,Sort loaded videos on profile grids
 Sort this grid,Sort this grid
 "Sorts a profile or Liked grid with pinned videos first. While an order is on, the grid keeps loading by itself up to 300 videos, so the order covers more than the first screen. A button in the grid's top corner changes the order right there.","Sorts a profile or Liked grid with pinned videos first. While an order is on, the grid keeps loading by itself up to 300 videos, so the order covers more than the first screen. A button in the grid's top corner changes the order right there."
 Sound,Sound
-"Sound IDs saved by the player's sound button, separated by commas. Remove one to unblock it.","Sound IDs saved by the player's sound button, separated by commas. Remove one to unblock it."
+"Sound IDs to hide, separated by commas. Remove one to unblock it.","Sound IDs to hide, separated by commas. Remove one to unblock it."
 Sound format,Sound format
 Sound link copied,Sound link copied
 Sound on,Sound on

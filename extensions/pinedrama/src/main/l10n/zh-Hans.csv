@@ -190,7 +190,7 @@ App,应用程序
 App AB,应用程序AB
 AppGallery,华为应用市场
 Appearance,外观
-"Applies to Save the sound as well and to Save the original sound on a long press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.",也适用于保存声音以及长按时保存原始声音。Opus 制作较小的文件。Opus 和 MP3 都会从 PineDrama 的副本重新编码，除非副本已经是 MP3.
+"Applies to Save the sound as well. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.",也适用于保存声音。Opus 制作较小的文件。Opus 和 MP3 都会从 PineDrama 的副本重新编码，除非副本已经是 MP3.
 Applies to both video and photo downloads.,适用于视频和照片下载.
 Apply,申请
 Apply enables these overrides. Undo last Lab change puts your previous rules back until you change anything else in the Lab.,应用启用这些覆盖。撤消上次实验室更改会恢复之前的规则，直到你更改实验室中的其他任何内容.
@@ -254,7 +254,7 @@ Camera in use,相机使用中
 Can't check yet: %1$s,尚无法检查：%1$s
 Cancel,取消
 Caption languages,字幕语言
-"Captions, gestures and on-screen controls",字幕、手势和屏幕控制
+"Buttons, profile grids and gestures",按钮、个人资料网格和手势
 Capture crash reports locally,本地捕获崩溃报告
 Capture the feed,捕获信息流
 Changes in HushPine %1$s,HushPine %1$s 的变化
@@ -295,7 +295,7 @@ Clearing suggested accounts,清除建议账号
 Close,关闭
 Close PineDrama after,之后关闭 PineDrama
 Color commenter names,颜色评论者姓名
-"Comma separated names exactly as the row under a profile's bio shows them, such as TikTok Studio or Your orders. Restart PineDrama to apply this.",逗号分隔的名称与个人资料简介下的行显示的名称完全相同，例如 TikTok Studio 或你的订单。重新启动 PineDrama 以应用此操作.
+"Comma separated names, exactly as PineDrama shows them under a profile's bio. Restart PineDrama to apply this.",逗号分隔的名称，与 PineDrama 在个人资料简介下显示的完全相同。重新启动 PineDrama 以应用此操作.
 Comment export failed,评论导出失败
 Comment media filename,评论媒体文件名
 Comment sort and dislike styles,评论排序和不喜欢的风格
@@ -370,7 +370,7 @@ Create,创建
 Creator exceptions,创作者例外
 Creators and sounds,创作者和声音
 Creators hidden on this phone,此手机上隐藏的创作者
-Creators you hid from a video. Search the list and remove one at a time.,你在视频中隐藏的创作者。搜索列表并一次删除一个.
+Creators you add here are hidden on this phone. Search the list and remove one at a time.,你在此添加的创作者会在这部手机上隐藏。搜索列表并一次删除一个.
 Crop the video until it covers the whole window. On a tall phone the black strip PineDrama leaves under a video goes and so does a little of each side.,裁剪视频直到覆盖整个窗口。在高手机上，视频下方的黑色条带 PineDrama 会消失，每一面都会消失.
 Current,当前
 Current %1$s,当前%1$s
@@ -551,7 +551,7 @@ Hide comment typing suggestions,隐藏评论输入建议
 Hide controls after each video starts. Tap to restore them.,每个视频开始后隐藏控件。点击即可恢复它们.
 Hide conversations,隐藏对话
 Hide every direct message conversation. Leaves the Inbox empty apart from whatever else is still turned on.,隐藏每条私信对话。除了仍然打开的其他内容之外，将收件箱留空.
-"Hide feed videos with place badges, even when they aren't paid ads. To keep the video and hide only its badge, use Hide location labels in Feed screen.",隐藏带有地点徽章的信息流视频，即使它们不是付费广告。要保留视频并仅隐藏其徽章，请使用“信息流”屏幕中的“隐藏位置标签”.
+"Hide feed videos with place badges, even when they aren't paid ads.",隐藏带有地点徽章的信息流视频，即使它们不是付费广告.
 "Hide floating promotion badges, coins, and timer banners on the feed.",隐藏动态上的浮动促销徽章、硬币和计时器横幅.
 Hide floating promotions,隐藏浮动促销
 Hide gaming LIVEs,隐藏游戏直播
@@ -585,8 +585,6 @@ Hide suggested accounts,隐藏建议账号
 Hide suggested replies,隐藏建议的回复
 Hide suggestions on the search page,隐藏搜索页面上的建议
 Hide tabs PineDrama adds later unless you allow them.,隐藏选项卡 PineDrama 稍后添加，除非你允许.
-Hide Balance in the profile menu,在个人资料菜单中隐藏余额
-Hide Balance from the menu your profile's top right button opens. Your coins and gifts stay as they are.,从个人资料右上角按钮打开的菜单中隐藏“余额”。你的金币和礼物保持不变.
 "Hide the Check sources banner PineDrama puts on videos it marks as unverified, and the warnings it shows when you share one.",隐藏 PineDrama 在其标记为未经验证的视频上放置的“检查来源”横幅，以及在你共享视频时显示的警告.
 "Hide the Check your sources banner PineDrama puts across the top of some videos, and the prompt it shows when you share one.",隐藏某些视频顶部的“检查来源”横幅 PineDrama 以及共享视频时显示的提示.
 Hide the Inbox search button,隐藏收件箱搜索按钮
@@ -610,13 +608,13 @@ Hide the magnifying glass at the top right of the feed. Search in Inbox and sugg
 "Hide the notification saying somebody new followed you before it reaches the drawer. Every other notification is left alone, and the follower still appears in the Inbox.",在通知到达抽屉之前隐藏表示有新人关注你的通知。所有其他通知均保持不变，关注者仍显示在收件箱中.
 Hide the playlist bar,隐藏播放列表栏
 Hide the playlist bar along the bottom of videos that belong to a series.,隐藏属于系列的视频底部的播放列表栏.
-Hide the plus button under the creator's picture in the right column. Ticking Avatar and follow button above hides the picture with it.,隐藏右栏中创建者图片下方的加号按钮。勾选上面的头像和关注按钮即可隐藏其图片.
+Hide the plus button under the creator's picture in the right column.,隐藏右栏中创建者图片下方的加号按钮.
 "Hide the points banner under the search box and the coin counter floating over search results, which PineDrama shows in some regions. Searching works as before.",隐藏搜索框下方的积分横幅和浮动在搜索结果上方的硬币计数器，在某些地区会显示 PineDrama。搜索工作与以前一样.
-Hide the purple rewards button beside Add friends on your profile.,隐藏个人资料中“添加朋友”旁边的紫色奖励按钮.
+"Hide the rewards button on your profile, if PineDrama shows you one.",隐藏个人资料中的奖励按钮（如果 PineDrama 显示）.
 Hide the quick emoji row and automatic sticker suggestions that appear while you type. The emoji and sticker buttons still work.,隐藏键入时出现的快速表情符号行和自动贴纸建议。表情符号和贴纸按钮仍然有效.
 "Hide the red counts and dots on every bottom tab, Inbox and Profile included, and the bubble over Inbox that counts new likes, followers, comments and who's LIVE. The inbox itself still shows what came in.",隐藏每个底部选项卡（包括收件箱和个人资料）上的红色计数和点，以及收件箱上用于统计新点赞、关注者、评论和 LIVE 的人的气泡。收件箱本身仍然显示收到的内容.
 Hide the rewards shortcut,隐藏奖励快捷方式
-Hide the save button in the right column. Ticking Save in the list above hides it too.,隐藏右栏中的保存按钮。在上面的列表中勾选“保存”也会将其隐藏.
+Hide the save button in the right column.,隐藏右栏中的保存按钮.
 Hide the save button on the feed,隐藏信息流上的保存按钮
 Hide the search bar below videos,隐藏视频下方的搜索栏
 Hide the search button on the feed,隐藏信息流上的搜索按钮
@@ -635,7 +633,7 @@ Hide videos posted as part of a playlist.,隐藏作为播放列表的一部分�
 "Hide posts only a creator's subscribers can watch, the ones with a lock, on the feed and on profiles.",在推荐流和个人主页上隐藏只有创作者的订阅者才能观看的带锁帖子.
 Hide videos posted by verified accounts.,隐藏已验证账号发布的视频.
 Hide videos that belong to a paid Series.,隐藏属于付费系列的视频.
-"Hide videos that use a sound blocked with the player's sound button, or named below.",隐藏使用播放器声音按钮阻止的声音或如下命名的视频.
+Hide videos that use a sound named or listed below.,隐藏使用下方命名或列出的声音的视频.
 "Hide videos with PineDrama's AI-generated label, AI content credentials, a PineDrama AI effect such as AI Alive, or a tag like #ai or #aigenerated.",使用 PineDrama 的 AI 生成标签、AI 内容凭据、PineDrama AI 效果（例如 AI Alive）或 #ai 或 #aigenerate 等标签隐藏视频.
 Hide videos with a lot of views and few comments. Works the same way as views per like. Zero turns it off.,隐藏观看次数多、评论少的视频。其工作方式与按赞观看次数相同。零将其关闭.
 "Hide videos with a lot of views and few likes. Lower numbers are stricter, zero turns the rule off, and one video is kept back if everything the feed just sent would go.",隐藏观看次数多但点赞少的视频。数字越低越严格，零会关闭规则，如果刚刚发送的所有内容都会消失，则保留一个视频.
@@ -721,7 +719,7 @@ Last original value,最后原始值
 Last recording: %1$d gates.,最后记录：%1$d 门.
 Last recording: 1 gate.,最后记录：1 个门.
 Later,后来
-"Layout, search, profile and system",布局、搜索、配置文件和系统
+"Appearance, search, profile and system",外观、搜索、配置文件和系统
 Leave maximum empty to keep it unlimited.,将最大数量留空以保持无限.
 "Leave out the interest picker, the language and gender questions, the creators to follow, the swipe up tutorial and PineDrama's notification page when PineDrama runs its setup. Consent, age and sign-in screens still show.",省略兴趣选择器、语言和性别问题、要关注的创建者、向上滑动教程以及 PineDrama 运行其设置时 PineDrama 的通知页面。同意、年龄和登录屏幕仍然显示.
 Leave the sound out of the saved video. Save the sound as well still writes the sound file beside it if you want both.,保存视频时不包含声音。如果还需要单独的声音文件，“也保存声音”仍会把它写在视频旁边.
@@ -793,7 +791,7 @@ More options,更多选择
 Move down,下移
 Move left,向左移动
 Move right,向右移动
-"Move to the next video when the current one ends. Pauses, open dialogs and screen-time holds stop it. Restart PineDrama to apply this.",当前视频结束后移至下一个视频。暂停、打开对话框和屏幕时间保持都会阻止它。重新启动 PineDrama 以应用此操作.
+Move to the next video when the current one ends. Pauses and open dialogs stop it. Restart PineDrama to apply this.,当前视频结束后移至下一个视频。暂停和打开对话框都会阻止它。重新启动 PineDrama 以应用此操作.
 Move up,向上移动
 Mute feed videos,将信息流视频静音
 Muted,静音
@@ -897,7 +895,7 @@ Open PineDrama on,打开 PineDrama 于
 Open and close PineDrama's screens without their slide. Swipes inside a screen still follow your finger.,打开和关闭 PineDrama 的屏幕，无需滑动。在屏幕内滑动仍会跟随你的手指.
 Open external links directly,直接打开外部链接
 Open messages,打开消息
-Open profile and story website links in your system browser instead of PineDrama's in-app browser.,在系统浏览器而不是 PineDrama 的应用内浏览器中打开个人资料和故事网站链接.
+Open profile website links in your system browser instead of PineDrama's in-app browser.,在系统浏览器而不是 PineDrama 的应用内浏览器中打开个人资料网站链接.
 Open the feed anyway,无论如何打开信息流
 "Open the feed anyway, %1$d left today",无论如何打开信息流，%1$d 今天离开
 "Open the feed anyway, the last time today",无论如何，今天最后一次打开信息流
@@ -938,7 +936,7 @@ Pause,暂停
 Pause HushPine,暂停HushPine
 "Pause HushPine's switches after PineDrama restarts. Your settings stay saved. Changes made when you patched, like the app's name or icon, stay.",PineDrama 重新启动后暂停 HushPine 的开关。你的设置将保持保存。修补时所做的更改（例如应用程序的名称或图标）将保留.
 Paused,已暂停
-"People, shortcuts and sending controls",人员、快捷方式和发送控件
+"Duet, Stitch and Add to Story",Duet、Stitch 和添加到故事
 Performance,性能
 Photo,照片
 Photo and image posts,照片和图片帖子
@@ -949,7 +947,7 @@ Photos and stickers,照片和贴纸
 Pick a .ttf or .otf file of up to %1$s MB.,选择最大为 %1$s MB 的 .ttf 或 .otf 文件.
 Pick all,选择全部
 Pick for saving,选择保存
-"Pick the shortcuts to remove from the row under a profile's bio, such as TikTok Studio or Your orders. Restart PineDrama to apply this.",选择要从个人资料简介下的行中删除的快捷方式，例如 TikTok Studio 或你的订单。重新启动 PineDrama 以应用此操作.
+"Pick the shortcuts to remove from under a profile's bio, if PineDrama shows any there. Restart PineDrama to apply this.",选择要从个人资料简介下方删除的快捷方式（如果 PineDrama 显示）。重新启动 PineDrama 以应用此操作.
 Pick videos to save from profile grids,从个人资料网格中选择要保存的视频
 "Picked %1$s. Save, then tap Pick all for more.",已选 %1$s 个，请先保存，再点“选择全部”继续.
 Picked videos,精选视频
@@ -976,7 +974,6 @@ Prefer H.264 video,更喜欢 H.264 视频
 Preset applied,预设已应用
 Preset saved. Turn on overrides to use it.,预设已保存。打开覆盖即可使用.
 Press and hold a profile picture to save the full size original to your photo destination.,按住个人资料图片可将全尺寸原件保存到你的照片目的地.
-"Press and hold a story to save it. Stories have no save button of their own, and holding one is how PineDrama pauses it, so this takes that gesture over.",按住一个故事即可保存它。故事没有自己的保存按钮，按住一个按钮就是 PineDrama 暂停它的方式，所以这会接管该手势.
 Preview shortened. Save report keeps the full report.,预览缩短。保存报告保留完整报告.
 Preview with a made-up post:,用一个虚构的帖子预览:
 Privacy,隐私
@@ -1001,14 +998,13 @@ Put %1$s in %2$s first.,首先将 %1$s 放入 %2$s 中.
 Put back the settings saved before the last restore or reset.,恢复上次恢复或重置之前保存的设置.
 Put every setting back to its default straight away. Your current settings are kept for Undo.,立即将所有设置恢复为默认值。你当前的设置将保留以供撤消.
 "Puts a circle on each video in a profile, Liked or Favorites grid. Pick up to %1$s, then tap Save to save them one after another, with a count and Cancel.",在个人资料、喜欢的或收藏夹网格中的每个视频上放置一个圆圈。选择 %1$s，然后点击“保存”将它们依次保存，并计数并取消.
-"Puts a save button in the sheet a story's Share button opens. It saves the story you're watching, and holding a story still pauses it.",在故事的共享按钮打开的工作表中放置一个保存按钮。它会保存你正在观看的故事，并且保留故事仍然会暂停它.
 "Puts a ✓ by videos and photo posts you saved with HushPine, on profile grids and next to the time in the feed. Works only while Check for already-saved videos is on.",在你使用 HushPine 保存的视频和照片帖子旁边、个人资料网格上以及信息流中的时间旁边打上 ✓。仅当检查已保存的视频处于打开状态时才有效.
 "Puts your time zone after the time to the second, like EDT.",将你的时区置于时间之后，如 EDT.
 Putting seen videos back,放回看过的视频
 Putting the saved videos back,将保存的视频放回去
 Putting the settings back to their defaults,将设置恢复为默认值
 Quality,品质
-"Quality, files, subtitles and hand-off",质量、文件、字幕和交接
+"Quality, files, sounds and hand-off",质量、文件、声音和交接
 "Quality, speed and auto-advance",质量、速度和自动推进
 Reading,阅读
 Reading the font file,读取字体文件
@@ -1085,8 +1081,6 @@ Sample caption to test,要测试的示例标题
 Sample category to test,要测试的样本类别
 Save,保存
 Save a profile picture on a long press,长按保存个人资料图片
-Save a story from its share sheet,从分享表中保存故事
-Save a story on a long press,长按保存故事
 Save again,再次保存
 Save as video,另存为视频
 Save build details,保存构建详细信息
@@ -1098,7 +1092,7 @@ Save details as JSON,将详细信息保存为 JSON
 Save details beside the video,在视频旁边保存详细信息
 "Save every photo in the post at full size, not as the screen shows it. Each one is a JPEG unless Keep photos as PineDrama sent them is on.",将帖子中的每张照片以全尺寸保存，而不是屏幕显示的那样。除非开启了“照片保持 PineDrama 发送时的格式”，否则每张都保存为 JPEG.
 Keep photos as PineDrama sent them,照片保持 PineDrama 发送时的格式
-"Saved photos, covers, story photos and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.",保存的照片、封面、故事照片和静态贴纸就是 PineDrama 发送的原始文件，而不是新的 JPEG 或 PNG。部分图库和电脑无法打开 HEIF 或 WebP.
+"Saved photos, covers and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.",保存的照片、封面和静态贴纸就是 PineDrama 发送的原始文件，而不是新的 JPEG 或 PNG。部分图库和电脑无法打开 HEIF 或 WebP.
 Save field values,保存字段值
 Save full report,保存完整报告
 Save in which quality?,以哪种质量保存?
@@ -1202,7 +1196,7 @@ Sent to %1$d/%2$d chats. They won't get another message today.,发送到 %1$d/%2
 "Separate account handles or user IDs with commas. Videos from these accounts are always hidden. An entry between slashes, like /^news_/, is a search pattern checked against the handle and display name.",用逗号分隔账号句柄或用户 ID。来自这些账号的视频始终处于隐藏状态。斜杠之间的条目（如 /^news_/）是根据句柄和显示名称检查的搜索模式.
 "Separate country codes with commas, like GB, IE. Videos posted from anywhere else are hidden. Leave empty for all countries.",用逗号分隔国家/地区代码，例如 GB、IE。从其他地方发布的视频被隐藏。对于所有国家/地区留空.
 "Separate country codes with commas. Videos posted from these are hidden, whatever the list above says.",用逗号分隔国家/地区代码。无论上面的列表如何说明，从这些网站发布的视频都是隐藏的.
-"Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries, caption languages and seen videos still apply.",用逗号分隔句柄或用户 ID。当帖子类型、标签、年龄、长度或计数的过滤器将隐藏它们时，他们的视频会保留。广告、被屏蔽的创作者、文字、声音、国家/地区、字幕语言和观看的视频仍然适用.
+"Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries and caption languages still apply.",用逗号分隔句柄或用户 ID。当帖子类型、标签、年龄、长度或计数的过滤器将隐藏它们时，他们的视频会保留。广告、被屏蔽的创作者、文字、声音、国家/地区和字幕语言仍然适用.
 "Separate language codes with commas, like en, es. A video whose original caption is in another language is hidden. Videos with no caption, or only translated ones, always stay.",用逗号分隔语言代码，例如 en、es。原始字幕为另一种语言的视频被隐藏。没有字幕或仅翻译的视频将始终保留.
 "Separate language codes with commas, like es, de. When PineDrama translates for you, captions and comments in these languages stay as they were written. See translation still works when you tap it. PineDrama's own Don't translate list stays the way it is.",用逗号分隔语言代码，例如 es、de。当 PineDrama 为你翻译时，这些语言的标题和注释将保持原样。当你点击它时，查看翻译仍然有效。 PineDrama 自己的不翻译列表保持原样.
 "Separate the titles of any other Inbox rows you want to hide with commas, spelled exactly. Use this for anything not listed above.",使用逗号分隔你想要隐藏的任何其他收件箱行的标题，并准确拼写。将此用于上面未列出的任何内容.
@@ -1276,7 +1270,7 @@ Shows PineDrama's text in your phone's font instead of TikTok Sans. Icons and gi
 "Shows a small count under PineDrama's top tabs of what the feed filter has removed since PineDrama started. It shows only on the feed, and taps on it go through to the video under it.",在 PineDrama 的顶部选项卡下显示自 PineDrama 启动以来信息流过滤器已删除的内容的少量计数。它仅显示在信息流上，点击它即可查看其下方的视频.
 Shows every emoji in your phone's own emoji font. The newest emoji your phone doesn't have yet may show as a box or in pieces.,以手机自带的表情符号字体显示每个表情符号。你的手机尚未安装的最新表情符号可能会显示为盒子或碎片.
 Shows the Duet and Stitch options even when the creator turned them off. PineDrama may still refuse to accept the result.,即使创建者关闭了 Duet 和 Stitch 选项，也会显示它们。 PineDrama 仍可能拒绝接受结果.
-Shows Add to Story in the share sheet and on stories even when the creator turned off content reuse. PineDrama may still refuse to post it.,即使创建者关闭了内容再利用，也会在分享面板和故事上显示“添加到故事”。 PineDrama 仍可能拒绝发布.
+Shows Add to Story in the share sheet even when the creator turned off content reuse. PineDrama may still refuse to post it.,即使创建者关闭了内容再利用，也会在分享面板上显示“添加到故事”。 PineDrama 仍可能拒绝发布.
 Sign in to PineDrama before importing watch history.,导入观看历史记录之前，请登录 PineDrama.
 Sign in to PineDrama before saving or restoring seen history.,在保存或恢复查看的历史记录之前，请登录 PineDrama.
 Sign in without a passkey,无需密码即可登录
@@ -1290,7 +1284,7 @@ Sleep timer off,睡眠定时器关闭
 Some of these notes are in English.,其中一些注释是英文的.
 Something is missing from %1$s. Tap for the whole report.,%1$s 缺少某些内容。点击查看整个报告.
 Sound,声音
-"Sound IDs saved by the player's sound button, separated by commas. Remove one to unblock it.",播放器声音按钮保存的声音 ID，以逗号分隔。删除一个即可解锁.
+"Sound IDs to hide, separated by commas. Remove one to unblock it.",要隐藏的声音 ID，以逗号分隔。删除一个即可解锁.
 Sound format,声音格式
 Sound link copied,声音链接已复制
 Sound on,声音打开
@@ -1747,8 +1741,6 @@ Two at once,同时两个
 Three at once,同时三个
 Open the comments at full height,以全高打开评论
 "Opens the comment sheet at the full height of the screen instead of part way up. Drag it down to close it, as before.",以整个屏幕的高度打开评论，而不是只打开一部分。像以前一样向下拖动即可关闭.
-Hide the TikTok Minis icons in the profile menu,在个人资料菜单中隐藏 PineDrama 迷你图标
-"Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.",保留个人资料右上角按钮所打开菜单中的 PineDrama 迷你条目，并隐藏其下方的应用图标行，让菜单更短.
 Sort loaded videos on profile grids,对个人资料网格中已加载的视频排序
 Original order,原始顺序
 Newest first,最新的在前
@@ -1766,7 +1758,7 @@ Sort this grid,排序此网格
 Recording this LIVE's screen,正在录制此直播的屏幕
 Tap Stop or leave the room to save it.,点按停止或离开直播间即可保存.
 Allow photo comments,允许图片评论
-"Show the gallery tab in the comment box, so you can add a photo to a comment like on PineDrama. PineDrama turns it off for everyone. PineDrama's server still decides whether your account can post one.",在评论框中显示图库标签，让你可以像在 PineDrama 上一样在评论中添加图片。PineDrama 对所有人关闭了此功能。你的账号能否发布仍由 PineDrama 的服务器决定.
+"Show the gallery tab in the comment box, so you can add a photo to a comment. PineDrama turns it off for everyone, and its server still decides whether your account can post one.",在评论框中显示图库标签，让你可以在评论中添加图片。PineDrama 对所有人关闭了此功能，你的账号能否发布仍由它的服务器决定.
 This screen recording has no sound,这段屏幕录制没有声音
 Export recording files,导出录制文件
 Delete recording files,删除录制文件

@@ -70,7 +70,7 @@ public final class InterfacePreferenceCategory extends ConditionalPreferenceCate
             addPreference(new TogglePreference(
                     context,
                     "Hide the follow button on the feed",
-                    "Hide the plus button under the creator's picture in the right column. Ticking Avatar and follow button above hides the picture with it.",
+                    "Hide the plus button under the creator's picture in the right column.",
                     Settings.HIDE_FEED_FOLLOW_BUTTON
             ));
         }
@@ -78,7 +78,7 @@ public final class InterfacePreferenceCategory extends ConditionalPreferenceCate
             addPreference(new TogglePreference(
                     context,
                     "Hide the save button on the feed",
-                    "Hide the save button in the right column. Ticking Save in the list above hides it too.",
+                    "Hide the save button in the right column.",
                     Settings.HIDE_FEED_SAVE_BUTTON
             ));
         }

@@ -485,13 +485,6 @@ public class SettingsStatus {
         thoughtsSwitchEnabled = true;
     }
 
-    /** Hide profile shortcuts found the question your profile's menu asks about each cell, and hooked it. */
-    public static boolean profileMenuCellsEnabled = false;
-
-    public static void enableProfileMenuCells() {
-        profileMenuCellsEnabled = true;
-    }
-
     /** Skip the splash ad put its switch in front of the splash tasks and gates. */
     public static boolean skipSplashAdEnabled = false;
 

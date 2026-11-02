@@ -91,7 +91,7 @@ private object AllowAddingToStoryFingerprint : Fingerprint(
 val duetStitchPatch = bytecodePatch(
     name = "Allow Duet and Stitch",
     description = "Shows the Duet and Stitch buttons on videos whose creator turned them off, " +
-        "so you can still make one, and Add to Story in the share sheet and on stories when the " +
+        "so you can still make one, and Add to Story in the share sheet when the " +
         "creator turned off content reuse. PineDrama may still refuse some videos or the upload. Starts " +
         "off. Turn it on in HushPine settings > Share sheet.",
 ) {

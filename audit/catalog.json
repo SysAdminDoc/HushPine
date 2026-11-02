@@ -72,13 +72,13 @@
     "key": "save_story",
     "default": false,
     "type": "bool",
-    "row": "Save a story on a long press"
+    "row": "(no row, PineDrama has no stories to save)"
    },
    {
     "key": "save_story_from_share",
     "default": false,
     "type": "bool",
-    "row": "Save a story from its share sheet"
+    "row": "(no row, PineDrama has no stories to save)"
    },
    {
     "key": "pick_grid_videos",
@@ -5464,18 +5464,6 @@
     "type": "bool",
     "row": "Turn on Thoughts",
     "restart": true
-   },
-   {
-    "key": "hide_profile_menu_balance",
-    "default": false,
-    "type": "bool",
-    "row": "Hide Balance in the profile menu"
-   },
-   {
-    "key": "hide_profile_menu_minis_icons",
-    "default": false,
-    "type": "bool",
-    "row": "Hide the TikTok Minis icons in the profile menu"
    }
   ],
   "surface": "profile",
@@ -5553,16 +5541,12 @@
      {
       "probe": "report",
       "expect": "registered_switches:[^\\n]*\\bprofileThoughts\\b"
-     },
-     {
-      "probe": "report",
-      "expect": "registered_switches:[^\\n]*\\bprofileMenuCells\\b"
      }
     ],
     "auto": true
    }
   ],
-  "notes": "Which shortcuts exist depends on the account: the test account shows whatever the server sends (often TikTok Studio, sometimes Your orders). If it has none, the catalog is empty and both checks fail for lack of a precondition rather than a bug. The shortcut titles typed here are English; the checklist normally stores a kind or feature id, and typed titles hide alike (ProfileShortcuts.canonical). Thoughts (hide_profile_thoughts, restart-required) removes the Thoughts bubble; it is a visual check only. On 47.1.4 the test account is served Watch history, LIVE (live events), Showcase, Subscription (live subscription) and Shop (seen 2026-10-16), so Shop and LIVE events in the typed list match by kind. The served set changes within a day: by 08:44 EDT on 2026-10-16 the account got only Watch history (watch_history #32), so shortcut-hidden types Watch history too and first waits for any shortcut line (inconclusive when none is served)."
+  "notes": "Which shortcuts exist depends on the account: the test account shows whatever the server sends. If it has none, the catalog is empty and both checks fail for lack of a precondition rather than a bug. The shortcut titles typed here are English; the checklist normally stores a kind or feature id, and typed titles hide alike (ProfileShortcuts.canonical). Thoughts (hide_profile_thoughts, restart-required) removes the Thoughts bubble; it is a visual check only. On PineDrama 47.5.3 the test account's profile shows no shortcut row (seen 2026-11-01), so shortcut-hidden first waits for any shortcut line and is inconclusive when none is served. Shop and LIVE events in the typed list match by kind."
  },
  {
   "name": "Hide search suggestions",

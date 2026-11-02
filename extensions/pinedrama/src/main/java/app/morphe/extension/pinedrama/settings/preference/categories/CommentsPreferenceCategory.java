@@ -211,9 +211,9 @@ public class CommentsPreferenceCategory extends ConditionalPreferenceCategory {
             addPreference(new TogglePreference(
                     context,
                     "Allow photo comments",
-                    "Show the gallery tab in the comment box, so you can add a photo to a comment like "
-                            + "on PineDrama. PineDrama turns it off for everyone. PineDrama's server still "
-                            + "decides whether your account can post one.",
+                    "Show the gallery tab in the comment box, so you can add a photo to a comment. "
+                            + "PineDrama turns it off for everyone, and its server still decides whether "
+                            + "your account can post one.",
                     Settings.PINEDRAMA_COMMENT_PHOTOS
             ));
         }

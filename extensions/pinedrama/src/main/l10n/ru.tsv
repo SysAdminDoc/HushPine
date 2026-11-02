@@ -1,6 +1,6 @@
 %1$s isn't a language code. Use two letters, like en, es or de.	%1$s не является кодом языка. Используйте две буквы, например en, es или de.
 Adds Save cover next to Download when you share a video, so you save the cover only when you want it. While this is on, Download saves just the video, even with Save the cover as well on.	Добавляет «Сохранить обложку» рядом со «Скачать», когда вы делитесь видео, чтобы сохранять обложку, только когда она нужна. Пока это включено, «Скачать» сохраняет только видео, даже если включено «Сохранять обложку тоже».
-Applies to Save the sound as well and to Save the original sound on a long press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.	Относится к «Сохранять звук тоже» и к «Сохранять оригинальный звук» по долгому нажатию. Opus даёт файл поменьше. Opus и MP3 заново кодируются из копии PineDrama, если она ещё не MP3.
+Applies to Save the sound as well. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.	Относится к «Сохранять звук тоже». Opus даёт файл поменьше. Opus и MP3 заново кодируются из копии PineDrama, если она ещё не MP3.
 As PineDrama sent it (M4A or MP3)	Как прислал PineDrama (M4A или MP3)
 Couldn't add the caption. Saving without it.	Описание не добавлено. Сохраняется без него.
 Importing new history ended Undo for the earlier clear. You can clear the imported history.	После импорта новой истории нельзя отменить предыдущую очистку. Вы можете очистить импортированную историю.
@@ -19,8 +19,6 @@ Opus didn't work. Saving PineDrama's own file.	Opus не сработал. Со�
 MP3 didn't work. Saving PineDrama's own file.	MP3 не сработал. Сохраняется оригинал PineDrama.
 Opus needs Android 10 or later, so it saves sounds as PineDrama sent them. MP3 works on any phone.	Для Opus нужен Android 10 или новее, поэтому звук сохраняется так, как прислал PineDrama. MP3 работает на любом телефоне.
 Playing at %1$sx	Скорость %1$sx
-Puts a save button in the sheet a story's Share button opens. It saves the story you're watching, and holding a story still pauses it.	Добавляет кнопку сохранения в меню, которое открывает кнопка «Поделиться» в истории. Она сохраняет историю, которую вы смотрите, а удержание истории по-прежнему ставит её на паузу.
-Save a story from its share sheet	Сохранять историю из меню «Поделиться»
 Save cover	Сохранить обложку
 Save cover button in the share sheet	Кнопка «Сохранить обложку» в меню «Поделиться»
 Saved videos show the @username and the first line of the caption in the bottom left corner. The phone encodes the whole video again to do it, so saving takes longer. Applies to saves made by HushPine.	На сохранённых видео внизу слева видны @имя пользователя и первая строка описания. Для этого телефон заново кодирует всё видео, поэтому сохранение занимает больше времени. Действует для сохранений через HushPine.
@@ -146,9 +144,9 @@ A video you paused stays paused when you come back to the app instead of startin
 AI-generated posts	Публикации, созданные ИИ
 A forced value applies to this copy of PineDrama whichever account is signed in. It can't get past a check the server makes.	Принудительное значение действует для этой копии PineDrama независимо от того, какой аккаунт выполнил вход. Проверку на стороне сервера оно обойти не может.
 Caption languages	Языки субтитров
-Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries, caption languages and seen videos still apply.	Разделяйте имена аккаунтов или ID пользователей запятыми. Их видео остаются, даже если фильтр по типу поста, меткам, возрасту, длине или счётчикам скрыл бы их. Реклама, заблокированные авторы, слова, звуки, страны, языки описания и просмотренные видео по-прежнему учитываются.
+Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries and caption languages still apply.	Разделяйте имена аккаунтов или ID пользователей запятыми. Их видео остаются, даже если фильтр по типу поста, меткам, возрасту, длине или счётчикам скрыл бы их. Реклама, заблокированные авторы, слова, звуки, страны и языки описания по-прежнему учитываются.
 Separate language codes with commas, like en, es. A video whose original caption is in another language is hidden. Videos with no caption, or only translated ones, always stay.	Разделяйте коды языков запятыми, например en, es. Видео, у которого исходное описание на другом языке, скрывается. Видео без описания или только с переведённым остаются всегда.
-Comma separated names exactly as the row under a profile's bio shows them, such as TikTok Studio or Your orders. Restart PineDrama to apply this.	Названия через запятую, точно как в строке под описанием профиля, например TikTok Studio или «Ваши заказы». Перезапустите PineDrama, чтобы это применить.
+Comma separated names, exactly as PineDrama shows them under a profile's bio. Restart PineDrama to apply this.	Названия через запятую, точно как PineDrama показывает их под описанием профиля. Перезапустите PineDrama, чтобы это применить.
 Couldn't copy. Use Save build details instead.	Не вышло. Нажмите «Сохранить сведения о сборке».
 Couldn't copy the report. Use Save report instead.	Отчёт не скопирован. Нажмите «Сохранить отчёт».
 Couldn't read PineDrama's current values (%1$s). Refresh values from the menu to try again.	Не удалось прочитать текущие значения PineDrama (%1$s). Обновите значения через меню, чтобы попробовать снова.
@@ -173,7 +171,7 @@ Only these caption languages	Только эти языки субтитров
 Open	Открыть
 Open your profile once, then return here to choose its shortcuts.	Откройте свой профиль один раз, затем вернитесь сюда, чтобы выбрать ярлыки.
 Photos can't be saved to the folder in that file, so your photo folder was kept	Фото нельзя сохранить в папку из этого файла, поэтому ваша папка для фото осталась прежней
-Pick the shortcuts to remove from the row under a profile's bio, such as TikTok Studio or Your orders. Restart PineDrama to apply this.	Выберите ярлыки, которые нужно убрать из строки под описанием профиля, например TikTok Studio или «Ваши заказы». Перезапустите PineDrama, чтобы это применить.
+Pick the shortcuts to remove from under a profile's bio, if PineDrama shows any there. Restart PineDrama to apply this.	Выберите ярлыки, которые нужно убрать под описанием профиля, если PineDrama их показывает. Перезапустите PineDrama, чтобы это применить.
 Preview shortened. Save report keeps the full report.	Превью сокращено. «Сохранить отчёт» сохраняет отчёт полностью.
 Refreshing PineDrama's current values…	Обновление текущих значений PineDrama…
 Restart PineDrama to apply this	Перезапустите PineDrama, чтобы это применить
@@ -276,7 +274,7 @@ Browse	Обзор
 Camera and microphone in use	Камера и микрофон используются
 Camera in use	Камера используется
 Cancel	Отмена
-Captions, gestures and on-screen controls	Субтитры, жесты и элементы на экране
+Buttons, profile grids and gestures	Кнопки, сетки профиля и жесты
 Capture crash reports locally	Сохранять отчёты о сбоях локально
 Choose %1$d to %2$d videos. Values outside this range use the nearest valid limit. Restart PineDrama to apply this.	Выберите значение от %1$d до %2$d видео. Значения вне этого диапазона округляются до ближайшей допустимой границы. Перезапустите PineDrama, чтобы это применить.
 Choose a backup file. Your current settings are kept for Undo.	Выберите файл резервной копии. Текущие настройки сохраняются для отмены.
@@ -320,7 +318,7 @@ Separate account handles or user IDs with commas. Videos from these accounts are
 Separate country codes with commas, like GB, IE. Videos posted from anywhere else are hidden. Leave empty for all countries.	Разделяйте коды стран запятыми, например GB, IE. Видео, опубликованные из других мест, скрываются. Оставьте пустым для всех стран.
 Separate country codes with commas. Videos posted from these are hidden, whatever the list above says.	Разделяйте коды стран запятыми. Видео из этих стран скрываются, что бы ни говорил список выше.
 Separate the titles of any other Inbox rows you want to hide with commas, spelled exactly. Use this for anything not listed above.	Через запятую перечислите названия других строк «Входящих», которые нужно скрыть, точно как они написаны. Используйте для всего, чего нет выше.
-Sound IDs saved by the player's sound button, separated by commas. Remove one to unblock it.	ID звуков, сохранённые кнопкой звука в плеере, через запятую. Удалите один, чтобы разблокировать его.
+Sound IDs to hide, separated by commas. Remove one to unblock it.	ID звуков, которые нужно скрыть, через запятую. Удалите один, чтобы разблокировать его.
 Separate words or phrases with commas. Videos whose caption matches are hidden. Capital letters don't matter. Write "a" & "b" to need both phrases, or "a" !& "b" to need the first without the second.	Разделяйте слова или фразы запятыми. Видео, в описании которых есть совпадение, скрываются. Регистр букв не важен. Напишите "a" & "b", чтобы требовались обе фразы, или "a" !& "b", чтобы требовалась первая без второй.
 Separate words with commas, like saxophone, to match against sound names. Capital letters don't matter.	Разделяйте запятыми слова, которые сверяются с названиями звуков, например saxophone. Регистр букв не важен.
 Comment media filename	Имя файла медиа комментария
@@ -373,7 +371,7 @@ Country code	Код страны
 Country and network preferences	Настройки страны и сети
 Create	Создать
 Creators and sounds	Авторы и звуки
-Creators you hid from a video. Search the list and remove one at a time.	Авторы, которых вы скрыли из видео. Используйте поиск по списку и удаляйте по одному.
+Creators you add here are hidden on this phone. Search the list and remove one at a time.	Авторы, которых вы добавите сюда, скрываются на этом телефоне. Используйте поиск по списку и удаляйте по одному.
 Current	Текущее
 Current %1$s	Текущее: %1$s
 Current state	Текущее состояние
@@ -565,10 +563,10 @@ Hide the launcher shortcuts	Скрывать ярлыки лаунчера
 Hide photo posts from the feed.	Скрывать фотопубликации из ленты.
 Hide the playlist bar	Скрывать панель плейлиста
 Hide the playlist bar along the bottom of videos that belong to a series.	Скрывать панель плейлиста внизу видео, которые относятся к сериалу.
-Hide the plus button under the creator's picture in the right column. Ticking Avatar and follow button above hides the picture with it.	Скрывать кнопку «плюс» под фото автора в правой колонке. Если выше отмечен пункт Аватар и кнопка «Подписаться», фото скрывается вместе с ней.
-Hide the purple rewards button beside Add friends on your profile.	Скрывать фиолетовую кнопку наград рядом с «Добавить друзей» в вашем профиле.
+Hide the plus button under the creator's picture in the right column.	Скрывать кнопку «плюс» под фото автора в правой колонке.
+Hide the rewards button on your profile, if PineDrama shows you one.	Скрывать кнопку наград в вашем профиле, если PineDrama её показывает.
 Hide the rewards shortcut	Скрывать ярлык наград
-Hide the save button in the right column. Ticking Save in the list above hides it too.	Скрывать кнопку сохранения в правой колонке. Если отметить пункт «Сохранить» в списке выше, она тоже скрывается.
+Hide the save button in the right column.	Скрывать кнопку сохранения в правой колонке.
 Hide the magnifying glass at the top right of the feed. Search in Inbox and suggestions above comments stay unchanged.	Скрывать значок лупы в правом верхнем углу ленты. Поиск во Входящих и подсказки над комментариями не меняются.
 Hide the magnifying glass at the top of Inbox. Search on the feed and in comments is unchanged.	Скрывать значок лупы вверху Входящих. Поиск в ленте и в комментариях не меняется.
 Hide recommended searches before you type on PineDrama's search page. Your search history stays. This doesn't hide suggestions above comments.	Скрывать рекомендованные запросы на странице поиска PineDrama, пока вы ничего не ввели. История поиска сохраняется. Это не скрывает подсказки над комментариями.
@@ -594,7 +592,7 @@ Hook status	Статус перехвата
 HushPine can't read the creator pattern %1$s	HushPine не может прочитать шаблон автора %1$s
 HushPine is active	HushPine активен
 Shows the Duet and Stitch options even when the creator turned them off. PineDrama may still refuse to accept the result.	Показывает варианты «Дуэт» и Stitch, даже если автор их отключил. PineDrama всё равно может не принять результат.
-Shows Add to Story in the share sheet and on stories even when the creator turned off content reuse. PineDrama may still refuse to post it.	Показывает «Добавить в историю» в меню «Поделиться» и у историй, даже если автор отключил повторное использование контента. PineDrama всё равно может отказать в публикации.
+Shows Add to Story in the share sheet even when the creator turned off content reuse. PineDrama may still refuse to post it.	Показывает «Добавить в историю» в меню «Поделиться», даже если автор отключил повторное использование контента. PineDrama всё равно может отказать в публикации.
 Import finished	Импорт завершён
 Import loaded values	Импортировать загруженные значения
 Imported %1$d values	Импортировано значений: %1$d
@@ -606,7 +604,7 @@ Includes all diagnostic events.	Включает все диагностичес
 Includes these events: %1$s	Включает следующие события: %1$s
 Inserted cards	Вставленные карточки
 Keep a paused video paused	Оставлять видео на паузе
-Move to the next video when the current one ends. Pauses, open dialogs and screen-time holds stop it. Restart PineDrama to apply this.	Переходить к следующему видео, когда текущее заканчивается. Паузы, открытые диалоги и ограничения экранного времени останавливают это. Перезапустите PineDrama, чтобы это применить.
+Move to the next video when the current one ends. Pauses and open dialogs stop it. Restart PineDrama to apply this.	Переходить к следующему видео, когда текущее заканчивается. Паузы и открытые диалоги останавливают это. Перезапустите PineDrama, чтобы это применить.
 Keep going	Продолжить
 Keep the Favorites tab	Оставлять вкладку Избранное
 Dark Favorites popup	Тёмное окно Избранного
@@ -630,7 +628,7 @@ Last recording: %1$d gates.|one	Последняя запись: %1$d перек
 Last recording: %1$d gates.|few	Последняя запись: %1$d переключателя.
 Last recording: %1$d gates.|many	Последняя запись: %1$d переключателей.
 Last recording: 1 gate.	Последняя запись: 1 переключатель.
-Layout, search, profile and system	Раскладка, поиск, профиль и система
+Appearance, search, profile and system	Оформление, поиск, профиль и система
 Leave maximum empty to keep it unlimited.	Оставьте максимум пустым, чтобы снять ограничение.
 Leave the sound out of the saved video. Save the sound as well still writes the sound file beside it if you want both.	Не включать звук в сохранённое видео. «Сохранять звук тоже» по-прежнему запишет звуковой файл рядом, если нужно и то, и другое.
 Length and views per like	Длительность и просмотры на лайк
@@ -739,7 +737,7 @@ Only from these countries	Только из этих стран
 Only tabs PineDrama has loaded on this device are shown here. This doesn't force unavailable tabs to appear.	Здесь показаны только вкладки, которые PineDrama загрузил на этом устройстве. Это не заставляет появляться недоступные вкладки.
 Open external links directly	Открывать внешние ссылки напрямую
 Open messages	Открыть сообщения
-Open profile and story website links in your system browser instead of PineDrama's in-app browser.	Открывать веб-ссылки из профилей и историй в системном браузере вместо встроенного браузера PineDrama.
+Open profile website links in your system browser instead of PineDrama's in-app browser.	Открывать веб-ссылки из профилей в системном браузере вместо встроенного браузера PineDrama.
 Open the feed anyway	Всё равно открыть ленту
 Open the feed anyway, %1$d left today	Всё равно открыть ленту, сегодня ещё %1$d
 Open the feed anyway, the last time today	Всё равно открыть ленту, сегодня в последний раз
@@ -764,7 +762,7 @@ Overrides are disabled in the Feature Gate Lab.	Переопределения �
 Overrides disabled. Restart PineDrama to apply.	Переопределения отключены. Перезапустите PineDrama.
 Overrides enabled. Restart PineDrama to apply.	Переопределения включены. Перезапустите PineDrama.
 Paid partnerships	Платные партнёрства
-People, shortcuts and sending controls	Люди, ярлыки и настройки отправки
+Duet, Stitch and Add to Story	Duet, Stitch и «Добавить в историю»
 Photo	Фото
 Photo and image posts	Публикации с фото и изображениями
 Photo destination	Папка для фото
@@ -778,7 +776,6 @@ Subscriber-only posts	Публикации только для платных п
 Popular	Популярное
 Popups	Всплывающие окна
 Press and hold a profile picture to save the full size original to your photo destination.	Нажмите и удерживайте фото профиля, чтобы сохранить оригинал в полном размере в папку для фото.
-Press and hold a story to save it. Stories have no save button of their own, and holding one is how PineDrama pauses it, so this takes that gesture over.	Нажмите и удерживайте историю, чтобы сохранить её. У историй нет собственной кнопки сохранения, а удержание в PineDrama обычно ставит их на паузу, поэтому это действие использует тот же жест.
 Privacy	Конфиденциальность
 Profile	Профиль
 Profile picture saved to %1$s	Фото профиля сохранено в %1$s
@@ -788,7 +785,7 @@ Post age	Возраст публикации
 Pulling down at the top of For You no longer reloads it.	Потягивание вниз наверху «Рекомендаций» больше не обновляет ленту.
 Putting the settings back to their defaults	Настройки возвращаются к значениям по умолчанию
 Quality	Качество
-Quality, files, subtitles and hand-off	Качество, файлы, субтитры и передача
+Quality, files, sounds and hand-off	Качество, файлы, звуки и передача
 Quality, speed and auto-advance	Качество, скорость и автопереход
 Reading	Чтение
 Recorded gate reads (%1$d)	Зафиксированные обращения к переключателям (%1$d)
@@ -857,10 +854,9 @@ STEM	STEM
 Clean up shared links	Очищать ссылки при отправке
 Save	Сохранить
 Save a profile picture on a long press	Сохранять фото профиля долгим нажатием
-Save a story on a long press	Сохранять историю долгим нажатием
 Save every photo in the post at full size, not as the screen shows it. Each one is a JPEG unless Keep photos as PineDrama sent them is on.	Сохранять каждое фото публикации в полном размере, а не как оно показано на экране. Каждое сохраняется в JPEG, если не включено «Сохранять фото в формате PineDrama».
 Keep photos as PineDrama sent them	Сохранять фото в формате PineDrama
-Saved photos, covers, story photos and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.	Сохранённые фото, обложки, фото из историй и неподвижные стикеры остаются ровно теми файлами, которые прислал PineDrama, а не новыми JPEG или PNG. Некоторые галереи и компьютеры не открывают HEIF или WebP.
+Saved photos, covers and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.	Сохранённые фото, обложки и неподвижные стикеры остаются ровно теми файлами, которые прислал PineDrama, а не новыми JPEG или PNG. Некоторые галереи и компьютеры не открывают HEIF или WebP.
 Save field values	Сохранить значения полей
 Save full report	Сохранить полный отчёт
 Save media	Сохранение медиафайлов
@@ -966,7 +962,7 @@ Hide videos with blocked sounds	Скрывать видео с заблокир�
 Skip content warnings	Пропускать предупреждения о контенте
 Hide recorded LIVE broadcasts from the feed.	Скрывать записанные трансляции LIVE из ленты.
 Hide videos marked as using promotional music.	Скрывать видео, помеченные как использующие рекламную музыку.
-Hide videos that use a sound blocked with the player's sound button, or named below.	Скрывать видео, использующие звук, заблокированный кнопкой звука в плеере, или указанный ниже.
+Hide videos that use a sound named or listed below.	Скрывать видео, использующие звук, названный или указанный ниже.
 Skipping videos with %1$s	Пропуск видео с %1$s
 Something is missing from %1$s. Tap for the whole report.	В %1$s чего-то не хватает. Нажмите, чтобы увидеть полный отчёт.
 Sound link copied	Ссылка на звук скопирована
@@ -1215,7 +1211,7 @@ expanded	развёрнуто
 Hide the search bar below videos	Скрывать строку поиска под видео
 Hide the suggested-search strip above the bottom tabs and let video details and side controls use its space. The top search button and comments stay unchanged.	Скрывать полосу с предложенными запросами над нижними вкладками и отдавать её место под детали видео и боковые элементы управления. Верхняя кнопка поиска и комментарии остаются без изменений.
 Filter location-tagged videos	Фильтровать видео с метками геолокации
-Hide feed videos with place badges, even when they aren't paid ads. To keep the video and hide only its badge, use Hide location labels in Feed screen.	Скрывать видео в ленте со значками мест, даже если это не платная реклама. Чтобы оставить видео и скрыть только значок, используйте «Скрывать метки геолокации» в разделе «Экран ленты».
+Hide feed videos with place badges, even when they aren't paid ads.	Скрывать видео в ленте со значками мест, даже если это не платная реклама.
 Location-tagged videos	Видео с метками геолокации
 Hide search rewards	Скрывать поисковые награды
 Hide the points banner under the search box and the coin counter floating over search results, which PineDrama shows in some regions. Searching works as before.	Скрывать баннер с баллами под строкой поиска и счётчик монет, плавающий над результатами поиска, которые PineDrama показывает в некоторых регионах. Поиск работает как раньше.
@@ -1897,8 +1893,6 @@ Short date	Короткая дата
 Writes the date before the time to the second the short way your language does, like 10/7/25.	Пишет дату перед временем до секунды так коротко, как принято в вашем языке, например 07.10.2025.
 Color commenter names	Цветные имена комментаторов
 Give each commenter's name a color of its own, the same one every time you see that account, so a long thread is easier to follow.	Давать имени каждого автора комментария свой цвет, всегда один и тот же для этого аккаунта, чтобы за длинной веткой было легче следить.
-Hide Balance in the profile menu	Скрывать «Баланс» в меню профиля
-Hide Balance from the menu your profile's top right button opens. Your coins and gifts stay as they are.	Скрывать «Баланс» в меню, которое открывает кнопка справа вверху вашего профиля. Ваши монеты и подарки остаются как есть.
 # context: a switch on the Comments page. Language, Settings and privacy and App language are PineDrama's own labels: its language page, the menu that page sits in, and the page's first row
 Bring back PineDrama's translation	Вернуть перевод PineDrama
 Brings back the translation rows on PineDrama's Language page, under Settings and privacy, for accounts that only see App language there.	Возвращает строки перевода на страницу «Язык» в PineDrama (Настройки и конфиденциальность) для аккаунтов, которые видят там только «Язык приложения».
@@ -1926,8 +1920,6 @@ Two at once	Два одновременно
 Three at once	Три одновременно
 Open the comments at full height	Открывать комментарии на всю высоту
 Opens the comment sheet at the full height of the screen instead of part way up. Drag it down to close it, as before.	Открывает комментарии на всю высоту экрана, а не на часть. Чтобы закрыть, потяните их вниз, как раньше.
-Hide the TikTok Minis icons in the profile menu	Скрывать значки TikTok Minis в меню профиля
-Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.	Запись TikTok Minis остаётся в меню, которое открывает кнопка справа вверху вашего профиля, а ряд значков приложений под ней скрывается, и меню становится короче.
 Sort loaded videos on profile grids	Сортировать загруженные видео в сетках профиля
 Original order	Исходный порядок
 Newest first	Сначала новые
@@ -1945,7 +1937,7 @@ Sort this grid	Сортировка этой сетки
 Recording this LIVE's screen	Идёт запись экрана этого LIVE
 Tap Stop or leave the room to save it.	Нажмите «Стоп» или выйдите из комнаты, чтобы сохранить запись.
 Allow photo comments	Разрешить комментарии с фото
-Show the gallery tab in the comment box, so you can add a photo to a comment like on PineDrama. PineDrama turns it off for everyone. PineDrama's server still decides whether your account can post one.	Показывает вкладку галереи в поле комментария, чтобы можно было добавить фото к комментарию, как в PineDrama. PineDrama отключает её для всех. Может ли ваш аккаунт его опубликовать, всё равно решает сервер PineDrama.
+Show the gallery tab in the comment box, so you can add a photo to a comment. PineDrama turns it off for everyone, and its server still decides whether your account can post one.	Показывает вкладку галереи в поле комментария, чтобы можно было добавить фото к комментарию. PineDrama отключает её для всех, а может ли ваш аккаунт его опубликовать, всё равно решает его сервер.
 This screen recording has no sound	В этой записи экрана нет звука
 Export recording files	Экспортировать файлы записи
 Delete recording files	Удалить файлы записи

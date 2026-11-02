@@ -1227,7 +1227,6 @@ public class SettingsPagesTest {
             Preference rewards = page.findPreference(Settings.HIDE_PROFILE_REWARDS_SHORTCUT.key);
             assertNotNull(rewards);
             assertEquals("Hide the rewards shortcut", rewards.getTitle());
-            assertTrue(String.valueOf(rewards.getSummary()).contains("Add friends"));
         }
     }
 

@@ -160,16 +160,16 @@ public class PineDramaPreferenceFragment extends AbstractPreferenceFragment {
     private enum Section {
         FEED_FILTER("Feed filter", "Choose what reaches your feed", SettingsMenuPreference.Icon.FILTER),
         FEED_NAVIGATION("Feed tabs", "Arrange your feed and bottom tabs", SettingsMenuPreference.Icon.TABS),
-        INTERFACE("Feed screen", "Captions, gestures and on-screen controls", SettingsMenuPreference.Icon.LAYOUT),
+        INTERFACE("Feed screen", "Buttons, profile grids and gestures", SettingsMenuPreference.Icon.LAYOUT),
         PLAYBACK("Playback", "Quality, speed and auto-advance", SettingsMenuPreference.Icon.PLAYBACK),
         SCREEN_TIME("Screen time", "Daily budgets, reminders and the hold", SettingsMenuPreference.Icon.SCREEN_TIME),
         COMMENTS("Comments", "Filters, translation and copy options", SettingsMenuPreference.Icon.COMMENTS),
-        DOWNLOADS("Downloads", "Quality, files, subtitles and hand-off", SettingsMenuPreference.Icon.DOWNLOADS),
-        SHARE("Share sheet", "People, shortcuts and sending controls", SettingsMenuPreference.Icon.SHARE),
+        DOWNLOADS("Downloads", "Quality, files, sounds and hand-off", SettingsMenuPreference.Icon.DOWNLOADS),
+        SHARE("Share sheet", "Duet, Stitch and Add to Story", SettingsMenuPreference.Icon.SHARE),
         INBOX("Inbox", "Choose which rows and controls appear", SettingsMenuPreference.Icon.INBOX),
         PRIVACY("Privacy", "Tracking, device access and links", SettingsMenuPreference.Icon.PRIVACY),
         REGION("Region", "Country and network preferences", SettingsMenuPreference.Icon.REGION),
-        BEHAVIOR("App", "Layout, search, profile and system", SettingsMenuPreference.Icon.BEHAVIOR),
+        BEHAVIOR("App", "Appearance, search, profile and system", SettingsMenuPreference.Icon.BEHAVIOR),
         DIAGNOSTICS("Diagnostics", "Logging, hook status and reports", SettingsMenuPreference.Icon.DIAGNOSTICS),
         BACKUP("Backup and restore", "Save, restore, reset and undo your settings", SettingsMenuPreference.Icon.BACKUP);
 

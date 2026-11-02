@@ -1,6 +1,6 @@
 %1$s isn't a language code. Use two letters, like en, es or de.	%1$s não é um código de idioma. Use duas letras, como en, es ou de.
 Adds Save cover next to Download when you share a video, so you save the cover only when you want it. While this is on, Download saves just the video, even with Save the cover as well on.	Adiciona Salvar capa ao lado de Baixar quando você compartilha um vídeo, para você salvar a capa só quando quiser. Enquanto isso estiver ligado, Baixar salva só o vídeo, mesmo com Salvar a capa também ligado.
-Applies to Save the sound as well and to Save the original sound on a long press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.	Vale para Salvar o som também e para Salvar o som original ao tocar e segurar. O Opus gera um arquivo menor. Opus e MP3 são codificados de novo a partir da cópia do PineDrama, a menos que ela já seja um MP3.
+Applies to Save the sound as well. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.	Vale para Salvar o som também. O Opus gera um arquivo menor. Opus e MP3 são codificados de novo a partir da cópia do PineDrama, a menos que ela já seja um MP3.
 As PineDrama sent it (M4A or MP3)	Como o PineDrama enviou (M4A ou MP3)
 Couldn't add the caption. Saving without it.	Legenda não adicionada. Salvando sem ela.
 Importing new history ended Undo for the earlier clear. You can clear the imported history.	Importar um novo histórico encerrou a opção de desfazer a limpeza anterior. Você pode limpar o histórico importado.
@@ -16,8 +16,6 @@ Opus didn't work. Saving PineDrama's own file.	Opus falhou. Salvando o arquivo d
 MP3 didn't work. Saving PineDrama's own file.	MP3 falhou. Salvando o arquivo do PineDrama.
 Opus needs Android 10 or later, so it saves sounds as PineDrama sent them. MP3 works on any phone.	O Opus precisa do Android 10 ou mais recente, então os sons são salvos como o PineDrama enviou. O MP3 funciona em qualquer celular.
 Playing at %1$sx	Tocando a %1$sx
-Puts a save button in the sheet a story's Share button opens. It saves the story you're watching, and holding a story still pauses it.	Coloca um botão de salvar na folha que o botão Compartilhar de um story abre. Ele salva o story que você está vendo, e segurar um story ainda o pausa.
-Save a story from its share sheet	Salvar um story pela folha de compartilhamento
 Save cover	Salvar capa
 Save cover button in the share sheet	Botão Salvar capa na folha de compartilhamento
 Saved videos show the @username and the first line of the caption in the bottom left corner. The phone encodes the whole video again to do it, so saving takes longer. Applies to saves made by HushPine.	Os vídeos salvos mostram o @nome de usuário e a primeira linha da legenda no canto inferior esquerdo. Para isso o celular codifica o vídeo inteiro de novo, então salvar demora mais. Vale para o que o HushPine salva.
@@ -116,9 +114,9 @@ A video you paused stays paused when you come back to the app instead of startin
 AI-generated posts	Publicações geradas por IA
 A forced value applies to this copy of PineDrama whichever account is signed in. It can't get past a check the server makes.	Um valor forçado vale para esta cópia do PineDrama, seja qual for a conta conectada. Ele não passa por cima de uma verificação feita pelo servidor.
 Caption languages	Idiomas de legenda
-Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries, caption languages and seen videos still apply.	Separe nomes de conta ou IDs de usuário com vírgulas. Os vídeos deles ficam mesmo que um filtro de tipo de publicação, rótulos, idade, duração ou contagens os ocultasse. Anúncios, criadores bloqueados, palavras, sons, países, idiomas de legenda e vídeos já vistos continuam valendo.
+Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries and caption languages still apply.	Separe nomes de conta ou IDs de usuário com vírgulas. Os vídeos deles ficam mesmo que um filtro de tipo de publicação, rótulos, idade, duração ou contagens os ocultasse. Anúncios, criadores bloqueados, palavras, sons, países e idiomas de legenda continuam valendo.
 Separate language codes with commas, like en, es. A video whose original caption is in another language is hidden. Videos with no caption, or only translated ones, always stay.	Separe os códigos de idioma com vírgulas, como en, es. Um vídeo cuja legenda original está em outro idioma fica oculto. Vídeos sem legenda, ou só com a traduzida, sempre ficam.
-Comma separated names exactly as the row under a profile's bio shows them, such as TikTok Studio or Your orders. Restart PineDrama to apply this.	Nomes separados por vírgula, exatamente como aparecem na linha abaixo da bio de um perfil, como TikTok Studio ou Seus pedidos. Reinicie o PineDrama para aplicar.
+Comma separated names, exactly as PineDrama shows them under a profile's bio. Restart PineDrama to apply this.	Nomes separados por vírgula, exatamente como o PineDrama os mostra abaixo da bio de um perfil. Reinicie o PineDrama para aplicar.
 Couldn't copy. Use Save build details instead.	Falha ao copiar. Use “Salvar detalhes da compilação”.
 Couldn't copy the report. Use Save report instead.	Relatório não copiado. Use “Salvar relatório”.
 Couldn't read PineDrama's current values (%1$s). Refresh values from the menu to try again.	Não foi possível ler os valores atuais do PineDrama (%1$s). Atualize os valores pelo menu para tentar de novo.
@@ -140,7 +138,7 @@ Only these caption languages	Só estes idiomas de legenda
 Open	Abrir
 Open your profile once, then return here to choose its shortcuts.	Abra seu perfil uma vez e volte aqui para escolher os atalhos.
 Photos can't be saved to the folder in that file, so your photo folder was kept	Fotos não podem ser salvas na pasta desse arquivo, então sua pasta de fotos foi mantida
-Pick the shortcuts to remove from the row under a profile's bio, such as TikTok Studio or Your orders. Restart PineDrama to apply this.	Escolha os atalhos que saem da linha abaixo da bio de um perfil, como TikTok Studio ou Seus pedidos. Reinicie o PineDrama para aplicar.
+Pick the shortcuts to remove from under a profile's bio, if PineDrama shows any there. Restart PineDrama to apply this.	Escolha os atalhos que saem de baixo da bio de um perfil, se o PineDrama mostrar algum. Reinicie o PineDrama para aplicar.
 Preview shortened. Save report keeps the full report.	Prévia encurtada. “Salvar relatório” mantém o relatório completo.
 Refreshing PineDrama's current values…	Atualizando os valores atuais do PineDrama…
 Restart PineDrama to apply this	Reinicie o PineDrama para aplicar
@@ -240,7 +238,7 @@ Browse	Procurar
 Camera and microphone in use	Câmera e microfone em uso
 Camera in use	Câmera em uso
 Cancel	Cancelar
-Captions, gestures and on-screen controls	Legendas, gestos e controles na tela
+Buttons, profile grids and gestures	Botões, grades de perfil e gestos
 Capture crash reports locally	Guardar os relatórios de falha no aparelho
 Choose %1$d to %2$d videos. Values outside this range use the nearest valid limit. Restart PineDrama to apply this.	Escolha entre %1$d e %2$d vídeos. Valores fora dessa faixa usam o limite válido mais próximo. Reinicie o PineDrama para aplicar.
 Choose a backup file. Your current settings are kept for Undo.	Escolha um arquivo de backup. Suas configurações atuais ficam guardadas para Desfazer.
@@ -284,7 +282,7 @@ Separate account handles or user IDs with commas. Videos from these accounts are
 Separate country codes with commas, like GB, IE. Videos posted from anywhere else are hidden. Leave empty for all countries.	Separe os códigos de país com vírgulas, como GB, IE. Vídeos postados de qualquer outro lugar ficam ocultos. Deixe vazio para todos os países.
 Separate country codes with commas. Videos posted from these are hidden, whatever the list above says.	Separe os códigos de país com vírgulas. Vídeos postados desses países ficam ocultos, não importa o que a lista acima diga.
 Separate the titles of any other Inbox rows you want to hide with commas, spelled exactly. Use this for anything not listed above.	Separe com vírgulas os títulos de outras linhas da Caixa de entrada que você quer ocultar, escritos exatamente. Use para o que não estiver listado acima.
-Sound IDs saved by the player's sound button, separated by commas. Remove one to unblock it.	IDs de som salvos pelo botão de som do player, separados por vírgulas. Remova um para desbloqueá-lo.
+Sound IDs to hide, separated by commas. Remove one to unblock it.	IDs de som a esconder, separados por vírgulas. Remova um para desbloqueá-lo.
 Separate words or phrases with commas. Videos whose caption matches are hidden. Capital letters don't matter. Write "a" & "b" to need both phrases, or "a" !& "b" to need the first without the second.	Separe palavras ou frases com vírgulas. Vídeos cuja legenda combina são ocultados. Maiúsculas não importam. Escreva "a" & "b" para exigir as duas frases, ou "a" !& "b" para exigir a primeira sem a segunda.
 Separate words with commas, like saxophone, to match against sound names. Capital letters don't matter.	Separe com vírgulas as palavras a comparar com os nomes de som, como saxophone. Maiúsculas não importam.
 Comment media filename	Nome do arquivo da mídia do comentário
@@ -337,7 +335,7 @@ Country code	Código do país
 Country and network preferences	Preferências de país e de rede
 Create	Criar
 Creators and sounds	Criadores e sons
-Creators you hid from a video. Search the list and remove one at a time.	Criadores que você escondeu em um vídeo. Busque na lista e remova um de cada vez.
+Creators you add here are hidden on this phone. Search the list and remove one at a time.	Os criadores que você adicionar aqui ficam escondidos neste celular. Busque na lista e remova um de cada vez.
 Current	Atual
 Current %1$s	Atual: %1$s
 Current state	Estado atual
@@ -517,10 +515,10 @@ Hide the launcher shortcuts	Ocultar os atalhos do inicializador
 Hide photo posts from the feed.	Esconder publicações de fotos do feed.
 Hide the playlist bar	Esconder a barra da playlist
 Hide the playlist bar along the bottom of videos that belong to a series.	Esconder a barra da playlist na parte de baixo dos vídeos que fazem parte de uma série.
-Hide the plus button under the creator's picture in the right column. Ticking Avatar and follow button above hides the picture with it.	Oculta o botão de mais sob a foto do criador na coluna da direita. Marcar Avatar e botão de seguir acima esconde a foto junto.
-Hide the purple rewards button beside Add friends on your profile.	Ocultar o botão roxo de recompensas ao lado de Adicionar amigos no seu perfil.
+Hide the plus button under the creator's picture in the right column.	Oculta o botão de mais sob a foto do criador na coluna da direita.
+Hide the rewards button on your profile, if PineDrama shows you one.	Ocultar o botão de recompensas no seu perfil, se o PineDrama mostrar um.
 Hide the rewards shortcut	Ocultar o atalho de recompensas
-Hide the save button in the right column. Ticking Save in the list above hides it too.	Esconder o botão de salvar da coluna direita. Marcar Salvar na lista acima também o esconde.
+Hide the save button in the right column.	Esconder o botão de salvar da coluna direita.
 Hide the magnifying glass at the top right of the feed. Search in Inbox and suggestions above comments stay unchanged.	Oculte a lupa no canto superior direito do feed. A pesquisa na Caixa de entrada e as sugestões acima dos comentários não mudam.
 Hide the magnifying glass at the top of Inbox. Search on the feed and in comments is unchanged.	Esconder a lupa na parte superior da caixa de entrada. A pesquisa no feed e nos comentários não muda.
 Hide recommended searches before you type on PineDrama's search page. Your search history stays. This doesn't hide suggestions above comments.	Oculte as pesquisas recomendadas antes de digitar na página de pesquisa do PineDrama. Seu histórico de pesquisa é mantido. Isso não oculta as sugestões acima dos comentários.
@@ -546,7 +544,7 @@ Hook status	Verificação de recursos
 HushPine can't read the creator pattern %1$s	O HushPine não consegue ler o padrão de criador %1$s
 HushPine is active	O HushPine está ativo
 Shows the Duet and Stitch options even when the creator turned them off. PineDrama may still refuse to accept the result.	Mostra as opções Dueto e Stitch mesmo quando o criador as desativou. O PineDrama ainda pode recusar o resultado.
-Shows Add to Story in the share sheet and on stories even when the creator turned off content reuse. PineDrama may still refuse to post it.	Mostra Adicionar ao story no menu de compartilhamento e nos stories mesmo quando o criador desativou a reutilização de conteúdo. O PineDrama ainda pode recusar a publicação.
+Shows Add to Story in the share sheet even when the creator turned off content reuse. PineDrama may still refuse to post it.	Mostra Adicionar ao story no menu de compartilhamento mesmo quando o criador desativou a reutilização de conteúdo. O PineDrama ainda pode recusar a publicação.
 Import finished	Importação concluída
 Import loaded values	Importar os valores carregados
 Imported %1$d values	%1$d valores importados
@@ -558,7 +556,7 @@ Includes all diagnostic events.	Inclui todos os eventos de diagnóstico.
 Includes these events: %1$s	Inclui estes eventos: %1$s
 Inserted cards	Cards inseridos
 Keep a paused video paused	Manter pausado um vídeo pausado
-Move to the next video when the current one ends. Pauses, open dialogs and screen-time holds stop it. Restart PineDrama to apply this.	Avance para o próximo vídeo quando o atual terminar. Pausas, caixas de diálogo abertas e bloqueios de tempo de tela interrompem o avanço. Reinicie o PineDrama depois de mudar esta configuração.
+Move to the next video when the current one ends. Pauses and open dialogs stop it. Restart PineDrama to apply this.	Avance para o próximo vídeo quando o atual terminar. Pausas e caixas de diálogo abertas interrompem o avanço. Reinicie o PineDrama depois de mudar esta configuração.
 Keep going	Continuar
 Keep the Favorites tab	Manter a aba Favoritos
 Dark Favorites popup	Janela de Favoritos escura
@@ -579,7 +577,7 @@ Lab overrides reset	Substituições redefinidas
 Last original value	Último valor original
 Last recording: %1$d gates.	Última gravação: %1$d gates.
 Last recording: 1 gate.	Última gravação: 1 gate.
-Layout, search, profile and system	Layout, pesquisa, perfil e sistema
+Appearance, search, profile and system	Aparência, pesquisa, perfil e sistema
 Leave maximum empty to keep it unlimited.	Deixe o máximo vazio para ficar sem limite.
 Leave the sound out of the saved video. Save the sound as well still writes the sound file beside it if you want both.	Deixar o som fora do vídeo salvo. Salvar o som também continua escrevendo o arquivo de som ao lado se você quiser os dois.
 Length and views per like	Duração e visualizações por curtida
@@ -688,7 +686,7 @@ Only from these countries	Só destes países
 Only tabs PineDrama has loaded on this device are shown here. This doesn't force unavailable tabs to appear.	Aqui só aparecem as abas que o PineDrama carregou neste aparelho. Isto não faz aparecer as que não estão disponíveis.
 Open external links directly	Abrir os links externos direto
 Open messages	Abrir as mensagens
-Open profile and story website links in your system browser instead of PineDrama's in-app browser.	Abrir os links de sites de perfis e stories no navegador do sistema em vez do navegador interno do PineDrama.
+Open profile website links in your system browser instead of PineDrama's in-app browser.	Abrir os links de sites de perfis no navegador do sistema em vez do navegador interno do PineDrama.
 Open the feed anyway	Abrir o feed mesmo assim
 Open the feed anyway, %1$d left today	Abrir o feed mesmo assim, restam %1$d hoje
 Open the feed anyway, the last time today	Abrir o feed mesmo assim, pela última vez hoje
@@ -713,7 +711,7 @@ Overrides are disabled in the Feature Gate Lab.	As substituições estão deslig
 Overrides disabled. Restart PineDrama to apply.	Substituições desativadas. Reinicie o PineDrama.
 Overrides enabled. Restart PineDrama to apply.	Substituições ativadas. Reinicie o PineDrama.
 Paid partnerships	Parcerias pagas
-People, shortcuts and sending controls	Pessoas, atalhos e controles de envio
+Duet, Stitch and Add to Story	Duet, Stitch e Adicionar ao story
 Photo	Foto
 Photo and image posts	Publicações de fotos e imagens
 Photo destination	Destino das fotos
@@ -727,7 +725,6 @@ Subscriber-only posts	Publicações só para assinantes
 Popular	Populares
 Popups	Pop-ups
 Press and hold a profile picture to save the full size original to your photo destination.	Segure uma foto de perfil para salvar o original em tamanho cheio no seu destino de fotos.
-Press and hold a story to save it. Stories have no save button of their own, and holding one is how PineDrama pauses it, so this takes that gesture over.	Segure um story para salvá-lo. Os stories não têm botão de salvar próprio, e segurar é como o PineDrama os pausa, então isto assume esse gesto.
 Privacy	Privacidade
 Profile	Perfil
 Profile picture saved to %1$s	Foto de perfil salva em %1$s
@@ -737,7 +734,7 @@ Post age	Idade da publicação
 Pulling down at the top of For You no longer reloads it.	Puxar para baixo no topo de Para você não recarrega mais o feed.
 Putting the settings back to their defaults	Voltando as configurações para os padrões
 Quality	Qualidade
-Quality, files, subtitles and hand-off	Qualidade, arquivos, legendas e passagem
+Quality, files, sounds and hand-off	Qualidade, arquivos, sons e passagem
 Quality, speed and auto-advance	Qualidade, velocidade e avanço automático
 Reading	Leitura
 Recorded gate reads (%1$d)	Leituras de gates registradas (%1$d)
@@ -797,10 +794,9 @@ STEM	STEM
 Clean up shared links	Limpar os links compartilhados
 Save	Salvar
 Save a profile picture on a long press	Salvar uma foto de perfil com um toque longo
-Save a story on a long press	Salvar um story com um toque longo
 Save every photo in the post at full size, not as the screen shows it. Each one is a JPEG unless Keep photos as PineDrama sent them is on.	Salvar cada foto da publicação em tamanho completo, não como a tela a mostra. Cada uma vira JPEG, a menos que Manter as fotos como o PineDrama as enviou esteja ativado.
 Keep photos as PineDrama sent them	Manter as fotos como o PineDrama as enviou
-Saved photos, covers, story photos and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.	As fotos, capas, fotos de stories e stickers sem movimento salvos são exatamente os arquivos que o PineDrama enviou, não um novo JPEG ou PNG. Algumas galerias e computadores não abrem HEIF ou WebP.
+Saved photos, covers and stickers that don't move are the exact files PineDrama sent, not a new JPEG or PNG. Some galleries and computers can't open HEIF or WebP.	As fotos, capas e stickers sem movimento salvos são exatamente os arquivos que o PineDrama enviou, não um novo JPEG ou PNG. Algumas galerias e computadores não abrem HEIF ou WebP.
 Save field values	Salvar os valores dos campos
 Save full report	Salvar relatório completo
 Save media	Salvar a mídia
@@ -900,7 +896,7 @@ Hide videos with blocked sounds	Esconder os vídeos com sons bloqueados
 Skip content warnings	Pular os avisos de conteúdo
 Hide recorded LIVE broadcasts from the feed.	Esconder do feed as transmissões LIVE gravadas.
 Hide videos marked as using promotional music.	Esconder os vídeos marcados como usando música promocional.
-Hide videos that use a sound blocked with the player's sound button, or named below.	Esconder os vídeos que usam um som bloqueado pelo botão de som do player, ou citado abaixo.
+Hide videos that use a sound named or listed below.	Esconder os vídeos que usam um som citado ou listado abaixo.
 Skipping videos with %1$s	Pulando os vídeos com %1$s
 Something is missing from %1$s. Tap for the whole report.	Falta alguma coisa em %1$s. Toque para ver o relatório inteiro.
 Sound link copied	Link do som copiado
@@ -1131,7 +1127,7 @@ expanded	Expandido
 Hide the search bar below videos	Ocultar a barra de pesquisa abaixo dos vídeos
 Hide the suggested-search strip above the bottom tabs and let video details and side controls use its space. The top search button and comments stay unchanged.	Esconda a barra de pesquisas sugeridas acima das abas inferiores para que os detalhes do vídeo e os controles laterais usem esse espaço. O botão de pesquisa no topo e os comentários não mudam.
 Filter location-tagged videos	Filtrar vídeos com localização
-Hide feed videos with place badges, even when they aren't paid ads. To keep the video and hide only its badge, use Hide location labels in Feed screen.	Esconda vídeos do feed com etiquetas de localização, mesmo que não sejam anúncios pagos. Para manter o vídeo e ocultar só a etiqueta, use Ocultar etiquetas de localização em Tela do feed.
+Hide feed videos with place badges, even when they aren't paid ads.	Esconda vídeos do feed com etiquetas de localização, mesmo que não sejam anúncios pagos.
 Location-tagged videos	Vídeos com localização
 Hide search rewards	Esconder as recompensas de busca
 Hide the points banner under the search box and the coin counter floating over search results, which PineDrama shows in some regions. Searching works as before.	Esconde o aviso de pontos abaixo da caixa de busca e o contador de moedas que flutua sobre os resultados, que o PineDrama mostra em algumas regiões. A busca funciona como antes.
@@ -1735,8 +1731,6 @@ Short date	Data curta
 Writes the date before the time to the second the short way your language does, like 10/7/25.	Escreve a data antes do horário com segundos no formato curto do seu idioma, como 07/10/2025.
 Color commenter names	Colorir os nomes de quem comenta
 Give each commenter's name a color of its own, the same one every time you see that account, so a long thread is easier to follow.	Dar ao nome de cada pessoa que comenta uma cor própria, sempre a mesma para aquela conta, para ficar mais fácil acompanhar uma conversa longa.
-Hide Balance in the profile menu	Esconder Saldo no menu do perfil
-Hide Balance from the menu your profile's top right button opens. Your coins and gifts stay as they are.	Oculte o Saldo do menu que o botão no canto superior direito do seu perfil abre. Suas moedas e presentes ficam como estão.
 # context: a switch on the Comments page. Language, Settings and privacy and App language are PineDrama's own labels: its language page, the menu that page sits in, and the page's first row
 Bring back PineDrama's translation	Trazer de volta a tradução do PineDrama
 Brings back the translation rows on PineDrama's Language page, under Settings and privacy, for accounts that only see App language there.	Traz de volta as linhas de tradução na página Idioma do PineDrama, em Configurações e privacidade, para contas que ali só veem Idioma do app.
@@ -1764,8 +1758,6 @@ Two at once	Dois ao mesmo tempo
 Three at once	Três ao mesmo tempo
 Open the comments at full height	Abrir os comentários na altura total
 Opens the comment sheet at the full height of the screen instead of part way up. Drag it down to close it, as before.	Abre os comentários na altura total da tela em vez de só uma parte. Para fechar, arraste para baixo como antes.
-Hide the TikTok Minis icons in the profile menu	Esconder os ícones do TikTok Minis no menu do perfil
-Keep the TikTok Minis entry in the menu your profile's top right button opens, and hide the row of app icons under it so the menu is shorter.	Mantenha a entrada do TikTok Minis no menu que o botão no canto superior direito do seu perfil abre e esconda a fileira de ícones de apps embaixo dela para o menu ficar mais curto.
 Sort loaded videos on profile grids	Ordenar os vídeos carregados nas grades de perfil
 Original order	Ordem original
 Newest first	Mais recentes primeiro
@@ -1783,7 +1775,7 @@ Sort this grid	Ordenar esta grade
 Recording this LIVE's screen	Gravando a tela desta LIVE
 Tap Stop or leave the room to save it.	Toque em Parar ou saia da sala para salvar.
 Allow photo comments	Permitir comentários com foto
-Show the gallery tab in the comment box, so you can add a photo to a comment like on PineDrama. PineDrama turns it off for everyone. PineDrama's server still decides whether your account can post one.	Mostra a aba de galeria na caixa de comentários para você adicionar uma foto a um comentário como no PineDrama. O PineDrama a desativa para todos. O servidor do PineDrama ainda decide se a sua conta pode publicar uma.
+Show the gallery tab in the comment box, so you can add a photo to a comment. PineDrama turns it off for everyone, and its server still decides whether your account can post one.	Mostra a aba de galeria na caixa de comentários para você adicionar uma foto a um comentário. O PineDrama a desativa para todos, e o servidor dele ainda decide se a sua conta pode publicar uma.
 This screen recording has no sound	Esta gravação de tela não tem som
 Export recording files	Exportar arquivos da gravação
 Delete recording files	Excluir arquivos da gravação

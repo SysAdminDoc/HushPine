@@ -49,7 +49,7 @@ public final class ProfileShortcutChecklistPreference extends DialogPreference {
         super(context);
         setKey("profile_shortcut_checklist");
         setTitle("Hide profile shortcuts");
-        setSummary("Pick the shortcuts to remove from the row under a profile's bio, such as TikTok Studio or Your orders. Restart PineDrama to apply this.");
+        setSummary("Pick the shortcuts to remove from under a profile's bio, if PineDrama shows any there. Restart PineDrama to apply this.");
     }
 
     @Override

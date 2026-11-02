@@ -235,8 +235,6 @@
       "hide_inbox_custom_titles"
     ],
     "Hide profile shortcuts": [
-      "hide_profile_menu_balance",
-      "hide_profile_menu_minis_icons",
       "hidden_profile_shortcuts",
       "profile_shortcut_picks",
       "hide_profile_thoughts",
@@ -1270,18 +1268,6 @@
     "hide_playlist_videos": {
       "field": "HIDE_PLAYLIST_VIDEOS",
       "key": "hide_playlist_videos",
-      "type": "boolean",
-      "default": false
-    },
-    "hide_profile_menu_balance": {
-      "field": "HIDE_PROFILE_MENU_BALANCE",
-      "key": "hide_profile_menu_balance",
-      "type": "boolean",
-      "default": false
-    },
-    "hide_profile_menu_minis_icons": {
-      "field": "HIDE_PROFILE_MENU_MINIS_ICONS",
-      "key": "hide_profile_menu_minis_icons",
       "type": "boolean",
       "default": false
     },
