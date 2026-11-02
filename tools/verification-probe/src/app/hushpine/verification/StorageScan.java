@@ -264,6 +264,7 @@ final class StorageScan {
         if (path.equals("files/hushpine-start") || path.equals("files/hushpine-start-crashes"))
             return Bucket.STARTUP_GUARD;
         if (preferences(path, "morphe_prefs") || preferences(path, "hushpine-calm-feed-preset")
+                || preferences(path, "hushpine_release_notes")
                 || preferences(path, "hushfeed_release_notes")
                 || preferences(path, "hushfeed_device_identity")) return Bucket.SETTINGS;
         if (preferences(path, "morphe_feature_gate_lab")) return Bucket.FEATURE_LAB;

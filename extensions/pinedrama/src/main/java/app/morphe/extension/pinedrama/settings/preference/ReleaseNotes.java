@@ -32,7 +32,8 @@ import java.util.regex.Pattern;
 /** Shows published changes locally and remembers the last version the reader dismissed. */
 public final class ReleaseNotes {
     static final String KEY = "action_release_notes";
-    public static final String PREFS_NAME = "hushfeed_release_notes";
+    // Not hushfeed_release_notes: its dismissed version comes from Hushfeed's numbering, above HushPine's.
+    public static final String PREFS_NAME = "hushpine_release_notes";
     private static final String DISMISSED = "dismissed_version";
     private static final String CHANGELOG_URL = "https://github.com/SysAdminDoc/HushPine/blob/main/CHANGELOG.md";
     private static final Pattern VERSION = Pattern.compile("^(\\d+)\\.(\\d+)\\.(\\d+)(\\S*)");

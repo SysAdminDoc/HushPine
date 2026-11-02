@@ -65,7 +65,7 @@ public class LaunchCrashCleanupTest {
         assertArrayEquals("PineDrama's own names moved or went", TIKTOK_KEEPS,
                 Arrays.copyOf(kept, TIKTOK_KEEPS.length));
         assertEquals(Arrays.asList("morphe_prefs", "morphe_feature_gate_lab",
-                        "hushfeed_release_notes", "hushfeed_device_identity", "hushfeed_group_chats",
+                        "hushpine_release_notes", "hushfeed_device_identity", "hushfeed_group_chats",
                         "hushfeed_sticker_recents"),
                 Arrays.asList(kept).subList(TIKTOK_KEEPS.length, kept.length));
         assertArrayEquals(LaunchCrashCleanup.HUSHPINE_FILES, LaunchCrashCleanup.keepHushPineFiles(null));

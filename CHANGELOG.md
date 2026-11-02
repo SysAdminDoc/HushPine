@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* What's new shows up again on a PineDrama you first patched with Hushfeed's bundle. The version you'd dismissed there was higher than HushPine's, so the row stayed hidden.
+
 ## 0.0.1 (2026-11-01)
 
 ### Features

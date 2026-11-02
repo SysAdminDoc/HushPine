@@ -282,6 +282,21 @@ public class ReleaseNotesTest {
         assertEquals(notes.length(), notes.getSpanEnd(spans[0]));
     }
 
+    /**
+     * A PineDrama patched over Hushfeed's bundle keeps Hushfeed's notes file, and the version
+     * dismissed there is far above HushPine's, so reading it hid What's new.
+     */
+    @Test
+    public void aVersionDismissedUnderHushfeedDoesNotHideTheNotes() {
+        String newest = newestBundled();
+        try (var owner = Robolectric.buildActivity(HostActivity.class).setup()) {
+            Activity activity = owner.get();
+            activity.getSharedPreferences("hushfeed_release_notes", Context.MODE_PRIVATE).edit()
+                    .putString("dismissed_version", "0.79.0").commit();
+            assertTrue(ReleaseNotes.pending(activity, newest));
+        }
+    }
+
     @Test
     public void laterKeepsTheRowPendingAndGotItRemembersTheVersion() {
         String newest = newestBundled();
