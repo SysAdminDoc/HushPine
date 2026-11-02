@@ -239,7 +239,7 @@ Where things live:
 - `scripts/`: patching and checking scripts. `release/release.ps1` runs a release from one command and picks up from the step that stopped.
 - `tools/`: release text and What's new generation, plus the test-only probe a device check drives.
 - `audit/`: the patch audit. `catalog.json` says how to prove each patch works on a phone, and `results/` keeps what each PineDrama version showed.
-- `patches-list.json` is the generated patch catalog. `patches-bundle.json`, once there's a release, is the Morphe source index and only changes at release time.
+- `patches-list.json` is the generated patch catalog. `patches-bundle.json` is the Morphe source index and only changes at release time.
 - [App and patch development map](concepts/patch-development.md): the target boundary, the source modules and how to add a patch.
 
 A bundle patched in beside HushPine can hang its own settings off HushPine's. `AddonContractTest` lists what stays put between releases, and anything else in the settings code can move.
