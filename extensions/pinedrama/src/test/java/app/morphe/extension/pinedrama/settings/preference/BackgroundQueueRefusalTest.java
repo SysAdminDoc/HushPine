@@ -10,9 +10,6 @@ import static org.junit.Assert.assertTrue;
 
 import android.app.Activity;
 import android.os.Looper;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import app.morphe.extension.shared.BackgroundPoolSaturation;
 import app.morphe.extension.shared.Utils;
@@ -92,16 +89,5 @@ public class BackgroundQueueRefusalTest {
         tap(row);
         settle();
         assertTrue("the Undo that ran left the record out", SavedVideoArchiveAccess.isRecorded(activity, "1"));
-    }
-
-    private static boolean hasText(View view, String text) {
-        if (view instanceof TextView && text.equals(String.valueOf(((TextView) view).getText()))) return true;
-        if (view instanceof ViewGroup) {
-            ViewGroup group = (ViewGroup) view;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                if (hasText(group.getChildAt(i), text)) return true;
-            }
-        }
-        return false;
     }
 }

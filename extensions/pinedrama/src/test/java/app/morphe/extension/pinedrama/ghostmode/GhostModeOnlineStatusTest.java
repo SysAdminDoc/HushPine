@@ -7,6 +7,7 @@ package app.morphe.extension.pinedrama.ghostmode;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.app.Activity;
@@ -40,7 +41,6 @@ import org.robolectric.annotation.Config;
 public class GhostModeOnlineStatusTest {
     @Rule public final SettingsContextRule settingsContext = new SettingsContextRule();
     private boolean installed;
-    private boolean telemetryInstalled;
 
     @Before public void setUp() {
         installed = SettingsStatus.ghostModeEnabled;
@@ -103,6 +103,15 @@ public class GhostModeOnlineStatusTest {
             assertNotNull("no Hide online status row", row);
             assertEquals("Hide online status", row.getTitle().toString());
             assertNotNull(page.findPreference(Settings.GHOST_MODE.key));
+        }
+    }
+
+    @Test public void theRowIsAbsentWhenGhostModeIsNotInTheBuild() {
+        SettingsStatus.ghostModeEnabled = false;
+        try (var owner = Robolectric.buildActivity(PageActivity.class).setup().visible()) {
+            PineDramaPreferenceFragment page = privacy(owner.get());
+            assertNull(page.findPreference(Settings.GHOST_HIDE_ONLINE_STATUS.key));
+            assertNull(page.findPreference(Settings.GHOST_MODE.key));
         }
     }
 

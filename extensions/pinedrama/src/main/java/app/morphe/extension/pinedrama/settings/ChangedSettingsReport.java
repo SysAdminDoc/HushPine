@@ -38,7 +38,7 @@ import app.morphe.extension.shared.settings.preference.LogBufferManager;
  *
  * <p>The keys go in lists after one label, never as {@code key: value}. The export's redactor
  * blanks the value after any name holding "auth", "sid", "session" or "uid", and written that way
- * {@code show_author_region} and {@code hide_feed_sidebar_button} would each read "[omitted]".
+ * {@code hide_bottom_search_bar} and {@code block_author_button} would each read "[omitted]".
  */
 public final class ChangedSettingsReport implements LogBufferManager.ReportSection {
     static final String TITLE = "CHANGED SETTINGS";
