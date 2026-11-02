@@ -62,7 +62,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 # The vendor 47.5.3 build the README links, which is the only clean side this comparison means.
-$CleanApkSha256 = '6670ca3f93bfea379658cad3c27f05d3a380b23a0d82569cce684b7453e8ff3e'
+$CleanApkSha256 = '332ee375945b79d0ea8656f8cc17229cf3e83393860d7a056678d2bdbd0e2114'
 . (Join-Path $PSScriptRoot 'Resolve-Java.ps1')
 . (Join-Path $PSScriptRoot 'device-lease.ps1')
 . (Join-Path $PSScriptRoot 'injected-register-contracts.ps1')
