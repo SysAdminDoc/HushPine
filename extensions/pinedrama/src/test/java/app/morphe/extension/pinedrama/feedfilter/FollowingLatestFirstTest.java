@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import app.morphe.extension.shared.settings.Setting;
 import app.morphe.extension.pinedrama.SettingsContextRule;
-import app.morphe.extension.pinedrama.blockauthor.CurrentVideoAuthor;
 import app.morphe.extension.pinedrama.feedfilter.CreatorExceptionsTest.Item;
 import app.morphe.extension.pinedrama.settings.Settings;
 
@@ -40,15 +39,6 @@ public class FollowingLatestFirstTest {
     private static final long NOW_SECONDS = System.currentTimeMillis() / 1000;
     private static final long HOUR = 3600;
 
-    /** Stands in for VideoItemParams, the way the feed binds a video. */
-    public static final class Params {
-        public final Object aweme;
-
-        Params(Object aweme) {
-            this.aweme = aweme;
-        }
-    }
-
     @Before
     public void setUp() {
         FollowingLatestFirst.resetForTests();
@@ -59,7 +49,6 @@ public class FollowingLatestFirstTest {
         Settings.FOLLOWING_LATEST_FIRST.resetToDefault();
         Settings.REMOVE_ADS.resetToDefault();
         FollowingLatestFirst.resetForTests();
-        ReflectionHelpers.callStaticMethod(CurrentVideoAuthor.class, "resetForTests");
     }
 
     @Test
@@ -127,14 +116,19 @@ public class FollowingLatestFirstTest {
         assertEquals(List.of("b", "a"), read(emptyList(), post("a", 3 * HOUR), post("b", HOUR)));
     }
 
-    private static void bind(Item item) {
-        ReflectionHelpers.callStaticMethod(CurrentVideoAuthor.class, "update",
-                ReflectionHelpers.ClassParameter.from(Object.class, new Params(item)));
-    }
+    @Test
+    public void theVideoThePlayerLastNamedIsWhereTheSortStops() {
+        Settings.FOLLOWING_LATEST_FIRST.save(true);
+        FollowFeedList list = emptyList();
 
-    private static void playing(String aid) {
-        ReflectionHelpers.callStaticMethod(CurrentVideoAuthor.class, "onPlaying",
-                ReflectionHelpers.ClassParameter.from(String.class, aid));
+        assertEquals(List.of("b", "a"), read(list, post("a", 3 * HOUR), post("b", 2 * HOUR)));
+        // The player reports several times a second, and the reader can go back up.
+        FollowingLatestFirst.onCurrentVideo("b");
+        FollowingLatestFirst.onCurrentVideo("b");
+        FollowingLatestFirst.onCurrentVideo("a");
+        FollowingLatestFirst.onCurrentVideo("b");
+        FollowingLatestFirst.onCurrentVideo("b");
+        assertEquals(List.of("b", "c", "a"), read(list, post("c", HOUR)));
     }
 
     @Test

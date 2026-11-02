@@ -15,6 +15,7 @@ import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as b
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.morphe.patcher.util.smali.ExternalLabel
 import app.morphe.patches.shared.compat.AppCompatibilities
+import app.morphe.patches.pinedrama.interaction.blockauthor.PlayerProgressAidFingerprint
 import app.morphe.patches.pinedrama.misc.extension.MainActivityOnCreateFingerprint
 import app.morphe.patches.pinedrama.misc.extension.sharedExtensionPatch
 import app.morphe.patches.pinedrama.misc.navigation.MainNewIntentFingerprint
@@ -262,6 +263,7 @@ val feedFilterPatch = bytecodePatch(
 
         FollowFeedRequestFingerprint.method.raiseFollowFeedFirstReadCount()
         FollowingCacheRestoreFingerprint.method.skipSavedFollowingFirstVideo()
+        PlayerProgressAidFingerprint.method.reportCurrentVideoToLatestFirst()
 
         listOf(
             ProfileRefreshResultFingerprint.method,
@@ -1051,6 +1053,20 @@ internal fun MutableMethod.skipSavedFollowingFirstVideo() {
             move-object/from16 p1, v0
         """,
         ExternalLabel("morphe_keep_saved_following", getInstruction(0)),
+    )
+}
+
+/**
+ * Latest first on Following sorts only below the video the reader has reached. The player's
+ * progress report names it in its first parameter, which nothing else on PineDrama passes on.
+ */
+internal fun MutableMethod.reportCurrentVideoToLatestFirst() {
+    if (parameterTypes.firstOrNull()?.toString() != "Ljava/lang/String;") {
+        throw PatchException("Following current video: $name does not take the video id first")
+    }
+    addInstruction(
+        0,
+        "invoke-static/range { p1 .. p1 }, $FOLLOWING_LATEST_FIRST_CLASS_DESCRIPTOR->onCurrentVideo(Ljava/lang/String;)V",
     )
 }
 

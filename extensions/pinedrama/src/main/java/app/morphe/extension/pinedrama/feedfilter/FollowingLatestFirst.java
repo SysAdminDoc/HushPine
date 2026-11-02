@@ -109,6 +109,8 @@ public final class FollowingLatestFirst {
             }
         };
     private static long currentSequence;
+    /** The video the player last named, so a run of reports about one video costs one compare. */
+    private static volatile String lastReported;
 
     /**
      * What each list held after its last sort, by the list's identity, so a read that changed
@@ -176,17 +178,23 @@ public final class FollowingLatestFirst {
             CURRENT.clear();
             currentSequence = 0;
         }
+        lastReported = null;
     }
 
     /**
-     * The video on screen changed, from the player's report or the first bind of a fresh feed.
-     * Any feed's video lands here: only a list that holds it is affected.
+     * The video the player is playing, from its progress report: several times a second, on the
+     * player's own thread. Any feed's video lands here: only a list that holds it is affected.
      */
     public static void onCurrentVideo(String aid) {
-        if (aid == null || aid.isEmpty() || !enabled()) return;
-        synchronized (CURRENT) {
-            CURRENT.remove(aid);
-            CURRENT.put(aid, ++currentSequence);
+        try {
+            if (aid == null || aid.isEmpty() || aid.equals(lastReported) || !enabled()) return;
+            lastReported = aid;
+            synchronized (CURRENT) {
+                CURRENT.remove(aid);
+                CURRENT.put(aid, ++currentSequence);
+            }
+        } catch (Throwable unknown) {
+            // The sort then goes by the last video it heard about.
         }
     }
 
@@ -231,6 +239,9 @@ public final class FollowingLatestFirst {
             if (order != null && !writer.write(order)) {
                 checked.valid = false;
                 return;
+            }
+            if (order != null) {
+                Logger.printDebug(() -> "Latest first on Following: sorted below slot " + current + " of " + size);
             }
             checked.valid = true;
             checked.signature = order == null ? signature : signature(order, current);
