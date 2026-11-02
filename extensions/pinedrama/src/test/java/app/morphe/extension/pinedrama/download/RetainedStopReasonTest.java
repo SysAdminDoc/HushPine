@@ -291,7 +291,7 @@ public class RetainedStopReasonTest {
                 record.id,
                 "content://media/external/video/media",
                 "hushfeed-pending-" + record.id + ".mp4",
-                "DCIM/TikTok");
+                "DCIM/PineDrama");
         AtomicReference<LiveRecorder.Result> result = new AtomicReference<>();
         finished(
                 record,

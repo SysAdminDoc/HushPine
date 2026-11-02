@@ -65,8 +65,8 @@ public class LiveRecordingSaverTest {
         Set<String> sentences = new HashSet<>();
         for (LiveRecorder.End end : new LiveRecorder.End[]{LiveRecorder.End.DISCONNECTED, LiveRecorder.End.STORAGE,
                 LiveRecorder.End.SIZE_LIMIT, LiveRecorder.End.APP_EXIT, LiveRecorder.End.ERROR}) {
-            String text = LiveRecordingSaver.partialText(end, "DCIM/TikTok");
-            assertTrue(end + " names where it went", text.contains("DCIM/TikTok"));
+            String text = LiveRecordingSaver.partialText(end, "DCIM/PineDrama");
+            assertTrue(end + " names where it went", text.contains("DCIM/PineDrama"));
             assertFalse(end + " keeps its placeholder out of the text", text.contains("%1$s"));
             sentences.add(text);
         }

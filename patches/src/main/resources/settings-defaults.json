@@ -833,7 +833,7 @@
       "field": "DOWNLOAD_PHOTO_PATH",
       "key": "download_photo_path",
       "type": "string",
-      "default": "DCIM/TikTok"
+      "default": "DCIM/PineDrama"
     },
     "download_photos_as_video": {
       "field": "DOWNLOAD_PHOTOS_AS_VIDEO",
@@ -869,7 +869,7 @@
       "field": "DOWNLOAD_STICKER_PATH",
       "key": "download_sticker_path",
       "type": "string",
-      "default": "DCIM/TikTok"
+      "default": "DCIM/PineDrama"
     },
     "download_tags": {
       "field": "DOWNLOAD_TAGS",
@@ -893,7 +893,7 @@
       "field": "DOWNLOAD_VIDEO_PATH",
       "key": "download_video_path",
       "type": "string",
-      "default": "DCIM/TikTok"
+      "default": "DCIM/PineDrama"
     },
     "download_video_quality": {
       "field": "DOWNLOAD_VIDEO_QUALITY",

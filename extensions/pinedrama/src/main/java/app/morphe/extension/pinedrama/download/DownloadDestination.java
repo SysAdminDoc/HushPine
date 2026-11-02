@@ -19,7 +19,7 @@ public final class DownloadDestination {
         STICKER
     }
 
-    public static final String DEFAULT_PATH = "DCIM/TikTok";
+    public static final String DEFAULT_PATH = "DCIM/PineDrama";
 
     private DownloadDestination() {
     }

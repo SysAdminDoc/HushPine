@@ -2562,13 +2562,13 @@
    },
    {
     "key": "download_video_path",
-    "default": "DCIM/TikTok",
+    "default": "DCIM/PineDrama",
     "type": "string",
     "row": "Video destination"
    },
    {
     "key": "download_photo_path",
-    "default": "DCIM/TikTok",
+    "default": "DCIM/PineDrama",
     "type": "string",
     "row": "Photo destination"
    },
@@ -2730,7 +2730,7 @@
     "auto": true
    }
   ],
-  "notes": "The audit saves one public video to the phone's DCIM/TikTok folder twice (twice because both switch states are logged), which the hard limits allow; the runner removes the files. The Save video label is PineDrama's English share-sheet action; the share button is found by a content description containing 'Share'. Nothing inside the sheet except Save video is pressed (never a person in the Send to row). The routine logs only while morphe_debug is on and writes the remove_watermark line once per process or change, which is why each phase restarts. Photo posts, destinations and file-name templates need a photo post and a file listing; the name templates are exercised by unit tests (DownloadFilenameFormatter), not here. Fallback to the watermarked copy (download_watermark_fallback) is a separate row."
+  "notes": "The audit saves one public video to the phone's DCIM/PineDrama folder twice (twice because both switch states are logged), which the hard limits allow; the runner removes the files. The Save video label is PineDrama's English share-sheet action; the share button is found by a content description containing 'Share'. Nothing inside the sheet except Save video is pressed (never a person in the Send to row). The routine logs only while morphe_debug is on and writes the remove_watermark line once per process or change, which is why each phase restarts. Photo posts, destinations and file-name templates need a photo post and a file listing; the name templates are exercised by unit tests (DownloadFilenameFormatter), not here. Fallback to the watermarked copy (download_watermark_fallback) is a separate row."
  },
  {
   "name": "Drop the animated image cache",

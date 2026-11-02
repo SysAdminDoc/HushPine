@@ -171,7 +171,7 @@ final class MediaBudget {
     private static long usableSpace(File directory) {
         if (directory == null) return 0;
         // A destination that does not exist yet answers zero, which is not "no quota": the
-        // publish step is handed DCIM/TikTok before the first save ever creates it, and that
+        // publish step is handed DCIM/PineDrama before the first save ever creates it, and that
         // is exactly the copy the reservation is for. The nearest existing ancestor is on the
         // same volume and answers for it.
         File existing = directory;

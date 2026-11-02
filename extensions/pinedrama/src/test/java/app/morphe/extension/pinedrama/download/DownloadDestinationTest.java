@@ -24,8 +24,8 @@ public class DownloadDestinationTest {
     }
 
     @Test public void allowedRootsAreCanonicalAndTraversalIsRejected() {
-        assertEquals("DCIM/TikTok", DownloadDestination.validate(
-                "/storage/emulated/0/dcim//TikTok/", DownloadDestination.Kind.VIDEO));
+        assertEquals("DCIM/PineDrama", DownloadDestination.validate(
+                "/storage/emulated/0/dcim//PineDrama/", DownloadDestination.Kind.VIDEO));
         assertEquals("Movies/Clips", DownloadDestination.validate(
                 "movies/Clips", DownloadDestination.Kind.VIDEO));
         assertEquals("Pictures/Clips", DownloadDestination.validate(
@@ -62,15 +62,15 @@ public class DownloadDestinationTest {
         try {
             ReflectionHelpers.setStaticField(android.os.Build.VERSION.class, "SDK_INT", 28);
             assertEquals(android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                    DownloadDestination.collectionUri("Movies/TikTok", true));
+                    DownloadDestination.collectionUri("Movies/PineDrama", true));
             assertEquals(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    DownloadDestination.collectionUri("Pictures/TikTok", false));
+                    DownloadDestination.collectionUri("Pictures/PineDrama", false));
 
             ReflectionHelpers.setStaticField(android.os.Build.VERSION.class, "SDK_INT", 29);
             Uri files = android.provider.MediaStore.Files.getContentUri(
                     android.provider.MediaStore.VOLUME_EXTERNAL_PRIMARY);
-            assertEquals(files, DownloadDestination.collectionUri("Download/TikTok", true));
-            assertEquals(files, DownloadDestination.collectionUri("Documents/TikTok", false));
+            assertEquals(files, DownloadDestination.collectionUri("Download/PineDrama", true));
+            assertEquals(files, DownloadDestination.collectionUri("Documents/PineDrama", false));
         } finally {
             ReflectionHelpers.setStaticField(android.os.Build.VERSION.class, "SDK_INT", originalSdk);
         }

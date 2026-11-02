@@ -746,7 +746,7 @@ public final class SettingsBackup {
 
     /**
      * A download folder that can't hold its kind keeps the one the device has. Saving would have
-     * gone to DCIM/TikTok instead without a word (DownloadDestination.resolve), so a file naming
+     * gone to DCIM/PineDrama instead without a word (DownloadDestination.resolve), so a file naming
      * Pictures for videos, which a backup from before the folder split does for all three, looked
      * restored while videos went somewhere else. Only a file from outside is checked: the
      * device's own copies (the undo copy, the journal) come back exactly as they were.

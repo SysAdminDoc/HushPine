@@ -844,12 +844,12 @@ public class AdvancedDownloadsTest {
         int sdk = android.os.Build.VERSION.SDK_INT;
         try {
             org.robolectric.util.ReflectionHelpers.setStaticField(android.os.Build.VERSION.class, "SDK_INT", 28);
-            assertEquals("Movies/TikTok", AudioDownloads.audioPath("Movies/TikTok"));
+            assertEquals("Movies/PineDrama", AudioDownloads.audioPath("Movies/PineDrama"));
             org.robolectric.util.ReflectionHelpers.setStaticField(android.os.Build.VERSION.class, "SDK_INT", 29);
-            assertEquals("Music/TikTok", AudioDownloads.audioPath("Movies/TikTok"));
-            assertEquals("Music/TikTok/Sounds", AudioDownloads.audioPath("Download/TikTok/Sounds"));
+            assertEquals("Music/PineDrama", AudioDownloads.audioPath("Movies/PineDrama"));
+            assertEquals("Music/PineDrama/Sounds", AudioDownloads.audioPath("Download/PineDrama/Sounds"));
             // A destination with no folder of its own still gets one.
-            assertEquals("Music/TikTok", AudioDownloads.audioPath("Movies"));
+            assertEquals("Music/PineDrama", AudioDownloads.audioPath("Movies"));
         } finally {
             org.robolectric.util.ReflectionHelpers.setStaticField(android.os.Build.VERSION.class, "SDK_INT", sdk);
         }

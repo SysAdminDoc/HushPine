@@ -127,10 +127,10 @@ public class SettingsBackupTest {
         SettingsBackup.restore(Utils.getContext(), legacy, true);
 
         // Pictures holds photos but not videos or stickers: those two keep the device's folder
-        // and the restore names them, instead of saving to DCIM/TikTok while showing Pictures.
+        // and the restore names them, instead of saving to DCIM/PineDrama while showing Pictures.
         assertEquals("DCIM/Somewhere", Settings.DOWNLOAD_VIDEO_PATH.get());
         assertEquals("Pictures/Saved", Settings.DOWNLOAD_PHOTO_PATH.get());
-        assertEquals("DCIM/TikTok", Settings.DOWNLOAD_STICKER_PATH.get());
+        assertEquals("DCIM/PineDrama", Settings.DOWNLOAD_STICKER_PATH.get());
         assertEquals(java.util.List.of(app.morphe.extension.pinedrama.download.DownloadDestination.Kind.VIDEO,
                         app.morphe.extension.pinedrama.download.DownloadDestination.Kind.STICKER),
                 SettingsBackup.foldersKept(legacy));
@@ -1192,7 +1192,7 @@ public class SettingsBackupTest {
      * the whole app. It is the wrong rule for what this file actually is, which is a set of
      * values to apply: it meant restoring any backup silently undid every setting added since
      * it was taken, and a file from before the download destinations were split put a custom
-     * folder back to DCIM/TikTok with nothing said.
+     * folder back to DCIM/PineDrama with nothing said.
      */
     @Test public void anOlderCompleteInventoryLeavesNewerSettingsAsTheDeviceHasThem() throws Exception {
         Settings.MAX_VIDEO_SECONDS.save(75);

@@ -312,7 +312,7 @@ public final class SettingsBackupPreference extends Preference
                             ? "Last change put back. The Feature Gate Lab rules were for another PineDrama version and were left out. Restart PineDrama to apply all changes."
                             : "Last change put back. Restart PineDrama to apply all changes.");
             // A folder the file named that can't hold its kind was kept, which is said next:
-            // downloads would otherwise have gone to DCIM/TikTok while the row showed the file's.
+            // downloads would otherwise have gone to DCIM/PineDrama while the row showed the file's.
             StringBuilder notes = new StringBuilder();
             if (kept != null) notes.append(kept).append(". ");
             if (settingsSkipped > 0) {

@@ -140,7 +140,7 @@ final class DownloadDetails {
         if (Build.VERSION.SDK_INT < 29 || path.equals("Download") || path.startsWith("Download/")
                 || path.equals("Documents") || path.startsWith("Documents/")) return path;
         int slash = path.indexOf('/');
-        return "Download" + (slash < 0 ? "/TikTok" : path.substring(slash));
+        return "Download" + (slash < 0 ? "/PineDrama" : path.substring(slash));
     }
 
     void save(Context context, MediaFileWriter.Saved video, String path) throws IOException {

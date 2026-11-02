@@ -244,13 +244,13 @@ public class SubtitleDownloadsTest {
         File source = File.createTempFile("subtitle", ".srt", context.getCacheDir());
         Files.write(source.toPath(), new byte[]{1, 2, 3});
         try {
-            assertEquals("Movies/TikTok", SubtitleDownloads.pairedPath("DCIM/TikTok"));
-            assertEquals("provider-renamed.mp4", MediaFileWriter.publish(context, source, "original.mp4", "video/mp4", "Movies/TikTok", true));
-            MediaFileWriter.publish(context, source, "provider-renamed.en.srt", "application/x-subrip", "Movies/TikTok", false);
+            assertEquals("Movies/PineDrama", SubtitleDownloads.pairedPath("DCIM/PineDrama"));
+            assertEquals("provider-renamed.mp4", MediaFileWriter.publish(context, source, "original.mp4", "video/mp4", "Movies/PineDrama", true));
+            MediaFileWriter.publish(context, source, "provider-renamed.en.srt", "application/x-subrip", "Movies/PineDrama", false);
             assertEquals(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), provider.collections.get(1));
-            assertEquals("Movies/TikTok", provider.inserted.get(1).getAsString(MediaStore.MediaColumns.RELATIVE_PATH));
+            assertEquals("Movies/PineDrama", provider.inserted.get(1).getAsString(MediaStore.MediaColumns.RELATIVE_PATH));
             provider.rejectPublish = true;
-            assertThrows(IOException.class, () -> MediaFileWriter.publish(context, source, "failed.srt", "application/x-subrip", "Movies/TikTok", false));
+            assertThrows(IOException.class, () -> MediaFileWriter.publish(context, source, "failed.srt", "application/x-subrip", "Movies/PineDrama", false));
             assertEquals(1, provider.deleted);
         } finally {
             assertTrue(source.delete());

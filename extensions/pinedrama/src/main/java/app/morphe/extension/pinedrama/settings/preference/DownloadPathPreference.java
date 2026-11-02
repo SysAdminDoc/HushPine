@@ -150,8 +150,8 @@ public class DownloadPathPreference extends DialogPreference {
         downloadPath.setInputType(InputType.TYPE_CLASS_TEXT);
         downloadPath.setSingleLine(true);
         // Left as it is on purpose. This is an example of what to type, and every part of it
-        // is a folder name Android fixes: "DCIM/TikTok" is the same on a German phone.
-        downloadPath.setHint("DCIM/TikTok");
+        // is a folder name Android fixes: "DCIM/PineDrama" is the same on a German phone.
+        downloadPath.setHint("DCIM/PineDrama");
         downloadPath.setText(downloadPathValue);
         SettingsUi.styleEditText(downloadPath);
         SettingsUi.labelEditor(title, downloadPath);

@@ -58,13 +58,13 @@ public class SaveNoticeTest {
             Utils.setActivity(activity);
             Uri row = Uri.parse("content://media/external/audio/media/77");
 
-            SaveNotice.saved("Sound saved to Music/TikTok", new MediaFileWriter.Saved("a.m4a", row));
+            SaveNotice.saved("Sound saved to Music/PineDrama", new MediaFileWriter.Saved("a.m4a", row));
             idlePastTheSheetSettle();
 
             ViewGroup root = activity.findViewById(android.R.id.content);
             TextView open = find(root, "Open");
             assertNotNull("no banner with an Open action", open);
-            assertNotNull("the banner lost the message", find(root, "Sound saved to Music/TikTok"));
+            assertNotNull("the banner lost the message", find(root, "Sound saved to Music/PineDrama"));
 
             View clickable = open;
             while (clickable != null && !clickable.hasOnClickListeners()) {
@@ -147,10 +147,10 @@ public class SaveNoticeTest {
             Activity activity = owner.get();
             Utils.setActivity(activity);
 
-            SaveNotice.saved("Sound saved to Music/TikTok", new MediaFileWriter.Saved("a.m4a", null));
+            SaveNotice.saved("Sound saved to Music/PineDrama", new MediaFileWriter.Saved("a.m4a", null));
             idlePastTheSheetSettle();
 
-            assertEquals("Sound saved to Music/TikTok", ShadowToast.getTextOfLatestToast());
+            assertEquals("Sound saved to Music/PineDrama", ShadowToast.getTextOfLatestToast());
             ViewGroup root = activity.findViewById(android.R.id.content);
             assertNull("a banner went up without a row to open", find(root, "Open"));
         }
@@ -173,7 +173,7 @@ public class SaveNoticeTest {
             View sheetDecor = sheet.getWindow().getDecorView();
             SaveNotice.windowRootsForTests = java.util.List.of(activityDecor, sheetDecor);
 
-            SaveNotice.saved("Story saved to DCIM/TikTok",
+            SaveNotice.saved("Story saved to DCIM/PineDrama",
                     new MediaFileWriter.Saved("a.mp4", Uri.parse("content://media/external/video/media/9")));
             idlePastTheSheetSettle();
 
@@ -206,7 +206,7 @@ public class SaveNoticeTest {
             SaveNotice.windowRootsForTests = java.util.List.of(
                     activity.getWindow().getDecorView(), sheetDecor, toastRoot);
 
-            SaveNotice.saved("Story saved to DCIM/TikTok",
+            SaveNotice.saved("Story saved to DCIM/PineDrama",
                     new MediaFileWriter.Saved("a.mp4", Uri.parse("content://media/external/video/media/10")));
             idlePastTheSheetSettle();
 

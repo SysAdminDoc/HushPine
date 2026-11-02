@@ -1638,7 +1638,7 @@ public final class StickerGallerySaver {
         }
 
         static SaveResult success(String path, String uri, String format) {
-            // The four other savers say "saved to DCIM/TikTok/..."; this said "saved as MP4"
+            // The four other savers say "saved to DCIM/PineDrama/..."; this said "saved as MP4"
             // and kept the path for the debug log. The folder is what a reader needs, not the
             // format, because the format is obvious from the file and the folder is not.
             String folder = path;

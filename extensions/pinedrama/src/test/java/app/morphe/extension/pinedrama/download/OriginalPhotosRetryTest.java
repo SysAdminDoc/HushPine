@@ -295,7 +295,7 @@ public class OriginalPhotosRetryTest {
             photos.add(List.of("https://example.com/" + i));
             photoNames.add("photo-" + i + ".tmp");
         }
-        return new OriginalPhotos.Retry("retry-unit", "account-a", photos, photoNames, "Pictures/TikTok",
+        return new OriginalPhotos.Retry("retry-unit", "account-a", photos, photoNames, "Pictures/PineDrama",
                 positions, madeAt);
     }
 

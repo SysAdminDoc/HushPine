@@ -104,7 +104,7 @@ final class SubtitleDownloads {
         if (Build.VERSION.SDK_INT < 29) return videoPath;
         int slash = videoPath.indexOf('/');
         // Android 11+ restricts subtitles in MediaStore.Files to Music or Movies.
-        return (Build.VERSION.SDK_INT >= 30 ? "Movies" : "Download") + (slash < 0 ? "/TikTok" : videoPath.substring(slash));
+        return (Build.VERSION.SDK_INT >= 30 ? "Movies" : "Download") + (slash < 0 ? "/PineDrama" : videoPath.substring(slash));
     }
 
     static int save(Context context, List<Track> tracks, String videoName, String path) throws MediaBudget.StopException {
