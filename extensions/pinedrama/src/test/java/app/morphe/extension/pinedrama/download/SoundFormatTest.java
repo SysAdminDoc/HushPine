@@ -52,8 +52,8 @@ public class SoundFormatTest {
     @Rule public final SettingsContextRule settingsContext = new SettingsContextRule();
     @Rule public final TemporaryFolder files = new TemporaryFolder();
 
-    private static final String APPLIES = "Applies to Save the sound as well and to Save the original sound on a long "
-            + "press. Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.";
+    private static final String APPLIES = "Applies to Save the sound as well. "
+            + "Opus makes a smaller file. Opus and MP3 are encoded again from PineDrama's copy, unless it's an MP3 already.";
     private static final String NEEDS_ANDROID_10 = "Opus needs Android 10 or later, so it saves sounds as PineDrama sent them. MP3 works on any phone.";
 
     @Before public void prepare() {
