@@ -15,7 +15,7 @@ final class L10nTranslationsZh_Hans {
     }
 
     static Map<String, String> build() {
-        Map<String, String> table = new HashMap<>(3618);
+        Map<String, String> table = new HashMap<>(3614);
         fill0(table);
         fill1(table);
         fill2(table);
@@ -1700,8 +1700,6 @@ final class L10nTranslationsZh_Hans {
                 "将照片制作成视频");
         table.put("Making your sticker",
                 "正在制作贴纸");
-        table.put("Manage topics",
-                "管理主题");
         table.put("Manager",
                 "经理");
         table.put("Mark saved videos",
@@ -1746,8 +1744,6 @@ final class L10nTranslationsZh_Hans {
                 "最低");
         table.put("Minimum video length",
                 "最小视频长度");
-        table.put("More hashtags per post",
-                "每个帖子有更多主题标签");
         table.put("More options",
                 "更多选择");
         table.put("More than %1$d comments were loaded, so the rest aren't in the file.",
@@ -1770,13 +1766,13 @@ final class L10nTranslationsZh_Hans {
                 "将信息流视频静音");
         table.put("Muted",
                 "静音");
-    }
-
-    private static void fill14(Map<String, String> table) {
         table.put("Nearby",
                 "附近");
         table.put("Network proxy",
                 "网络代理");
+    }
+
+    private static void fill14(Map<String, String> table) {
         table.put("Never from these countries",
                 "从来没有来自这些国家");
         table.put("New comment emoji",
@@ -1893,13 +1889,13 @@ final class L10nTranslationsZh_Hans {
                 "不是句柄或 ID，因此被忽略：%1$s");
         table.put("Not a part HushPine fills in, so it's kept as typed: %1$s",
                 "HushPine 部分未填写，因此保持键入的状态：%1$s");
-    }
-
-    private static void fill15(Map<String, String> table) {
         table.put("Not blocked",
                 "没有被阻止");
         table.put("Not interested in this video",
                 "对这个视频不感兴趣");
+    }
+
+    private static void fill15(Map<String, String> table) {
         table.put("Not read yet",
                 "尚未阅读");
         table.put("Not requested in this process yet",
@@ -2016,13 +2012,13 @@ final class L10nTranslationsZh_Hans {
                 "无论如何，今天最后一次打开信息流");
         table.put("Open the feed once so HushPine can see which bottom tabs PineDrama loaded.",
                 "打开一次信息流，以便 HushPine 可以看到 PineDrama 加载了哪些底部选项卡.");
-    }
-
-    private static void fill16(Map<String, String> table) {
         table.put("Open the feed once so HushPine can see which tabs PineDrama loaded.",
                 "打开一次信息流，以便 HushPine 可以看到 PineDrama 加载了哪些选项卡.");
         table.put("Open the profile again and try once more",
                 "再次打开配置文件并再试一次");
+    }
+
+    private static void fill16(Map<String, String> table) {
         table.put("Open the story again and try once more",
                 "再次打开故事并再试一次");
         table.put("Open your profile once, then return here to choose its shortcuts.",
@@ -2139,13 +2135,13 @@ final class L10nTranslationsZh_Hans {
                 "PineDrama 未接受反馈。稍后再试.");
         table.put("PineDrama gets a blank advertising ID, like the one Android gives after you delete yours. Apps can't use it to recognize your phone.",
                 "PineDrama 获得一个空白广告 ID，就像 Android 在删除广告 ID 后给出的那样。应用程序无法使用它来识别你的手机.");
-    }
-
-    private static void fill17(Map<String, String> table) {
         table.put("PineDrama gets no location from your phone. The Region settings change your country and time zone. This switch stops the exact position.",
                 "PineDrama 无法从你的手机获取位置信息。“地区”设置会更改你的国家/地区和时区。这个开关会阻止获取精确位置.");
         table.put("PineDrama hasn't loaded this setting yet. Open the part of the app that uses it, then come back.",
                 "PineDrama 尚未加载此设置。打开使用它的应用程序部分，然后返回.");
+    }
+
+    private static void fill17(Map<String, String> table) {
         table.put("PineDrama may have taken this message. Delivery isn't confirmed, so it won't be retried today.",
                 "PineDrama 可能已收到此消息。交货尚未确认，因此今天不会重试.");
         table.put("PineDrama opens a Share to sheet a few seconds after it saves a video. This stops it. The share button and the saved notice stay as they are.",
@@ -2262,13 +2258,13 @@ final class L10nTranslationsZh_Hans {
                 "代理主机");
         table.put("Proxy password",
                 "代理密码");
-    }
-
-    private static void fill18(Map<String, String> table) {
         table.put("Proxy port",
                 "代理端口");
         table.put("Proxy type",
                 "代理类型");
+    }
+
+    private static void fill18(Map<String, String> table) {
         table.put("Proxy user name",
                 "代理用户名");
         table.put("Pulling down at the top of For You no longer reloads it.",
@@ -2385,13 +2381,13 @@ final class L10nTranslationsZh_Hans {
                 "已重置 %1$d 个门");
         table.put("Reset %1$d of %2$d gates",
                 "已重置 %2$d 个门中的 %1$d 个");
-    }
-
-    private static void fill19(Map<String, String> table) {
         table.put("Reset 1 gate",
                 "已重置 1 个门");
         table.put("Reset 1 of %2$d gates",
                 "已重置 %2$d 个门中的 1 个");
+    }
+
+    private static void fill19(Map<String, String> table) {
         table.put("Reset didn't finish. Some settings may still be changed.",
                 "重置未完成。某些设置可能仍会更改.");
         table.put("Reset didn't finish. Some settings may still be changed. Use Undo to put them back.",
@@ -2508,13 +2504,13 @@ final class L10nTranslationsZh_Hans {
                 "将查看的历史记录保存到文件中");
         table.put("Save stopped when Wi-Fi dropped. Retry on Wi-Fi.",
                 "Wi-Fi 断开，保存已停止，请在 Wi-Fi 下重试.");
-    }
-
-    private static void fill20(Map<String, String> table) {
         table.put("Save the cover as well",
                 "封面也保存下来");
         table.put("Save the feed capture",
                 "保存信息流捕获");
+    }
+
+    private static void fill20(Map<String, String> table) {
         table.put("Save the sound as well",
                 "也保存声音");
         table.put("Save the video's cover picture at the largest size PineDrama has, each time you tap Download. It goes to your photo folder, named after the video.",
@@ -2631,13 +2627,13 @@ final class L10nTranslationsZh_Hans {
                 "将视频保存到 %1$s");
         table.put("Saving video: %1$s",
                 "保存视频：%1$s");
-    }
-
-    private static void fill21(Map<String, String> table) {
         table.put("Screen time",
                 "屏幕时间");
         table.put("Scrolling comments on videos",
                 "滚动视频评论");
+    }
+
+    private static void fill21(Map<String, String> table) {
         table.put("Search",
                 "搜索");
         table.put("Search Activity notifications already loaded on this screen. Loading more pauses while you search.",
@@ -2754,13 +2750,13 @@ final class L10nTranslationsZh_Hans {
                 "股票范围");
         table.put("Shop",
                 "商店");
-    }
-
-    private static void fill22(Map<String, String> table) {
         table.put("Shop order updates and coupon messages no longer take up rows in the Inbox. Your orders are unchanged.",
                 "商店订单更新和优惠券消息不再占用收件箱中的行。你的订单没有变化.");
         table.put("Shop posts",
                 "商店帖子");
+    }
+
+    private static void fill22(Map<String, String> table) {
         table.put("Short date",
                 "短日期");
         table.put("Shortest first",
@@ -2877,13 +2873,13 @@ final class L10nTranslationsZh_Hans {
                 "无需密码即可登录");
         table.put("Size limit reached. Recording saved to %1$s",
                 "已达大小上限，录制已保存到 %1$s");
-    }
-
-    private static void fill23(Map<String, String> table) {
         table.put("Skip PineDrama's setup screens",
                 "跳过 PineDrama 的设置屏幕");
         table.put("Skip content warnings",
                 "跳过内容警告");
+    }
+
+    private static void fill23(Map<String, String> table) {
         table.put("Skip the Share to sheet after a save",
                 "保存后跳过分享面板");
         table.put("Skip the splash ad",
@@ -3000,13 +2996,13 @@ final class L10nTranslationsZh_Hans {
                 "停止 PineDrama 的速度测试");
         table.put("Stop a long press on Like from opening PineDrama's repost action.",
                 "停止长按“赞”以打开 PineDrama 的转发操作.");
-    }
-
-    private static void fill24(Map<String, String> table) {
         table.put("Stop a long press on Share from opening PineDrama's quick share action.",
                 "停止长按“分享”以打开 PineDrama 的快速分享操作.");
         table.put("Stop and save the feed capture",
                 "停止并保存信息流捕获");
+    }
+
+    private static void fill24(Map<String, String> table) {
         table.put("Stop feature gate recording",
                 "停止功能门记录");
         table.put("Stop on-device AI profiling",
@@ -3123,13 +3119,13 @@ final class L10nTranslationsZh_Hans {
                 "该文件具有超过 %1$s 观看历史记录条目.");
         table.put("That file is larger than %1$s MB. Choose a seen-history file saved by HushPine.",
                 "该文件大于 %1$s MB。选择 HushPine 保存的查看历史记录文件.");
-    }
-
-    private static void fill25(Map<String, String> table) {
         table.put("That file is larger than %1$s MB. Choose a smaller font file.",
                 "该文件大于 %1$s MB。选择较小的字体文件.");
         table.put("That file is larger than %1$s MB. Choose a smaller watch-history export.",
                 "该文件大于 %1$s MB。选择较小的观看历史记录导出.");
+    }
+
+    private static void fill25(Map<String, String> table) {
         table.put("That file is too large to be a settings backup. Nothing was altered.",
                 "该文件太大，无法作为设置备份。一切都没有改变.");
         table.put("That file isn't a font Android can use. Choose a .ttf or .otf file.",
@@ -3246,13 +3242,13 @@ final class L10nTranslationsZh_Hans {
                 "当该视频结束时，信息流将停止.");
         table.put("The feed waits for one tap before it starts playing again when you come back to the app. Messages, profiles and search are still one tap away.",
                 "当你返回应用程序时，信息流会等待一次点击，然后才会再次开始播放。消息、个人资料和搜索仍然只需轻轻一按即可完成.");
-    }
-
-    private static void fill26(Map<String, String> table) {
         table.put("The file app still has the last file. Try again once it lets go, or restart PineDrama.",
                 "文件应用程序仍然保留着最后一个文件。松开后重试，或重新启动 PineDrama.");
         table.put("The file hushpine-safe-mode couldn't be removed. Delete it from PineDrama's folder under Android/data to turn HushPine back on.",
                 "无法删除文件 hushpine-safe-mode。将其从 Android/data 下的 PineDrama 文件夹中删除，以重新打开 HushPine.");
+    }
+
+    private static void fill26(Map<String, String> table) {
         table.put("The frame couldn't be read. Try again.",
                 "无法读取该框架。再试一次.");
         table.put("The frame couldn't be saved. Try again.",
@@ -3369,13 +3365,13 @@ final class L10nTranslationsZh_Hans {
                 "此列表太长，无法在此处预览。储蓄仍遵循通常的限额.");
         table.put("This original sound isn't on YouTube Music",
                 "此原声不在 YouTube Music 上");
-    }
-
-    private static void fill27(Map<String, String> table) {
         table.put("This phone has no file picker, so there's no way to choose a file here",
                 "这款手机没有文件选择器，因此无法在此处选择文件");
         table.put("This preset isn't available for your installed PineDrama version.",
                 "此预设不适用于你安装的 PineDrama 版本.");
+    }
+
+    private static void fill27(Map<String, String> table) {
         table.put("This profile picture isn't available to save",
                 "该个人资料照片无法保存");
         table.put("This screen recording has no sound",
@@ -3492,13 +3488,13 @@ final class L10nTranslationsZh_Hans {
                 "类型");
         table.put("Type a website name to use instead of tiktok.com in links you share or copy, like vxtiktok.com. Leave empty to share PineDrama's own links. Only PineDrama links change, and only the website name.",
                 "在你共享或复制的链接中键入要使用的网站名称，而不是 tiktok.com，例如 vxtiktok.com。留空以共享 PineDrama 自己的链接。仅 PineDrama 链接发生变化，并且仅网站名称发生变化.");
-    }
-
-    private static void fill28(Map<String, String> table) {
         table.put("Type one language code here, like en.",
                 "在此输入一种语言代码，例如 en.");
         table.put("Type some sample text to see whether these rules match it.",
                 "输入一些示例文本以查看这些规则是否匹配.");
+    }
+
+    private static void fill28(Map<String, String> table) {
         table.put("Type the other app's ID, like com.dv.adm. The save button sends the video's link there instead of saving. Leave empty to save here.",
                 "输入其他应用程序的 ID，例如 com.dv.adm。保存按钮将视频的链接发送到那里而不是保存。留空以保存此处.");
         table.put("Unavailable",
@@ -3615,13 +3611,13 @@ final class L10nTranslationsZh_Hans {
                 "视觉搜索");
         table.put("Wait a day to loosen the budget",
                 "等一天放松预算");
-    }
-
-    private static void fill29(Map<String, String> table) {
         table.put("Wait a day to loosen the budget is on, so HushPine stays on",
                 "等待一天放松预算，所以 HushPine 保持不变");
         table.put("Wait before hiding the controls.",
                 "隐藏控件之前请等待.");
+    }
+
+    private static void fill29(Map<String, String> table) {
         table.put("Wait for loading to finish",
                 "等待加载完成");
         table.put("Waiting for Wi-Fi",
@@ -3738,13 +3734,13 @@ final class L10nTranslationsZh_Hans {
                 "零将其关闭。屏幕在这么多分钟内没有被触摸时，视频会停止，PineDrama 会转到后台，适合看着看着睡着的时候。任何触摸都会重新开始等待.");
         table.put("Zero switches this off. Count the minutes the player spends running in the feed. Time on messages, a profile or search doesn't count.",
                 "零将其关闭。计算玩家在信息流中运行的分钟数。消息、个人资料或搜索的时间不计算在内.");
-    }
-
-    private static void fill30(Map<String, String> table) {
         table.put("Zero switches this off. Counts every video that comes up in the feed and tells you when you reach the limit. Separate from the auto-advance session limit under Playback, which counts only videos HushPine moved past for you.",
                 "零将其关闭。计算信息流中出现的每个视频，并在达到限制时告诉你。与“播放”下的自动前进会话限制分开，后者仅计算为你移动过去的视频 HushPine.");
         table.put("autoplay auto play",
                 "自动播放");
+    }
+
+    private static void fill30(Map<String, String> table) {
         table.put("collapsed",
                 "崩溃了");
         table.put("debug debugging logs logging",

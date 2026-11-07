@@ -15,7 +15,7 @@ final class L10nTranslationsPt_rBR {
     }
 
     static Map<String, String> build() {
-        Map<String, String> table = new HashMap<>(3618);
+        Map<String, String> table = new HashMap<>(3614);
         fill0(table);
         fill1(table);
         fill2(table);
@@ -1700,8 +1700,6 @@ final class L10nTranslationsPt_rBR {
                 "Criando um vídeo com as fotos");
         table.put("Making your sticker",
                 "Criando seu adesivo");
-        table.put("Manage topics",
-                "Gerenciar tópicos");
         table.put("Manager",
                 "Gerenciador");
         table.put("Mark saved videos",
@@ -1746,8 +1744,6 @@ final class L10nTranslationsPt_rBR {
                 "Mínimo");
         table.put("Minimum video length",
                 "Duração mínima do vídeo");
-        table.put("More hashtags per post",
-                "Mais hashtags por publicação");
         table.put("More options",
                 "Mais opções");
         table.put("More than %1$d comments were loaded, so the rest aren't in the file.",
@@ -1770,13 +1766,13 @@ final class L10nTranslationsPt_rBR {
                 "Silenciar os vídeos do feed");
         table.put("Muted",
                 "Silenciado");
-    }
-
-    private static void fill14(Map<String, String> table) {
         table.put("Nearby",
                 "Por perto");
         table.put("Network proxy",
                 "Proxy de rede");
+    }
+
+    private static void fill14(Map<String, String> table) {
         table.put("Never from these countries",
                 "Nunca destes países");
         table.put("New comment emoji",
@@ -1893,13 +1889,13 @@ final class L10nTranslationsPt_rBR {
                 "Não é um nome de conta nem um id, então foi ignorado: %1$s");
         table.put("Not a part HushPine fills in, so it's kept as typed: %1$s",
                 "Não é uma parte que o HushPine preenche, então fica como foi digitada: %1$s");
-    }
-
-    private static void fill15(Map<String, String> table) {
         table.put("Not blocked",
                 "Não bloqueado");
         table.put("Not interested in this video",
                 "Não tenho interesse neste vídeo");
+    }
+
+    private static void fill15(Map<String, String> table) {
         table.put("Not read yet",
                 "Ainda não lido");
         table.put("Not requested in this process yet",
@@ -2016,13 +2012,13 @@ final class L10nTranslationsPt_rBR {
                 "Abrir o feed mesmo assim, pela última vez hoje");
         table.put("Open the feed once so HushPine can see which bottom tabs PineDrama loaded.",
                 "Abra o início do PineDrama para detectar as abas de baixo carregadas.");
-    }
-
-    private static void fill16(Map<String, String> table) {
         table.put("Open the feed once so HushPine can see which tabs PineDrama loaded.",
                 "Abra o feed inicial do PineDrama para detectar as abas carregadas.");
         table.put("Open the profile again and try once more",
                 "Abra o perfil de novo e tente mais uma vez");
+    }
+
+    private static void fill16(Map<String, String> table) {
         table.put("Open the story again and try once more",
                 "Abra o story de novo e tente mais uma vez");
         table.put("Open your profile once, then return here to choose its shortcuts.",
@@ -2139,13 +2135,13 @@ final class L10nTranslationsPt_rBR {
                 "O PineDrama não aceitou o feedback. Tente mais tarde.");
         table.put("PineDrama gets a blank advertising ID, like the one Android gives after you delete yours. Apps can't use it to recognize your phone.",
                 "O PineDrama recebe um ID de publicidade em branco, como o que o Android dá depois que você exclui o seu. Os apps não conseguem usá-lo para reconhecer seu celular.");
-    }
-
-    private static void fill17(Map<String, String> table) {
         table.put("PineDrama gets no location from your phone. The Region settings change your country and time zone. This switch stops the exact position.",
                 "O PineDrama não recebe nenhuma localização do seu celular. As configurações de Região mudam seu país e seu fuso horário. Esta chave bloqueia a posição exata.");
         table.put("PineDrama hasn't loaded this setting yet. Open the part of the app that uses it, then come back.",
                 "O PineDrama ainda não carregou esta configuração. Abra a parte do app que a usa e volte.");
+    }
+
+    private static void fill17(Map<String, String> table) {
         table.put("PineDrama may have taken this message. Delivery isn't confirmed, so it won't be retried today.",
                 "O PineDrama pode ter aceitado esta mensagem. A entrega não está confirmada, então não haverá outra tentativa hoje.");
         table.put("PineDrama opens a Share to sheet a few seconds after it saves a video. This stops it. The share button and the saved notice stay as they are.",
@@ -2262,13 +2258,13 @@ final class L10nTranslationsPt_rBR {
                 "Host do proxy");
         table.put("Proxy password",
                 "Senha do proxy");
-    }
-
-    private static void fill18(Map<String, String> table) {
         table.put("Proxy port",
                 "Porta do proxy");
         table.put("Proxy type",
                 "Tipo de proxy");
+    }
+
+    private static void fill18(Map<String, String> table) {
         table.put("Proxy user name",
                 "Usuário do proxy");
         table.put("Pulling down at the top of For You no longer reloads it.",
@@ -2385,13 +2381,13 @@ final class L10nTranslationsPt_rBR {
                 "%1$d gates redefinidos");
         table.put("Reset %1$d of %2$d gates",
                 "%1$d de %2$d redefinidos");
-    }
-
-    private static void fill19(Map<String, String> table) {
         table.put("Reset 1 gate",
                 "1 gate redefinido");
         table.put("Reset 1 of %2$d gates",
                 "1 de %2$d gates redefinido");
+    }
+
+    private static void fill19(Map<String, String> table) {
         table.put("Reset didn't finish. Some settings may still be changed.",
                 "A redefinição não terminou. Algumas configurações podem ter mudado mesmo assim.");
         table.put("Reset didn't finish. Some settings may still be changed. Use Undo to put them back.",
@@ -2508,13 +2504,13 @@ final class L10nTranslationsPt_rBR {
                 "Salvar o histórico de vídeos vistos em um arquivo");
         table.put("Save stopped when Wi-Fi dropped. Retry on Wi-Fi.",
                 "Salvar parou sem Wi-Fi. Tente de novo no Wi-Fi.");
-    }
-
-    private static void fill20(Map<String, String> table) {
         table.put("Save the cover as well",
                 "Salvar a capa também");
         table.put("Save the feed capture",
                 "Salvar a gravação do feed");
+    }
+
+    private static void fill20(Map<String, String> table) {
         table.put("Save the sound as well",
                 "Salvar o som também");
         table.put("Save the video's cover picture at the largest size PineDrama has, each time you tap Download. It goes to your photo folder, named after the video.",
@@ -2631,13 +2627,13 @@ final class L10nTranslationsPt_rBR {
                 "Salvando vídeo em %1$s");
         table.put("Saving video: %1$s",
                 "Salvando vídeo: %1$s");
-    }
-
-    private static void fill21(Map<String, String> table) {
         table.put("Screen time",
                 "Tempo de tela");
         table.put("Scrolling comments on videos",
                 "Comentários passando sobre os vídeos");
+    }
+
+    private static void fill21(Map<String, String> table) {
         table.put("Search",
                 "Pesquisa");
         table.put("Search Activity notifications already loaded on this screen. Loading more pauses while you search.",
@@ -2754,13 +2750,13 @@ final class L10nTranslationsPt_rBR {
                 "Faixa de compartilhamentos");
         table.put("Shop",
                 "Loja");
-    }
-
-    private static void fill22(Map<String, String> table) {
         table.put("Shop order updates and coupon messages no longer take up rows in the Inbox. Your orders are unchanged.",
                 "As atualizações de pedidos e as mensagens de cupom da loja deixam de ocupar linhas na caixa de entrada. Seus pedidos não mudam.");
         table.put("Shop posts",
                 "Publicações da loja");
+    }
+
+    private static void fill22(Map<String, String> table) {
         table.put("Short date",
                 "Data curta");
         table.put("Shortest first",
@@ -2877,13 +2873,13 @@ final class L10nTranslationsPt_rBR {
                 "Entrar sem chave de acesso");
         table.put("Size limit reached. Recording saved to %1$s",
                 "Limite de tamanho atingido. Gravação salva em %1$s");
-    }
-
-    private static void fill23(Map<String, String> table) {
         table.put("Skip PineDrama's setup screens",
                 "Pular as telas de configuração do PineDrama");
         table.put("Skip content warnings",
                 "Pular os avisos de conteúdo");
+    }
+
+    private static void fill23(Map<String, String> table) {
         table.put("Skip the Share to sheet after a save",
                 "Pular a folha de compartilhamento após salvar");
         table.put("Skip the splash ad",
@@ -3000,13 +2996,13 @@ final class L10nTranslationsPt_rBR {
                 "Parar os testes de velocidade do PineDrama");
         table.put("Stop a long press on Like from opening PineDrama's repost action.",
                 "Impedir que segurar Curtir abra a ação de repostar do PineDrama.");
-    }
-
-    private static void fill24(Map<String, String> table) {
         table.put("Stop a long press on Share from opening PineDrama's quick share action.",
                 "Impedir que segurar Compartilhar abra a ação de compartilhamento rápido do PineDrama.");
         table.put("Stop and save the feed capture",
                 "Parar e salvar a gravação do feed");
+    }
+
+    private static void fill24(Map<String, String> table) {
         table.put("Stop feature gate recording",
                 "Parar de gravar os gates");
         table.put("Stop on-device AI profiling",
@@ -3123,13 +3119,13 @@ final class L10nTranslationsPt_rBR {
                 "O arquivo tem mais de %1$s entradas de histórico.");
         table.put("That file is larger than %1$s MB. Choose a seen-history file saved by HushPine.",
                 "Esse arquivo tem mais de %1$s MB. Escolha um arquivo de histórico salvo pelo HushPine.");
-    }
-
-    private static void fill25(Map<String, String> table) {
         table.put("That file is larger than %1$s MB. Choose a smaller font file.",
                 "O arquivo tem mais de %1$s MB. Escolha um arquivo de fonte menor.");
         table.put("That file is larger than %1$s MB. Choose a smaller watch-history export.",
                 "O arquivo tem mais de %1$s MB. Escolha uma exportação menor do histórico.");
+    }
+
+    private static void fill25(Map<String, String> table) {
         table.put("That file is too large to be a settings backup. Nothing was altered.",
                 "Esse arquivo é grande demais para ser um backup de configurações. Nada foi alterado.");
         table.put("That file isn't a font Android can use. Choose a .ttf or .otf file.",
@@ -3246,13 +3242,13 @@ final class L10nTranslationsPt_rBR {
                 "O feed para quando este vídeo terminar.");
         table.put("The feed waits for one tap before it starts playing again when you come back to the app. Messages, profiles and search are still one tap away.",
                 "O feed espera um toque antes de reproduzir de novo quando você volta ao app. Mensagens, perfis e busca continuam a um toque.");
-    }
-
-    private static void fill26(Map<String, String> table) {
         table.put("The file app still has the last file. Try again once it lets go, or restart PineDrama.",
                 "O app de arquivos ainda está com o último arquivo. Tente de novo quando ele liberar ou reinicie o PineDrama.");
         table.put("The file hushpine-safe-mode couldn't be removed. Delete it from PineDrama's folder under Android/data to turn HushPine back on.",
                 "Não foi possível remover o arquivo hushpine-safe-mode. Apague-o da pasta do PineDrama em Android/data para ativar o HushPine de novo.");
+    }
+
+    private static void fill26(Map<String, String> table) {
         table.put("The frame couldn't be read. Try again.",
                 "Não foi possível ler o quadro. Tente de novo.");
         table.put("The frame couldn't be saved. Try again.",
@@ -3369,13 +3365,13 @@ final class L10nTranslationsPt_rBR {
                 "Esta lista é longa demais para a prévia aqui. Ao salvar, o limite de sempre continua valendo.");
         table.put("This original sound isn't on YouTube Music",
                 "Este som original não está no YouTube Music");
-    }
-
-    private static void fill27(Map<String, String> table) {
         table.put("This phone has no file picker, so there's no way to choose a file here",
                 "Este celular não tem seletor de arquivos, então não dá para escolher um aqui");
         table.put("This preset isn't available for your installed PineDrama version.",
                 "Esta predefinição não está disponível para sua versão instalada do PineDrama.");
+    }
+
+    private static void fill27(Map<String, String> table) {
         table.put("This profile picture isn't available to save",
                 "Esta foto de perfil não está disponível para salvar");
         table.put("This screen recording has no sound",
@@ -3492,13 +3488,13 @@ final class L10nTranslationsPt_rBR {
                 "Tipo");
         table.put("Type a website name to use instead of tiktok.com in links you share or copy, like vxtiktok.com. Leave empty to share PineDrama's own links. Only PineDrama links change, and only the website name.",
                 "Digite o nome de um site para usar no lugar de tiktok.com nos links que você compartilha ou copia, como vxtiktok.com. Deixe vazio para compartilhar os links do próprio PineDrama. Só os links do PineDrama mudam, e só o nome do site.");
-    }
-
-    private static void fill28(Map<String, String> table) {
         table.put("Type one language code here, like en.",
                 "Digite aqui um código de idioma, como en.");
         table.put("Type some sample text to see whether these rules match it.",
                 "Digite um texto de exemplo para ver se estas regras correspondem.");
+    }
+
+    private static void fill28(Map<String, String> table) {
         table.put("Type the other app's ID, like com.dv.adm. The save button sends the video's link there instead of saving. Leave empty to save here.",
                 "Digite o ID do outro app, como com.dv.adm. O botão de salvar envia o link do vídeo para lá em vez de salvar. Deixe vazio para salvar aqui.");
         table.put("Unavailable",
@@ -3615,13 +3611,13 @@ final class L10nTranslationsPt_rBR {
                 "Pesquisa visual");
         table.put("Wait a day to loosen the budget",
                 "Esperar um dia para afrouxar o limite");
-    }
-
-    private static void fill29(Map<String, String> table) {
         table.put("Wait a day to loosen the budget is on, so HushPine stays on",
                 "Esperar um dia para afrouxar o limite está ligado, então o HushPine continua ligado");
         table.put("Wait before hiding the controls.",
                 "Esperar antes de limpar a tela.");
+    }
+
+    private static void fill29(Map<String, String> table) {
         table.put("Wait for loading to finish",
                 "Aguarde o carregamento terminar");
         table.put("Waiting for Wi-Fi",
@@ -3738,13 +3734,13 @@ final class L10nTranslationsPt_rBR {
                 "Zero desliga isso. Depois desses minutos sem nenhum toque na tela, o vídeo para e o PineDrama vai para segundo plano, para quando você dorme assistindo. Qualquer toque recomeça a espera.");
         table.put("Zero switches this off. Count the minutes the player spends running in the feed. Time on messages, a profile or search doesn't count.",
                 "Zero desliga isso. Conta os minutos que o player passa rodando no feed. Tempo em mensagens, num perfil ou na busca não conta.");
-    }
-
-    private static void fill30(Map<String, String> table) {
         table.put("Zero switches this off. Counts every video that comes up in the feed and tells you when you reach the limit. Separate from the auto-advance session limit under Playback, which counts only videos HushPine moved past for you.",
                 "Zero desliga isto. Conta cada vídeo que aparece no feed e avisa quando você chega ao limite. É separado do limite de sessão do avanço automático em Reprodução, que conta só os vídeos que o HushPine passou por você.");
         table.put("autoplay auto play",
                 "reprodução automática autoplay");
+    }
+
+    private static void fill30(Map<String, String> table) {
         table.put("collapsed",
                 "Recolhido");
         table.put("debug debugging logs logging",

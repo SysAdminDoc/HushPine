@@ -1505,7 +1505,6 @@ Comment with live photos, the camera or audio	Комментарии с живы
 Save comments to Favorites	Сохранять комментарии в Избранное
 Comment sort and dislike styles	Сортировка комментариев и стили дизлайков
 Message bubble colors, Inbox archive and sharing to more chats	Цвета пузырей сообщений, архив Входящих и отправка в большее число чатов
-Manage topics	Управление темами
 Visual search	Визуальный поиск
 AI Self	AI Self
 Long-press menu on every post	Меню долгого нажатия на каждой публикации
@@ -1792,7 +1791,6 @@ Sign in without a passkey	Входить без ключа доступа
 PineDrama treats your phone as one without passkeys, so signing in asks for your password or a code by email or text instead. Password managers won't hand a passkey to a patched app. If PineDrama's 2-step check still wants only a passkey, add email or text as a way to verify on tiktok.com or another phone first.	PineDrama считает ваш телефон устройством без ключей доступа, поэтому при входе запрашивает пароль или код по электронной почте или SMS. Менеджеры паролей не передают ключ доступа пропатченному приложению. Если двухэтапная проверка PineDrama по-прежнему просит только ключ доступа, сначала добавьте электронную почту или SMS как способ подтверждения на tiktok.com или на другом телефоне.
 # context: opens the complete published changelog from the concise release summary dialog.
 Full changelog	Все изменения
-More hashtags per post	Больше хештегов в публикации
 New comment emoji	Новые эмодзи в комментариях
 Hide root	Скрывать root
 Hide root status and details about root tools from PineDrama.	Скрывать от PineDrama статус root и сведения об инструментах root.

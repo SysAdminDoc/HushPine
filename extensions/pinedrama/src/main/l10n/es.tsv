@@ -1382,7 +1382,6 @@ Comment with live photos, the camera or audio	Comentar con fotos en vivo, la cá
 Save comments to Favorites	Guardar comentarios en Favoritos
 Comment sort and dislike styles	Orden de comentarios y estilos de No me gusta
 Message bubble colors, Inbox archive and sharing to more chats	Colores de las burbujas de mensajes, archivo de la Bandeja de entrada y compartir con más chats
-Manage topics	Gestionar temas
 Visual search	Búsqueda visual
 AI Self	AI Self
 Long-press menu on every post	Menú de pulsación larga en cada publicación
@@ -1639,7 +1638,6 @@ Sign in without a passkey	Iniciar sesión sin llave de acceso
 PineDrama treats your phone as one without passkeys, so signing in asks for your password or a code by email or text instead. Password managers won't hand a passkey to a patched app. If PineDrama's 2-step check still wants only a passkey, add email or text as a way to verify on tiktok.com or another phone first.	PineDrama trata tu teléfono como uno sin llaves de acceso, así que al iniciar sesión te pide tu contraseña o un código por correo o SMS. Los gestores de contraseñas no le dan una llave de acceso a una app parcheada. Si la verificación en dos pasos de PineDrama sigue pidiendo solo una llave de acceso, agrega primero el correo o SMS como forma de verificar en tiktok.com o en otro teléfono.
 # context: opens the complete published changelog from the concise What's new dialog.
 Full changelog	Todos los cambios
-More hashtags per post	Más hashtags por publicación
 New comment emoji	Nuevos emojis en comentarios
 Hide root	Ocultar root
 Hide root status and details about root tools from PineDrama.	Oculta a PineDrama el estado de root y los detalles de las herramientas de root.

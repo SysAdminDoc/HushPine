@@ -1385,7 +1385,6 @@ Comment with live photos, the camera or audio	Mit Live-Fotos, der Kamera oder Au
 Save comments to Favorites	Kommentare in Favoriten speichern
 Comment sort and dislike styles	Kommentarsortierung und Dislike-Stile
 Message bubble colors, Inbox archive and sharing to more chats	Farben der Nachrichtenblasen, Posteingangsarchiv und Teilen an mehr Chats
-Manage topics	Themen verwalten
 Visual search	Visuelle Suche
 AI Self	AI Self
 Long-press menu on every post	Menü bei langem Drücken auf jedem Beitrag
@@ -1642,7 +1641,6 @@ Sign in without a passkey	Ohne Passkey anmelden
 PineDrama treats your phone as one without passkeys, so signing in asks for your password or a code by email or text instead. Password managers won't hand a passkey to a patched app. If PineDrama's 2-step check still wants only a passkey, add email or text as a way to verify on tiktok.com or another phone first.	PineDrama behandelt dein Handy wie eines ohne Passkeys, also fragt die Anmeldung stattdessen nach deinem Passwort oder einem Code per E-Mail oder SMS. Passwortmanager geben einer gepatchten App keinen Passkey. Wenn PineDramas Prüfung in zwei Schritten weiterhin nur einen Passkey will, füge zuerst auf tiktok.com oder einem anderen Handy E-Mail oder SMS als Weg zur Bestätigung hinzu.
 # context: opens the complete published changelog from the concise What's new dialog.
 Full changelog	Alle Änderungen
-More hashtags per post	Mehr Hashtags pro Beitrag
 New comment emoji	Neue Kommentar-Emojis
 Hide root	Root verbergen
 Hide root status and details about root tools from PineDrama.	Root-Status und Angaben zu Root-Werkzeugen vor PineDrama verbergen.

@@ -20,8 +20,8 @@ Keep every Unreleased bullet under a `###` group. The release cutter preserves t
 | --- | --- |
 | App | PineDrama |
 | Package | com.ss.android.ttmd.video |
-| Supported version | 47.5.3 |
-| Version code | 2024705030 |
+| Supported version | 47.6.3 |
+| Version code | 2024706030 |
 | APK signer SHA-256 | e97ca0c8835c5a9e4f7702a0382b103ede9c5d51e5194c8db54f4c8833f54e18 |
 | APK minimum Android API | 23 |
 | Native code | arm64-v8a and armeabi-v7a |

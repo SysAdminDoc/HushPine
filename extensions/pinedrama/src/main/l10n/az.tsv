@@ -1382,7 +1382,6 @@ Comment with live photos, the camera or audio	Canlı fotolar, kamera və ya səs
 Save comments to Favorites	Şərhləri Sevimlilərə saxlayın
 Comment sort and dislike styles	Şərh sıralaması və bəyənməmə üslubları
 Message bubble colors, Inbox archive and sharing to more chats	Mesaj balonu rəngləri, Gələnlər arxivi və daha çox söhbətə paylaşma
-Manage topics	Mövzuları idarə edin
 Visual search	Vizual axtarış
 AI Self	AI Self
 Long-press menu on every post	Hər paylaşımda uzun basma menyusu
@@ -1639,7 +1638,6 @@ Sign in without a passkey	Passkey olmadan daxil olun
 PineDrama treats your phone as one without passkeys, so signing in asks for your password or a code by email or text instead. Password managers won't hand a passkey to a patched app. If PineDrama's 2-step check still wants only a passkey, add email or text as a way to verify on tiktok.com or another phone first.	PineDrama telefonunuza passkey dəstəkləməyən telefon kimi baxır, ona görə də daxil olanda bunun əvəzinə parolunuzu və ya e-poçt ya da SMS ilə gələn kodu soruşur. Parol menecerləri yamaqlanmış tətbiqə passkey vermir. PineDrama-nın iki addımlı yoxlaması hələ də yalnız passkey istəyirsə, əvvəlcə tiktok.com-da və ya başqa telefonda təsdiq üsulu kimi e-poçt ya da SMS əlavə edin.
 # context: opens the complete published changelog from the concise What's new dialog.
 Full changelog	Bütün dəyişikliklər
-More hashtags per post	Hər paylaşımda daha çox həştəq
 New comment emoji	Yeni şərh emojiləri
 Hide root	Rootu gizlət
 Hide root status and details about root tools from PineDrama.	Root statusunu və root alətləri haqqında məlumatı PineDrama-dan gizlət.
