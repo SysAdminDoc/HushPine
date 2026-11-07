@@ -7,7 +7,7 @@ extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/blockauthor/Fe
 extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/blockauthor/FeedVisibility.java|idd
 extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/blockauthor/FeedVisibility.java|m6k
 extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/captions/CaptionStyle.java|bxh
-extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/captions/CaptionStyle.java|bxk
+extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/captions/CaptionStyle.java|bxl
 extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/cleardisplay/RememberClearDisplayPatch.java|LIZ
 extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/cleardisplay/RememberClearDisplayPatch.java|LIZIZ
 extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/comment/CommentTools.java|fhl
