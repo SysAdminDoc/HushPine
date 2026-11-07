@@ -447,6 +447,9 @@
     ],
     "Keep list position": [
       "KEEP_LIST_POSITION"
+    ],
+    "Episodes in full screen": [
+      "LANDSCAPE_EPISODES"
     ]
   },
   "excluded": {

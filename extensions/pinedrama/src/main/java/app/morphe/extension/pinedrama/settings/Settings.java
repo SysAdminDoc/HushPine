@@ -538,6 +538,8 @@ public class Settings extends BaseSettings {
     );
     /** Keeps the full-screen viewer on a video when it ends; the Stay on the video in full screen patch. */
     public static final BooleanSetting FULL_SCREEN_HOLD = new BooleanSetting("full_screen_hold", FALSE, true);
+    /** A drama's whole series in the full-screen viewer (issue #1). Read each time it opens. */
+    public static final BooleanSetting LANDSCAPE_EPISODES = new BooleanSetting("landscape_episodes", TRUE);
     /**
      * Plays the audio PineDrama mutes on a post whose sound was pulled; the Keep pulled sounds
      * patch. Read as each video starts, so no restart.

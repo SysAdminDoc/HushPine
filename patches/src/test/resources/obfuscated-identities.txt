@@ -67,3 +67,4 @@ patches/src/main/kotlin/app/morphe/patches/pinedrama/misc/settings/SettingsPatch
 patches/src/main/kotlin/app/morphe/patches/pinedrama/misc/settings/SettingsPatch.kt|LX/
 patches/src/main/kotlin/app/morphe/patches/pinedrama/misc/settings/SettingsPatch.kt|l0
 patches/src/main/kotlin/app/morphe/patches/pinedrama/misc/settings/SettingsPatch.kt|l1
+extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/interaction/LandscapeEpisodes.java|LLLILZLLLI

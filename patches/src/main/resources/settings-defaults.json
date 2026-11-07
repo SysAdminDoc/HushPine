@@ -123,6 +123,9 @@
     "Enable voice comments": [
       "enable_voice_comments"
     ],
+    "Episodes in full screen": [
+      "landscape_episodes"
+    ],
     "Expand activity list": [
       "expand_activity_list"
     ],
@@ -1435,6 +1438,12 @@
       "key": "keep_pulled_sounds",
       "type": "boolean",
       "default": false
+    },
+    "landscape_episodes": {
+      "field": "LANDSCAPE_EPISODES",
+      "key": "landscape_episodes",
+      "type": "boolean",
+      "default": true
     },
     "liked_grid_sort": {
       "field": "LIKED_GRID_SORT",

@@ -11310,5 +11310,43 @@
    }
   ],
   "notes": "Issue #2. History and Favorites share one gate class that refreshes the list when the page comes back into view, and a refresh clears the list, so a deep position lands at the top. ListPosition answers that gate with no refresh while the list is scrolled away from its top. The natural check: scroll deep in History, switch to Favorites and back, and it stays put. A list at its top still refreshes, and favoriting something still updates Favorites."
+ },
+ {
+  "name": "Episodes in full screen",
+  "category": "Playback",
+  "default": true,
+  "kind": "runtime",
+  "source": [
+   "patches/src/main/kotlin/app/morphe/patches/pinedrama/interaction/looping/FullScreenEpisodesPatch.kt",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/interaction/LandscapeEpisodes.java"
+  ],
+  "settings": [
+   {
+    "key": "landscape_episodes",
+    "default": true,
+    "type": "bool",
+    "row": "Episodes in full screen"
+   }
+  ],
+  "surface": "feed",
+  "checks": [
+   {
+    "id": "patch-applied",
+    "what": "SettingsStatus.landscapeEpisodesEnabled is true, so the patch is in this APK and the extension loaded it.",
+    "steps": [
+     {
+      "probe": "fields",
+      "extras": {
+       "class": "app.morphe.extension.pinedrama.settings.SettingsStatus",
+       "names": "landscapeEpisodesEnabled"
+      },
+      "expect": "\blandscapeEpisodesEnabled=true\b",
+      "waitMs": 1500
+     }
+    ],
+    "auto": true
+   }
+  ],
+  "notes": "Issue #1. The Full screen pill opens the landscape viewer with a one-item list, so its pager has nowhere to go and the episode loops. LandscapeEpisodes hands it the series the portrait screen already holds and feeds its load-more from the series model. The natural check: open a drama, tap Full screen, swipe up and down, seek near the end and it moves to the next episode, then leave and portrait sits on the same episode. A feed video or profile keeps its one video."
  }
 ]

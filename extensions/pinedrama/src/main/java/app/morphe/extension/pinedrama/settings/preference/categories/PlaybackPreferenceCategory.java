@@ -31,6 +31,7 @@ public final class PlaybackPreferenceCategory extends ConditionalPreferenceCateg
                 || SettingsStatus.h264PlaybackEnabled || SettingsStatus.playbackSpeedEnabled
                 || SettingsStatus.autoAdvanceEnabled || SettingsStatus.videoFitEnabled
                 || SettingsStatus.fullScreenHoldEnabled || SettingsStatus.keepPulledSoundsEnabled
+                || SettingsStatus.landscapeEpisodesEnabled
                 || SettingsStatus.backgroundPlayEnabled
                 || SettingsStatus.showSeekbarEnabled || SettingsStatus.seekbarThumbnailEnabled || SettingsStatus.resumeVideoAfterScrollEnabled;
     }
@@ -61,6 +62,14 @@ public final class PlaybackPreferenceCategory extends ConditionalPreferenceCateg
                     "Also turns on PineDrama's own Auto scroll for videos opened from search. "
                             + "Restart PineDrama to apply this.",
                     Settings.AUTO_ADVANCE_SEARCH));
+        }
+        if (SettingsStatus.landscapeEpisodesEnabled) {
+            addPreference(new SectionHeadingPreference(context, "Dramas"));
+            addPreference(new TogglePreference(context, "Episodes in full screen",
+                    "Swipe up for the next episode and down for the previous one without leaving "
+                            + "full screen. The next episode starts when one ends, instead of "
+                            + "the same one looping.",
+                    Settings.LANDSCAPE_EPISODES));
         }
         // None of these is auto-advance, and under its heading they read as parts of it: each keeps
         // you on the video you're on, paused behind the comments, held or stopped at its end, or

@@ -434,6 +434,7 @@ Download original photos,Download original photos
 Downloads,Downloads
 "Drag to move, release to place","Drag to move, release to place"
 Drama and Series,Drama and Series
+Dramas,Dramas
 "Draw a larger handle and a slightly thicker line on the progress bar, so it's easier to see where you are.","Draw a larger handle and a slightly thicker line on the progress bar, so it's easier to see where you are."
 "Duet, Stitch and Add to Story","Duet, Stitch and Add to Story"
 Each area shows how many of the things HushPine looks for were found in this PineDrama and how many are missing.,Each area shows how many of the things HushPine looks for were found in this PineDrama and how many are missing.
@@ -457,6 +458,7 @@ Enter up to %1$d comma-separated speeds from %2$s to %3$s,Enter up to %1$d comma
 Enter who to message below to start.,Enter who to message below to start.
 Entry %1$d has a field with the wrong data type.,Entry %1$d has a field with the wrong data type.
 Entry %1$d isn't an object.,Entry %1$d isn't an object.
+Episodes in full screen,Episodes in full screen
 Errors,Errors
 Expand activity list,Expand activity list
 Expanded,Expanded
@@ -1476,6 +1478,7 @@ Structured value observed,Structured value observed
 Subscriber-only posts,Subscriber-only posts
 Support HushPine,Support HushPine
 Swap the website in shared links,Swap the website in shared links
+"Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.","Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping."
 Swiping a message sideways no longer starts a reply to it. Taps and long presses work as before.,Swiping a message sideways no longer starts a reply to it. Taps and long presses work as before.
 System,System
 Tag saved videos with their details,Tag saved videos with their details
