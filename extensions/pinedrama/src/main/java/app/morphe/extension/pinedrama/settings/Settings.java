@@ -919,6 +919,9 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting PINEDRAMA_COMMENT_PHOTOS = new BooleanSetting("pinedrama_comment_photos", FALSE, true);
     public static final BooleanSetting KEEP_FAVORITES_TAB =
             new BooleanSetting("keep_favorites_tab", TRUE, true);
+    /** History and Favorites stay where you scrolled (issue #2). Read as each page is built. */
+    public static final BooleanSetting KEEP_LIST_POSITION =
+            new BooleanSetting("keep_list_position", TRUE, true);
     /** The collections popup from holding the bookmark, dark when TikTok is (issue #142). */
     public static final BooleanSetting DARK_QUICK_FAVORITES = new BooleanSetting("dark_quick_favorites", TRUE);
     /** The Following and For You names above the feed; the pager under them keeps swiping (issue #32). */

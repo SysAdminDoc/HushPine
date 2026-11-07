@@ -2,9 +2,13 @@
 
 ## Unreleased
 
+### Features
+
+* `Keep list position` is new. History and Favorites on your profile hold your place when you switch tabs or come back from a video, and a list you haven't scrolled still shows what you just watched. It's on by default.
+
 ### Changes
 
-* Retargeted to PineDrama 47.6.3 (version code 2024706030). All 97 patches apply to it, and the patches that hook the app's own code were re-read against the new build's code instead of carried over by name.
+* Retargeted to PineDrama 47.6.3 (version code 2024706030). All the patches apply to it, and the patches that hook the app's own code were re-read against the new build's code instead of carried over by name.
 * Auto-advance no longer depends on a panel check 47.6.3 dropped, and the streak button patch lets go of a getter the new build removed.
 * The Feature Gate Lab's Manage topics and More hashtags per post presets are gone, and AI Self sets one rule fewer. PineDrama 47.6.3 took those gates out of the app.
 

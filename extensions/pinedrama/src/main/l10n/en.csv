@@ -726,6 +726,7 @@ Keep this string to %1$s characters or fewer,Keep this string to %1$s characters
 Keep this structured value to %1$s KB or less,Keep this structured value to %1$s KB or less
 Keep videos out of Watch history,Keep videos out of Watch history
 "Keep what you search for out of the search history PineDrama saves on this phone. Searches already there stay until you delete them, and PineDrama's servers may still keep their own record.","Keep what you search for out of the search history PineDrama saves on this phone. Searches already there stay until you delete them, and PineDrama's servers may still keep their own record."
+Keep your place in History and Favorites,Keep your place in History and Favorites
 "Keeps logging until you turn it off, even after a restart. PineDrama can feel slower while it's on.","Keeps logging until you turn it off, even after a restart. PineDrama can feel slower while it's on."
 Kept an interrupted change. Restart PineDrama to apply.,Kept an interrupted change. Restart PineDrama to apply.
 "Kept to %1$s, the nearest value this row allows","Kept to %1$s, the nearest value this row allows"
@@ -1461,6 +1462,7 @@ Stopping after this file,Stopping after this file
 Stops PineDrama from reading your phone's motion and compass sensors. Apps can use them to recognize your phone.,Stops PineDrama from reading your phone's motion and compass sensors. Apps can use them to recognize your phone.
 "Stops PineDrama from reporting the videos you watch, so they don't get added to Watch history in Activity center. Your views won't count and your feed learns less. Likes, follows and searches are still seen.","Stops PineDrama from reporting the videos you watch, so they don't get added to Watch history in Activity center. Your views won't count and your feed learns less. Likes, follows and searches are still seen."
 "Stops PineDrama from slowing your screen to match each video's frame rate. On a 90 or 120 Hz phone, that request makes the whole app, scrolling too, run slower.","Stops PineDrama from slowing your screen to match each video's frame rate. On a 90 or 120 Hz phone, that request makes the whole app, scrolling too, run slower."
+Stops these lists jumping back to the top when you switch tabs or come back from a video. A list you haven't scrolled still updates.,Stops these lists jumping back to the top when you switch tabs or come back from a video. A list you haven't scrolled still updates.
 "Stops websites you open from inside PineDrama from reaching back into the app. PineDrama's own pages, such as Activity center, Watch history, shop checkout and CAPTCHA, keep working.","Stops websites you open from inside PineDrama from reaching back into the app. PineDrama's own pages, such as Activity center, Watch history, shop checkout and CAPTCHA, keep working."
 Storage almost full. Recording saved to %1$s,Storage almost full. Recording saved to %1$s
 Store PineDrama thinks it came from,Store PineDrama thinks it came from

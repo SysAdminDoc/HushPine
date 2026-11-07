@@ -262,6 +262,9 @@
       "auto_streak_minute",
       "auto_streak_message"
     ],
+    "Keep list position": [
+      "keep_list_position"
+    ],
     "Keep playing in the background": [
       "background_play",
       "background_replay"
@@ -1406,6 +1409,12 @@
     "keep_favorites_tab": {
       "field": "KEEP_FAVORITES_TAB",
       "key": "keep_favorites_tab",
+      "type": "boolean",
+      "default": true
+    },
+    "keep_list_position": {
+      "field": "KEEP_LIST_POSITION",
+      "key": "keep_list_position",
       "type": "boolean",
       "default": true
     },

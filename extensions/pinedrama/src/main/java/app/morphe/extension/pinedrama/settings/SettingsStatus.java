@@ -60,6 +60,7 @@ public class SettingsStatus {
     public static boolean liveSearchEnabled = false;
     public static boolean seekbarThumbnailEnabled = false;
     public static boolean fullScreenHoldEnabled = false;
+    public static boolean keepListPositionEnabled = false;
     public static boolean keepPulledSoundsEnabled = false;
     public static boolean resumeVideoAfterScrollEnabled = false;
     public static boolean externalBrowserEnabled = false;
@@ -327,6 +328,10 @@ public class SettingsStatus {
 
     public static void enableFullScreenHold() {
         fullScreenHoldEnabled = true;
+    }
+
+    public static void enableKeepListPosition() {
+        keepListPositionEnabled = true;
     }
 
     public static void enableResumeVideoAfterScroll() {

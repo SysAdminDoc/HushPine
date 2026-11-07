@@ -444,6 +444,9 @@
       "SYSTEM_FONT",
       "SYSTEM_EMOJI",
       "IMPORTED_FONT"
+    ],
+    "Keep list position": [
+      "KEEP_LIST_POSITION"
     ]
   },
   "excluded": {

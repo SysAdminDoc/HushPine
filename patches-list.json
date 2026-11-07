@@ -3669,6 +3669,56 @@
       ]
     },
     {
+      "name": "Keep list position",
+      "description": "Stops the Profile's History and Favorites lists from jumping back to the top when you switch tabs or come back from a video. A list you haven't scrolled still updates. Starts on. Turn it off in HushPine settings.",
+      "category": "Settings",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch",
+        "RawResourcePatch",
+        "Settings"
+      ],
+      "compatiblePackages": {
+        "com.ss.android.ttmd.video": [
+          "47.6.3"
+        ]
+      },
+      "compatibility": [
+        {
+          "name": "PineDrama",
+          "packageName": "com.ss.android.ttmd.video",
+          "description": null,
+          "appIconColor": 16657493,
+          "signatures": [
+            "e97ca0c8835c5a9e4f7702a0382b103ede9c5d51e5194c8db54f4c8833f54e18"
+          ],
+          "targets": [
+            {
+              "version": "47.6.3",
+              "experimental": false,
+              "versionCodes": {
+                "ARM64_V8A": 2024706030,
+                "ARMEABI_V7A": 2024706030,
+                "X86": 2024706030,
+                "X86_64": 2024706030
+              }
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "keep_list_position",
+          "title": "Default: keep list position",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": true,
+          "values": null
+        }
+      ]
+    },
+    {
       "name": "Keep playing in the background",
       "description": "Keeps the video playing when you leave PineDrama or turn the screen off, with a notification to pause it. It can also start the video over when it ends. Handy for music and talks. Starts off. Turn it on in HushPine settings > Playback, then restart PineDrama.",
       "category": "Playback",

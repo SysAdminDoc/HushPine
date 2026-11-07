@@ -11271,5 +11271,44 @@
    }
   ],
   "notes": "Importing a .ttf/.otf (imported_font) needs a file chosen in the Android picker and is not exercised; the 'imported' bound name would appear then. The hook records on the first typeface request after the process starts, hence every phase restarts. How the text looks on screen is a visual review the hook status stands in for."
+ },
+ {
+  "name": "Keep list position",
+  "category": "Settings",
+  "default": true,
+  "kind": "runtime",
+  "source": [
+   "patches/src/main/kotlin/app/morphe/patches/pinedrama/interaction/favorites/KeepListPositionPatch.kt",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/favorites/ListPosition.java"
+  ],
+  "settings": [
+   {
+    "key": "keep_list_position",
+    "default": true,
+    "type": "bool",
+    "row": "Keep your place in History and Favorites",
+    "restart": true
+   }
+  ],
+  "surface": "profile",
+  "checks": [
+   {
+    "id": "patch-applied",
+    "what": "SettingsStatus.keepListPositionEnabled is true, so the patch is in this APK and the extension loaded it.",
+    "steps": [
+     {
+      "probe": "fields",
+      "extras": {
+       "class": "app.morphe.extension.pinedrama.settings.SettingsStatus",
+       "names": "keepListPositionEnabled"
+      },
+      "expect": "\bkeepListPositionEnabled=true\b",
+      "waitMs": 1500
+     }
+    ],
+    "auto": true
+   }
+  ],
+  "notes": "Issue #2. History and Favorites share one gate class that refreshes the list when the page comes back into view, and a refresh clears the list, so a deep position lands at the top. ListPosition answers that gate with no refresh while the list is scrolled away from its top. The natural check: scroll deep in History, switch to Favorites and back, and it stays put. A list at its top still refreshes, and favoriting something still updates Favorites."
  }
 ]
