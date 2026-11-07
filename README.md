@@ -5,7 +5,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License GPL-3.0"></a>
   <img src="https://img.shields.io/badge/platform-Android-3DDC84" alt="Platform Android">
   <a href="https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/"><img alt="PineDrama 47.6.3" src="https://img.shields.io/badge/PineDrama-47.6.3-2F6B4F"></a>
-  <img src="https://img.shields.io/badge/for-Morphe%20Manager%202.3.0%2B-8A2BE2" alt="For Morphe Manager 2.3.0 or newer">
+  <img src="https://img.shields.io/badge/for-Morphe%20Manager%202.5.0%2B-8A2BE2" alt="For Morphe Manager 2.5.0 or newer">
 </p>
 
 <p>
@@ -32,9 +32,9 @@ The main branch contains 98 patches, one more than v0.0.1: `Keep list position`.
 ## Install
 
 1. Get PineDrama 47.6.3 from [APKMirror](https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/pinedrama-short-dramas-47-6-3-release/), the file marked **BUNDLE** (an `.apkm`). Google Play only offers the newest build, which may not be the one HushPine supports. Manager merges the bundle into a single APK for you.
-2. Use Morphe Manager 2.3.0 or newer. HushPine is built against patcher 2.1.0, which Manager 2.3.0 was the first to ship, and older Managers won't load it. morphe-desktop 1.20.0 or newer works from a computer if you give it 2 GB of memory (`java -Xmx2g -jar morphe-desktop-1.20.0-all.jar patch ...`).
+2. Use Morphe Manager 2.5.0 or newer. HushPine is built against patcher 2.3.0, which Manager 2.5.0 was the first to ship, and older Managers won't load it. morphe-desktop 2.1.0 or newer works from a computer if you give it 2 GB of memory (`java -Xmx2g -jar morphe-desktop-2.1.0-all.jar patch ...`).
 3. Add HushPine as a source. On the phone, open [Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine). If **Open in Morphe** leaves you in the browser, open Manager, tap **Sources**, tap **+** and paste `https://github.com/SysAdminDoc/HushPine`. You can also download the `.mpp` file from the [latest release](https://github.com/SysAdminDoc/HushPine/releases/latest) and load it as a local bundle.
-4. Pick the patches. Simple mode selects 88 of the 98. The other 10 need Expert mode in Manager's settings, and they're marked in [Patches](#patches). Manager 2.3.0 shows all 98 HushPine patches in categories you can expand or collapse. Leave **Use embedded VM** on under **Settings > Patcher**, since it lets the patcher use whatever memory the phone can spare.
+4. Pick the patches. Simple mode selects 88 of the 98. The other 10 need Expert mode in Manager's settings, and they're marked in [Patches](#patches). Manager 2.5.0 shows all 98 HushPine patches in categories you can expand or collapse. Leave **Use embedded VM** on under **Settings > Patcher**, since it lets the patcher use whatever memory the phone can spare.
 5. Uninstall store PineDrama, then install the patched app and log in. Android won't put one over the other because they're signed with different keys.
 
 If you patched PineDrama with Hushfeed before, patch again with HushPine using the same signing key and install over that copy.

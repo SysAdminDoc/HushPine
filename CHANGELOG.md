@@ -8,6 +8,7 @@
 
 ### Changes
 
+* The bundle is built on Morphe patcher 2.3.0 now, the one that comes with Morphe Manager 2.5.0 and Morphe Desktop 2.1.0. Update Manager to 2.5.0 or newer before you add this release, since older Manager builds can't load it.
 * Retargeted to PineDrama 47.6.3 (version code 2024706030). All the patches apply to it, and the patches that hook the app's own code were re-read against the new build's code instead of carried over by name.
 * Auto-advance no longer depends on a panel check 47.6.3 dropped, and the streak button patch lets go of a getter the new build removed.
 * The Feature Gate Lab's Manage topics and More hashtags per post presets are gone, and AI Self sets one rule fewer. PineDrama 47.6.3 took those gates out of the app.

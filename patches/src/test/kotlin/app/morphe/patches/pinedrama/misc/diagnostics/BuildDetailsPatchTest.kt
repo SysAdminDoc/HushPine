@@ -235,8 +235,8 @@ class BuildDetailsPatchTest {
         assertEquals(null, buildDetailsPatch.name)
     }
 
-    private fun dependencies(patch: Patch<*>): Set<Patch<*>> = linkedSetOf<Patch<*>>().apply {
-        fun visit(current: Patch<*>) { if (add(current)) current.dependencies.forEach(::visit) }
+    private fun dependencies(patch: Patch): Set<Patch> = linkedSetOf<Patch>().apply {
+        fun visit(current: Patch) { if (add(current)) current.dependencies.forEach(::visit) }
         visit(patch)
     }
 
