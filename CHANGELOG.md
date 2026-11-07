@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.0 (2026-11-07)
+
 ### Features
 
 * `Episodes in full screen` is new. Swipe up for the next episode and down for the previous one in PineDrama's full screen view, and an episode that ends moves on to the next instead of looping. Leave full screen and the portrait player is on the episode you stopped at. It's on by default, with a switch under Playback.
