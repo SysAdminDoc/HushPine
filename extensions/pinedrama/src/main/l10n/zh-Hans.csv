@@ -1811,3 +1811,23 @@ Stops these lists jumping back to the top when you switch tabs or come back from
 Dramas,短剧
 Episodes in full screen,全屏播放剧集
 "Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.","无需退出全屏,上滑看下一集,下滑看上一集。一集结束后自动播放下一集,不再循环同一集."
+Subtitles,字幕
+Subtitle priority,字幕优先顺序
+"Language codes in the order you want them, separated by commas, like en, original. original means the video's own subtitle. Used when a video starts playing.","按想要的顺序填写语言代码,用逗号分隔,例如 en, original。original 表示视频自带的字幕。在视频开始播放时使用."
+Force subtitle,强制字幕
+"Always use the first subtitle on your list that a video has, even with captions off. A video with none of them plays as usual. Turning captions off yourself lasts until the app restarts.","即使字幕已关闭,也始终使用视频拥有的、你的列表中的第一个字幕。没有这些字幕的视频照常播放。你自己关闭字幕后,在重启应用之前一直保持关闭."
+Force original subtitle,强制原始字幕
+"Always use the video's own subtitle, never a translated one, even with captions off. A video without one plays as usual.","即使字幕已关闭,也始终使用视频自带的字幕,绝不使用翻译字幕。没有自带字幕的视频照常播放."
+Dubs,配音
+Dub priority,配音优先顺序
+"Language codes in the order you want them, separated by commas, like en, original. original means the video's own audio. Used when a video starts playing.","按想要的顺序填写语言代码,用逗号分隔,例如 en, original。original 表示视频自带的音频。在视频开始播放时使用."
+Force dub,强制配音
+"Always use the first dub on your list that a video has, even with dubbing off. A video with none of them plays as usual.","即使配音已关闭,也始终使用视频拥有的、你的列表中的第一个配音。没有这些配音的视频照常播放."
+Force original dub,强制原始音频
+"Always play the video's own audio, never an AI dub.","始终播放视频自带的音频,绝不使用 AI 配音."
+Hide videos without a preferred subtitle,隐藏没有首选字幕的视频
+"Hides videos with no subtitle from Subtitle priority in Playback, and that includes videos with no subtitles at all. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.","隐藏没有“播放”中“字幕优先顺序”所列字幕的视频,包括完全没有字幕的视频。如果整页都会被隐藏,会保留一个视频以便信息流继续加载。列表为空时不起作用."
+Hide videos without a preferred dub,隐藏没有首选配音的视频
+"Hides videos with no dub from Dub priority in Playback. Putting original on that list keeps every video, since each has its own audio. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.","隐藏没有“播放”中“配音优先顺序”所列配音的视频。把 original 放入列表会保留所有视频,因为每个视频都有自己的音频。如果整页都会被隐藏,会保留一个视频以便信息流继续加载。列表为空时不起作用."
+Preferred subtitles,首选字幕
+Preferred dubs,首选配音

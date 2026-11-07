@@ -6337,6 +6337,119 @@
       ]
     },
     {
+      "name": "Subtitle and dub preference",
+      "description": "Lets you choose which subtitle and dub videos use, by language, and hide videos without them. Everything starts off. Set it up in HushPine settings under Playback and Feed filter.",
+      "category": "Playback",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch",
+        "RawResourcePatch",
+        "Settings"
+      ],
+      "compatiblePackages": {
+        "com.ss.android.ttmd.video": [
+          "47.6.3"
+        ]
+      },
+      "compatibility": [
+        {
+          "name": "PineDrama",
+          "packageName": "com.ss.android.ttmd.video",
+          "description": null,
+          "appIconColor": 16657493,
+          "signatures": [
+            "e97ca0c8835c5a9e4f7702a0382b103ede9c5d51e5194c8db54f4c8833f54e18"
+          ],
+          "targets": [
+            {
+              "version": "47.6.3",
+              "experimental": false,
+              "versionCodes": {
+                "ARM64_V8A": 2024706030,
+                "ARMEABI_V7A": 2024706030,
+                "X86": 2024706030,
+                "X86_64": 2024706030
+              }
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "subtitle_priority",
+          "title": "Default: subtitle priority",
+          "description": null,
+          "required": false,
+          "type": "kotlin.String",
+          "default": "",
+          "values": null
+        },
+        {
+          "key": "force_subtitle",
+          "title": "Default: force subtitle",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        },
+        {
+          "key": "force_original_subtitle",
+          "title": "Default: force original subtitle",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        },
+        {
+          "key": "dub_priority",
+          "title": "Default: dub priority",
+          "description": null,
+          "required": false,
+          "type": "kotlin.String",
+          "default": "",
+          "values": null
+        },
+        {
+          "key": "force_dub",
+          "title": "Default: force dub",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        },
+        {
+          "key": "force_original_dub",
+          "title": "Default: force original dub",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        },
+        {
+          "key": "hide_no_preferred_subtitle",
+          "title": "Default: hide no preferred subtitle",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        },
+        {
+          "key": "hide_no_preferred_dub",
+          "title": "Default: hide no preferred dub",
+          "description": null,
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        }
+      ]
+    },
+    {
       "name": "Translate comments",
       "description": "Translates comments as they load, using PineDrama's own translator, so you don't have to tap Translate on each one. Starts off. Turn it on in HushPine settings > Comments, where more rows list languages PineDrama's automatic translation should leave alone, keep videos in the language they were made in, pick the language translations come out in, and add PineDrama's translate button beside the comment count.",
       "category": "Comments",

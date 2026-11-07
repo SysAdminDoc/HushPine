@@ -429,6 +429,16 @@
     "Stop search autoplay": [
       "stop_search_autoplay"
     ],
+    "Subtitle and dub preference": [
+      "subtitle_priority",
+      "force_subtitle",
+      "force_original_subtitle",
+      "dub_priority",
+      "force_dub",
+      "force_original_dub",
+      "hide_no_preferred_subtitle",
+      "hide_no_preferred_dub"
+    ],
     "Translate comments": [
       "comment_batch_translation",
       "dont_auto_translate_languages",
@@ -923,6 +933,12 @@
       "type": "boolean",
       "default": false
     },
+    "dub_priority": {
+      "field": "DUB_PRIORITY",
+      "key": "dub_priority",
+      "type": "string",
+      "default": ""
+    },
     "enable_live_search": {
       "field": "ENABLE_LIVE_SEARCH",
       "key": "enable_live_search",
@@ -1004,6 +1020,30 @@
     "following_latest_first": {
       "field": "FOLLOWING_LATEST_FIRST",
       "key": "following_latest_first",
+      "type": "boolean",
+      "default": false
+    },
+    "force_dub": {
+      "field": "FORCE_DUB",
+      "key": "force_dub",
+      "type": "boolean",
+      "default": false
+    },
+    "force_original_dub": {
+      "field": "FORCE_ORIGINAL_DUB",
+      "key": "force_original_dub",
+      "type": "boolean",
+      "default": false
+    },
+    "force_original_subtitle": {
+      "field": "FORCE_ORIGINAL_SUBTITLE",
+      "key": "force_original_subtitle",
+      "type": "boolean",
+      "default": false
+    },
+    "force_subtitle": {
+      "field": "FORCE_SUBTITLE",
+      "key": "force_subtitle",
       "type": "boolean",
       "default": false
     },
@@ -1250,6 +1290,18 @@
     "hide_mini_dramas": {
       "field": "HIDE_MINI_DRAMAS",
       "key": "hide_mini_dramas",
+      "type": "boolean",
+      "default": false
+    },
+    "hide_no_preferred_dub": {
+      "field": "HIDE_NO_PREFERRED_DUB",
+      "key": "hide_no_preferred_dub",
+      "type": "boolean",
+      "default": false
+    },
+    "hide_no_preferred_subtitle": {
+      "field": "HIDE_NO_PREFERRED_SUBTITLE",
+      "key": "hide_no_preferred_subtitle",
       "type": "boolean",
       "default": false
     },
@@ -2110,6 +2162,12 @@
       "key": "story_seekbar",
       "type": "boolean",
       "default": false
+    },
+    "subtitle_priority": {
+      "field": "SUBTITLE_PRIORITY",
+      "key": "subtitle_priority",
+      "type": "string",
+      "default": ""
     },
     "system_emoji": {
       "field": "SYSTEM_EMOJI",

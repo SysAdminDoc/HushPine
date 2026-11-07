@@ -540,6 +540,15 @@ public class Settings extends BaseSettings {
     public static final BooleanSetting FULL_SCREEN_HOLD = new BooleanSetting("full_screen_hold", FALSE, true);
     /** A drama's whole series in the full-screen viewer (issue #1). Read each time it opens. */
     public static final BooleanSetting LANDSCAPE_EPISODES = new BooleanSetting("landscape_episodes", TRUE);
+    /** Language codes in the order to prefer them, with "original" for the video's own track. */
+    public static final StringSetting SUBTITLE_PRIORITY = new StringSetting("subtitle_priority", "");
+    public static final BooleanSetting FORCE_SUBTITLE = new BooleanSetting("force_subtitle", FALSE);
+    public static final BooleanSetting FORCE_ORIGINAL_SUBTITLE = new BooleanSetting("force_original_subtitle", FALSE);
+    public static final StringSetting DUB_PRIORITY = new StringSetting("dub_priority", "");
+    public static final BooleanSetting FORCE_DUB = new BooleanSetting("force_dub", FALSE);
+    public static final BooleanSetting FORCE_ORIGINAL_DUB = new BooleanSetting("force_original_dub", FALSE);
+    public static final BooleanSetting HIDE_NO_PREFERRED_SUBTITLE = new BooleanSetting("hide_no_preferred_subtitle", FALSE);
+    public static final BooleanSetting HIDE_NO_PREFERRED_DUB = new BooleanSetting("hide_no_preferred_dub", FALSE);
     /**
      * Plays the audio PineDrama mutes on a post whose sound was pulled; the Keep pulled sounds
      * patch. Read as each video starts, so no restart.

@@ -15,7 +15,7 @@ final class L10nTranslationsIn {
     }
 
     static Map<String, String> build() {
-        Map<String, String> table = new HashMap<>(3624);
+        Map<String, String> table = new HashMap<>(3664);
         fill0(table);
         fill1(table);
         fill2(table);
@@ -415,13 +415,21 @@ final class L10nTranslationsIn {
                 "Juga mengganti wilayah tersimpan dan kode negara yang dikirim PineDrama di setiap permintaan. Saat masuk, wilayah aslimu tetap dikirim. Alamat IP dan aturan akunmu sendiri tetap berlaku.");
         table.put("Also turns on PineDrama's own Auto scroll for videos opened from search. Restart PineDrama to apply this.",
                 "Juga menyalakan gulir otomatis PineDrama sendiri untuk video yang dibuka dari pencarian. Mulai ulang PineDrama untuk menerapkannya.");
-        table.put("Always show publish date",
-                "Selalu tampilkan tanggal unggah");
+        table.put("Always play the video's own audio, never an AI dub.",
+                "Selalu putar audio asli video, bukan sulih suara AI.");
     }
 
     private static void fill3(Map<String, String> table) {
+        table.put("Always show publish date",
+                "Selalu tampilkan tanggal unggah");
         table.put("Always show the publish date in video author information. Restart PineDrama to apply this.",
                 "Selalu tampilkan tanggal publikasi di informasi penulis video. Mulai ulang PineDrama agar berlaku.");
+        table.put("Always use the first dub on your list that a video has, even with dubbing off. A video with none of them plays as usual.",
+                "Selalu pakai sulih suara pertama di daftar Anda yang dimiliki video, meski sulih suara nonaktif. Video tanpa sulih suara itu diputar seperti biasa.");
+        table.put("Always use the first subtitle on your list that a video has, even with captions off. A video with none of them plays as usual. Turning captions off yourself lasts until the app restarts.",
+                "Selalu pakai subtitel pertama di daftar Anda yang dimiliki video, meski teks nonaktif. Video tanpa subtitel itu diputar seperti biasa. Jika Anda mematikan teks sendiri, itu berlaku sampai aplikasi dimulai ulang.");
+        table.put("Always use the video's own subtitle, never a translated one, even with captions off. A video without one plays as usual.",
+                "Selalu pakai subtitel asli video, bukan terjemahan, meski teks nonaktif. Video tanpa subtitel asli diputar seperti biasa.");
         table.put("Amazon Appstore",
                 "Amazon Appstore");
         table.put("An exception names one creator, so a pattern can't be one: %1$s",
@@ -532,6 +540,9 @@ final class L10nTranslationsIn {
                 "Blokir kreator ini");
         table.put("Block this sound",
                 "Blokir suara ini");
+    }
+
+    private static void fill4(Map<String, String> table) {
         table.put("Blocked",
                 "Diblokir");
         table.put("Blocked %1$s",
@@ -540,9 +551,6 @@ final class L10nTranslationsIn {
                 "%1$s diblokir. Buka blokir");
         table.put("Blocked and hidden creators",
                 "Kreator yang diblokir dan disembunyikan");
-    }
-
-    private static void fill4(Map<String, String> table) {
         table.put("Blocked caption words",
                 "Kata yang diblokir di keterangan");
         table.put("Blocked creators",
@@ -655,6 +663,9 @@ final class L10nTranslationsIn {
                 "Menghapus video yang sudah ditonton");
         table.put("Clearing suggested accounts",
                 "Menghapus akun yang disarankan");
+    }
+
+    private static void fill5(Map<String, String> table) {
         table.put("Clearing, %1$d so far",
                 "Membersihkan, %1$d sejauh ini");
         table.put("Clears the recent events, saved crash reports, a recorded screen layout and the Hook status results above.",
@@ -663,9 +674,6 @@ final class L10nTranslationsIn {
                 "Tutup");
         table.put("Close PineDrama after",
                 "Tutup PineDrama setelah");
-    }
-
-    private static void fill5(Map<String, String> table) {
         table.put("Collapsed",
                 "Diciutkan");
         table.put("Color commenter names",
@@ -778,6 +786,9 @@ final class L10nTranslationsIn {
                 "Pengaturan tidak bisa dipulihkan. Coba lagi.");
         table.put("Couldn't save the change. Try again.",
                 "Perubahan tidak dapat disimpan. Coba lagi.");
+    }
+
+    private static void fill6(Map<String, String> table) {
         table.put("Couldn't save the feed capture. Try again.",
                 "Rekaman feed gagal disimpan. Coba lagi.");
         table.put("Couldn't save the font in PineDrama's storage. Free up some space and try again.",
@@ -786,9 +797,6 @@ final class L10nTranslationsIn {
                 "Klip foto langsung gagal disimpan. Coba lagi.");
         table.put("Couldn't save the seen-history file. Try again.",
                 "Tidak dapat menyimpan file riwayat. Coba lagi.");
-    }
-
-    private static void fill6(Map<String, String> table) {
         table.put("Couldn't save the settings backup. Try again.",
                 "Cadangan pengaturan tidak bisa disimpan. Coba lagi.");
         table.put("Couldn't save these choices. Try again.",
@@ -901,6 +909,9 @@ final class L10nTranslationsIn {
                 "Laporan diagnostik disalin ke papan klip");
         table.put("Diagnostics",
                 "Diagnostik");
+    }
+
+    private static void fill7(Map<String, String> table) {
         table.put("Didn't block %1$s. Try again in a moment.",
                 "PineDrama tidak memblokir %1$s. Coba lagi.");
         table.put("Didn't unblock %1$s. Try again in a moment.",
@@ -909,9 +920,6 @@ final class L10nTranslationsIn {
                 "Matikan");
         table.put("Disabled",
                 "Nonaktif");
-    }
-
-    private static void fill7(Map<String, String> table) {
         table.put("Discard edits",
                 "Buang perubahan");
         table.put("Dismissed %1$s suggested accounts",
@@ -946,6 +954,10 @@ final class L10nTranslationsIn {
                 "Drama");
         table.put("Draw a larger handle and a slightly thicker line on the progress bar, so it's easier to see where you are.",
                 "Gambar pegangan yang lebih besar dan garis yang sedikit lebih tebal pada bilah progres, agar lebih mudah melihat posisimu.");
+        table.put("Dub priority",
+                "Prioritas sulih suara");
+        table.put("Dubs",
+                "Sulih suara");
         table.put("Duet, Stitch and Add to Story",
                 "Duet, Stitch, dan Tambahkan ke Cerita");
         table.put("Each area shows how many of the things HushPine looks for were found in this PineDrama and how many are missing.",
@@ -1020,6 +1032,9 @@ final class L10nTranslationsIn {
                 "1 nilai yang dimuat diekspor");
         table.put("Fade the feed out before the hold",
                 "Redupkan feed sebelum feed ditahan");
+    }
+
+    private static void fill8(Map<String, String> table) {
         table.put("Fall back to the watermarked copy",
                 "Gunakan salinan bertanda air sebagai cadangan");
         table.put("Favorites range",
@@ -1032,9 +1047,6 @@ final class L10nTranslationsIn {
                 "Penggantian gate disimpan");
         table.put("Feature gate report copied",
                 "Laporan gate disalin");
-    }
-
-    private static void fill8(Map<String, String> table) {
         table.put("Feed and navigation",
                 "Feed dan navigasi");
         table.put("Feed capture not saved. Tap the row to retry.",
@@ -1097,6 +1109,14 @@ final class L10nTranslationsIn {
                 "Untuk akun yang terjemahannya dihapus PineDrama. Mengembalikan Lihat terjemahan di bawah deskripsi video dan di teks video, serta baris terjemahan di halaman Bahasa, di Pengaturan dan privasi. Mulai ulang PineDrama untuk melihatnya di video.");
         table.put("For accounts PineDrama took translation away from. Brings back See translation under video descriptions and in captions. Restart PineDrama to see the change.",
                 "Untuk akun yang terjemahannya dihapus PineDrama. Mengembalikan Lihat terjemahan di bawah deskripsi video dan di teks video. Mulai ulang PineDrama untuk melihat perubahannya.");
+        table.put("Force dub",
+                "Paksa sulih suara");
+        table.put("Force original dub",
+                "Paksa audio asli");
+        table.put("Force original subtitle",
+                "Paksa subtitel asli");
+        table.put("Force subtitle",
+                "Paksa subtitel");
         table.put("Forced %1$d gates",
                 "%1$d gate dipaksakan");
         table.put("Forced %1$d of %2$d gates",
@@ -1135,6 +1155,9 @@ final class L10nTranslationsIn {
                 "Teman tidak akan melihat titik hijau atau Active now saat kamu ada di PineDrama. Mode Ghost harus menyala. Status teman mungkin berhenti diperbarui untukmu, dan status terakhirmu bisa tetap terlihat beberapa saat.");
         table.put("Full changelog",
                 "Semua perubahan");
+    }
+
+    private static void fill9(Map<String, String> table) {
         table.put("Full comment sort options",
                 "Opsi urutan komentar lengkap");
         table.put("Full license",
@@ -1155,9 +1178,6 @@ final class L10nTranslationsIn {
                 "Detail gate");
         table.put("Generated defaults",
                 "Nilai bawaan yang dihasilkan");
-    }
-
-    private static void fill9(Map<String, String> table) {
         table.put("Gestures",
                 "Gerakan");
         table.put("Ghost mode",
@@ -1258,6 +1278,9 @@ final class L10nTranslationsIn {
                 "Sembunyikan drama mini");
         table.put("Hide new follower notifications",
                 "Sembunyikan notifikasi pengikut baru");
+    }
+
+    private static void fill10(Map<String, String> table) {
         table.put("Hide new followers",
                 "Sembunyikan pengikut baru");
         table.put("Hide online status",
@@ -1278,9 +1301,6 @@ final class L10nTranslationsIn {
                 "Sembunyikan pintasan profil berdasarkan nama");
         table.put("Hide promotional music",
                 "Sembunyikan musik promosi");
-    }
-
-    private static void fill10(Map<String, String> table) {
         table.put("Hide recommended searches before you type on PineDrama's search page. Your search history stays. This doesn't hide suggestions above comments.",
                 "Sembunyikan pencarian yang direkomendasikan sebelum mengetik di halaman pencarian PineDrama. Riwayat pencarian tetap ada. Ini tidak menyembunyikan saran di atas komentar.");
         table.put("Hide recorded LIVE broadcasts from the feed.",
@@ -1381,6 +1401,9 @@ final class L10nTranslationsIn {
                 "Sembunyikan tombol cari di feed");
         table.put("Hide the streak button in a chat and the reminder message that goes with it.",
                 "Sembunyikan tombol rentetan di obrolan beserta pesan pengingatnya.");
+    }
+
+    private static void fill11(Map<String, String> table) {
         table.put("Hide the suggested-search strip above the bottom tabs and let video details and side controls use its space. The top search button and comments stay unchanged.",
                 "Sembunyikan bilah saran pencarian di atas tab bawah agar detail video dan kontrol samping dapat menggunakan ruangnya. Tombol pencarian di atas dan komentar tidak berubah.");
         table.put("Hide the tab names above the feed",
@@ -1401,9 +1424,6 @@ final class L10nTranslationsIn {
                 "Sembunyikan video yang ditandai sebagai kemitraan berbayar atau konten bermerek.");
         table.put("Hide videos marked as using promotional music.",
                 "Sembunyikan video yang ditandai memakai musik promosi.");
-    }
-
-    private static void fill11(Map<String, String> table) {
         table.put("Hide videos posted as part of a playlist.",
                 "Sembunyikan video yang diunggah sebagai bagian dari playlist.");
         table.put("Hide videos posted by verified accounts.",
@@ -1420,8 +1440,16 @@ final class L10nTranslationsIn {
                 "Sembunyikan video dengan banyak penayangan dan sedikit suka. Angka lebih kecil lebih ketat, nol mematikan aturannya, dan satu video disisakan kalau semua yang baru dikirim feed akan hilang.");
         table.put("Hide videos with blocked sounds",
                 "Sembunyikan video dengan suara yang diblokir");
+        table.put("Hide videos without a preferred dub",
+                "Sembunyikan video tanpa sulih suara pilihan");
+        table.put("Hide videos without a preferred subtitle",
+                "Sembunyikan video tanpa subtitel pilihan");
         table.put("Hides rooms in the LIVE feed you swipe through, using the rules below. Blocked creators, Creators hidden on this phone and Creator exceptions apply here too, and Blocked caption words are checked against each LIVE's title. The first room the LIVE button opens isn't filtered. If every room would be hidden, one gets through so the feed keeps loading.",
                 "Menyembunyikan ruang di feed LIVE yang kamu geser, memakai aturan di bawah. Kreator yang diblokir, Kreator yang disembunyikan di ponsel ini, dan Pengecualian kreator berlaku di sini juga, dan “Kata yang diblokir di keterangan” dicocokkan dengan judul tiap LIVE. Ruang pertama yang dibuka tombol LIVE tidak difilter. Jika semua ruang akan disembunyikan, satu dibiarkan lolos agar feed tetap memuat.");
+        table.put("Hides videos with no dub from Dub priority in Playback. Putting original on that list keeps every video, since each has its own audio. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.",
+                "Menyembunyikan video tanpa sulih suara dari Prioritas sulih suara di Pemutaran. Menaruh original di daftar itu mempertahankan semua video, karena tiap video punya audio sendiri. Jika seluruh halaman akan tersembunyi, satu video tetap ada agar feed terus dimuat. Tidak berpengaruh selama daftar kosong.");
+        table.put("Hides videos with no subtitle from Subtitle priority in Playback, and that includes videos with no subtitles at all. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.",
+                "Menyembunyikan video tanpa subtitel dari Prioritas subtitel di Pemutaran, termasuk video tanpa subtitel sama sekali. Jika seluruh halaman akan tersembunyi, satu video tetap ada agar feed terus dimuat. Tidak berpengaruh selama daftar kosong.");
         table.put("Hiding",
                 "Menyembunyikan");
         table.put("Highest",
@@ -1496,6 +1524,9 @@ final class L10nTranslationsIn {
                 "Termasuk semua peristiwa diagnostik.");
         table.put("Includes these events: %1$s",
                 "Termasuk peristiwa berikut: %1$s");
+    }
+
+    private static void fill12(Map<String, String> table) {
         table.put("Inserted cards",
                 "Kartu yang disisipkan");
         table.put("Keep Clear display across videos",
@@ -1524,9 +1555,6 @@ final class L10nTranslationsIn {
                 "Tetap putar di latar belakang");
         table.put("Keep playing in the background is on in HushPine's Playback settings, so PineDrama gets 2 for this key and an override here has no effect until that switch is off.",
                 "Tetap putar di latar belakang aktif di pengaturan Pemutaran HushPine, jadi PineDrama mendapat 2 untuk kunci ini dan penggantian di sini tidak berpengaruh sampai tombol itu dimatikan.");
-    }
-
-    private static void fill12(Map<String, String> table) {
         table.put("Keep the Favorites tab",
                 "Pertahankan tab Favorit");
         table.put("Keep the feed on your real SIM",
@@ -1583,6 +1611,10 @@ final class L10nTranslationsIn {
                 "Penggantian Lab disetel ulang");
         table.put("Lab settings put back",
                 "Pengaturan Lab dikembalikan");
+        table.put("Language codes in the order you want them, separated by commas, like en, original. original means the video's own audio. Used when a video starts playing.",
+                "Kode bahasa sesuai urutan yang Anda mau, dipisahkan koma, seperti en, original. original berarti audio asli video. Dipakai saat video mulai diputar.");
+        table.put("Language codes in the order you want them, separated by commas, like en, original. original means the video's own subtitle. Used when a video starts playing.",
+                "Kode bahasa sesuai urutan yang Anda mau, dipisahkan koma, seperti en, original. original berarti subtitel asli video. Dipakai saat video mulai diputar.");
         table.put("Last change put back. Restart PineDrama to apply all changes.",
                 "Perubahan terakhir dikembalikan. Mulai ulang PineDrama untuk menerapkan semua perubahan.");
         table.put("Last change put back. The Feature Gate Lab rules were for another PineDrama version and were left out. Restart PineDrama to apply all changes.",
@@ -1615,6 +1647,9 @@ final class L10nTranslationsIn {
                 "Hilangkan suara dari video yang disimpan. Simpan suaranya juga tetap menulis berkas suara di sebelahnya kalau kamu mau keduanya.");
         table.put("Leave when PineDrama says time is up",
                 "Keluar saat PineDrama bilang waktunya habis");
+    }
+
+    private static void fill13(Map<String, String> table) {
         table.put("Length and views per like",
                 "Durasi dan penayangan per suka");
         table.put("Less than a minute left",
@@ -1647,9 +1682,6 @@ final class L10nTranslationsIn {
                 "Klip foto live: %1$s");
         table.put("Loaded current values. Loading all known gates…",
                 "Nilai saat ini dimuat. Memuat semua gate yang diketahui…");
-    }
-
-    private static void fill13(Map<String, String> table) {
         table.put("Loaded-value file export failed",
                 "Ekspor berkas nilai yang dimuat gagal");
         table.put("Loading gates…",
@@ -1738,6 +1770,9 @@ final class L10nTranslationsIn {
                 "Penyimpanan media");
         table.put("Message",
                 "Pesan");
+    }
+
+    private static void fill14(Map<String, String> table) {
         table.put("Message bubble colors, Inbox archive and sharing to more chats",
                 "Warna gelembung pesan, arsip Kotak Masuk, dan berbagi ke lebih banyak chat");
         table.put("Messages, profiles and search still work.",
@@ -1770,9 +1805,6 @@ final class L10nTranslationsIn {
                 "Pindahkan ke atas");
         table.put("Mute feed videos",
                 "Senyapkan video feed");
-    }
-
-    private static void fill14(Map<String, String> table) {
         table.put("Muted",
                 "Senyap");
         table.put("Nearby",
@@ -1861,6 +1893,9 @@ final class L10nTranslationsIn {
                 "Tidak ada preset yang dipilih. Pilih preset di atas.");
         table.put("No profile shortcuts have been seen yet",
                 "Belum ada pintasan profil yang terlihat");
+    }
+
+    private static void fill15(Map<String, String> table) {
         table.put("No recording yet. Start one, use a feature, then return here.",
                 "Belum ada rekaman. Mulai satu, pakai sebuah fitur, lalu kembali ke sini.");
         table.put("No reviewed presets for PineDrama %1$s yet",
@@ -1893,9 +1928,6 @@ final class L10nTranslationsIn {
                 "Tidak ada yang tercatat");
         table.put("Not a handle or id, so ignored: %1$s",
                 "Bukan nama akun atau id, jadi diabaikan: %1$s");
-    }
-
-    private static void fill15(Map<String, String> table) {
         table.put("Not a part HushPine fills in, so it's kept as typed: %1$s",
                 "Bukan bagian yang diisi HushPine, jadi tetap seperti yang diketik: %1$s");
         table.put("Not blocked",
@@ -1984,6 +2016,9 @@ final class L10nTranslationsIn {
                 "Hanya tab bawah yang sudah dimuat PineDrama di perangkat ini yang muncul di sini. Ini tidak memaksa tab yang tidak tersedia untuk muncul.");
         table.put("Only fields the Lab can check and copy safely are shown.",
                 "Hanya bidang yang bisa diperiksa dan disalin dengan aman oleh Lab yang ditampilkan.");
+    }
+
+    private static void fill16(Map<String, String> table) {
         table.put("Only from these countries",
                 "Hanya dari negara ini");
         table.put("Only tabs PineDrama has loaded on this device are shown here. This doesn't force unavailable tabs to appear.",
@@ -2016,9 +2051,6 @@ final class L10nTranslationsIn {
                 "Tetap buka feed, sisa %1$d hari ini");
         table.put("Open the feed anyway, the last time today",
                 "Tetap buka feed, terakhir kali hari ini");
-    }
-
-    private static void fill16(Map<String, String> table) {
         table.put("Open the feed once so HushPine can see which bottom tabs PineDrama loaded.",
                 "Buka beranda PineDrama untuk mendeteksi tab bawah yang dimuat.");
         table.put("Open the feed once so HushPine can see which tabs PineDrama loaded.",
@@ -2107,6 +2139,9 @@ final class L10nTranslationsIn {
                 "Foto dan stiker");
         table.put("Photos can't be saved to the folder in that file, so your photo folder was kept",
                 "Foto tidak bisa disimpan ke folder di file itu, jadi folder fotomu tetap dipakai");
+    }
+
+    private static void fill17(Map<String, String> table) {
         table.put("Pick a .ttf or .otf file of up to %1$s MB.",
                 "Pilih berkas .ttf atau .otf maksimal %1$s MB.");
         table.put("Pick a folder on internal storage, not an SD card",
@@ -2139,9 +2174,6 @@ final class L10nTranslationsIn {
                 "Bawaan PineDrama");
         table.put("PineDrama didn't accept the feedback. Try again later.",
                 "PineDrama tidak menerima masukannya. Coba lagi nanti.");
-    }
-
-    private static void fill17(Map<String, String> table) {
         table.put("PineDrama gets a blank advertising ID, like the one Android gives after you delete yours. Apps can't use it to recognize your phone.",
                 "PineDrama mendapat ID iklan kosong, seperti yang diberikan Android setelah kamu menghapusnya. Aplikasi tidak bisa memakainya untuk mengenali ponselmu.");
         table.put("PineDrama gets no location from your phone. The Region settings change your country and time zone. This switch stops the exact position.",
@@ -2222,10 +2254,17 @@ final class L10nTranslationsIn {
                 "Memposting");
         table.put("Prefer H.264 video",
                 "Utamakan video H.264");
+        table.put("Preferred dubs",
+                "Sulih suara pilihan");
+        table.put("Preferred subtitles",
+                "Subtitel pilihan");
         table.put("Preset applied",
                 "Preset diterapkan");
         table.put("Preset doesn't match the gates. Nothing changed.",
                 "Preset tidak cocok dengan gate. Tidak ada perubahan.");
+    }
+
+    private static void fill18(Map<String, String> table) {
         table.put("Preset saved. Turn on overrides to use it.",
                 "Preset disimpan. Aktifkan penggantian dulu.");
         table.put("Press and hold a profile picture to save the full size original to your photo destination.",
@@ -2262,9 +2301,6 @@ final class L10nTranslationsIn {
                 "Proksi %1$s mati. Matikan jika PineDrama tak termuat.");
         table.put("Proxy host",
                 "Host proksi");
-    }
-
-    private static void fill18(Map<String, String> table) {
         table.put("Proxy password",
                 "Kata sandi proksi");
         table.put("Proxy port",
@@ -2349,6 +2385,9 @@ final class L10nTranslationsIn {
                 "Ingatkan saya setiap");
         table.put("Remove",
                 "Hapus");
+    }
+
+    private static void fill19(Map<String, String> table) {
         table.put("Remove %1$s",
                 "Hapus %1$s");
         table.put("Remove all overrides",
@@ -2385,9 +2424,6 @@ final class L10nTranslationsIn {
                 "Atur ulang");
         table.put("Reset %1$d gates",
                 "%1$d gate diatur ulang");
-    }
-
-    private static void fill19(Map<String, String> table) {
         table.put("Reset %1$d of %2$d gates",
                 "%1$d dari %2$d gate diatur ulang");
         table.put("Reset 1 gate",
@@ -2472,6 +2508,9 @@ final class L10nTranslationsIn {
                 "Simpan sebagai video");
         table.put("Save box for chat stickers",
                 "Kotak simpan untuk stiker obrolan");
+    }
+
+    private static void fill20(Map<String, String> table) {
         table.put("Save build details",
                 "Simpan detail build");
         table.put("Save cancelled. Nothing was saved.",
@@ -2508,9 +2547,6 @@ final class L10nTranslationsIn {
                 "Simpan laporan");
         table.put("Save seen history to a file",
                 "Simpan riwayat video yang dilihat ke file");
-    }
-
-    private static void fill20(Map<String, String> table) {
         table.put("Save stopped when Wi-Fi dropped. Retry on Wi-Fi.",
                 "Simpan berhenti saat Wi-Fi putus. Ulangi lewat Wi-Fi.");
         table.put("Save the cover as well",
@@ -2595,6 +2631,9 @@ final class L10nTranslationsIn {
                 "Penyimpanan menunggu Wi-Fi atau jaringan lain yang tidak berkuota hingga 30 menit, dan berhenti jika kamu keluar darinya. Menyimpan bingkai tetap bisa di mana saja.");
         table.put("Saves your HushPine settings and Feature Gate Lab rules to a file.",
                 "Menyimpan pengaturan HushPine dan aturan Feature Gate Lab ke satu file.");
+    }
+
+    private static void fill21(Map<String, String> table) {
         table.put("Saving",
                 "Menyimpan");
         table.put("Saving %1$s of %2$s",
@@ -2631,9 +2670,6 @@ final class L10nTranslationsIn {
                 "Menyimpan video");
         table.put("Saving video to %1$s",
                 "Menyimpan video ke %1$s");
-    }
-
-    private static void fill21(Map<String, String> table) {
         table.put("Saving video: %1$s",
                 "Menyimpan video: %1$s");
         table.put("Screen time",
@@ -2718,6 +2754,9 @@ final class L10nTranslationsIn {
                 "Pisahkan kode negara dengan koma, misalnya GB, IE. Video yang diunggah dari tempat lain disembunyikan. Kosongkan untuk semua negara.");
         table.put("Separate country codes with commas. Videos posted from these are hidden, whatever the list above says.",
                 "Pisahkan kode negara dengan koma. Video yang diunggah dari negara ini disembunyikan, apa pun isi daftar di atas.");
+    }
+
+    private static void fill22(Map<String, String> table) {
         table.put("Separate handles or user IDs with commas. Their videos stay when a filter on post type, labels, age, length or counts would hide them. Ads, blocked creators, words, sounds, countries and caption languages still apply.",
                 "Pisahkan handle atau ID pengguna dengan koma. Videonya tetap tampil meski filter jenis kiriman, label, usia, durasi, atau jumlah akan menyembunyikannya. Iklan, kreator yang diblokir, kata, suara, negara, dan bahasa keterangan tetap berlaku.");
         table.put("Separate language codes with commas, like en, es. A video whose original caption is in another language is hidden. Videos with no caption, or only translated ones, always stay.",
@@ -2754,9 +2793,6 @@ final class L10nTranslationsIn {
                 "Menu bagikan");
         table.put("Shares range",
                 "Rentang bagikan");
-    }
-
-    private static void fill22(Map<String, String> table) {
         table.put("Shop",
                 "Toko");
         table.put("Shop order updates and coupon messages no longer take up rows in the Inbox. Your orders are unchanged.",
@@ -2841,6 +2877,9 @@ final class L10nTranslationsIn {
                 "Tampilkan zona waktu");
         table.put("Show the whole Activity and New followers lists instead of stopping at a View all button.",
                 "Tampilkan seluruh daftar Aktivitas dan Pengikut baru, bukan berhenti di tombol Lihat semua.");
+    }
+
+    private static void fill23(Map<String, String> table) {
         table.put("Show the whole video instead of cropping it to the window. Nothing changes on a tall phone, where it already fits. On a folding phone opened up, a squarer screen or a split view the sides or the ends stop being cut off. Photo slideshows get the same treatment on a squarer screen.",
                 "Tampilkan video secara utuh, bukan dipotong mengikuti jendela. Di ponsel yang tinggi tidak ada yang berubah karena videonya memang sudah pas. Di ponsel lipat yang dibuka, layar yang lebih persegi, atau mode layar terbagi, sisi atau ujung videonya tidak lagi terpotong. Tayangan slide foto diperlakukan sama di layar yang lebih persegi.");
         table.put("Show video length on profile grids",
@@ -2877,9 +2916,6 @@ final class L10nTranslationsIn {
                 "Masuk ke PineDrama sebelum menyimpan atau memulihkan riwayat video yang dilihat.");
         table.put("Sign in without a passkey",
                 "Masuk tanpa kunci sandi");
-    }
-
-    private static void fill23(Map<String, String> table) {
         table.put("Size limit reached. Recording saved to %1$s",
                 "Batas ukuran tercapai. Rekaman disimpan di %1$s");
         table.put("Skip PineDrama's setup screens",
@@ -2964,6 +3000,9 @@ final class L10nTranslationsIn {
                 "Tetap di video");
         table.put("Sticker",
                 "Stiker");
+    }
+
+    private static void fill24(Map<String, String> table) {
         table.put("Sticker added to Saved",
                 "Stiker ditambahkan ke stiker tersimpanmu");
         table.put("Sticker destination",
@@ -3000,9 +3039,6 @@ final class L10nTranslationsIn {
                 "Cegah mesin AI bawaan PineDrama berjalan, sehingga mesin itu tidak mendapat salinan semua yang dicatat PineDrama tentang penggunaanmu. PineDrama berjalan seolah mesin itu tidak ada.");
         table.put("Stop PineDrama's speed tests",
                 "Hentikan tes kecepatan PineDrama");
-    }
-
-    private static void fill24(Map<String, String> table) {
         table.put("Stop a long press on Like from opening PineDrama's repost action.",
                 "Cegah tekan lama pada Suka membuka aksi posting ulang PineDrama.");
         table.put("Stop a long press on Share from opening PineDrama's quick share action.",
@@ -3077,12 +3113,19 @@ final class L10nTranslationsIn {
                 "Nilai terstruktur teramati");
         table.put("Subscriber-only posts",
                 "Kiriman khusus pelanggan");
+        table.put("Subtitle priority",
+                "Prioritas subtitel");
+        table.put("Subtitles",
+                "Subtitel");
         table.put("Support HushPine",
                 "Dukung HushPine");
         table.put("Swap the website in shared links",
                 "Ganti situs di tautan yang dibagikan");
         table.put("Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.",
                 "Geser ke atas untuk episode berikutnya dan ke bawah untuk episode sebelumnya tanpa keluar dari layar penuh. Saat episode berakhir, episode berikutnya dimulai, bukan mengulang yang sama.");
+    }
+
+    private static void fill25(Map<String, String> table) {
         table.put("Swiping a message sideways no longer starts a reply to it. Taps and long presses work as before.",
                 "Menggeser pesan ke samping tidak lagi memulai balasan. Ketukan dan tekan lama tetap berfungsi seperti biasa.");
         table.put("System",
@@ -3123,9 +3166,6 @@ final class L10nTranslationsIn {
                 "Kreator itu sudah ada di daftar");
         table.put("That creator pattern could stall the feed, so it wasn't added: %1$s",
                 "Pola kreator itu bisa membuat feed macet, jadi tidak ditambahkan: %1$s");
-    }
-
-    private static void fill25(Map<String, String> table) {
         table.put("That creator pattern is too long, so it wasn't added: %1$s",
                 "Pola kreator itu terlalu panjang, jadi tidak ditambahkan: %1$s");
         table.put("That file has more than %1$s watch-history entries.",
@@ -3206,6 +3246,9 @@ final class L10nTranslationsIn {
                 "Lab tidak bisa dibuka. Kembali lalu buka lagi.");
         table.put("The Message requests row leaves the Inbox. Requests keep arriving and wait there until you turn this off.",
                 "Baris Permintaan pesan hilang dari Kotak Masuk. Permintaan tetap masuk dan menunggu di sana sampai kamu mematikan ini.");
+    }
+
+    private static void fill26(Map<String, String> table) {
         table.put("The New followers row leaves the top of the Inbox. The accounts still follow you.",
                 "Baris Pengikut baru hilang dari bagian atas Kotak Masuk. Akun-akun itu tetap mengikutimu.");
         table.put("The Tako assistant's conversation leaves the Inbox list.",
@@ -3246,9 +3289,6 @@ final class L10nTranslationsIn {
                 "Feed terbuka lagi");
         table.put("The feed locks by itself during these hours, on your phone's clock. Write days and hours like Mon-Fri 21:00-07:00; Sat Sun 13:00-15:00. Leave the days out for every day. A time that ends earlier than it starts runs past midnight.",
                 "Feed terkunci sendiri selama jam-jam ini, menurut jam ponselmu. Tulis hari dan jam seperti Mon-Fri 21:00-07:00; Sat Sun 13:00-15:00. Kosongkan hari agar berlaku setiap hari. Waktu yang berakhir lebih awal dari mulainya berlanjut melewati tengah malam.");
-    }
-
-    private static void fill26(Map<String, String> table) {
         table.put("The feed slowly dims during the last 45 seconds before the hold, so it doesn't come as a sudden stop. Needs a time budget and a hold.",
                 "Feed meredup perlahan selama 45 detik terakhir sebelum penahanan, jadi tidak datang sebagai henti mendadak. Perlu anggaran waktu dan penahanan.");
         table.put("The feed stops when this video ends.",
@@ -3329,6 +3369,9 @@ final class L10nTranslationsIn {
                 "Jam berapa pesan dikirim setiap hari.");
         table.put("The video you're watching keeps playing to its end after you leave PineDrama or turn the screen off, with PineDrama's own media notification to pause it. PineDrama's background play switch stays on while this is on. Restart PineDrama to apply this.",
                 "Video yang sedang kamu tonton tetap diputar sampai selesai setelah kamu keluar dari PineDrama atau mematikan layar, dengan notifikasi media PineDrama sendiri untuk menjedanya. Tombol putar di latar belakang milik PineDrama tetap aktif selama ini aktif. Mulai ulang PineDrama agar berlaku.");
+    }
+
+    private static void fill27(Map<String, String> table) {
         table.put("The voice and video call buttons leave the top of a chat. Calls still ring, and the chat details button stays.",
                 "Tombol panggilan suara dan video hilang dari bagian atas obrolan. Panggilan tetap berdering, dan tombol detail obrolan tetap ada.");
         table.put("There is no Lab change to undo.",
@@ -3369,9 +3412,6 @@ final class L10nTranslationsIn {
                 "Kunci ini tidak ada di daftar HushPine, jadi jenisnya tidak bisa diperiksa. Setel ulang penggantian.");
         table.put("This key touches account safety. Forcing it can change login, region, payment or security checks.",
                 "Kunci ini menyangkut keselamatan akun. Memaksanya bisa mengubah pemeriksaan login, wilayah, pembayaran, atau keamanan.");
-    }
-
-    private static void fill27(Map<String, String> table) {
         table.put("This line opens a rule and doesn't finish it: %1$s. Write two phrases as \"a\" & \"b\" for both, or \"a\" !& \"b\" for the first without the second.",
                 "Baris ini memulai sebuah aturan dan tidak menyelesaikannya: %1$s. Tulis dua frasa sebagai \"a\" & \"b\" untuk keduanya, atau \"a\" !& \"b\" untuk yang pertama tanpa yang kedua.");
         table.put("This list is too long to preview here. Saving still follows the usual limit.",
@@ -3452,6 +3492,9 @@ final class L10nTranslationsIn {
                 "Terjemahkan ke");
         table.put("Try a different word or clear the search. Switches from patches you didn't tick in Morphe Manager aren't listed.",
                 "Coba kata lain atau hapus pencarian. Sakelar dari patch yang tidak kamu centang di Morphe Manager tidak muncul.");
+    }
+
+    private static void fill28(Map<String, String> table) {
         table.put("Try again, or go back to PineDrama.",
                 "Coba lagi, atau kembali ke PineDrama.");
         table.put("Turn HushPine back on",
@@ -3492,9 +3535,6 @@ final class L10nTranslationsIn {
                 "Mati pukul %1$s");
         table.put("Two at once",
                 "Dua sekaligus");
-    }
-
-    private static void fill28(Map<String, String> table) {
         table.put("Two letters, like us, gb or jp.",
                 "Dua huruf, misalnya us, gb atau jp.");
         table.put("Type",
@@ -3575,6 +3615,9 @@ final class L10nTranslationsIn {
                 "Nilai");
         table.put("Value to return",
                 "Nilai yang dikembalikan");
+    }
+
+    private static void fill29(Map<String, String> table) {
         table.put("Value: %1$s to %2$s",
                 "Nilai: %1$s menjadi %2$s");
         table.put("Verified accounts",
@@ -3615,9 +3658,6 @@ final class L10nTranslationsIn {
                 "Video tidak bisa disimpan ke folder di file itu, jadi folder videomu tetap dipakai");
         table.put("Videos in search results show their cover and play when you open them. The feed and the videos you open play as usual.",
                 "Video di hasil pencarian menampilkan sampulnya dan diputar saat kamu membukanya. Feed dan video yang kamu buka diputar seperti biasa.");
-    }
-
-    private static void fill29(Map<String, String> table) {
         table.put("Views range",
                 "Rentang tayangan");
         table.put("Visual search",
@@ -3698,6 +3738,9 @@ final class L10nTranslationsIn {
                 "Menulis tanggal sebelum waktu hingga detik dengan cara singkat bahasamu, seperti 07/10/25.");
         table.put("Writing",
                 "Menulis");
+    }
+
+    private static void fill30(Map<String, String> table) {
         table.put("Writing the caption on the video",
                 "Menulis keterangan di video");
         table.put("Writing the caption on the video: %1$s",
@@ -3738,9 +3781,6 @@ final class L10nTranslationsIn {
                 "Nol berarti jalan keluar dari penahanan selalu tersedia. Angka lain adalah berapa kali sehari jalan keluar itu bisa dipakai. Setelah habis, penahanan tetap sampai hari dimulai ulang. Diabaikan saat anggaran terkunci, karena itu menghilangkan jalan keluar.");
         table.put("Zero shows the notice and leaves the feed alone. Anything else covers the feed for that many minutes once a budget is reached. Messages, profiles and search keep working, and nothing in the feed is thrown away.",
                 "Nol menampilkan pemberitahuan dan membiarkan feed apa adanya. Nilai lain menutupi feed selama sekian menit begitu batas tercapai. Pesan, profil, dan pencarian tetap berjalan, dan tidak ada isi feed yang dibuang.");
-    }
-
-    private static void fill30(Map<String, String> table) {
         table.put("Zero switches this off. A short reminder after that many minutes of watching, and again after the same again. Time on messages, a profile or search doesn't count, and nothing is shown while the feed is on hold.",
                 "Nol mematikan ini. Pengingat singkat setelah sekian menit menonton, lalu lagi setelah selang yang sama. Waktu di pesan, profil, atau pencarian tidak dihitung, dan tidak ada yang muncul selama feed ditahan.");
         table.put("Zero switches this off. After that many minutes with no touch on the screen, the video stops and PineDrama goes to the background, for when you fall asleep watching. Any touch starts the wait over.",

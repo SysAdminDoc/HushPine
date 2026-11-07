@@ -61,6 +61,7 @@ public class SettingsStatus {
     public static boolean seekbarThumbnailEnabled = false;
     public static boolean fullScreenHoldEnabled = false;
     public static boolean landscapeEpisodesEnabled = false;
+    public static boolean subtitleDubPreferenceEnabled = false;
     public static boolean keepListPositionEnabled = false;
     public static boolean keepPulledSoundsEnabled = false;
     public static boolean resumeVideoAfterScrollEnabled = false;
@@ -333,6 +334,10 @@ public class SettingsStatus {
 
     public static void enableLandscapeEpisodes() {
         landscapeEpisodesEnabled = true;
+    }
+
+    public static void enableSubtitleDubPreference() {
+        subtitleDubPreferenceEnabled = true;
     }
 
     public static void enableKeepListPosition() {

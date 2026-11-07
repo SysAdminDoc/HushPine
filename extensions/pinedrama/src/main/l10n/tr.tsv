@@ -1835,3 +1835,23 @@ Stops these lists jumping back to the top when you switch tabs or come back from
 Dramas	Diziler
 Episodes in full screen	Tam ekranda bölümler
 Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.	Tam ekrandan çıkmadan sonraki bölüm için yukarı, önceki için aşağı kaydır. Bir bölüm bitince aynısı tekrarlanmak yerine sonraki başlar.
+Subtitles	Altyazılar
+Subtitle priority	Altyazı önceliği
+Language codes in the order you want them, separated by commas, like en, original. original means the video's own subtitle. Used when a video starts playing.	İstediğin sırada dil kodları, virgülle ayrılmış, örneğin en, original. original videonun kendi altyazısı demektir. Video oynamaya başladığında kullanılır.
+Force subtitle	Altyazıyı zorla
+Always use the first subtitle on your list that a video has, even with captions off. A video with none of them plays as usual. Turning captions off yourself lasts until the app restarts.	Altyazılar kapalı olsa bile videoda bulunan, listendeki ilk altyazıyı her zaman kullanır. Hiçbiri olmayan video normal oynar. Altyazıları kendin kapatırsan bu, uygulama yeniden başlayana kadar geçerlidir.
+Force original subtitle	Orijinal altyazıyı zorla
+Always use the video's own subtitle, never a translated one, even with captions off. A video without one plays as usual.	Altyazılar kapalı olsa bile her zaman videonun kendi altyazısını kullanır, asla çevrilmişini değil. Kendi altyazısı olmayan video normal oynar.
+Dubs	Dublajlar
+Dub priority	Dublaj önceliği
+Language codes in the order you want them, separated by commas, like en, original. original means the video's own audio. Used when a video starts playing.	İstediğin sırada dil kodları, virgülle ayrılmış, örneğin en, original. original videonun kendi sesi demektir. Video oynamaya başladığında kullanılır.
+Force dub	Dublajı zorla
+Always use the first dub on your list that a video has, even with dubbing off. A video with none of them plays as usual.	Dublaj kapalı olsa bile videoda bulunan, listendeki ilk dublajı her zaman kullanır. Hiçbiri olmayan video normal oynar.
+Force original dub	Orijinal sesi zorla
+Always play the video's own audio, never an AI dub.	Her zaman videonun kendi sesini oynatır, asla yapay zeka dublajını değil.
+Hide videos without a preferred subtitle	Tercih edilen altyazısı olmayan videoları gizle
+Hides videos with no subtitle from Subtitle priority in Playback, and that includes videos with no subtitles at all. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.	Oynatma bölümündeki Altyazı önceliği listesinden altyazısı olmayan videoları, hiç altyazısı olmayanlar dahil gizler. Bütün sayfa gizlenecekse, akış yüklenmeye devam etsin diye bir video kalır. Liste boşken hiçbir şey yapmaz.
+Hide videos without a preferred dub	Tercih edilen dublajı olmayan videoları gizle
+Hides videos with no dub from Dub priority in Playback. Putting original on that list keeps every video, since each has its own audio. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.	Oynatma bölümündeki Dublaj önceliği listesinden dublajı olmayan videoları gizler. Listeye original eklersen tüm videolar kalır, çünkü her birinin kendi sesi vardır. Bütün sayfa gizlenecekse, akış yüklenmeye devam etsin diye bir video kalır. Liste boşken hiçbir şey yapmaz.
+Preferred subtitles	Tercih edilen altyazılar
+Preferred dubs	Tercih edilen dublajlar

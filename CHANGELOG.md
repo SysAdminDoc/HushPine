@@ -6,6 +6,7 @@
 
 * `Episodes in full screen` is new. Swipe up for the next episode and down for the previous one in PineDrama's full screen view, and an episode that ends moves on to the next instead of looping. Leave full screen and the portrait player is on the episode you stopped at. It's on by default, with a switch under Playback.
 * `Keep list position` is new. History and Favorites on your profile hold your place when you switch tabs or come back from a video, and a list you haven't scrolled still shows what you just watched. It's on by default.
+* `Subtitle and dub preference` is new. Give Playback an ordered list of subtitle languages and another for dubs, like `en, original`. Force subtitle and Force dub use the first one a video has, while Force original subtitle and Force original dub keep the video's own track. When nothing on your list exists, PineDrama's own pick plays as usual. Feed filter can also hide videos without one of your subtitles or dubs, and on Mini Drama a page it would empty keeps one video so there's still something to swipe from. A dub language counts only when the video has a dubbed track in it, since subtitles in your language don't mean a drama is spoken in it. Everything here starts off.
 
 ### Changes
 

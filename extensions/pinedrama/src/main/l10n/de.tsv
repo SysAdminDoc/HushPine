@@ -1838,3 +1838,23 @@ Stops these lists jumping back to the top when you switch tabs or come back from
 Dramas	Dramen
 Episodes in full screen	Episoden im Vollbild
 Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.	Wische nach oben für die nächste Episode und nach unten für die vorherige, ohne den Vollbildmodus zu verlassen. Wenn eine Episode endet, startet die nächste, statt dieselbe zu wiederholen.
+Subtitles	Untertitel
+Subtitle priority	Untertitel-Reihenfolge
+Language codes in the order you want them, separated by commas, like en, original. original means the video's own subtitle. Used when a video starts playing.	Sprachcodes in der gewünschten Reihenfolge, durch Kommas getrennt, zum Beispiel en, original. original steht für den eigenen Untertitel des Videos. Gilt, wenn ein Video startet.
+Force subtitle	Untertitel erzwingen
+Always use the first subtitle on your list that a video has, even with captions off. A video with none of them plays as usual. Turning captions off yourself lasts until the app restarts.	Verwendet immer den ersten Untertitel deiner Liste, den ein Video hat, auch wenn Untertitel aus sind. Ein Video ohne diese Untertitel läuft wie gewohnt. Wenn du Untertitel selbst ausschaltest, gilt das bis zum Neustart der App.
+Force original subtitle	Originaluntertitel erzwingen
+Always use the video's own subtitle, never a translated one, even with captions off. A video without one plays as usual.	Verwendet immer den eigenen Untertitel des Videos, nie einen übersetzten, auch wenn Untertitel aus sind. Ein Video ohne eigenen Untertitel läuft wie gewohnt.
+Dubs	Synchronfassungen
+Dub priority	Synchron-Reihenfolge
+Language codes in the order you want them, separated by commas, like en, original. original means the video's own audio. Used when a video starts playing.	Sprachcodes in der gewünschten Reihenfolge, durch Kommas getrennt, zum Beispiel en, original. original steht für den eigenen Ton des Videos. Gilt, wenn ein Video startet.
+Force dub	Synchronfassung erzwingen
+Always use the first dub on your list that a video has, even with dubbing off. A video with none of them plays as usual.	Verwendet immer die erste Synchronfassung deiner Liste, die ein Video hat, auch wenn die Synchronisierung aus ist. Ein Video ohne diese Fassungen läuft wie gewohnt.
+Force original dub	Originalton erzwingen
+Always play the video's own audio, never an AI dub.	Spielt immer den eigenen Ton des Videos ab, nie eine KI-Synchronfassung.
+Hide videos without a preferred subtitle	Videos ohne bevorzugten Untertitel ausblenden
+Hides videos with no subtitle from Subtitle priority in Playback, and that includes videos with no subtitles at all. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.	Blendet Videos ohne einen Untertitel aus der Untertitel-Reihenfolge unter Wiedergabe aus, auch Videos ganz ohne Untertitel. Würde eine ganze Seite verschwinden, bleibt ein Video, damit der Feed weiterlädt. Tut nichts, solange die Liste leer ist.
+Hide videos without a preferred dub	Videos ohne bevorzugte Synchronfassung ausblenden
+Hides videos with no dub from Dub priority in Playback. Putting original on that list keeps every video, since each has its own audio. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.	Blendet Videos ohne eine Synchronfassung aus der Synchron-Reihenfolge unter Wiedergabe aus. Steht original auf der Liste, bleiben alle Videos, denn jedes hat seinen eigenen Ton. Würde eine ganze Seite verschwinden, bleibt ein Video, damit der Feed weiterlädt. Tut nichts, solange die Liste leer ist.
+Preferred subtitles	Bevorzugte Untertitel
+Preferred dubs	Bevorzugte Synchronfassungen

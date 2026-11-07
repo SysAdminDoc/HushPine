@@ -1835,3 +1835,23 @@ Stops these lists jumping back to the top when you switch tabs or come back from
 Dramas	Dramas
 Episodes in full screen	Episódios em tela cheia
 Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.	Deslize para cima para o próximo episódio e para baixo para o anterior sem sair da tela cheia. Quando um episódio termina, o próximo começa em vez de repetir o mesmo.
+Subtitles	Legendas
+Subtitle priority	Prioridade de legendas
+Language codes in the order you want them, separated by commas, like en, original. original means the video's own subtitle. Used when a video starts playing.	Códigos de idioma na ordem que você quiser, separados por vírgulas, como en, original. original é a legenda do próprio vídeo. Usado quando um vídeo começa.
+Force subtitle	Forçar legenda
+Always use the first subtitle on your list that a video has, even with captions off. A video with none of them plays as usual. Turning captions off yourself lasts until the app restarts.	Sempre usa a primeira legenda da sua lista que o vídeo tiver, mesmo com as legendas desativadas. Um vídeo sem nenhuma delas toca normalmente. Se você mesmo desativar as legendas, fica assim até reiniciar o app.
+Force original subtitle	Forçar legenda original
+Always use the video's own subtitle, never a translated one, even with captions off. A video without one plays as usual.	Sempre usa a legenda do próprio vídeo, nunca uma traduzida, mesmo com as legendas desativadas. Um vídeo sem ela toca normalmente.
+Dubs	Dublagens
+Dub priority	Prioridade de dublagem
+Language codes in the order you want them, separated by commas, like en, original. original means the video's own audio. Used when a video starts playing.	Códigos de idioma na ordem que você quiser, separados por vírgulas, como en, original. original é o áudio do próprio vídeo. Usado quando um vídeo começa.
+Force dub	Forçar dublagem
+Always use the first dub on your list that a video has, even with dubbing off. A video with none of them plays as usual.	Sempre usa a primeira dublagem da sua lista que o vídeo tiver, mesmo com a dublagem desativada. Um vídeo sem nenhuma delas toca normalmente.
+Force original dub	Forçar áudio original
+Always play the video's own audio, never an AI dub.	Sempre toca o áudio do próprio vídeo, nunca uma dublagem por IA.
+Hide videos without a preferred subtitle	Ocultar vídeos sem uma legenda preferida
+Hides videos with no subtitle from Subtitle priority in Playback, and that includes videos with no subtitles at all. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.	Oculta vídeos sem uma legenda da Prioridade de legendas em Reprodução, incluindo vídeos sem nenhuma legenda. Se uma página inteira seria ocultada, um vídeo fica para o feed continuar carregando. Não faz nada enquanto a lista estiver vazia.
+Hide videos without a preferred dub	Ocultar vídeos sem uma dublagem preferida
+Hides videos with no dub from Dub priority in Playback. Putting original on that list keeps every video, since each has its own audio. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.	Oculta vídeos sem uma dublagem da Prioridade de dublagem em Reprodução. Colocar original nessa lista mantém todos os vídeos, já que cada um tem seu próprio áudio. Se uma página inteira seria ocultada, um vídeo fica para o feed continuar carregando. Não faz nada enquanto a lista estiver vazia.
+Preferred subtitles	Legendas preferidas
+Preferred dubs	Dublagens preferidas

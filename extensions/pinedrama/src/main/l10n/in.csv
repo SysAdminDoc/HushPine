@@ -1811,3 +1811,23 @@ Stops these lists jumping back to the top when you switch tabs or come back from
 Dramas,Drama
 Episodes in full screen,Episode saat layar penuh
 "Swipe up for the next episode and down for the previous one without leaving full screen. The next episode starts when one ends, instead of the same one looping.","Geser ke atas untuk episode berikutnya dan ke bawah untuk episode sebelumnya tanpa keluar dari layar penuh. Saat episode berakhir, episode berikutnya dimulai, bukan mengulang yang sama."
+Subtitles,Subtitel
+Subtitle priority,Prioritas subtitel
+"Language codes in the order you want them, separated by commas, like en, original. original means the video's own subtitle. Used when a video starts playing.","Kode bahasa sesuai urutan yang Anda mau, dipisahkan koma, seperti en, original. original berarti subtitel asli video. Dipakai saat video mulai diputar."
+Force subtitle,Paksa subtitel
+"Always use the first subtitle on your list that a video has, even with captions off. A video with none of them plays as usual. Turning captions off yourself lasts until the app restarts.","Selalu pakai subtitel pertama di daftar Anda yang dimiliki video, meski teks nonaktif. Video tanpa subtitel itu diputar seperti biasa. Jika Anda mematikan teks sendiri, itu berlaku sampai aplikasi dimulai ulang."
+Force original subtitle,Paksa subtitel asli
+"Always use the video's own subtitle, never a translated one, even with captions off. A video without one plays as usual.","Selalu pakai subtitel asli video, bukan terjemahan, meski teks nonaktif. Video tanpa subtitel asli diputar seperti biasa."
+Dubs,Sulih suara
+Dub priority,Prioritas sulih suara
+"Language codes in the order you want them, separated by commas, like en, original. original means the video's own audio. Used when a video starts playing.","Kode bahasa sesuai urutan yang Anda mau, dipisahkan koma, seperti en, original. original berarti audio asli video. Dipakai saat video mulai diputar."
+Force dub,Paksa sulih suara
+"Always use the first dub on your list that a video has, even with dubbing off. A video with none of them plays as usual.","Selalu pakai sulih suara pertama di daftar Anda yang dimiliki video, meski sulih suara nonaktif. Video tanpa sulih suara itu diputar seperti biasa."
+Force original dub,Paksa audio asli
+"Always play the video's own audio, never an AI dub.","Selalu putar audio asli video, bukan sulih suara AI."
+Hide videos without a preferred subtitle,Sembunyikan video tanpa subtitel pilihan
+"Hides videos with no subtitle from Subtitle priority in Playback, and that includes videos with no subtitles at all. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.","Menyembunyikan video tanpa subtitel dari Prioritas subtitel di Pemutaran, termasuk video tanpa subtitel sama sekali. Jika seluruh halaman akan tersembunyi, satu video tetap ada agar feed terus dimuat. Tidak berpengaruh selama daftar kosong."
+Hide videos without a preferred dub,Sembunyikan video tanpa sulih suara pilihan
+"Hides videos with no dub from Dub priority in Playback. Putting original on that list keeps every video, since each has its own audio. If a whole page would be hidden, one video stays so the feed keeps loading. Does nothing while the list is empty.","Menyembunyikan video tanpa sulih suara dari Prioritas sulih suara di Pemutaran. Menaruh original di daftar itu mempertahankan semua video, karena tiap video punya audio sendiri. Jika seluruh halaman akan tersembunyi, satu video tetap ada agar feed terus dimuat. Tidak berpengaruh selama daftar kosong."
+Preferred subtitles,Subtitel pilihan
+Preferred dubs,Sulih suara pilihan

@@ -11348,5 +11348,87 @@
    }
   ],
   "notes": "Issue #1. The Full screen pill opens the landscape viewer with a one-item list, so its pager has nowhere to go and the episode loops. LandscapeEpisodes hands it the series the portrait screen already holds and feeds its load-more from the series model. The natural check: open a drama, tap Full screen, swipe up and down, seek near the end and it moves to the next episode, then leave and portrait sits on the same episode. A feed video or profile keeps its one video."
+ },
+ {
+  "name": "Subtitle and dub preference",
+  "category": "Playback",
+  "default": true,
+  "kind": "runtime",
+  "source": [
+   "patches/src/main/kotlin/app/morphe/patches/pinedrama/interaction/captions/SubtitleDubPreferencePatch.kt",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/captions/TrackPreference.java",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/feedfilter/PreferredSubtitleFilter.java",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/feedfilter/PreferredDubFilter.java"
+  ],
+  "settings": [
+   {
+    "key": "subtitle_priority",
+    "default": "",
+    "type": "string",
+    "row": "Subtitle priority"
+   },
+   {
+    "key": "force_subtitle",
+    "default": false,
+    "type": "bool",
+    "row": "Force subtitle"
+   },
+   {
+    "key": "force_original_subtitle",
+    "default": false,
+    "type": "bool",
+    "row": "Force original subtitle"
+   },
+   {
+    "key": "dub_priority",
+    "default": "",
+    "type": "string",
+    "row": "Dub priority"
+   },
+   {
+    "key": "force_dub",
+    "default": false,
+    "type": "bool",
+    "row": "Force dub"
+   },
+   {
+    "key": "force_original_dub",
+    "default": false,
+    "type": "bool",
+    "row": "Force original dub"
+   },
+   {
+    "key": "hide_no_preferred_subtitle",
+    "default": false,
+    "type": "bool",
+    "row": "Hide videos without a preferred subtitle"
+   },
+   {
+    "key": "hide_no_preferred_dub",
+    "default": false,
+    "type": "bool",
+    "row": "Hide videos without a preferred dub"
+   }
+  ],
+  "surface": "feed",
+  "checks": [
+   {
+    "id": "patch-applied",
+    "what": "SettingsStatus.subtitleDubPreferenceEnabled is true, so the patch is in this APK and the extension loaded it.",
+    "steps": [
+     {
+      "probe": "fields",
+      "extras": {
+       "class": "app.morphe.extension.pinedrama.settings.SettingsStatus",
+       "names": "subtitleDubPreferenceEnabled"
+      },
+      "expect": "\\bsubtitleDubPreferenceEnabled=true\\b",
+      "waitMs": 1500
+     }
+    ],
+    "auto": true
+   }
+  ],
+  "notes": "Issue #4. Caption and dub lists depend on the viewer's language: an English account gets empty lists on almost every video, so check with the app set to another language. Subtitles are picked where the two caption configs are built; dubs where the audio decision and the audio switch read their language. The Drama tab's feed takes its own route, so the two hide rules run on both routes."
  }
 ]
