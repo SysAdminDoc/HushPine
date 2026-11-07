@@ -5,7 +5,6 @@
 package app.morphe.patches.pinedrama.interaction.favorites
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.util.smali.ExternalLabel
@@ -15,6 +14,7 @@ import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as b
 import app.morphe.patches.pinedrama.misc.settings.settingsPatch
 import app.morphe.patches.shared.compat.AppCompatibilities
 import app.morphe.util.addInstruction
+import app.morphe.util.addInstructions
 import app.morphe.util.addInstructionsWithLabels
 import app.morphe.util.getReference
 import app.morphe.util.implementationOrPatchException
