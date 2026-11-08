@@ -2,10 +2,6 @@
 
 ## Unreleased
 
-### Bug Fixes
-
-* Dramas you reopen from History or Collections now ask PineDrama for the first dub on your `Subtitle and dub preference` list, like the feed does, so their episodes can come with that dub. Before, those episodes arrived with no dubs at all and always played the original audio.
-
 ## 0.1.0 (2026-11-07)
 
 ### Features

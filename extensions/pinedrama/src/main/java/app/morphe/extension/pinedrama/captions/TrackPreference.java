@@ -38,8 +38,6 @@ public final class TrackPreference {
     /** The id the player reads as no subtitle. */
     static final int NONE = -1;
     private static final String SEPARATOR = "\\s*[,\\n]\\s*";
-    /** The series request's dub language, which the feed fills from the drama and History doesn't. */
-    static final String DRAMA_LANGUAGE = "recommend_multi_lang";
 
     /** One caption track: its language as sent, that language's primary tag, and its player id. */
     static final class Subtitle {
@@ -185,38 +183,6 @@ public final class TrackPreference {
         if (ORIGINAL.equals(choice)) return null;
         if (!forced && stock != null && stock.equals(own)) return stock;
         return choice;
-    }
-
-    /**
-     * A drama's episode list is about to be asked for. From the feed the request names the
-     * language the server dubbed the drama in, and the episodes come back with that dub. From
-     * History and Collections it names none, so they come back with no dub data at all. This
-     * names the first language on the dub list in that case.
-     */
-    public static Map<String, Object> dramaLanguage(Map<String, Object> params) {
-        HookStatus.bound(FAMILY, "drama language");
-        if (params == null) return null;
-        Object stock = params.get(DRAMA_LANGUAGE);
-        String language = requestLanguage(stock instanceof String ? (String) stock : null,
-            wantedDubs(), Settings.FORCE_ORIGINAL_DUB.get());
-        Logger.printDebug(() -> "Drama request: enter_from=" + params.get("enter_from")
-            + " " + DRAMA_LANGUAGE + "=" + stock + " -> " + language);
-        if (language == null || language.equals(stock)) return params;
-        Map<String, Object> asked = new LinkedHashMap<>(params);
-        asked.put(DRAMA_LANGUAGE, language);
-        return asked;
-    }
-
-    /**
-     * The language a drama's episodes are asked for in. The one the request already names stays,
-     * since that's the server's own pick for this drama. Otherwise the list's first entry, unless
-     * that's the original audio, which every episode has anyway.
-     */
-    static String requestLanguage(String stock, List<String> wanted, boolean forceOriginal) {
-        if (stock != null && !stock.isEmpty()) return stock;
-        if (forceOriginal || wanted.isEmpty()) return null;
-        String first = wanted.get(0);
-        return ORIGINAL.equals(first) ? null : first;
     }
 
     /** True keeps the "AI dubbed" label off a video the settings keep on its own audio. */

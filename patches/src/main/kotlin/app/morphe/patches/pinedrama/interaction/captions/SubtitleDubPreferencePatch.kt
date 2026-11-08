@@ -53,10 +53,6 @@ internal const val AUTO_DUBBING_SERVICE =
 internal const val CAPTION_USER_SETTING = ", isCaptionUserSettingOn: "
 internal const val HIDE_FOREIGN_ORIGINAL = ", shouldHideForeignOriginalSubtitle: "
 internal const val STALE_TARGET_HIDDEN = "stale_target_lang_hidden"
-internal const val SERIES_DETAIL_API =
-    "Lcom/ss/android/ugc/aweme/series/seriesdetail/api/PineDramaSeriesDetailApiAppDiff;"
-internal const val DRAMA_EPISODES_REQUEST = "getPineDramaDetailFeed"
-private const val MAP = "Ljava/util/Map;"
 private const val CAPTION_ITEM = "Lcom/ss/android/ugc/aweme/feed/model/CaptionItemModel;"
 private const val TRANSLATION_KEVA = "Lcom/ss/android/ugc/aweme/translation/service/ITranslationKevaService;"
 private val MOVES = setOf(
@@ -133,17 +129,6 @@ internal object OverlayTargetFingerprint : Fingerprint(
             it.opcode == Opcode.INVOKE_INTERFACE &&
                 it.getReference<MethodReference>()?.definingClass == TRANSLATION_KEVA
         }
-    },
-)
-
-/** Asks for a drama's episodes, whether it was opened from the feed, History or Collections. */
-internal object DramaEpisodesRequestFingerprint : Fingerprint(
-    definingClass = SERIES_DETAIL_API,
-    custom = { method, _ ->
-        method.implementation?.instructions?.any { instruction ->
-            instruction.opcode == Opcode.INVOKE_INTERFACE &&
-                instruction.getReference<MethodReference>()?.name == DRAMA_EPISODES_REQUEST
-        } == true
     },
 )
 
@@ -476,34 +461,6 @@ internal fun dubSwitchSite(method: Method): DubSwitchSite {
     )
 }
 
-/** The episode request's call and the register holding its query parameters. */
-internal class EpisodesRequestSite(val at: Int, val params: Int)
-
-internal fun episodesRequestSite(method: Method): EpisodesRequestSite {
-    val code = method.code()
-    val at = code.indexOfFirst {
-        it.opcode in setOf(Opcode.INVOKE_INTERFACE, Opcode.INVOKE_INTERFACE_RANGE) &&
-            it.getReference<MethodReference>()?.name == DRAMA_EPISODES_REQUEST
-    }
-    if (at < 0) throw PatchException("$PATCH: the episode request is no longer sent from here.")
-    val call = code[at].getReference<MethodReference>()!!
-    val types = call.parameterTypes.map { it.toString() }
-    val index = types.indexOf(MAP)
-    if (index < 0 || types.lastIndexOf(MAP) != index) {
-        throw PatchException("$PATCH: the episode request no longer takes one parameter map.")
-    }
-    // Past the interface itself, and a long or double before the map takes two registers.
-    val slot = 1 + types.take(index).sumOf { if (it == "J" || it == "D") 2 else 1 }
-    val register = when (val instruction = code[at]) {
-        is RegisterRangeInstruction -> instruction.startRegister + slot
-        is FiveRegisterInstruction -> with(instruction) {
-            listOf(registerC, registerD, registerE, registerF, registerG)[slot]
-        }
-        else -> throw PatchException("$PATCH: the episode request has an unexpected shape.")
-    }
-    return EpisodesRequestSite(at, register)
-}
-
 val subtitleDubPreferencePatch = bytecodePatch(
     name = "Subtitle and dub preference",
     description = "Lets you choose which subtitle and dub videos use, by language, and hide " +
@@ -627,18 +584,6 @@ val subtitleDubPreferencePatch = bytecodePatch(
             """
                 invoke-static {v$switchVideo, v${switchSite.language}, v${switchSite.choice}}, $EXTENSION->dubLanguage($OBJECT$STRING$OBJECT)$STRING
                 move-result-object v${switchSite.language}
-            """,
-        )
-
-        // Episodes come with dubs only in the language their request names, and only the feed
-        // names one. Opened from History or Collections, a drama would never have a dub to pick.
-        val episodes = DramaEpisodesRequestFingerprint.method
-        val request = episodesRequestSite(episodes)
-        episodes.addInstructionsAtControlFlowLabel(
-            request.at,
-            """
-                invoke-static/range {v${request.params} .. v${request.params}}, $EXTENSION->dramaLanguage($MAP)$MAP
-                move-result-object v${request.params}
             """,
         )
 
