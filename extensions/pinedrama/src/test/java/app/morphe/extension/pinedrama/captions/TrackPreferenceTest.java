@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import app.morphe.extension.pinedrama.captions.TrackPreference.Subtitle;
@@ -23,6 +24,7 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -369,6 +371,34 @@ public class TrackPreferenceTest {
         Settings.DUB_PRIORITY.save("en");
         Settings.FORCE_ORIGINAL_DUB.save(true);
         assertFalse(TrackPreference.dubForced(item));
+    }
+
+    @Test
+    public void dramasOpenedFromHistoryAskForTheFirstListedDub() {
+        Map<String, Object> history = new LinkedHashMap<>();
+        history.put("enter_from", "history");
+        assertSame("no list, no change", history, TrackPreference.dramaLanguage(history));
+
+        Settings.DUB_PRIORITY.save("id, en");
+        Map<String, Object> asked = TrackPreference.dramaLanguage(history);
+        assertEquals("id", asked.get(TrackPreference.DRAMA_LANGUAGE));
+        assertEquals("history", asked.get("enter_from"));
+        assertFalse("the app's own map stays as it was", history.containsKey(TrackPreference.DRAMA_LANGUAGE));
+
+        Map<String, Object> blank = new LinkedHashMap<>();
+        blank.put(TrackPreference.DRAMA_LANGUAGE, "");
+        assertEquals("id", TrackPreference.dramaLanguage(blank).get(TrackPreference.DRAMA_LANGUAGE));
+
+        Map<String, Object> feed = new LinkedHashMap<>();
+        feed.put(TrackPreference.DRAMA_LANGUAGE, "en");
+        assertSame("the feed's own pick stays", feed, TrackPreference.dramaLanguage(feed));
+
+        Settings.DUB_PRIORITY.save("original, id");
+        assertSame("own audio first never asks for a dub", history, TrackPreference.dramaLanguage(history));
+        Settings.DUB_PRIORITY.save("id");
+        Settings.FORCE_ORIGINAL_DUB.save(true);
+        assertSame(history, TrackPreference.dramaLanguage(history));
+        assertNull(TrackPreference.dramaLanguage(null));
     }
 
     @Test

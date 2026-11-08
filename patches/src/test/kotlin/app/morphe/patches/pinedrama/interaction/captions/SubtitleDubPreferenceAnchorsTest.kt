@@ -10,12 +10,14 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.Opcodes
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
+import com.android.tools.smali.dexlib2.iface.value.StringEncodedValue
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -199,7 +201,36 @@ class SubtitleDubPreferenceAnchorsTest {
         assertTrue("nothing overwrites the shown track first: $written", written.isEmpty())
     }
 
+    @Test
+    fun `one call sends every episode request and its map can carry the dub language`() = forEachBuild { classes, all ->
+        val senders = all.flatMap { it.methods }.filter { method ->
+            method.implementation?.instructions?.any {
+                it.opcode in INTERFACE_CALLS && it.getReference<MethodReference>()?.name == DRAMA_EPISODES_REQUEST
+            } == true
+        }
+        assertEquals("the feed, History and Collections share one sender", 1, senders.size)
+        val sender = senders.single()
+        assertEquals(SERIES_DETAIL_API, sender.definingClass)
+        val site = episodesRequestSite(sender)
+        val call = code(sender)[site.at]
+        assertEquals(Opcode.INVOKE_INTERFACE, call.opcode)
+        val passed = (call as FiveRegisterInstruction).let {
+            listOf(it.registerC, it.registerD, it.registerE, it.registerF, it.registerG).take(it.registerCount)
+        }
+        val mapAt = call.getReference<MethodReference>()!!.parameterTypes.map { it.toString() }.indexOf("Ljava/util/Map;")
+        assertEquals("the hook rewrites the map the call sends", passed[mapAt + 1], site.params)
+        assertEquals("nothing else in the call shares its register", 1, passed.count { it == site.params })
+
+        // TrackPreference.DRAMA_LANGUAGE: the request the map is built from has to keep this key.
+        val request = classes.getValue(SERIES_DETAIL_API.dropLast(1) + "\$ServerApi\$InnerFeedRequest;")
+        val keys = request.fields.flatMap { field ->
+            field.annotations.flatMap { it.elements }.mapNotNull { (it.value as? StringEncodedValue)?.value }
+        }
+        assertTrue("request keys: $keys", "recommend_multi_lang" in keys)
+    }
+
     private companion object {
         const val FINAL_OR_PRIVATE = 0x10 or 0x2
+        val INTERFACE_CALLS = setOf(Opcode.INVOKE_INTERFACE, Opcode.INVOKE_INTERFACE_RANGE)
     }
 }
