@@ -6,7 +6,7 @@ This guide maps the PineDrama app HushPine modifies to the code and release chec
 
 HushPine is a Morphe patch bundle, not a PineDrama APK. Morphe Manager takes a PineDrama bundle chosen by the user, applies the selected patches, and signs the result with the user's existing key. The patch definitions and the runtime code they inject live in separate Gradle modules.
 
-Source snapshot: version 0.1.0, 100 patch entries. Those come from gradle.properties and patches-list.json.
+Source snapshot: version 0.1.1, 100 patch entries. Those come from gradle.properties and patches-list.json.
 
 Published bundle: version 0.1.0, 100 patches.
 

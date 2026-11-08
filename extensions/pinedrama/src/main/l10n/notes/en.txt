@@ -1,3 +1,7 @@
+## 0.1.1 (2026-11-07)
+
+* Saved posts opened from Favorites play in your Dub priority language. Right after PineDrama started, the app asked for the dub before the video's audio tracks had loaded, so the request got lost and the original audio played.
+
 ## 0.1.0 (2026-11-07)
 
 * `Episodes in full screen` is new. Swipe up for the next episode and down for the previous one in PineDrama's full screen view, and an episode that ends moves on to the next instead of looping. Leave full screen and the portrait player is on the episode you stopped at. It's on by default, with a switch under Playback.
