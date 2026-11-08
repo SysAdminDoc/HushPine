@@ -12,6 +12,7 @@ import app.morphe.extension.shared.diagnostics.HookStatus;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -38,6 +39,14 @@ public final class TrackPreference {
     /** The id the player reads as no subtitle. */
     static final int NONE = -1;
     private static final String SEPARATOR = "\\s*[,\\n]\\s*";
+    /** How the player numbers an audio track report. */
+    static final int AUDIO = 1;
+    /** How many videos and players the dub correction keeps track of. */
+    private static final int REMEMBERED = 64;
+    /** The dub each video's switch asked for, by video id. */
+    private static final Map<String, String> ASKED = recent();
+    /** Players that already had their one look: video id plus the identity of its track list. */
+    private static final Map<String, Boolean> SETTLED = recent();
 
     /** One caption track: its language as sent, that language's primary tag, and its player id. */
     static final class Subtitle {
@@ -163,13 +172,69 @@ public final class TrackPreference {
         boolean forceOriginal = Settings.FORCE_ORIGINAL_DUB.get();
         List<String> wanted = wantedDubs();
         if (!forceOriginal && wanted.isEmpty()) return stock;
-        if (chosenByHand(handChoice)) return stock;
+        String video = Reflect.string(aweme, "getAid", "aid");
+        if (chosenByHand(handChoice)) {
+            remember(video, null);
+            return stock;
+        }
         String own = originalCode(readSubtitles(captionModel(aweme)));
         String choice = forceOriginal ? ORIGINAL : chooseDub(aweme, wanted);
         String result = settleDubLanguage(choice, own, stock, forceOriginal || Settings.FORCE_DUB.get());
+        remember(video, result != null && result.equals(choice) ? result : null);
         Logger.printDebug(() -> "Dub switch: " + describeDubs(aweme) + " stock=" + stock
             + " own=" + own + " choice=" + choice + " -> " + result);
         return result;
+    }
+
+    /**
+     * The player reports the track it now plays. Its list of audio tracks only exists from the
+     * first audio report on, and a switch that arrives before that is dropped, which is how a video
+     * opened from Favorites kept its original audio. So the first report with the list in place
+     * gets the dub the switch asked for. Later reports are left alone, so the app's own "See
+     * original" still sticks. Answers the track to switch to, or -1 to leave it.
+     */
+    public static int dubTrack(String video, Object tracks, int kind, int playing) {
+        HookStatus.bound(FAMILY, "dub track");
+        if (kind != AUDIO || video == null || !(tracks instanceof Map<?, ?>)) return NONE;
+        if (SETTLED.put(video + '#' + System.identityHashCode(tracks), Boolean.TRUE) != null) return NONE;
+        String language = ASKED.get(video);
+        if (language == null || Settings.FORCE_ORIGINAL_DUB.get() || wantedDubs().isEmpty()) return NONE;
+        int track = trackFor((Map<?, ?>) tracks, language, playing);
+        if (track != NONE) {
+            Logger.printDebug(() -> "Dub track: " + video + " plays " + playing + ", " + language
+                + " is " + track);
+        }
+        return track;
+    }
+
+    /** The player's id for that language, or -1 when it has none or already plays it. */
+    static int trackFor(Map<?, ?> tracks, String language, int playing) {
+        Object id = tracks.get(language);
+        if (!(id instanceof Integer)) return NONE;
+        int track = (Integer) id;
+        return track == playing ? NONE : track;
+    }
+
+    /** Keeps the dub a video's switch asked for, or forgets it with null. */
+    static void remember(String video, String language) {
+        if (video == null) return;
+        if (language == null) ASKED.remove(video);
+        else ASKED.put(video, language);
+    }
+
+    /** Forgets every asked dub and settled player, for tests. */
+    static void forgetDubs() {
+        ASKED.clear();
+        SETTLED.clear();
+    }
+
+    private static <V> Map<String, V> recent() {
+        return Collections.synchronizedMap(new LinkedHashMap<String, V>() {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<String, V> eldest) {
+                return size() > REMEMBERED;
+            }
+        });
     }
 
     /**

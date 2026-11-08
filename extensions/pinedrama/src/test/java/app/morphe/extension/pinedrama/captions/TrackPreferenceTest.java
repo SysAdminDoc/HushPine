@@ -23,6 +23,7 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -89,6 +90,11 @@ public class TrackPreferenceTest {
         Video video = new Video();
         Audio audio = new Audio();
         Translated translated;
+        String aid = "7681586082495925511";
+
+        public String getAid() {
+            return aid;
+        }
 
         public Video getVideo() {
             return video;
@@ -118,6 +124,7 @@ public class TrackPreferenceTest {
         Settings.FORCE_DUB.save(false);
         Settings.FORCE_ORIGINAL_DUB.save(false);
         TrackPreference.captionSwitch(true);
+        TrackPreference.forgetDubs();
     }
 
     @Before
@@ -393,6 +400,72 @@ public class TrackPreferenceTest {
         Settings.FORCE_ORIGINAL_DUB.save(true);
         assertNull(TrackPreference.dubLanguage(item, "id", null));
         assertEquals("id", TrackPreference.dubLanguage(item, "id", Choice.OVERRIDE_TO_TRANSLATED));
+    }
+
+    private static Item dubbed(String language) {
+        Item item = itemWithCaptions();
+        item.audio.tts.add(new Tts(language));
+        return item;
+    }
+
+    private static Map<String, Integer> playerTracks() {
+        Map<String, Integer> tracks = new HashMap<>();
+        tracks.put("id", 4);
+        return tracks;
+    }
+
+    @Test
+    public void aSwitchDroppedBeforeThePlayerHasItsTracksLandsOnTheFirstAudioReport() {
+        // Favorites > Posts on a cold start: the switch to "id" comes before the player has its
+        // list, so the player starts on track 1 and only its first audio report can fix that.
+        Item item = dubbed("id");
+        Settings.DUB_PRIORITY.save("id");
+        assertEquals("id", TrackPreference.dubLanguage(item, "id", null));
+        Map<String, Integer> tracks = playerTracks();
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, tracks, 0, 1));
+        assertEquals(4, TrackPreference.dubTrack(item.aid, tracks, TrackPreference.AUDIO, 1));
+        // The engine's report for the dub, and a later "See original", are both left alone.
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, tracks, TrackPreference.AUDIO, 4));
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, tracks, TrackPreference.AUDIO, 1));
+        // Opening the video again gets a new player with its own list.
+        assertEquals(4, TrackPreference.dubTrack(item.aid, playerTracks(), TrackPreference.AUDIO, 1));
+    }
+
+    @Test
+    public void thePlayerIsLeftAloneWhenNothingAskedForThatDub() {
+        Item item = dubbed("id");
+        Map<String, Integer> tracks = playerTracks();
+        // Off: the switch isn't remembered.
+        assertEquals("id", TrackPreference.dubLanguage(item, "id", null));
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, tracks, TrackPreference.AUDIO, 1));
+
+        Settings.DUB_PRIORITY.save("id");
+        assertEquals("id", TrackPreference.dubLanguage(item, "id", null));
+        assertEquals(-1, TrackPreference.dubTrack("7701427349606108447", playerTracks(), TrackPreference.AUDIO, 1));
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, null, TrackPreference.AUDIO, 1));
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, new HashMap<>(), TrackPreference.AUDIO, 1));
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, playerTracks(), TrackPreference.AUDIO, 4));
+
+        // A hand choice on the video wins over the remembered dub.
+        assertEquals("id", TrackPreference.dubLanguage(item, "id", Choice.OVERRIDE_TO_ORIGINAL));
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, playerTracks(), TrackPreference.AUDIO, 1));
+
+        // So does keeping the video's own audio.
+        assertEquals("id", TrackPreference.dubLanguage(item, "id", null));
+        Settings.FORCE_ORIGINAL_DUB.save(true);
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, playerTracks(), TrackPreference.AUDIO, 1));
+    }
+
+    @Test
+    public void aDubSettledToTheAppsOwnPickIsNotRemembered() {
+        // Nothing on the list for this video: the switch keeps the app's language and the player
+        // isn't pushed to it later.
+        Item item = dubbed("fr");
+        Settings.DUB_PRIORITY.save("id");
+        assertEquals("en", TrackPreference.dubLanguage(item, "en", null));
+        Map<String, Integer> tracks = playerTracks();
+        tracks.put("en", 5);
+        assertEquals(-1, TrackPreference.dubTrack(item.aid, tracks, TrackPreference.AUDIO, 1));
     }
 
     @Test

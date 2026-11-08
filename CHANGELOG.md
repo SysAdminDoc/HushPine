@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+* Saved posts opened from Favorites play in your Dub priority language. Right after PineDrama started, the app asked for the dub before the video's audio tracks had loaded, so the request got lost and the original audio played.
+
 ## 0.1.0 (2026-11-07)
 
 ### Features

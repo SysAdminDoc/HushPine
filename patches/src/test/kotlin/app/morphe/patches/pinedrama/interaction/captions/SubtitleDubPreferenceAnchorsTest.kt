@@ -126,6 +126,42 @@ class SubtitleDubPreferenceAnchorsTest {
     }
 
     @Test
+    fun `the first audio report can reach the engine the way the audio switch does`() = forEachBuild { _, all ->
+        val engine = engineSwitch(holding(all, "Enter switchAudioLanguage, languageCode="))
+        assertEquals("Lcom/ss/ttvideoengine/TTVideoEngine;", engine.engine.definingClass)
+        assertEquals("the audio track option", 0x2a3L, engine.option)
+        assertEquals(engine.getPlayer.definingClass, engine.player.type)
+
+        val report = holding(all, "Enter onInfoIdChanged: mediaType=")
+        assertTrue(report.named("I", "I") && report.returnType == "V")
+        val site = trackReportSite(report, engine.state)
+        val code = code(report)
+        assertEquals("the video id", "Ljava/lang/String;", site.video.type)
+        assertEquals(engine.state, site.tracks.definingClass)
+        assertEquals(engine.state, site.state.type)
+        assertEquals(
+            "distinct registers",
+            5,
+            setOf(site.holder, site.first, site.second, site.kind, site.playing).size,
+        )
+        // Both spare registers are written before anything reads them again.
+        val next = code[site.at + 1] as TwoRegisterInstruction
+        assertEquals(site.first, (code[site.at] as TwoRegisterInstruction).registerA)
+        assertEquals(site.first, next.registerB)
+        assertEquals(site.second, next.registerA)
+        // The kind and the track keep their copies of the arguments up to the hook.
+        val watched = setOf(site.kind, site.playing)
+        val copies = code.indices.filter { index ->
+            val opcode = code[index].opcode
+            if (index >= site.at || !opcode.setsRegister()) return@filter false
+            val written = (code[index] as OneRegisterInstruction).registerA
+            written in watched || (opcode.setsWideRegister() && written + 1 in watched)
+        }
+        assertEquals("only the argument copies write them: $copies", 2, copies.size)
+        assertTrue(copies.all { code[it].opcode == Opcode.MOVE_FROM16 })
+    }
+
+    @Test
     fun `one service check answers the dub label and it has room for the hand choice`() = forEachBuild { classes, _ ->
         val label = classes.getValue(AUTO_DUBBING_SERVICE).methods.filter { method ->
             method.named(AWEME_TYPE) && method.returnType == "Z" && code(method).any {

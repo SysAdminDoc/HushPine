@@ -117,6 +117,20 @@ internal object DubLabelFingerprint : Fingerprint(
     },
 )
 
+/** The player's audio language switch, which looks the language up in its list of audio tracks. */
+internal object AudioLanguageSwitchFingerprint : Fingerprint(
+    returnType = "V",
+    parameters = listOf(STRING),
+    strings = listOf("Enter switchAudioLanguage, languageCode="),
+)
+
+/** The player's report of the track it now plays, which builds that list on the first audio one. */
+internal object TrackReportFingerprint : Fingerprint(
+    returnType = "V",
+    parameters = listOf("I", "I"),
+    strings = listOf("Enter onInfoIdChanged: mediaType="),
+)
+
 /** Settles which track the caption overlay asks for, from the translation state it's handed. */
 internal object OverlayTargetFingerprint : Fingerprint(
     returnType = "L",
@@ -461,6 +475,127 @@ internal fun dubSwitchSite(method: Method): DubSwitchSite {
     )
 }
 
+/**
+ * How the audio switch reaches the engine: the player state it reads, the field and call that
+ * hand it the player, and the engine call with the option number that picks an audio track.
+ */
+internal class EngineSwitch(
+    val state: String,
+    val player: FieldReference,
+    val getPlayer: MethodReference,
+    val engine: MethodReference,
+    val option: Long,
+)
+
+internal fun engineSwitch(method: Method): EngineSwitch {
+    val code = method.code()
+    val getAt = code.indices.firstOrNull { index ->
+        index > 0 && code[index].opcode == Opcode.INVOKE_INTERFACE &&
+            code[index - 1].opcode == Opcode.IGET_OBJECT &&
+            code[index].getReference<MethodReference>()?.let { call ->
+                call.parameterTypes.isEmpty() &&
+                    call.definingClass == code[index - 1].getReference<FieldReference>()?.type
+            } == true
+    } ?: throw PatchException("$PATCH: the audio switch no longer asks for its player.")
+    val playerRead = code[getAt - 1] as TwoRegisterInstruction
+    val stateRead = (getAt - 2 downTo 0).firstOrNull { index ->
+        code[index].opcode == Opcode.IGET_OBJECT &&
+            (code[index] as TwoRegisterInstruction).registerA == playerRead.registerB
+    } ?: throw PatchException("$PATCH: the audio switch no longer reads its player state.")
+    val playerAt = (getAt + 1).takeIf { code.getOrNull(it)?.opcode == Opcode.MOVE_RESULT_OBJECT }
+        ?: throw PatchException("$PATCH: the audio switch drops its player.")
+    val player = (code[playerAt] as OneRegisterInstruction).registerA
+    val call = code.indices.firstOrNull { index ->
+        code[index].opcode == Opcode.INVOKE_VIRTUAL &&
+            (code[index] as FiveRegisterInstruction).registerC == player &&
+            code[index].getReference<MethodReference>()?.let {
+                it.returnType == "V" && it.takes("I", "I")
+            } == true
+    } ?: throw PatchException("$PATCH: the audio switch no longer tells the engine.")
+    val optionRegister = (code[call] as FiveRegisterInstruction).registerD
+    val option = (call downTo 0).firstNotNullOfOrNull { index ->
+        val instruction = code[index]
+        if (instruction is WideLiteralInstruction && instruction is OneRegisterInstruction &&
+            instruction.registerA == optionRegister
+        ) instruction.wideLiteral else null
+    } ?: throw PatchException("$PATCH: the audio switch's engine option isn't a constant.")
+    return EngineSwitch(
+        code[stateRead].getReference<FieldReference>()!!.type,
+        code[getAt - 1].getReference<FieldReference>()!!,
+        code[getAt].getReference<MethodReference>()!!,
+        code[call].getReference<MethodReference>()!!,
+        option,
+    )
+}
+
+/**
+ * Where the track report has logged the track and has two registers to spare: the read of the
+ * player state that starts the listener step, whose register and the next read's are both written
+ * before anything reads them. Also the state's video id and audio list, and the registers the
+ * report copies its kind and track into.
+ */
+internal class TrackReportSite(
+    val at: Int,
+    val holder: Int,
+    val state: FieldReference,
+    val first: Int,
+    val second: Int,
+    val video: FieldReference,
+    val tracks: FieldReference,
+    val kind: Int,
+    val kindParameter: Int,
+    val playing: Int,
+)
+
+internal fun trackReportSite(method: Method, stateType: String): TrackReportSite {
+    val code = method.code()
+    val registers = method.implementation!!.registerCount
+    fun copyOf(parameter: Int) = code.firstOrNull {
+        it.opcode == Opcode.MOVE_FROM16 && (it as TwoRegisterInstruction).registerB == parameter
+    }?.let { (it as TwoRegisterInstruction).registerA }
+        ?: throw PatchException("$PATCH: the track report no longer copies its arguments.")
+    val kindParameter = registers - 1
+    val kind = copyOf(kindParameter)
+    val playing = copyOf(registers - 2)
+
+    val logged = code.indexOfFirst { it.getReference<StringReference>()?.string == "onInfoIdChanged: mediaType=" }
+    if (logged < 0) throw PatchException("$PATCH: the track report no longer logs the track.")
+    val at = (logged + 1 until code.size - 1).firstOrNull { index ->
+        val read = code[index]
+        val next = code[index + 1]
+        read.opcode == Opcode.IGET_OBJECT && next.opcode == Opcode.IGET_OBJECT &&
+            read.getReference<FieldReference>()?.type == stateType &&
+            (read as TwoRegisterInstruction).registerA != read.registerB &&
+            (next as TwoRegisterInstruction).registerB == read.registerA &&
+            next.registerA != read.registerA
+    } ?: throw PatchException("$PATCH: the track report has no listener step after its log.")
+    val read = code[at] as TwoRegisterInstruction
+
+    fun stateField(type: String, after: Int = 0) = (after until code.size).firstNotNullOfOrNull { index ->
+        code[index].takeIf { it.opcode == Opcode.IGET_OBJECT }?.getReference<FieldReference>()
+            ?.takeIf { it.definingClass == stateType && it.type == type }
+    } ?: throw PatchException("$PATCH: the track report's player state lost its $type.")
+    val named = code.indexOfFirst { it.getReference<StringReference>()?.string == ", mSourceId=" }
+    if (named < 0) throw PatchException("$PATCH: the track report no longer names its video.")
+
+    val site = TrackReportSite(
+        at,
+        read.registerB,
+        code[at].getReference<FieldReference>()!!,
+        read.registerA,
+        (code[at + 1] as TwoRegisterInstruction).registerA,
+        stateField(STRING, named),
+        stateField("Ljava/util/Map;"),
+        kind,
+        kindParameter,
+        playing,
+    )
+    if (listOf(site.holder, site.first, site.second, site.kind, site.playing).any { it > 15 }) {
+        throw PatchException("$PATCH: the track report's registers moved past v15.")
+    }
+    return site
+}
+
 val subtitleDubPreferencePatch = bytecodePatch(
     name = "Subtitle and dub preference",
     description = "Lets you choose which subtitle and dub videos use, by language, and hide " +
@@ -584,6 +719,34 @@ val subtitleDubPreferencePatch = bytecodePatch(
             """
                 invoke-static {v$switchVideo, v${switchSite.language}, v${switchSite.choice}}, $EXTENSION->dubLanguage($OBJECT$STRING$OBJECT)$STRING
                 move-result-object v${switchSite.language}
+            """,
+        )
+
+        // That switch can reach the player before its list of audio tracks exists, and then it's
+        // dropped. The player's first audio report, once the list is built, gets the dub instead.
+        val engine = engineSwitch(AudioLanguageSwitchFingerprint.method)
+        val report = TrackReportFingerprint.method
+        val track = trackReportSite(report, engine.state)
+        report.addInstructionsAtControlFlowLabel(
+            track.at,
+            """
+                iget-object v${track.first}, v${track.holder}, ${track.state.smali()}
+                iget-object v${track.second}, v${track.first}, ${track.video.smali()}
+                iget-object v${track.first}, v${track.first}, ${track.tracks.smali()}
+                invoke-static {v${track.second}, v${track.first}, v${track.kind}, v${track.playing}}, $EXTENSION->dubTrack($STRING${OBJECT}II)I
+                move-result v${track.first}
+                if-ltz v${track.first}, :morphe_track_as_played
+                iget-object v${track.second}, v${track.holder}, ${track.state.smali()}
+                iget-object v${track.second}, v${track.second}, ${engine.player.smali()}
+                invoke-interface {v${track.second}}, ${engine.getPlayer.definingClass}->${engine.getPlayer.name}()${engine.getPlayer.returnType}
+                move-result-object v${track.second}
+                instance-of v${track.kind}, v${track.second}, ${engine.engine.definingClass}
+                if-eqz v${track.kind}, :morphe_track_as_played
+                check-cast v${track.second}, ${engine.engine.definingClass}
+                const v${track.kind}, ${engine.option}
+                invoke-virtual {v${track.second}, v${track.kind}, v${track.first}}, ${engine.engine.definingClass}->${engine.engine.name}(II)V
+                :morphe_track_as_played
+                move/from16 v${track.kind}, v${track.kindParameter}
             """,
         )
 
