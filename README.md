@@ -20,9 +20,9 @@ HushPine is a set of [Morphe](https://morphe.software) patches for PineDrama, Ti
 
 Most switches start off, so a freshly patched PineDrama looks and works the way it ships until you turn something on. Changes are listed in the [changelog](CHANGELOG.md). This repo split off from [Hushfeed](https://github.com/SysAdminDoc/hushfeed), which now covers TikTok only.
 
-HushPine v0.0.1 contains 97 patches for PineDrama 47.5.3. New in this one: PineDrama's patches move out of Hushfeed into their own bundle, and pressing and holding any tab at the top of the feed opens HushPine's settings. It needs Morphe Manager 2.3.0 or newer.
+HushPine v0.1.0 contains 100 patches for PineDrama 47.6.3. New in this one: full screen lets you swipe through a drama's episodes, and you can pick subtitles and dubs by language. It needs Morphe Manager 2.5.0 or newer.
 
-The main branch contains 100 patches, three more than v0.0.1: `Episodes in full screen`, `Keep list position` and `Subtitle and dub preference`.
+The main branch contains 100 patches, the same set as v0.1.0.
 
 **[Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine)**
 
