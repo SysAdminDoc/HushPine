@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changes
+
+* Retargeted to PineDrama 47.7.3 (version code 2024707030). All the patches apply to it, and every patch that hooks the app's own code was checked again against 47.7.3's code. 47.6.3 isn't a target anymore, so update PineDrama before you repatch.
+
 ## 0.1.1 (2026-11-07)
 
 ### Bug Fixes

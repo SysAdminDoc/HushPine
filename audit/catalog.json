@@ -3289,7 +3289,7 @@
   "checks": [
    {
     "id": "record-and-report",
-    "what": "A recording starts, PineDrama's gate reads during a few feed swipes are captured, and the report names the 47.6.3 target with at least one gate.",
+    "what": "A recording starts, PineDrama's gate reads during a few feed swipes are captured, and the report names the 47.7.3 target with at least one gate.",
     "steps": [
      {
       "open": "feed"
