@@ -22,7 +22,7 @@ Most switches start off, so a freshly patched PineDrama looks and works the way 
 
 HushPine v0.1.1 contains 100 patches for PineDrama 47.6.3. New in this one: saved posts from Favorites play in your dub language too. It needs Morphe Manager 2.5.0 or newer.
 
-The main branch contains 100 patches, the same set as v0.1.1.
+The main branch contains 101 patches: the 100 from v0.1.1 and Open on Home.
 
 **[Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine)**
 
@@ -34,7 +34,7 @@ The main branch contains 100 patches, the same set as v0.1.1.
 1. Get PineDrama 47.7.3 from [APKMirror](https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/pinedrama-short-dramas-47-7-3-release/), the file marked **BUNDLE** (an `.apkm`). Google Play only offers the newest build, which may not be the one HushPine supports. Manager merges the bundle into a single APK for you.
 2. Use Morphe Manager 2.5.0 or newer. HushPine is built against patcher 2.3.0, which Manager 2.5.0 was the first to ship, and older Managers won't load it. morphe-desktop 2.1.0 or newer works from a computer if you give it 2 GB of memory (`java -Xmx2g -jar morphe-desktop-2.1.0-all.jar patch ...`).
 3. Add HushPine as a source. On the phone, open [Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine). If **Open in Morphe** leaves you in the browser, open Manager, tap **Sources**, tap **+** and paste `https://github.com/SysAdminDoc/HushPine`. You can also download the `.mpp` file from the [latest release](https://github.com/SysAdminDoc/HushPine/releases/latest) and load it as a local bundle.
-4. Pick the patches. Simple mode selects 90 of the 100. The other 10 need Expert mode in Manager's settings, and they're marked in [Patches](#patches). Manager 2.5.0 shows all 100 HushPine patches in categories you can expand or collapse. Leave **Use embedded VM** on under **Settings > Patcher**, since it lets the patcher use whatever memory the phone can spare.
+4. Pick the patches. Simple mode selects 91 of the 101. The other 10 need Expert mode in Manager's settings, and they're marked in [Patches](#patches). Manager 2.5.0 shows all 101 HushPine patches in categories you can expand or collapse. Leave **Use embedded VM** on under **Settings > Patcher**, since it lets the patcher use whatever memory the phone can spare.
 5. Uninstall store PineDrama, then install the patched app and log in. Android won't put one over the other because they're signed with different keys.
 
 If you patched PineDrama with Hushfeed before, patch again with HushPine using the same signing key and install over that copy.
@@ -47,7 +47,7 @@ The page comes in English, German, Spanish, Italian, Indonesian, Brazilian Portu
 
 ## Patches
 
-There are 100 patches.
+There are 101 patches.
 
 | Patch | What it does |
 |---|---|
@@ -116,6 +116,7 @@ There are 100 patches.
 | `Network request report` | Counts the requests PineDrama sends to its servers and adds the totals to the diagnostic report. It changes nothing in PineDrama, but it has no switch and most people don't need it. Expert mode only. |
 | `Notification controls` | Lets you turn off new follower notifications and streak reminders, which PineDrama has no switch for, or turn off PineDrama's notifications altogether. Starts off. Turn it on in HushPine settings > Inbox. |
 | `Open external links directly` | Opens website links from profiles and stories in your phone's own browser instead of PineDrama's built-in one. On by default. Turn it off in HushPine settings > Privacy. |
+| `Open on Home` | Starts PineDrama on Home every time. PineDrama sometimes starts on Discover instead, like in the first days after an install. On by default. Turn it off in HushPine settings > App, then restart PineDrama. |
 | `Open the comments at full height` | Opens the comment sheet at the full height of the screen instead of part way up. Starts off. Turn it on in HushPine settings > Comments. |
 | `Play SDR instead of HDR` | Plays the normal version of HDR videos, so your screen doesn't suddenly jump to full brightness. Starts off. Turn it on in HushPine settings > Playback. |
 | `Playback quality` | Lets you choose the video quality, like highest, lowest or 720p, and set a lower quality for mobile data to use less data. Starts off. Pick a quality in HushPine settings > Playback. |
