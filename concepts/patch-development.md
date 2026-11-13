@@ -1,12 +1,12 @@
 # App and patch development map
 
-This guide maps the PineDrama app HushPine modifies to the code and release checks that make a patch. Its version and patch counts were last synced with the source on 2026-11-07. The generated [patch catalog](../patches-list.json) is the current source of truth for patch names and compatibility.
+This guide maps the PineDrama app HushPine modifies to the code and release checks that make a patch. Its version and patch counts were last synced with the source on 2026-11-12. The generated [patch catalog](../patches-list.json) is the current source of truth for patch names and compatibility.
 
 ## What HushPine ships
 
 HushPine is a Morphe patch bundle, not a PineDrama APK. Morphe Manager takes a PineDrama bundle chosen by the user, applies the selected patches, and signs the result with the user's existing key. The patch definitions and the runtime code they inject live in separate Gradle modules.
 
-Source snapshot: version 0.1.1, 100 patch entries. Those come from gradle.properties and patches-list.json.
+Source snapshot: version 0.2.0, 101 patch entries. Those come from gradle.properties and patches-list.json.
 
 Published bundle: version 0.1.1, 100 patches.
 
@@ -76,7 +76,7 @@ The Morphe Gradle plugin and the default extension namespace are configured in s
 
 The runtime code is grouped by feature under extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/. Search the generated patch catalog by display name first, then follow its dependencies into the Kotlin and Java sources.
 
-The current catalog's 100 patches are grouped as follows:
+The current catalog's 101 patches are grouped as follows:
 
 | Manager category | Patches |
 | --- | ---: |
@@ -90,7 +90,7 @@ The current catalog's 100 patches are grouped as follows:
 | Playback | 16 |
 | Privacy | 14 |
 | Search | 4 |
-| Settings | 14 |
+| Settings | 15 |
 
 The [patch catalog](../patches-list.json) has the complete names and plain-English descriptions. Keep the prose in that generated catalog aligned with the README's patch table and the in-app setting title.
 

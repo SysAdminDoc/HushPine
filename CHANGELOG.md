@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.2.0 (2026-11-12)
+
 ### Features
 
 * `Open on Home` (on by default) starts PineDrama on the Home tab every time. It used to open on Discover for some accounts.

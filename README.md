@@ -1,7 +1,7 @@
 ![HushPine. PineDrama, on your terms.](assets/readme-hero.png)
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.1.1-4E9F7C" alt="Version 0.0.1"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.2.0-4E9F7C" alt="Version 0.0.1"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License GPL-3.0"></a>
   <img src="https://img.shields.io/badge/platform-Android-3DDC84" alt="Platform Android">
   <a href="https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/"><img alt="PineDrama 47.7.3" src="https://img.shields.io/badge/PineDrama-47.7.3-2F6B4F"></a>
