@@ -22,7 +22,7 @@ Most switches start off, so a freshly patched PineDrama looks and works the way 
 
 HushPine v0.2.0 contains 101 patches for PineDrama 47.7.3. New in this one: it's built for PineDrama 47.7.3, and `Open on Home` keeps PineDrama from starting on Discover. It needs Morphe Manager 2.5.0 or newer.
 
-The main branch contains 101 patches: the 100 from v0.1.1 and Open on Home.
+The main branch contains 101 patches, the same set as v0.2.0.
 
 **[Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine)**
 
