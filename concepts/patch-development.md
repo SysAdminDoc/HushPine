@@ -8,7 +8,7 @@ HushPine is a Morphe patch bundle, not a PineDrama APK. Morphe Manager takes a P
 
 Source snapshot: version 0.2.0, 101 patch entries. Those come from gradle.properties and patches-list.json.
 
-Published bundle: version 0.1.1, 100 patches.
+Published bundle: version 0.2.0, 101 patches.
 
 Those come from patches-bundle.json and the release it names, and 0.0.0 means nothing has shipped yet. The source runs ahead of the published bundle until the next release ships. The index moves only after a new bundle is published and verified, which is the release sequence described in CONTRIBUTING.md. Don't hand-edit the index to make the two match.
 
