@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changes
+
+* The release notes on GitHub stop after the update steps now. They no longer end with a Checked list.
+
 ## 0.2.0 (2026-11-13)
 
 ### Features
