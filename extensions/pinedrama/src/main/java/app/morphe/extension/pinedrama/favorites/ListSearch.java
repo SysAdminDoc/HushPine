@@ -222,7 +222,12 @@ public final class ListSearch {
         }
     }
 
-    /** The list on screen in the bar's column: a page's own list first, else the deepest one shown. */
+    /**
+     * The list on screen in the bar's column: a page's own list first, else the deepest one shown.
+     * The pager that holds the Dramas and Posts pages is a list too, one page per row, and it
+     * covers more of the screen than the list on the page it shows, so a list with another list
+     * inside it never counts.
+     */
     static View listUnder(View bar) {
         ViewParent parent = bar.getParent();
         if (!(parent instanceof ViewGroup)) return null;
@@ -231,7 +236,7 @@ public final class ListSearch {
         int bestArea = 0;
         for (View list : ListTools.lists()) {
             int area = shownArea(list);
-            if (area > bestArea && isInside(list, column)) {
+            if (area > bestArea && isInside(list, column) && !hasListInside(list)) {
                 best = list;
                 bestArea = area;
             }
@@ -260,6 +265,16 @@ public final class ListSearch {
         while (parent instanceof View) {
             if (parent == ancestor) return true;
             parent = parent.getParent();
+        }
+        return false;
+    }
+
+    static boolean hasListInside(View view) {
+        if (!(view instanceof ViewGroup)) return false;
+        ViewGroup group = (ViewGroup) view;
+        for (int index = 0; index < group.getChildCount(); index++) {
+            View child = group.getChildAt(index);
+            if (ListTools.isList(child) || hasListInside(child)) return true;
         }
         return false;
     }

@@ -170,6 +170,29 @@ public class ListToolsTest {
         assertEquals(0, pager.height);
     }
 
+    @Test public void theSearchReadsTheListOnThePageNotThePagerAroundIt() {
+        // PineDrama's pager is a list too, with a tab's whole page in each row, and it covers
+        // more of the screen than the list on the page it shows. Both get handed over.
+        ViewGroup oldPager = (ViewGroup) column.getChildAt(1);
+        oldPager.removeView(list);
+        column.removeView(oldPager);
+        RecyclerView pager = new RecyclerView(activity);
+        pager.setOrientation(LinearLayout.HORIZONTAL);
+        FrameLayout page = new FrameLayout(activity);
+        page.addView(list, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 600));
+        pager.addView(page, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        column.addView(pager, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        idle();
+        ListTools.attach(pager);
+        ListTools.attach(list);
+        idle();
+        View bar = ListSearch.barIn(column);
+        assertNotNull(bar);
+        assertSame("the search reads the drama grid, not the pages around it", list, ListSearch.listUnder(bar));
+    }
+
     @Test public void theSearchBarSwitchOffAddsNothing() {
         Settings.LIST_SEARCH.save(false);
         ListTools.attach(list);
