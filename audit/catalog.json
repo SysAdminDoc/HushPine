@@ -11339,6 +11339,54 @@
   "notes": "Issue #2. History and Favorites share one gate class that refreshes the list when the page comes back into view, and a refresh clears the list, so a deep position lands at the top. ListPosition answers that gate with no refresh while the list is scrolled away from its top. The natural check: scroll deep in History, switch to Favorites and back, and it stays put. A list at its top still refreshes, and favoriting something still updates Favorites."
  },
  {
+  "name": "List search and tap to top",
+  "category": "Settings",
+  "default": true,
+  "kind": "runtime",
+  "source": [
+   "patches/src/main/kotlin/app/morphe/patches/pinedrama/interaction/favorites/ListToolsPatch.kt",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/favorites/ListTools.java",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/favorites/ListSearch.java",
+   "extensions/pinedrama/src/main/java/app/morphe/extension/pinedrama/favorites/ListScan.java"
+  ],
+  "settings": [
+   {
+    "key": "list_search",
+    "default": true,
+    "type": "bool",
+    "row": "Search History and Favorites",
+    "restart": true
+   },
+   {
+    "key": "list_tab_to_top",
+    "default": true,
+    "type": "bool",
+    "row": "Tap the tab you're on to go back to the top",
+    "restart": false
+   }
+  ],
+  "surface": "profile",
+  "checks": [
+   {
+    "id": "patch-applied",
+    "what": "SettingsStatus.listToolsEnabled is true, so the patch is in this APK and the extension loaded it.",
+    "steps": [
+     {
+      "probe": "fields",
+      "extras": {
+       "class": "app.morphe.extension.pinedrama.settings.SettingsStatus",
+       "names": "listToolsEnabled"
+      },
+      "expect": "\blistToolsEnabled=true\b",
+      "waitMs": 1500
+     }
+    ],
+    "auto": true
+   }
+  ],
+  "notes": "Issue #11. Rides the refresh gate Keep list position answers: every History and Favorites page hands it its list as the page is built, so ListTools.attach registers the list, wraps the activity window's callback to watch taps, and puts the search bar between the tabs and the list. A tap on a selected tab in a row of tabs scrolls the lists below it to the top. The search reads row text while scrolling the real list, waiting at the end for the next page. The natural check: scroll deep in History, tap Dramas again and it goes to the top; type a title in the bar and tap the result."
+ },
+ {
   "name": "Episodes in full screen",
   "category": "Playback",
   "default": true,
