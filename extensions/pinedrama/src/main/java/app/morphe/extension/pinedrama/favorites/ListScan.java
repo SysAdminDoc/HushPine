@@ -43,6 +43,8 @@ final class ListScan {
     private int startedAt = -1;
     private long startedMillis;
     private long endSince;
+    /** Where the list was at the last step, before that step's scroll. */
+    private String placed;
     private boolean running;
     private boolean done;
 
@@ -139,10 +141,19 @@ final class ListScan {
                 finish();
                 return;
             }
-            if (list.canScrollVertically(1)) {
-                endSince = 0;
+            // A grid whose last row isn't full goes on answering that there's more below it, so
+            // the end is where a scroll stops moving the list, not where the list says it is.
+            // The scroll is still tried at the end: a page that just loaded gives it somewhere to go.
+            String here = place();
+            boolean moved = !here.equals(placed);
+            placed = here;
+            boolean more = list.canScrollVertically(1);
+            if (more) {
                 int height = list.getHeight() - list.getPaddingTop() - list.getPaddingBottom();
                 list.scrollBy(0, Math.max(1, height * 3 / 4));
+            }
+            if (more && moved) {
+                endSince = 0;
                 list.postDelayed(step, STEP_MILLIS);
             } else {
                 if (grew || endSince == 0) endSince = now;
@@ -162,6 +173,18 @@ final class ListScan {
         stop();
         done = true;
         changed.run();
+    }
+
+    /** Where the list is: its first row on screen and how far that row has gone up. */
+    private String place() {
+        if (!(list instanceof ViewGroup)) return "";
+        ViewGroup group = (ViewGroup) list;
+        for (int index = 0; index < group.getChildCount(); index++) {
+            View child = group.getChildAt(index);
+            int position = ListTools.positionOf(list, child);
+            if (position >= 0) return position + ":" + child.getTop();
+        }
+        return "";
     }
 
     /** Reads the rows on screen. True when one of them is new. */

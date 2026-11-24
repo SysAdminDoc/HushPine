@@ -25,6 +25,8 @@ public class RecyclerView extends LinearLayout {
     public Runnable onEnd;
     /** Rows that were clicked, by position. */
     public final List<Integer> clicked = new ArrayList<>();
+    /** A grid whose last row isn't full goes on saying it can scroll down once it's at the end. */
+    public boolean saysMoreAtTheEnd;
 
     public RecyclerView(Context context) {
         super(context);
@@ -52,7 +54,7 @@ public class RecyclerView extends LinearLayout {
     }
 
     @Override public boolean canScrollVertically(int direction) {
-        return direction < 0 ? first > 0 : first + shown < rows.size();
+        return direction < 0 ? first > 0 : saysMoreAtTheEnd || first + shown < rows.size();
     }
 
     @Override public void scrollBy(int x, int y) {

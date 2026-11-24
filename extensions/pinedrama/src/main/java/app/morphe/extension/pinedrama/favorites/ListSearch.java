@@ -396,14 +396,25 @@ public final class ListSearch {
         }
 
         void show() {
-            dialog.show();
             Window window = dialog.getWindow();
+            // Set before the page shows: a window reads this as it takes focus, not after.
             if (window != null) {
-                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
-                        | WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+                        | WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
             }
             box.requestFocus();
+            dialog.show();
+            if (window != null) {
+                window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            }
+            // And asked for once the box is in the window, for a phone that skips the first.
+            box.post(() -> {
+                InputMethodManager keyboard = (InputMethodManager)
+                        context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (keyboard != null && dialog.isShowing()) {
+                    keyboard.showSoftInput(box, InputMethodManager.SHOW_IMPLICIT);
+                }
+            });
             scan.start();
             refresh();
         }

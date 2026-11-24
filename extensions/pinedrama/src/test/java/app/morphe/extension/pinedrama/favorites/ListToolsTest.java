@@ -9,11 +9,13 @@ import static org.junit.Assert.assertTrue;
 import static org.robolectric.Shadows.shadowOf;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -30,6 +32,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowDialog;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -226,6 +229,39 @@ public class ListToolsTest {
         assertEquals("every row, the page that loaded while it looked included", 70, seen.size());
         assertEquals("Drama 0", seen.get(0).title);
         assertEquals("Later 69", seen.get(69).title);
+    }
+
+    @Test public void aGridThatKeepsSayingThereIsMoreStillFinishes() {
+        // PineDrama's grid answers that it can scroll down at its very end when the last row
+        // isn't full, which left the search page on "so far" for two minutes.
+        list.saysMoreAtTheEnd = true;
+        ListScan scan = new ListScan(list, () -> {});
+        scan.start();
+        idleFor(20_000);
+        assertTrue("it's done once scrolling stops moving the list", scan.done());
+        assertEquals(30, scan.items().size());
+    }
+
+    @Test public void aGridThatKeepsSayingThereIsMoreStillLoadsTheRest() {
+        list.saysMoreAtTheEnd = true;
+        list.onEnd = () -> list.addRows(40, "Later");
+        ListScan scan = new ListScan(list, () -> {});
+        scan.start();
+        idleFor(20_000);
+        assertTrue(scan.done());
+        assertEquals("the page that loaded at the end is read too", 70, scan.items().size());
+    }
+
+    @Test public void openingTheSearchBringsUpTheKeyboard() {
+        ListTools.attach(list);
+        idle();
+        ListSearch.barIn(column).performClick();
+        idle();
+        InputMethodManager keyboard = (InputMethodManager)
+                activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assertTrue("the box is ready to type in", shadowOf(keyboard).isSoftInputVisible());
+        ShadowDialog.getLatestDialog().dismiss();
+        idle();
     }
 
     @Test public void choosingAResultOpensThatRow() {
