@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
 
-final class VideoDownloads {
+public final class VideoDownloads {
     private static final Set<String> ACTIVE = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     /** The videos whose already-saved choice is on screen, a subset of {@link #ACTIVE}. */
     private static final Set<String> ASKING = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
@@ -650,16 +650,25 @@ final class VideoDownloads {
      * passed over because Remove watermark fills a missing one from the play address.
      */
     static List<String> originalSoundUrls(Object video, Object gear) {
-        if (gear == null || Boolean.TRUE.equals(Reflect.invoke(video, "hasDashBitrate"))) return Collections.emptyList();
-        String own = Reflect.string(Reflect.property(gear, "getPlayAddr", "playAddr"), "getUri", "uri");
-        if (own == null) return Collections.emptyList();
+        if (gear == null) return Collections.emptyList();
+        Object original = originalAddress(video, Reflect.property(gear, "getPlayAddr", "playAddr"));
+        return original == null ? Collections.emptyList() : List.copyOf(urls(original));
+    }
+
+    /**
+     * PineDrama's download file when {@code played} is an address of a different file, or null.
+     * Playback reads it too: Force original dub plays this file in place of the copy (#8).
+     */
+    public static Object originalAddress(Object video, Object played) {
+        if (Boolean.TRUE.equals(Reflect.invoke(video, "hasDashBitrate"))) return null;
+        String own = Reflect.string(played, "getUri", "uri");
+        if (own == null) return null;
         for (String field : new String[]{"downloadNoWatermarkAddr", "downloadAddr"}) {
             Object address = Reflect.readField(video, field);
             String uri = Reflect.string(address, "getUri", "uri");
-            List<String> found = urls(address);
-            if (uri != null && !uri.equals(own) && !found.isEmpty()) return List.copyOf(found);
+            if (uri != null && !uri.equals(own) && !urls(address).isEmpty()) return address;
         }
-        return Collections.emptyList();
+        return null;
     }
 
     static List<String> audioUrls(Object video, Object gear) {
@@ -690,7 +699,7 @@ final class VideoDownloads {
     }
 
     /** The https addresses inside a UrlModel, in the order it lists them. */
-    static List<String> urls(Object address) {
+    public static List<String> urls(Object address) {
         Object raw = Reflect.property(address, "getUrlList", "urlList");
         List<String> result = new ArrayList<>();
         if (raw instanceof List<?>) for (Object url : (List<?>) raw) {

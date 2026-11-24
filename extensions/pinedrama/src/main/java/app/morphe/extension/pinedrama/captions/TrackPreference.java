@@ -5,11 +5,13 @@
 package app.morphe.extension.pinedrama.captions;
 
 import app.morphe.extension.pinedrama.blockauthor.Reflect;
+import app.morphe.extension.pinedrama.download.VideoDownloads;
 import app.morphe.extension.pinedrama.feedfilter.CaptionLanguageFilter;
 import app.morphe.extension.pinedrama.settings.Settings;
 import app.morphe.extension.shared.Logger;
 import app.morphe.extension.shared.diagnostics.HookStatus;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -49,6 +51,8 @@ public final class TrackPreference {
     private static final Map<String, String> KNOWN = recent();
     /** Players that already had their one look: video id plus the identity of its track list. */
     private static final Map<String, Boolean> SETTLED = recent();
+    /** Copies already logged as swapped for the original file, so preloads don't repeat the line. */
+    private static final Map<String, Boolean> ORIGINAL_LOGGED = recent();
 
     /** One caption track: its language as sent, that language's primary tag, and its player id. */
     static final class Subtitle {
@@ -292,6 +296,118 @@ public final class TrackPreference {
         if (!forceOriginal && wanted.isEmpty()) return false;
         if (chosenByHand(handChoice)) return false;
         return forceOriginal || ORIGINAL.equals(chooseDub(aweme, wanted));
+    }
+
+    // Copies made for the app's language.
+
+    /**
+     * Points the player at PineDrama's original file when the video would play a copy made for
+     * the app's language. Runs on the player's copy of every video, for playback and preload alike.
+     *
+     * <p>In a language other than English, many dramas play from a copy with the dub mixed into
+     * its sound and subtitles drawn into its picture, and nothing on the video marks it as dubbed,
+     * so Force original dub had no dub track to turn off (#8). Every rendition of that copy has a
+     * file id that differs from PineDrama's download file, which keeps the original sound. Its own
+     * subtitles in the picture go with it, and PineDrama's captions still show over the original.
+     */
+    public static void playOriginal(Object video, Object player) {
+        HookStatus.bound(FAMILY, "original file");
+        if (player == null || !Settings.FORCE_ORIGINAL_DUB.get()) return;
+        Object gears = Reflect.invoke(video, "getRawBitRate");
+        Object played = gears instanceof List<?> && !((List<?>) gears).isEmpty()
+            ? Reflect.property(((List<?>) gears).get(0), "getPlayAddr", "playAddr")
+            : Reflect.invoke(video, "getPlayAddr");
+        Object original = VideoDownloads.originalAddress(video, played);
+        if (original == null) return;
+        Object address = playerAddress(Reflect.invoke(player, "getPlayAddr"), original);
+        if (address == null) return;
+        // Every setter is found before any is called, so a missing one leaves the copy whole.
+        String[] names = {"setBitRate", "setAudioBitRate", "setVideoModelStr", "setVideoModelMap",
+            "setVideoModel", "setFormat", "setPlayAddrBytevc1", "setPlayAddrH264", "setPlayAddr"};
+        Object[] values = {new ArrayList<>(), new ArrayList<>(), null, null, null, "mp4", null, address, address};
+        Method[] setters = new Method[names.length];
+        for (int i = 0; i < names.length; i++) {
+            setters[i] = setter(player.getClass(), names[i], values[i]);
+            if (setters[i] == null) {
+                String missing = names[i];
+                Logger.printDebug(() -> "Original file: the player's copy has no " + missing);
+                return;
+            }
+        }
+        for (int i = 0; i < setters.length; i++) call(setters[i], player, values[i]);
+        String own = Reflect.string(played, "getUri", "uri");
+        if (own != null && ORIGINAL_LOGGED.put(own, Boolean.TRUE) == null) {
+            Logger.printDebug(() -> "Original file: " + Reflect.string(original, "getUri", "uri")
+                + " plays instead of " + own);
+        }
+    }
+
+    /**
+     * The player's address for the original file, a new one of the same kind as {@code template}
+     * filled from the download file's address the way PineDrama fills its own. Null when the
+     * player's copy has no address to model it on or the new one can't be filled.
+     */
+    static Object playerAddress(Object template, Object original) {
+        if (template == null) return null;
+        Object address;
+        try {
+            address = template.getClass().getConstructor().newInstance();
+        } catch (ReflectiveOperationException | RuntimeException exception) {
+            return null;
+        }
+        String uri = Reflect.string(original, "getUri", "uri");
+        String key = Reflect.string(original, "getUrlKey", "urlKey");
+        Object[][] fields = {
+            {"setUri", uri},
+            {"setUrlKey", key == null || key.isEmpty() ? uri : key},
+            {"setUrlList", new ArrayList<>(VideoDownloads.urls(original))},
+            {"setFileHash", Reflect.invoke(original, "getFileHash")},
+            {"setWidth", Reflect.invoke(original, "getWidth")},
+            {"setHeight", Reflect.invoke(original, "getHeight")},
+            {"setSize", Reflect.invoke(original, "getSize")},
+            {"setSourceId", Reflect.invoke(template, "getSourceId")},
+            {"setDuration", Reflect.invoke(template, "getDuration")},
+            {"setFormat", "mp4"},
+            {"setBitRate", new ArrayList<>()},
+        };
+        for (Object[] field : fields) {
+            Method setter = setter(address.getClass(), (String) field[0], field[1]);
+            boolean required = "setUri".equals(field[0]) || "setUrlList".equals(field[0]);
+            if (setter == null || !call(setter, address, field[1])) {
+                if (required) return null;
+            }
+        }
+        return address;
+    }
+
+    /** A public one-argument method of that name taking {@code value}, or null. */
+    static Method setter(Class<?> type, String name, Object value) {
+        for (Method method : type.getMethods()) {
+            if (!method.getName().equals(name) || method.getParameterTypes().length != 1) continue;
+            Class<?> parameter = method.getParameterTypes()[0];
+            if (value == null ? !parameter.isPrimitive() : boxed(parameter).isInstance(value)) return method;
+        }
+        return null;
+    }
+
+    private static boolean call(Method setter, Object target, Object value) {
+        if (setter == null) return false;
+        try {
+            setter.invoke(target, value);
+            return true;
+        } catch (ReflectiveOperationException | RuntimeException exception) {
+            return false;
+        }
+    }
+
+    private static Class<?> boxed(Class<?> type) {
+        if (!type.isPrimitive()) return type;
+        if (type == int.class) return Integer.class;
+        if (type == long.class) return Long.class;
+        if (type == double.class) return Double.class;
+        if (type == float.class) return Float.class;
+        if (type == boolean.class) return Boolean.class;
+        return type;
     }
 
     // Feed filters.

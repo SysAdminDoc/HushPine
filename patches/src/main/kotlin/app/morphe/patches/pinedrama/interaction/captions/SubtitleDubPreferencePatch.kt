@@ -22,6 +22,7 @@ import app.morphe.util.findMutableMethodOf
 import app.morphe.util.getFreeRegisterProvider
 import app.morphe.util.getReference
 import app.morphe.util.implementationOrPatchException
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -131,6 +132,39 @@ internal object TrackReportFingerprint : Fingerprint(
     parameters = listOf("I", "I"),
     strings = listOf("Enter onInfoIdChanged: mediaType="),
 )
+
+internal const val VIDEO_TYPE = "Lcom/ss/android/ugc/aweme/feed/model/Video;"
+internal const val PLAYER_VIDEO = "Lcom/ss/android/ugc/playerkit/simapicommon/model/SimVideo;"
+
+/** Builds the player's copy of a video, for playback and preload alike. */
+internal object PlayerVideoFingerprint : Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    returnType = PLAYER_VIDEO,
+    parameters = listOf(VIDEO_TYPE),
+    custom = { method, _ -> isPlayerVideoBuilder(method) },
+)
+
+internal fun isPlayerVideoBuilder(method: Method): Boolean {
+    val calls = method.implementation?.instructions?.mapNotNull { it.getReference<MethodReference>() }
+        ?: return false
+    return calls.any { it.definingClass == PLAYER_VIDEO && it.name == "setBitRate" } &&
+        calls.any { it.definingClass == VIDEO_TYPE && it.name == "getRawBitRate" }
+}
+
+/** Where the builder hands back the player's copy, and the register holding it. */
+internal data class PlayerVideoSite(val at: Int, val built: Int)
+
+internal fun playerVideoSite(method: Method): PlayerVideoSite {
+    val code = method.code()
+    val at = code.indexOfLast { it.opcode == Opcode.RETURN_OBJECT }
+    if (at < 0) throw PatchException("$PATCH: the player's video builder no longer returns its copy.")
+    // The hook reads the video from its parameter, so nothing may write over it first.
+    val video = method.implementation!!.registerCount - 1
+    if (code.any { it.opcode.setsRegister() && (it as? OneRegisterInstruction)?.registerA == video }) {
+        throw PatchException("$PATCH: the player's video builder reuses its video register.")
+    }
+    return PlayerVideoSite(at, (code[at] as OneRegisterInstruction).registerA)
+}
 
 /** Settles which track the caption overlay asks for, from the translation state it's handed. */
 internal object OverlayTargetFingerprint : Fingerprint(
@@ -759,6 +793,15 @@ val subtitleDubPreferencePatch = bytecodePatch(
                 :morphe_track_as_played
                 move/from16 v${track.kind}, v${track.kindParameter}
             """,
+        )
+
+        // In other app languages a drama can play from a copy with the dub mixed into its sound
+        // and nothing marking it dubbed. Force original dub gives the player the original file.
+        val builder = PlayerVideoFingerprint.method
+        val built = playerVideoSite(builder)
+        builder.addInstructionsAtControlFlowLabel(
+            built.at,
+            "invoke-static {p0, v${built.built}}, $EXTENSION->playOriginal($OBJECT$OBJECT)V",
         )
 
         // The label only asks whether a dub exists, so it would still say AI dubbed over the
