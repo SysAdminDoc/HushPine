@@ -2377,7 +2377,7 @@
     "auto": true
    }
   ],
-  "notes": "The patch returns false early from PineDrama's two mandatory-login service methods, so a signed-out user is not forced to the login wall. The test account is signed in, so nothing visible changes; the registration is the applied proof. Owed natural check on a signed-out install: browse the feed past the point where stock PineDrama shows a login prompt (about 10 videos) and none appears."
+  "notes": "The patch returns false early from PineDrama's two mandatory-login service methods, answers yes to the server-driven no-login check the new user step turns into NON_LOGIN or FORCED_LOGIN, counts that step's skippable sign-in page as shown, and answers yes to SeriesInnerFeedInterceptor's one isLogin check, so a signed-out user is not sent to a sign-in page. Checked 2026-11-24 on a fresh signed-out install on HushPine_API36: launch went to the age question and Home with no sign-in page, a drama tapped in search results played episodes 1 and 2, and 14 swipes on Home brought no prompt. My list and Profile still ask for an account, as they should. The test account is signed in, so on the walk nothing visible changes; the registration is the applied proof."
  },
  {
   "name": "Disable screen capture detection",

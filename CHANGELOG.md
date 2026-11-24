@@ -16,6 +16,7 @@
 * Search results show a real tab name when PineDrama's server sends a placeholder like `${drama_tab_name}`. That tab now reads Drama in your app language.
 * Saved dramas keep their original sound when PineDrama's app language isn't English. In other languages many dramas play a copy made for that language, with a dub mixed into the sound and subtitles drawn into the picture, and nothing marks it as dubbed. A save used to keep that dub. It now pairs the sharper picture with the sound from PineDrama's own download file, and a batch save does the same.
 * `Force original dub` works on those copies too. The sound switches to the original voices from PineDrama's own download file, and the picture stays as it was.
+* PineDrama no longer stops a signed-out install at a sign-in page. A new install goes from the age question straight to Home, and a drama you tap in search results opens instead of asking you to sign in. Before, some installs got a sign-in page with no way to close it.
 
 ## 0.2.0 (2026-11-13)
 
