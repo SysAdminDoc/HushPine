@@ -236,21 +236,15 @@ class SubtitleDubPreferenceAnchorsTest {
     }
 
     @Test
-    fun `one builder makes the player's copy of a video and keeps the video to the end`() = forEachBuild { _, all ->
-        val builders = all.flatMap { it.methods }.filter { method ->
-            method.accessFlags and STATIC != 0 && method.returnType == PLAYER_VIDEO &&
-                method.named(VIDEO_TYPE) && isPlayerVideoBuilder(method)
-        }
-        assertEquals(builders.map { "${it.definingClass}->${it.name}" }.toString(), 1, builders.size)
-        val builder = builders.single()
-        val site = playerVideoSite(builder)
-        val video = builder.implementation!!.registerCount - 1
-        assertTrue("the copy is in v${site.built}, not the video's register", site.built != video)
-        assertEquals("the last instruction hands the copy back", code(builder).lastIndex, site.at)
+    fun `a video's audio getter hands back one register that isn't the video's`() = forEachBuild { classes, _ ->
+        val getter = audioGetter(classes.getValue(AWEME_TYPE).methods)
+        val site = audioReturnSite(getter)
+        val video = getter.implementation!!.registerCount - 1
+        assertTrue("the audio is in v${site.audio}, not the video's register", site.audio != video)
+        assertEquals("the last instruction hands the audio back", code(getter).lastIndex, site.at)
     }
 
     private companion object {
         const val FINAL_OR_PRIVATE = 0x10 or 0x2
-        const val STATIC = 0x8
     }
 }

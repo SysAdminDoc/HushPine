@@ -22,7 +22,6 @@ import app.morphe.util.findMutableMethodOf
 import app.morphe.util.getFreeRegisterProvider
 import app.morphe.util.getReference
 import app.morphe.util.implementationOrPatchException
-import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -133,37 +132,22 @@ internal object TrackReportFingerprint : Fingerprint(
     strings = listOf("Enter onInfoIdChanged: mediaType="),
 )
 
-internal const val VIDEO_TYPE = "Lcom/ss/android/ugc/aweme/feed/model/Video;"
-internal const val PLAYER_VIDEO = "Lcom/ss/android/ugc/playerkit/simapicommon/model/SimVideo;"
+internal const val AUDIO_TYPE = "Lcom/ss/android/ugc/aweme/feed/model/Audio;"
+private const val ORIGINAL_SOUND = "Lapp/morphe/extension/pinedrama/captions/OriginalSound;"
 
-/** Builds the player's copy of a video, for playback and preload alike. */
-internal object PlayerVideoFingerprint : Fingerprint(
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
-    returnType = PLAYER_VIDEO,
-    parameters = listOf(VIDEO_TYPE),
-    custom = { method, _ -> isPlayerVideoBuilder(method) },
-)
+/** Where a video's audio getter hands its audio back, and the register holding it. */
+internal data class AudioReturnSite(val at: Int, val audio: Int)
 
-internal fun isPlayerVideoBuilder(method: Method): Boolean {
-    val calls = method.implementation?.instructions?.mapNotNull { it.getReference<MethodReference>() }
-        ?: return false
-    return calls.any { it.definingClass == PLAYER_VIDEO && it.name == "setBitRate" } &&
-        calls.any { it.definingClass == VIDEO_TYPE && it.name == "getRawBitRate" }
-}
+/** The getter every reader of a video's dubs goes through, playback and preload alike. */
+internal fun audioGetter(methods: Iterable<Method>): Method =
+    methods.firstOrNull { it.name == "getAudio" && it.returnType == AUDIO_TYPE && it.parameterTypes.isEmpty() }
+        ?: throw PatchException("$PATCH: videos no longer have an audio getter.")
 
-/** Where the builder hands back the player's copy, and the register holding it. */
-internal data class PlayerVideoSite(val at: Int, val built: Int)
-
-internal fun playerVideoSite(method: Method): PlayerVideoSite {
+internal fun audioReturnSite(method: Method): AudioReturnSite {
     val code = method.code()
-    val at = code.indexOfLast { it.opcode == Opcode.RETURN_OBJECT }
-    if (at < 0) throw PatchException("$PATCH: the player's video builder no longer returns its copy.")
-    // The hook reads the video from its parameter, so nothing may write over it first.
-    val video = method.implementation!!.registerCount - 1
-    if (code.any { it.opcode.setsRegister() && (it as? OneRegisterInstruction)?.registerA == video }) {
-        throw PatchException("$PATCH: the player's video builder reuses its video register.")
-    }
-    return PlayerVideoSite(at, (code[at] as OneRegisterInstruction).registerA)
+    val returns = code.withIndex().filter { it.value.opcode == Opcode.RETURN_OBJECT }
+    if (returns.size != 1) throw PatchException("$PATCH: the audio getter has ${returns.size} returns.")
+    return AudioReturnSite(returns[0].index, (returns[0].value as OneRegisterInstruction).registerA)
 }
 
 /** Settles which track the caption overlay asks for, from the translation state it's handed. */
@@ -796,12 +780,16 @@ val subtitleDubPreferencePatch = bytecodePatch(
         )
 
         // In other app languages a drama can play from a copy with the dub mixed into its sound
-        // and nothing marking it dubbed. Force original dub gives the player the original file.
-        val builder = PlayerVideoFingerprint.method
-        val built = playerVideoSite(builder)
-        builder.addInstructionsAtControlFlowLabel(
-            built.at,
-            "invoke-static {p0, v${built.built}}, $EXTENSION->playOriginal($OBJECT$OBJECT)V",
+        // and no dubs listed. Force original dub gives it the original sound as a track to switch to.
+        val getter = mutable(audioGetter(mutableClassDefBy(AWEME_TYPE).methods))
+        val returned = audioReturnSite(getter)
+        getter.addInstructionsAtControlFlowLabel(
+            returned.at,
+            """
+                invoke-static {p0, v${returned.audio}}, $ORIGINAL_SOUND->audio($OBJECT$OBJECT)$OBJECT
+                move-result-object v${returned.audio}
+                check-cast v${returned.audio}, $AUDIO_TYPE
+            """,
         )
 
         // The label only asks whether a dub exists, so it would still say AI dubbed over the

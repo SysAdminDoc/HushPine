@@ -15,7 +15,7 @@
 
 * Search results show a real tab name when PineDrama's server sends a placeholder like `${drama_tab_name}`. That tab now reads Drama in your app language.
 * Saved dramas keep their original sound when PineDrama's app language isn't English. In other languages many dramas play a copy made for that language, with a dub mixed into the sound and subtitles drawn into the picture, and nothing marks it as dubbed. A save used to keep that dub. It now pairs the sharper picture with the sound from PineDrama's own download file, and a batch save does the same.
-* `Force original dub` works on those copies too. PineDrama plays its original file instead, so you hear the original voices. That file's picture can be lower resolution, and it shows its own subtitles in place of the ones drawn into the dubbed copy.
+* `Force original dub` works on those copies too. The sound switches to the original voices from PineDrama's own download file, and the picture stays as it was.
 
 ## 0.2.0 (2026-11-13)
 
