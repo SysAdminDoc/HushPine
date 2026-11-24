@@ -4173,7 +4173,7 @@
     },
     {
       "name": "List search and tap to top",
-      "description": "Adds a search bar above the History and Favorites lists on your profile that finds a title anywhere in them, and tapping the tab you're already on takes its list back to the top. On by default. Turn either off in HushPine settings.",
+      "description": "Adds a search bar above the History and Favorites lists, on your profile and in My list, that finds a title anywhere in them, and tapping the tab you're already on takes its list back to the top. On by default. Turn either off in HushPine settings.",
       "category": "Settings",
       "use": true,
       "dependencies": [

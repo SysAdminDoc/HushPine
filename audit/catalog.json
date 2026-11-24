@@ -11384,7 +11384,7 @@
     "auto": true
    }
   ],
-  "notes": "Issue #11. Rides the refresh gate Keep list position answers: every History and Favorites page hands it its list as the page is built, so ListTools.attach registers the list, wraps the activity window's callback to watch taps, and puts the search bar between the tabs and the list. A tap on a selected tab in a row of tabs scrolls the lists below it to the top. The search reads row text while scrolling the real list, waiting at the end for the next page. The natural check: scroll deep in History, tap Dramas again and it goes to the top; type a title in the bar and tap the result."
+  "notes": "Issue #11. Rides the refresh gate Keep list position answers: every History and Favorites page on the profile hands it its list as the page is built. The My list bottom tab (some accounts) builds its pages as SeriesHistorySubPageFragment with no gate, so its onResume hands over the list from the page's own getter. Either way ListTools.attach registers the list, wraps the activity window's callback to watch taps, and puts the search bar between the tabs and the list. A tap on a selected tab in a row of tabs scrolls the lists below it to the top. The search reads row text while scrolling the real list, waiting at the end for the next page. The natural check: scroll deep in History, tap Dramas again and it goes to the top; type a title in the bar and tap the result."
  },
  {
   "name": "Episodes in full screen",

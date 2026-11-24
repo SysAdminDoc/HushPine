@@ -36,7 +36,8 @@ import java.util.WeakHashMap;
  * search bar above the list finds a title anywhere in it ({@link ListSearch}).
  *
  * <p>Each of these pages hands its list to one small refresh gate as it's built, which is where
- * the patch calls {@link #attach}. The tabs themselves are two different widgets on the two pages
+ * the patch calls {@link #attach}. The My list bottom tab some accounts get builds its History and
+ * Favorites pages without that gate, and those call {@link #attach} each time they come into view. The tabs themselves are two different widgets on the two pages
  * and get renamed on every PineDrama build, so a tap is recognized by what it lands on instead:
  * a selected, clickable view sitting in a row of other clickable views, above a list this class
  * knows. Taps are watched from the window, the one place every touch passes through, and only

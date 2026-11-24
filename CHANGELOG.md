@@ -4,7 +4,7 @@
 
 ### Features
 
-* `List search and tap to top` (on by default) puts a search bar above the History and Favorites lists on your profile. Type part of a title and it looks through the whole list, loading the rest as it goes. Tap a result to open it. Tapping the tab you're already on, like Dramas in History, also takes that list back to the top. Each half has its own switch in HushPine settings > Profile.
+* `List search and tap to top` (on by default) puts a search bar above the History and Favorites lists, on your profile and on the My list tab some accounts have. Type part of a title and it looks through the whole list, loading the rest as it goes. Tap a result to open it. Tapping the tab you're already on, like Dramas in History, also takes that list back to the top. Each half has its own switch in HushPine settings > Profile.
 
 ### Changes
 
