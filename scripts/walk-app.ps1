@@ -72,7 +72,9 @@ if (-not $ChatIdentity) { throw '-ChatIdentity or HUSHPINE_CHAT_IDENTITY names w
 if (-not $Out) { $Out = Join-Path $root 'build/walk/walk-receipt.json' }
 $work = Split-Path -Parent ([IO.Path]::GetFullPath($Out))
 $dumps = Join-Path $work 'screens'
-if (Test-Path -LiteralPath $dumps) { Remove-Item -LiteralPath $dumps -Recurse -Force }
+# Empty the folder rather than delete it: a folder another process has as its working directory
+# (a shell started inside it) can't be removed, and that stopped the 0.3.0 walk before it began.
+if (Test-Path -LiteralPath $dumps) { Get-ChildItem -LiteralPath $dumps -Force | Remove-Item -Recurse -Force }
 New-Item -ItemType Directory -Path $dumps -Force | Out-Null
 $logPath = Join-Path $work 'walk-log.txt'
 Set-Content -LiteralPath $logPath -Value @() -Encoding UTF8
