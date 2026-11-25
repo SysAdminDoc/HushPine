@@ -10,6 +10,7 @@
 
 * The patches are built with Morphe patcher 2.5.0, the one stable Morphe Manager 2.7.0 and morphe-desktop 2.3.0 ship. The next bundle needs Manager 2.7.0 or newer, or morphe-desktop 2.3.0 from a computer. Older Managers won't load it.
 * The release notes on GitHub stop after the update steps now. They no longer end with a Checked list.
+* The Feature Gate Lab leaves PineDrama's paid features alone. Gates tied to paid series, subscriptions, Super Fan, LIVE gifts, coins and the like aren't listed any more and can't be saved. A backup or shared profile holding one restores everything else, and a rule saved on one before this stays stored but does nothing.
 
 ### Bug Fixes
 
