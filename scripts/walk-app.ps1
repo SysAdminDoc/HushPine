@@ -282,11 +282,22 @@ function Complete-WalkScreen([string]$Name) {
 # Leaves sheets, pages and the keyboard with Back until the bottom tabs show, never Back from
 # a feed tab itself, which would close PineDrama.
 function Restore-WalkTabs([string]$From, [int]$Height) {
+    $reopened = $false
     for ($i = 0; $i -lt 6; $i++) {
         Close-WalkKeyboard
         $nodes = Get-WalkScreen "restore-$From" -AllowPause
         if (Find-WalkNav $nodes $WalkLabels.Home $Height) { return $nodes }
-        if (-not (Get-WalkForeground).StartsWith("$WalkPackage/", [StringComparison]::Ordinal)) { return @() }
+        if (-not (Get-WalkForeground).StartsWith("$WalkPackage/", [StringComparison]::Ordinal)) {
+            # On Android 16 a Back from the search page after a search can drop PineDrama to the
+            # launcher with its process still running (emulator-5570, 2026-11-25). That's no
+            # crash, so open it again once; a second exit or a new process ends the restore.
+            if ($reopened -or (Get-WalkPid) -ne $script:appPid) { return @() }
+            Write-WalkLog "$appName went to the launcher on Back from $From, opening it again"
+            Invoke-WalkAdb shell monkey -p $WalkPackage -c android.intent.category.LAUNCHER 1 | Out-Null
+            Start-Sleep -Seconds 5
+            $reopened = $true
+            continue
+        }
         Invoke-WalkBack $From
     }
     return @()
