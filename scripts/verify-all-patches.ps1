@@ -144,8 +144,10 @@ try {
     Write-Host "[verify] ${target}: applied $reportApplied, failed $reportFailed, CLI exit $cliExitCode"
     if ($null -ne $report) {
         foreach ($failure in @($report.failedPatches)) {
-            $patchName = if ($null -ne $failure.patch) { $failure.patch.name } else { 'unknown patch' }
-            Write-Host "[verify] FAILED ${patchName}: $($failure.reason -split "`n" | Select-Object -First 1)"
+            # desktop 2.4.0 writes { name, error }; older CLIs wrote { patch: { name }, reason }.
+            $patchName = if ($null -ne $failure.name) { $failure.name } elseif ($null -ne $failure.patch) { $failure.patch.name } else { 'unknown patch' }
+            $why = if ($null -ne $failure.error) { $failure.error } else { $failure.reason }
+            Write-Host "[verify] FAILED ${patchName}: $("$why" -split "`n" | Select-Object -First 1)"
         }
     }
     Write-Host "[verify] result file: $result"
