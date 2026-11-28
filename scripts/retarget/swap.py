@@ -5,6 +5,8 @@ PINEDRAMA_<digits>_VERSION_CODE constant and the dashed form, except on history 
 With --old-sha and --new-sha (both APKs' SHA-256) a pinned APK hash moves too, as
 verify-injected-registers.ps1's clean-APK pin does (the 47.9.3 retarget left 47.9.2's there).
 A line is history (left alone) when it also names another build, or says what the old build changed.
+Moved comments are listed apart at the end: one that says what the old build itself did or named
+(X/04zn.LIZ on 47.7.3) is false once moved, so read each and put those back.
 Each literal is replaced only as a whole: 147.9.1, 47.9.1.5 and PINEDRAMA_47910 aren't 47.9.1.
 """
 import pathlib
@@ -65,8 +67,10 @@ SKIP_PART = ("/featuregatelab/Generated",)
 BUILD = re.compile(r"(?<![\d.])\d{2,3}\.\d{1,2}\.\d{1,2}(?!\d|\.\d)")
 old = re.escape(OLD)
 CHANGE = re.compile(old + r" (added|adds|inlined|dropped|drops|moved|moves|renamed|put|puts|split|merged|changed|stopped|started|"
-                    r"introduced|removed|replaced|swapped|brought|gave|took|turned|reshuffled|shifted|reordered|folded|outlined|new)\b"
-                    r"|(since|until|before|after|from|through|as of|up to) " + old + r"\b|" + old + r" (also |now |again )")
+                    r"introduced|removed|replaced|swapped|brought|gave|gives|took|turned|reshuffled|shifted|reordered|folded|"
+                    r"outlined|appended|appends|reuses|reused|leaves|left|new)\b"
+                    r"|(since|until|before|after|from|through|as of|up to) " + old + r"\b|" + old + r" (also |now |again )",
+                    re.IGNORECASE)
 files = subprocess.run(["git", "-C", str(repo), "ls-files"], capture_output=True, text=True, encoding="utf-8").stdout.splitlines()
 changed, history = [], []
 nfiles = 0
@@ -88,7 +92,8 @@ for rel in files:
             out.append(line)
             continue
         others = {b for b in BUILD.findall(line) if b not in (OLD, NEW)}
-        if others or CHANGE.search(line):
+        # A line naming the new build too already compares the two.
+        if others or NEW in line or CHANGE.search(line):
             history.append(f"{rel}:{i}: {line.strip()[:170]}")
             out.append(line)
             continue
@@ -109,3 +114,11 @@ for h in history:
 print("== changed")
 for c in changed:
     print("  C " + c)
+# A comment that says what the old build did or named (X/04zn.LIZ on 47.7.3) reads as a claim
+# about the new build once moved, and no test catches it.
+PROSE = re.compile(r"^[^:]+:\d+: (//|\*|#|/\*|<!--)")
+prose = [c for c in changed if PROSE.match(c)]
+if prose:
+    print(f"== {len(prose)} of those are comments: read each, and put back any that describe {OLD} itself")
+    for p in prose:
+        print("  P " + p)
