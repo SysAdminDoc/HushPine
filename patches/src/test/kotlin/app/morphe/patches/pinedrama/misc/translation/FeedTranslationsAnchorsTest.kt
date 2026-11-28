@@ -28,13 +28,18 @@ import org.junit.Test
 
 /**
  * What keeps See translation on videos (#143), held to each declared build: TikTok reads
- * `feed_translation_reverse` once, handing the App AB int getter the key as its third argument,
- * and that answer goes through the extension before PineDrama keeps it. The key's other places in
- * the app (the list of every AB value, a debug map) aren't reads and stay as they are.
+ * `feed_translation_reverse` by handing the App AB int getter the key as its third argument, and
+ * every such answer goes through the extension before PineDrama keeps it. 48.0.3 reads it in two
+ * places: the lazy's invoke, and a synchronized getter it uses instead while `kt_lazy_load_exp` is
+ * below zero (its default). The key's other places in the app (the list of every AB value, a
+ * debug map) aren't reads and stay as they are.
  */
 class FeedTranslationsAnchorsTest {
+    private val readersByBuild = mapOf("48.0.3" to 2)
+
     @Test
-    fun `each declared build reads the reverse value once and the answer goes through the extension`() {
+    fun `each declared build's reads of the reverse value all go through the extension`() {
+        assertEquals(Fixtures.declaredVersions().toSet(), readersByBuild.keys)
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
@@ -44,25 +49,27 @@ class FeedTranslationsAnchorsTest {
                     readers += classDef.methods.filter { it.feedTranslationReverseRead() != null }
                 }
             }
-            assertEquals("$version: methods that read $FEED_TRANSLATION_REVERSE", 1, readers.size)
-            val reader = readers.single()
-            assertEquals("$version: the read is a lazy's invoke", "Ljava/lang/Object;", reader.returnType)
-            assertEquals("$version: the read is a lazy's invoke", 0, reader.parameterTypes.size)
-
-            val move = reader.feedTranslationReverseRead()!!
-            val before = reader.implementation!!.instructions.toList()
-            val hooked = MutableMethod(reader)
-            hooked.keepTranslationOnVideos()
-            val after = hooked.implementation!!.instructions.toList()
-            assertEquals("$version: two instructions", before.size + 2, after.size)
-            val register = (before[move] as OneRegisterInstruction).registerA
-            assertAnswerGoesThroughTheExtension(version, after, move + 1, register)
-            assertEquals(
-                "$version: PineDrama's own instructions keep their order",
-                before.map { it.opcode },
-                after.filterIndexed { index, _ -> index != move + 1 && index != move + 2 }.map { it.opcode },
-            )
+            assertEquals("$version: methods that read $FEED_TRANSLATION_REVERSE", readersByBuild.getValue(version), readers.size)
+            assertEquals("$version: one read is a lazy's invoke", 1,
+                readers.count { it.returnType == "Ljava/lang/Object;" && it.parameterTypes.isEmpty() })
+            readers.forEach { reader -> assertReadGoesThroughTheExtension(version, reader) }
         }
+    }
+
+    private fun assertReadGoesThroughTheExtension(version: String, reader: Method) {
+        val move = reader.feedTranslationReverseRead()!!
+        val before = reader.implementation!!.instructions.toList()
+        val hooked = MutableMethod(reader)
+        hooked.keepTranslationOnVideos()
+        val after = hooked.implementation!!.instructions.toList()
+        assertEquals("$version: two instructions", before.size + 2, after.size)
+        val register = (before[move] as OneRegisterInstruction).registerA
+        assertAnswerGoesThroughTheExtension(version, after, move + 1, register)
+        assertEquals(
+            "$version: PineDrama's own instructions keep their order",
+            before.map { it.opcode },
+            after.filterIndexed { index, _ -> index != move + 1 && index != move + 2 }.map { it.opcode },
+        )
     }
 
     @Test

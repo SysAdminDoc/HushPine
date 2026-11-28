@@ -5,6 +5,7 @@
 package app.morphe.patches.pinedrama.misc.inbox
 
 import app.morphe.Fixtures
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
 import app.morphe.takes
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
@@ -50,6 +51,10 @@ private const val SKELETON = "Lcom/ss/android/ugc/aweme/im/sdk/chat/ui/base/asse
  * The chat switches in Hide inbox items: the title bar's two call buttons, the sticker banner,
  * the suggested reply cells and their intro, and a message's double tap and swipe. Each anchor
  * is held to every declared build, and each hook is applied to the real method it would patch.
+ *
+ * <p>An APK without PineDrama's DM code (48.0.3's APKMirror bundle) has no chat screen, and the
+ * patch leaves these switches out there. Such a build must then have none of the anchors either,
+ * so an anchor that only moved can't hide behind the missing chat screen.
  */
 class ChatDeclutterAnchorsTest {
     private val gates = listOf(
@@ -67,6 +72,12 @@ class ChatDeclutterAnchorsTest {
                 for ((fingerprint) in gates) {
                     classDef.methods.filterTo(taken.getValue(fingerprint)) { fingerprint.takes(it, classDef) }
                 }
+            }
+            if (!shipsChatScreen(apk)) {
+                gates.forEach { (fingerprint, owner) ->
+                    assertEquals("$version: $owner enable checks without a chat screen", 0, taken.getValue(fingerprint).size)
+                }
+                return@forEachDeclared
             }
             for ((fingerprint, owner, callback) in gates) {
                 assertEquals("$version: $owner enable checks matched", 1, taken.getValue(fingerprint).size)
@@ -103,6 +114,10 @@ class ChatDeclutterAnchorsTest {
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)
             val protocols = allClasses(apk).filter { MESSAGE_LIST_PROTOCOL in it.interfaces }.toList()
+            if (!shipsChatScreen(apk)) {
+                assertEquals("$version: message list protocols without a chat screen", emptyList<String>(), protocols.map { it.type })
+                return@forEachDeclared
+            }
             assertTrue("$version: no message list protocols", protocols.size > constants.size)
             for (constant in constants) {
                 val owners = protocols.filter { it.registersMessageListProtocol(constant) }.map { it.type }
@@ -115,7 +130,10 @@ class ChatDeclutterAnchorsTest {
     fun `the title bar stores exactly two call buttons on every build and each is handed over before its store`() {
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)
-            val classDef = classesOf(apk, setOf(TITLE_BAR))[TITLE_BAR] ?: error("$version: no title bar")
+            val classDef = classesOf(apk, setOf(TITLE_BAR))[TITLE_BAR] ?: run {
+                assertTrue("$version: no title bar, but the chat screen is there", !shipsChatScreen(apk))
+                return@forEachDeclared
+            }
             val taken = classDef.methods.filter { ChatTitleBarRightBindFingerprint.takes(it, classDef) }
             assertEquals("$version: title bar binds matched", 1, taken.size)
 
@@ -194,6 +212,10 @@ class ChatDeclutterAnchorsTest {
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)
             val taken = gestureDispatchers(apk)
+            if (!shipsChatScreen(apk)) {
+                assertEquals("$version: gesture dispatchers without a chat screen", 0, taken.size)
+                return@forEachDeclared
+            }
             assertEquals("$version: gesture dispatchers matched", 1, taken.size)
             val native = taken.single()
             val register = chatGestureRegister(native)
@@ -356,6 +378,9 @@ class ChatDeclutterAnchorsTest {
         return literal.narrowLiteral == 1 && code[1].opcode == Opcode.RETURN &&
             (code[1] as OneRegisterInstruction).registerA == register
     }
+
+    private fun shipsChatScreen(apk: java.io.File): Boolean =
+        DM_CHAT_SCREEN_CLASS in classesOf(apk, setOf(DM_CHAT_SCREEN_CLASS))
 
     private fun allClasses(apk: java.io.File): Sequence<ClassDef> {
         val container = Fixtures.dexContainer(apk, Opcodes.getDefault())

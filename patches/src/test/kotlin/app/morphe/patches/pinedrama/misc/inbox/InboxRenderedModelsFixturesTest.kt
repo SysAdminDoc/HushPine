@@ -18,7 +18,7 @@ import java.io.File
 
 /**
  * Original-DEX proof for the field-only list selection shared by seed and diagnostics. R8 renames the
- * PowerList helper classes every build (PineDrama 47.7.3 LX/09gR; differ), so they are read off
+ * PowerList helper classes every build (PineDrama 48.0.3 LX/0VQf; differ), so they are read off
  * the adapter's own getItemCount and aggregate reads; the member names it reads stay pinned.
  */
 class InboxRenderedModelsFixturesTest {
@@ -67,18 +67,18 @@ class InboxRenderedModelsFixturesTest {
         Fixtures.forEachDeclared { apk ->
             val schema = Schema.of(Fixtures.dexContainer(apk, Opcodes.getDefault()).let { dex ->
                 dex.dexEntryNames.flatMap { dex.getEntry(it)!!.dexFile.classes } })
-            assertEquals(listOf("LLIIIZ", "LJ", "LLIIIJ", "LJIIJJI"), schema.count.fields().map { it.name })
+            assertEquals(listOf("LLIIZ", "LJ", "LLIILII", "LJIILJJIL"), schema.count.fields().map { it.name })
             val stubs = schema.adapterMethod(schema.aggregate.calls().first { it.definingClass == ADAPTER })
             assertEquals("Ljava/util/List;", stubs.returnType)
             val primary = schema.adapterMethod(stubs.calls().first())
             assertEquals(STUB, primary.returnType)
-            assertEquals(listOf("LJLZ"), stubs.fields().map { it.name })
+            assertEquals(listOf("LLF"), stubs.fields().map { it.name })
             assertTrue(stubs.calls().any { method -> method.parameterTypes.map(CharSequence::toString) ==
                 listOf("Ljava/lang/Iterable;", "Ljava/util/Collection;") && method.returnType == "Ljava/util/List;" })
-            assertEquals(listOf("LJLLLLLL"), primary.fields().map { it.name })
+            assertEquals(listOf("LLD"), primary.fields().map { it.name })
 
             val aggregate = schema.aggregate.implementation!!.instructions.toList()
-            assertEquals(listOf("LLFZ", "LLIIJLIL", "LLFF", "LJLL", "LIZIZ", "LIZIZ", "Refresh", "LLFF"),
+            assertEquals(listOf("LLI", "LLILII", "LLII", "LJLL", "LIZIZ", "LIZIZ", "Refresh", "LLII"),
                 aggregate.mapNotNull { it.getReference<FieldReference>()?.name })
             val stateRead = aggregate.single { it.getReference<FieldReference>()?.let { field ->
                 field.definingClass == schema.model && field.name == "LIZIZ" } == true } as TwoRegisterInstruction
@@ -112,11 +112,11 @@ class InboxRenderedModelsFixturesTest {
 
         /** Owner, name and type of each instance field the extension reads, in its read order. */
         fun fields() = listOf(
-            Triple(ADAPTER, "LLIIIJ", diff), Triple(diff, "LJIIJJI", "Ljava/util/List;"),
-            Triple(ADAPTER, "LLIIIZ", config), Triple(config, "LJ", "Z"),
-            Triple(ADAPTER, "LJLLLLLL", STUB), Triple(ADAPTER, "LJLZ", "Ljava/util/List;"),
-            Triple(STUB, "LLFZ", "Ljava/util/List;"), Triple(ADAPTER, "LLIIJLIL", "Ljava/lang/Class;"),
-            Triple(ADAPTER, "LLFF", loading), Triple(loading, "LJLL", model),
+            Triple(ADAPTER, "LLIILII", diff), Triple(diff, "LJIILJJIL", "Ljava/util/List;"),
+            Triple(ADAPTER, "LLIIZ", config), Triple(config, "LJ", "Z"),
+            Triple(ADAPTER, "LLD", STUB), Triple(ADAPTER, "LLF", "Ljava/util/List;"),
+            Triple(STUB, "LLI", "Ljava/util/List;"), Triple(ADAPTER, "LLILII", "Ljava/lang/Class;"),
+            Triple(ADAPTER, "LLII", loading), Triple(loading, "LJLL", model),
             Triple(model, "LIZIZ", state), Triple(state, "LIZIZ", phase)
         )
         fun classOf(type: String) = byType.getValue(type)

@@ -121,7 +121,7 @@ class VideoAutoTranslateAnchorsTest {
     @Test
     fun `anything else is not the read`() {
         assertFalse("another state getter", read(getter = ImmutableMethodReference(OWNER, "LIZIZ", listOf(), STATE_CLASS)).isMasterTranslationRead(STATE))
-        assertFalse("the getter of another class", read(getter = ImmutableMethodReference("LX/0abc;", "LJII", listOf(), STATE_CLASS)).isMasterTranslationRead(STATE))
+        assertFalse("the getter of another class", read(getter = ImmutableMethodReference("LX/0OiD;", "LJII", listOf(), STATE_CLASS)).isMasterTranslationRead(STATE))
         assertFalse("another answer", read(answer = "isOff").isMasterTranslationRead(STATE))
         assertFalse("an instance method", read(static = false).isMasterTranslationRead(STATE))
         assertFalse("an int answer", read(returns = "I").isMasterTranslationRead(STATE))
@@ -386,8 +386,8 @@ class VideoAutoTranslateAnchorsTest {
         )
 
     private companion object {
-        const val OWNER = "LX/08Wk;"
-        const val STATE_CLASS = "LX/08Xa;"
+        const val OWNER = "LX/06w6;"
+        const val STATE_CLASS = "LY/ARunnableS49S0000000_9;"
         const val PUBLISHED = "LX/08XX;"
 
         /** The captions' Keva service, whose one call to the read decides whether captions translate. */

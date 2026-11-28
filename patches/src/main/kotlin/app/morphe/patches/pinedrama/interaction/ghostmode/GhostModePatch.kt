@@ -17,6 +17,7 @@ import app.morphe.patches.pinedrama.misc.extension.sharedExtensionPatch
 import app.morphe.patches.pinedrama.misc.settings.SettingsStatusLoadFingerprint
 import app.morphe.patches.pinedrama.misc.settings.settingsPatch
 import app.morphe.patches.pinedrama.shared.guardAtEntry
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.patches.pinedrama.shared.shipsStories
 import app.morphe.util.numberOfParameterRegisters
 import com.android.tools.smali.dexlib2.AccessFlags
@@ -26,6 +27,14 @@ import com.android.tools.smali.dexlib2.AccessFlags
 internal const val STORY_API = "/StoryApi;"
 internal const val PROFILE_VIEWER_API = "/ProfileViewerApiService;"
 internal const val TYPING_STATUS_SENDER = "/TypingStatusSenderTimer;"
+
+/** The typing indicator's sender, DM code an APK can come without (see [shipsDmClass]). */
+internal const val TYPING_STATUS_SENDER_CLASS =
+    "Lcom/ss/android/ugc/aweme/im/typingindicator/timer/TypingStatusSenderTimer;"
+
+/** The activity status implementation the report senders belong to, DM code as well. */
+internal const val ACTIVITY_STATUS_CORE_CLASS =
+    "Lcom/ss/android/ugc/aweme/im/activity/status/sdk/core/ActivityStatusContainer;"
 
 /**
  * Reports that a story was seen, opened or interacted with.
@@ -162,10 +171,11 @@ val ghostModePatch = bytecodePatch(
         )
 
         val stories = shipsStories("Ghost mode", "story views")
+        val typing = shipsDmClass("Ghost mode", "the typing indicator", TYPING_STATUS_SENDER_CLASS)
         listOfNotNull(
             (StoryViewReportFingerprint to "shouldBlockStoryView").takeIf { stories },
             ProfileViewReportFingerprint to "shouldBlockProfileView",
-            TypingStatusSenderFingerprint to "shouldBlockTypingStatus",
+            (TypingStatusSenderFingerprint to "shouldBlockTypingStatus").takeIf { typing },
         ).forEach { (fingerprint, guard) ->
             // Retrofit declarations have no body. Every concrete reporting method is mandatory.
             val matches = fingerprint.matchAll().filter { it.originalMethod.implementation != null }
@@ -183,8 +193,17 @@ val ghostModePatch = bytecodePatch(
         // The activity status report. Each body is a launched coroutine whose result nobody
         // reads, so a null return ends it before it sends; the guard answers false unless
         // Ghost mode and Hide online status are both on, and the answer is read on every
-        // report, so the switch needs no restart.
-        listOf(OnlineStatusRegularReportFingerprint, OnlineStatusIrregularReportFingerprint).forEach { fingerprint ->
+        // report, so the switch needs no restart. An APK without the activity status code gets
+        // neither the guard nor the Hide online status row.
+        val onlineStatus = shipsDmClass("Ghost mode", "the online status report", ACTIVITY_STATUS_CORE_CLASS)
+        if (onlineStatus) {
+            SettingsStatusLoadFingerprint.method.addInstruction(
+                0,
+                "invoke-static {}, " +
+                    "Lapp/morphe/extension/pinedrama/settings/SettingsStatus;->enableGhostOnlineStatus()V",
+            )
+        }
+        listOf(OnlineStatusRegularReportFingerprint, OnlineStatusIrregularReportFingerprint).takeIf { onlineStatus }.orEmpty().forEach { fingerprint ->
             val senders = fingerprint.matchAllOrNull().orEmpty().map { it.method }
             if (senders.size != 1) {
                 throw PatchException("Ghost mode: expected one activity status sender, found ${senders.size}.")

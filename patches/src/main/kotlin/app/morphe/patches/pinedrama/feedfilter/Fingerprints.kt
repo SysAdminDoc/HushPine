@@ -206,19 +206,35 @@ internal const val FOLLOWING_CACHE_DESCRIPTOR =
  * The Following feed's restore of the list PineDrama saved last run ([skipSavedFollowingFirstVideo]).
  * It takes the saved cache, checks its age against FollowingCacheConfigModel.expiredTime and shows
  * the saved list's first post. R8 names the class and method; the cache and its fields keep their
- * real names.
+ * real names. Up to 47.7.3 the restore was its own method, handed the cache first; 48.0.3 folded
+ * it into the list refresh, which asks the cache service for the cache itself.
  */
 internal object FollowingCacheRestoreFingerprint : Fingerprint(
     returnType = "V",
-    parameters = listOf(FOLLOWING_CACHE_DESCRIPTOR, "Ljava/util/List;", "Z"),
-    custom = { method, _ ->
-        method.implementation?.instructions?.any { instruction ->
+    custom = { method, _ -> method.isFollowingCacheRestore() },
+)
+
+/** The saved cache service's static getter: takes nothing and answers the cache. */
+internal fun MethodReference.isFollowingCacheGetter() =
+    parameterTypes.isEmpty() && returnType == FOLLOWING_CACHE_DESCRIPTOR
+
+internal fun Method.isFollowingCacheRestore(): Boolean {
+    val instructions = implementation?.instructions ?: return false
+    val readsAge = instructions.any { instruction ->
+        instruction.opcode == Opcode.IGET_WIDE &&
             instruction.getReference<FieldReference>()?.let {
                 it.definingClass == FOLLOWING_CACHE_DESCRIPTOR && it.name == "updateTime"
             } == true
-        } == true
-    },
-)
+    }
+    if (!readsAge) return false
+    val takesCache = parameterTypes.map { it.toString() } ==
+        listOf(FOLLOWING_CACHE_DESCRIPTOR, "Ljava/util/List;", "Z")
+    val readsCache = instructions.any { instruction ->
+        instruction.opcode == Opcode.INVOKE_STATIC &&
+            instruction.getReference<MethodReference>()?.isFollowingCacheGetter() == true
+    }
+    return takesCache || readsCache
+}
 
 internal object InsertedFeedItemsFingerprint : Fingerprint(
     definingClass = BASE_LIST_FRAGMENT_PANEL_DESCRIPTOR,
@@ -621,22 +637,21 @@ internal const val LYNX_SSR_INFO_DESCRIPTOR = "Lcom/ss/android/ugc/aweme/search/
  * on 47.0.3, called by the results adapter's bind). The Short Drama block is bound here: TikTok
  * builds it from a streamed chunk's patches and slots it into the adapter, past the result list
  * [SearchResultRequestIdFingerprint] filters. Named by the real types among its ten parameters:
- * the DynamicPatch second, the Lynx server-render info fifth and the card itself ninth.
+ * the DynamicPatch second, the Lynx server-render info fifth and the card itself ninth. 48.0.3
+ * added an eleventh, a boolean at the end.
  */
 internal object SearchLynxHolderBindFingerprint : Fingerprint(
     returnType = "V",
-    parameters = listOf(
-        "L",
-        DYNAMIC_PATCH_DESCRIPTOR,
-        "L",
-        "L",
-        LYNX_SSR_INFO_DESCRIPTOR,
-        "L",
-        "Z",
-        "Z",
-        SEARCH_MIX_FEED_DESCRIPTOR,
-        "I",
-    ),
+    custom = { method, _ ->
+        val parameters = method.parameterTypes.map { it.toString() }
+        (parameters.size == 10 || parameters.size == 11 && parameters[10] == "Z") &&
+            listOf(0, 2, 3, 5).all { parameters[it].startsWith("L") } &&
+            parameters[1] == DYNAMIC_PATCH_DESCRIPTOR &&
+            parameters[4] == LYNX_SSR_INFO_DESCRIPTOR &&
+            parameters[6] == "Z" && parameters[7] == "Z" &&
+            parameters[8] == SEARCH_MIX_FEED_DESCRIPTOR &&
+            parameters[9] == "I"
+    },
     filters = listOf(
         methodCall(
             definingClass = DYNAMIC_PATCH_DESCRIPTOR,

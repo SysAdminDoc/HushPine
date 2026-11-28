@@ -18,8 +18,12 @@ import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
-/** The log line PineDrama writes when a phone low on space shortens the lifetime. Only the calculation writes it. */
-internal const val OFFLINE_LIFETIME_LOG = "resolveExpiredIntervalMs: low-storage override="
+/**
+ * The log line PineDrama writes when a phone low on space shortens the lifetime. Only the
+ * calculation writes it. A fingerprint's strings match whole, and 48.0.3 added "tier" to it
+ * (47.7.3 wrote "resolveExpiredIntervalMs: low-storage override=").
+ */
+internal const val OFFLINE_LIFETIME_LOG = "resolveExpiredIntervalMs: low-storage tier override="
 
 /** When the offline page was last opened, which picks between PineDrama's two fallback lifetimes. */
 internal const val OFFLINE_DETAIL_VISIT_KEY = "key_last_enter_offline_detail_timestamp"

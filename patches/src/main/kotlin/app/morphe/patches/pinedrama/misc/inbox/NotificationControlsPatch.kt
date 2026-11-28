@@ -51,12 +51,13 @@ internal val WAKE_LOCK_CALLS = mapOf(
  * kept its name; the method did not, so it is found by the call it makes. Nothing else on
  * MessageShowHandler calls notify, and its parameters are checked below before the message
  * is read out of p1. Block suggested video notifications reroutes that call through its filter,
- * and either patch can run first, so the rerouted call counts too.
+ * and either patch can run first, so the rerouted call counts too. Up to 47.7.3 it returned
+ * nothing; 48.0.3 answers whether the notification was shown.
  */
 internal object PushNotifyFingerprint : Fingerprint(
     definingClass = "Lcom/ss/android/ugc/awemepushlib/manager/MessageShowHandler;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
-    returnType = "V",
+    custom = { method, _ -> method.returnType == "V" || method.returnType == "Z" },
     filters = listOf(
         anyInstruction(
             methodCall(
@@ -109,10 +110,12 @@ val notificationControlsPatch = bytecodePatch(
             ) {
                 "Notification controls: the push handler no longer takes the message in p1."
             }
+            // A dropped push answers "not shown", as the handler does itself when it has no
+            // Context to show one with.
             guardAtEntry(
                 "Notification controls",
                 "invoke-static/range { p1 .. p1 }, $EXTENSION->shouldDropPush(Ljava/lang/Object;)Z",
-                "return-void",
+                if (returnType == "Z") "const/4 v0, 0x0\nreturn v0" else "return-void",
             )
         }
 

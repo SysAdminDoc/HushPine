@@ -1,6 +1,7 @@
 package app.morphe.patches.pinedrama.interaction.downloads
 
 import app.morphe.Fixtures
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.morphe.util.getReference
 import com.android.tools.smali.dexlib2.Opcode
@@ -23,7 +24,12 @@ class DmStickerPreviewFixturesTest {
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
             fun classes(wanted: (ClassDef) -> Boolean) = container.dexEntryNames.asSequence()
                 .flatMap { container.getEntry(it)!!.dexFile.classes.asSequence() }.filter(wanted).toList()
-            val handler = classes { it.type == DM_STICKER_HANDLER }.single()
+            val handlers = classes { it.type == DM_STICKER_HANDLER || it.type == DM_CHAT_SCREEN_CLASS }
+            // An APK without PineDrama's DM code (48.0.3's APKMirror bundle) has neither the chat
+            // screen nor the handler, and the patch leaves the preview's Save out there.
+            if (handlers.isEmpty()) return@forEachDeclared
+            assertTrue("the chat screen is there without the sticker handler", handlers.any { it.type == DM_STICKER_HANDLER })
+            val handler = handlers.single { it.type == DM_STICKER_HANDLER }
             val anchor = dmStickerPreviewAnchor(handler)
             val native = anchor.method.implementation!!.instructions.toList()
             val call = native[anchor.previewCall] as FiveRegisterInstruction

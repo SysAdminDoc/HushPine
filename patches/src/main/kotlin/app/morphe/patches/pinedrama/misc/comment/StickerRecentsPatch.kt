@@ -4,6 +4,7 @@
  */
 package app.morphe.patches.pinedrama.misc.comment
 
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as bytecodePatch
@@ -290,6 +291,9 @@ val keepRecentStickersPatch = bytecodePatch(
     compatibleWith(*AppCompatibilities.pineDrama())
 
     execute {
+        // The recently used list is in the sticker panel's code, which comes with PineDrama's DM
+        // code.
+        if (!shipsDmClass("Keep recent stickers", "the kept recent stickers", FAVOURITE_STICKER_PAGE)) return@execute
         val add = RecentStickerAddFingerprint.method
         val addWrite = add.recentStickersAddWrite()
         val reset = recentStickersReset(RecentStickerAddFingerprint.classDef.methods, add, addWrite.holder)

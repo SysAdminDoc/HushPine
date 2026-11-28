@@ -89,6 +89,14 @@ public final class FollowingLatestFirst {
         }
     }
 
+    /**
+     * The saved Following list as PineDrama's list refresh reads it, from 48.0.3 on, where the
+     * restore asks for the cache itself. Null while {@link #skipSavedFirstVideo()} answers true.
+     */
+    public static Object savedCache(Object cache) {
+        return cache != null && skipSavedFirstVideo() ? null : cache;
+    }
+
     /** Puts an order into PineDrama's list. True when the list PineDrama reads now holds it. */
     interface OrderWriter {
         boolean write(List order);

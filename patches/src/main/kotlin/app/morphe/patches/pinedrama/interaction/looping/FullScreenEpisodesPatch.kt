@@ -16,9 +16,12 @@ import app.morphe.patches.shared.compat.AppCompatibilities
 import app.morphe.util.addInstruction
 import app.morphe.util.addInstructions
 import app.morphe.util.addInstructionsWithLabels
+import app.morphe.util.cloneMutable
 import app.morphe.util.getReference
 import app.morphe.util.implementationOrPatchException
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.ClassDef
+import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -70,6 +73,92 @@ internal object LandscapeActivityFinishFingerprint : Fingerprint(
     returnType = "V",
     parameters = emptyList(),
 )
+
+internal const val LANDSCAPE_PAGER_ABILITY =
+    "Lcom/ss/android/ugc/aweme/feed/landscape/component/ability/LandscapeFeedViewPagerAbility;"
+internal const val LANDSCAPE_PAGER_COMPONENT =
+    "Lcom/ss/android/ugc/aweme/feed/landscape/component/LandscapeFeedViewPagerComponent;"
+private const val LANDSCAPE_LOAD_MORE_ABILITY =
+    "Lcom/ss/android/ugc/aweme/feed/landscape/component/ability/LandscapeLoadMoreAbility;"
+private const val AWEME = "Lcom/ss/android/ugc/aweme/feed/model/Aweme;"
+
+/**
+ * The viewer members the extension calls by reflection. R8 gives them new names on every build
+ * (`j4` and `id` on 47.7.3 are `q4` and `Hd` on 48.0.3), so each is found by what it does.
+ */
+internal class ViewerMembers(
+    val append: String,
+    val prepend: String,
+    val setAutomatic: String,
+    val loadEnded: String,
+    val pagerAbility: String,
+    val currentItem: String,
+)
+
+private fun Method.parameterNames() = parameterTypes.map { it.toString() }
+
+private fun Method.body(): List<Instruction> = implementation?.instructions?.toList() ?: emptyList()
+
+/** The viewer's static `(List, List)List`, which keeps the episodes of the first it lacks. */
+internal fun Instruction.isListDifference(viewer: String): Boolean {
+    if (opcode != Opcode.INVOKE_STATIC) return false
+    val call = getReference<MethodReference>() ?: return false
+    return call.definingClass == viewer && call.returnType == LIST &&
+        call.parameterTypes.map { it.toString() } == listOf(LIST, LIST)
+}
+
+internal fun viewerMembers(viewer: ClassDef, pager: ClassDef): ViewerMembers {
+    fun one(what: String, found: List<Method>): String =
+        found.singleOrNull()?.name ?: throw PatchException("$PATCH: the viewer has ${found.size} $what, not one.")
+    val listAndFlag = viewer.methods.filter { it.returnType == "V" && it.parameterNames() == listOf(LIST, "Z") }
+    // The prepend works out which episodes are new itself. The append hands its list straight on
+    // to the viewer's (List, boolean, boolean) merge, which does that for both directions.
+    val prepend = one("prepends", listAndFlag.filter { method -> method.body().any { it.isListDifference(viewer.type) } })
+    val append = one("appends", listAndFlag.filter { method ->
+        val code = method.body()
+        code.size == 3 && code[1].getReference<MethodReference>()?.let {
+            it.definingClass == viewer.type && it.parameterTypes.map { type -> type.toString() } == listOf(LIST, "Z", "Z")
+        } == true
+    })
+    // The flag setter only stores its boolean.
+    val setAutomatic = one("load flags", viewer.methods.filter { method ->
+        val code = method.body()
+        method.returnType == "V" && method.parameterNames() == listOf("Z") && code.size == 2 &&
+            code[0].opcode == Opcode.IPUT_BOOLEAN
+    })
+    // The viewer passes a failed load to its load-more ability from two methods that do the same;
+    // the one named like the ability's own is taken.
+    val enders = viewer.methods.filter { method ->
+        method.returnType == "V" && method.parameterNames() == listOf("Ljava/lang/Exception;") &&
+            method.body().any { it.endsLoad() }
+    }
+    val loadEnded = enders.firstOrNull { method ->
+        method.body().any { it.endsLoad() && it.getReference<MethodReference>()!!.name == method.name }
+    }?.name ?: enders.minByOrNull { it.name }?.name
+        ?: throw PatchException("$PATCH: the viewer no longer tells its load-more ability a load failed.")
+    val pagerAbility = one("pager abilities", viewer.methods.filter {
+        it.parameterTypes.isEmpty() && it.returnType == LANDSCAPE_PAGER_ABILITY
+    })
+    // The current video is the item at the pager's own position: a ()I read, then an (I)Aweme one.
+    val currentItem = pager.methods.filter { method ->
+        val code = method.body()
+        method.parameterTypes.isEmpty() && method.returnType == AWEME && code.size == 5 &&
+            code[0].getReference<MethodReference>()?.let {
+                it.definingClass == pager.type && it.parameterTypes.isEmpty() && it.returnType == "I"
+            } == true &&
+            code[2].getReference<MethodReference>()?.let {
+                it.definingClass == pager.type && it.parameterTypes.map { type -> type.toString() } == listOf("I") &&
+                    it.returnType == AWEME
+            } == true
+    }.singleOrNull()?.name ?: throw PatchException("$PATCH: the pager no longer reads its current video.")
+    return ViewerMembers(append, prepend, setAutomatic, loadEnded, pagerAbility, currentItem)
+}
+
+private fun Instruction.endsLoad(): Boolean =
+    opcode == Opcode.INVOKE_INTERFACE && getReference<MethodReference>()?.let {
+        it.definingClass == LANDSCAPE_LOAD_MORE_ABILITY && it.returnType == "V" &&
+            it.parameterTypes.map { type -> type.toString() } == listOf("Ljava/lang/Exception;")
+    } == true
 
 /** The entrance's read of the screen's view model, the only no-argument getViewModel it makes. */
 internal fun isViewModelRead(instruction: Instruction): Boolean {
@@ -151,6 +240,26 @@ val fullScreenEpisodesPatch = bytecodePatch(
         LandscapeActivityFinishFingerprint.method.addInstruction(
             0,
             "invoke-static {p0}, $EXTENSION->leaving($OBJECT)V",
+        )
+
+        // The extension reaches these by reflection, so it gets this build's names.
+        val pager = classDefByOrNull(LANDSCAPE_PAGER_COMPONENT)
+            ?: throw PatchException("$PATCH: the full screen pager is gone.")
+        val members = viewerMembers(LandscapeLoadMoreFingerprint.classDef, pager)
+        val extension = mutableClassDefBy(EXTENSION)
+        val original = extension.methods.singleOrNull { it.name == "useBuildNames" && it.parameterTypes.isEmpty() }
+            ?: throw PatchException("$PATCH: the extension has no name bridge.")
+        val bridge = original.cloneMutable(additionalRegisters = 6)
+        extension.methods.remove(original)
+        extension.methods.add(bridge)
+        val names = listOf(
+            members.append, members.prepend, members.setAutomatic,
+            members.loadEnded, members.pagerAbility, members.currentItem,
+        )
+        bridge.addInstructions(
+            0,
+            names.withIndex().joinToString("\n") { (register, name) -> "const-string v$register, \"$name\"" } +
+                "\ninvoke-static/range {v0 .. v5}, $EXTENSION->useNames(" + "Ljava/lang/String;".repeat(6) + ")V",
         )
     }
 }

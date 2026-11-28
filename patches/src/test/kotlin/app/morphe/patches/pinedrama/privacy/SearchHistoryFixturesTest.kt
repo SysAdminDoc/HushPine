@@ -22,12 +22,12 @@ import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-/** The two search-history writers on every declared host, and the guard put in front of them. */
+/** The search-history writers on every declared host (two up to 47.7.3, one on 48.0.3), and the guard put in front of them. */
 class SearchHistoryFixturesTest {
     @Test
-    fun `each declared host has exactly one history recorder and one manual search log`() {
+    fun `each declared host has exactly one history recorder and its manual search log where it keeps one`() {
         val expected = mapOf(
-            "47.7.3" to "LX/08J3;",
+            "48.0.3" to "LX/0M64;",
         )
         assertEquals(Fixtures.declaredVersions().toSet(), expected.keys)
         Fixtures.forEachDeclared { apk ->
@@ -56,9 +56,14 @@ class SearchHistoryFixturesTest {
                 setOf(recorder.definingClass), historyWriters.map { it.definingClass }.toSet())
             assertEquals("$version: record and delete", 2, historyWriters.size)
 
+            // 48.0.3 has no ManualSearchPvStore, so no per-query log to guard.
             val manual = methods.filter(::isManualSearchRecorder)
-            assertEquals("$version manual search log", 1, manual.size)
-            assertEquals(MANUAL_SEARCH_PV_STORE, manual.single().definingClass)
+            if (methods.none { it.definingClass == MANUAL_SEARCH_PV_STORE }) {
+                assertTrue("$version: a manual search log without its store", manual.isEmpty())
+            } else {
+                assertEquals("$version manual search log", 1, manual.size)
+                assertEquals(MANUAL_SEARCH_PV_STORE, manual.single().definingClass)
+            }
 
             for (method in recorders + manual) {
                 assertTrue("$version ${method.name}: the guard needs a local",

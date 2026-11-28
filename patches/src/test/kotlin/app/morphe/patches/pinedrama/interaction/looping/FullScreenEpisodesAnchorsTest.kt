@@ -18,8 +18,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 /**
- * Issue #1: the patch reaches into the viewer by shape and by a few names the build made up, and
- * the extension calls those names by reflection. A rename here wouldn't fail patching.
+ * Issue #1: the patch reaches into the viewer by shape, and the extension calls a few of its members
+ * by reflection under the names the patch finds for them. A wrong pick here wouldn't fail patching.
  */
 class FullScreenEpisodesAnchorsTest {
     private val series =
@@ -36,7 +36,7 @@ class FullScreenEpisodesAnchorsTest {
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
             val wanted = setOf(
                 LANDSCAPE_ENTRANCE, LANDSCAPE_VIEW_MODEL, LANDSCAPE_LOAD_LOGIC, LANDSCAPE_ACTIVITY,
-                series, pagerAbility, portraitPager, pagerAdapter,
+                series, pagerAbility, portraitPager, pagerAdapter, LANDSCAPE_PAGER_COMPONENT,
             )
             val classes = HashMap<String, ClassDef>()
             for (entry in container.dexEntryNames) {
@@ -68,53 +68,42 @@ class FullScreenEpisodesAnchorsTest {
             )
 
             val logic = classes.getValue(LANDSCAPE_LOAD_LOGIC)
+            val members = viewerMembers(logic, classes.getValue(LANDSCAPE_PAGER_COMPONENT))
+            fun declared(owner: ClassDef, name: String, parameters: List<String>, returns: String) =
+                owner.methods.any {
+                    it.name == name && it.returnType == returns && it.parameterTypes.map { p -> p.toString() } == parameters
+                }
             val listAndFlag = listOf("Ljava/util/List;", "Z")
-            for (name in listOf("id", "j4")) {
-                assertTrue(
-                    "$apk: viewer $name(List, boolean)",
-                    logic.methods.any {
-                        it.name == name && it.returnType == "V" &&
-                            it.parameterTypes.map { p -> p.toString() } == listAndFlag
-                    },
-                )
-            }
+            assertTrue("$apk: viewer append(List, boolean)", declared(logic, members.append, listAndFlag, "V"))
+            assertTrue("$apk: viewer prepend(List, boolean)", declared(logic, members.prepend, listAndFlag, "V"))
+            assertTrue("$apk: viewer load flag(boolean)", declared(logic, members.setAutomatic, listOf("Z"), "V"))
             assertTrue(
-                "$apk: viewer ns(boolean) marks a load as automatic",
-                logic.methods.any {
-                    it.name == "ns" && it.returnType == "V" && it.parameterTypes.map { p -> p.toString() } == listOf("Z")
-                },
-            )
-            assertTrue(
-                "$apk: viewer T3(Exception) ends a load",
-                logic.methods.any {
-                    it.name == "T3" && it.returnType == "V" &&
-                        it.parameterTypes.map { p -> p.toString() } == listOf("Ljava/lang/Exception;")
-                },
+                "$apk: viewer load end(Exception)",
+                declared(logic, members.loadEnded, listOf("Ljava/lang/Exception;"), "V"),
             )
 
             // The merge helper takes (a, b) and builds b + a, so which of these appends only shows
             // by following the arguments through it. Getting this backwards puts new episodes in
             // front of the list, where the pager shifts to stay put and swiping runs out at the end.
-            val prepend = logic.methods.single { it.name == "id" && it.parameterTypes.size == 2 }
-            val appendEntry = logic.methods.single { it.name == "j4" && it.parameterTypes.size == 2 }
+            val prepend = logic.methods.single { it.name == members.prepend && it.parameterTypes.size == 2 }
+            val appendEntry = logic.methods.single { it.name == members.append && it.parameterTypes.size == 2 }
             val appendTarget = appendEntry.implementation!!.instructions
                 .firstNotNullOf { it.getReference<MethodReference>() }
             val append = logic.methods.single {
                 it.name == appendTarget.name &&
                     it.parameterTypes.map { p -> p.toString() } == appendTarget.parameterTypes.map { p -> p.toString() }
             }
-            assertTrue("$apk: id puts new episodes in front", newEpisodesGoFirst(container, prepend))
-            assertFalse("$apk: j4 puts new episodes behind", newEpisodesGoFirst(container, append))
+            assertTrue("$apk: the prepend puts new episodes in front", newEpisodesGoFirst(container, prepend))
+            assertFalse("$apk: the append puts new episodes behind", newEpisodesGoFirst(container, append))
 
             assertTrue(
-                "$apk: viewer iA() returns the pager ability",
-                logic.methods.any { it.name == "iA" && it.parameterTypes.isEmpty() && it.returnType == pagerAbility },
+                "$apk: viewer's pager ability getter",
+                declared(logic, members.pagerAbility, emptyList(), pagerAbility),
             )
+            // The extension calls the current video on the ability, so the ability has to name it too.
             assertTrue(
                 "$apk: pager ability's current video",
-                classes.getValue(pagerAbility).methods.any {
-                    it.name == "LLLIZZ" && it.parameterTypes.isEmpty() && it.returnType == aweme
-                },
+                declared(classes.getValue(pagerAbility), members.currentItem, emptyList(), aweme),
             )
 
             // Leaving full screen moves the portrait pager, once its adapter holds the whole list.

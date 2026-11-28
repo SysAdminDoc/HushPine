@@ -17,6 +17,8 @@ import app.morphe.patches.pinedrama.misc.settings.settingsPatch
 import app.morphe.patches.pinedrama.shared.buildName
 import app.morphe.patches.pinedrama.shared.declaredVersions
 import app.morphe.patches.pinedrama.shared.requireLocals
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.util.getReference
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
@@ -77,8 +79,11 @@ val inboxFilterPatch = bytecodePatch(
     execute {
         // Found and checked before anything is written: a patch that fails part way keeps
         // what it already wrote.
-        val gestures = ChatMessageGestureFingerprint.method
-        val gestureRegister = chatGestureRegister(gestures)
+        // The chat screen's switches need the chat screen, which an APK without PineDrama's DM
+        // code doesn't have; the Inbox's own switches don't.
+        val chatScreen = shipsDmClass(PATCH_NAME, "the chat screen's switches", DM_CHAT_SCREEN_CLASS)
+        val gestures = if (chatScreen) ChatMessageGestureFingerprint.method else null
+        val gestureRegister = gestures?.let { chatGestureRegister(it) }
         val notificationBinds = listOf(InboxNotificationNormalBind.method, InboxNotificationPayloadBind.method)
         val notificationVm = InboxNotificationVmGetter.method
         val loadedPublication = loadedInboxPublicationSeams()
@@ -117,17 +122,20 @@ val inboxFilterPatch = bytecodePatch(
         MainActivityOnCreateFingerprint.method.installInboxLayoutFilter()
 
         // The chat screen's switches. Each hook passes PineDrama's own answer through while its
-        // switch is off, and a build missing an anchor stops the patch here.
-        SettingsStatusLoadFingerprint.method.addInstruction(
-            0,
-            "invoke-static {}, " +
-                "Lapp/morphe/extension/pinedrama/settings/SettingsStatus;->enableChatDeclutter()V",
-        )
-        ChatTitleBarRightBindFingerprint.method.hideCallButtonsAtBind()
-        ChatStickerBannerEnabledFingerprint.method.hideInboxWidget("shouldShowChatStickerBanner")
-        ChatSuggestedReplyEnabledFingerprint.method.hideInboxWidget("shouldShowChatAiReplies")
-        ChatSmartReplyIntroEnabledFingerprint.method.hideInboxWidget("shouldShowChatAiReplies")
-        gestures.skipChatGestures(gestureRegister)
+        // switch is off, and a build with the chat screen but missing an anchor stops the patch
+        // here.
+        if (gestures != null && gestureRegister != null) {
+            SettingsStatusLoadFingerprint.method.addInstruction(
+                0,
+                "invoke-static {}, " +
+                    "Lapp/morphe/extension/pinedrama/settings/SettingsStatus;->enableChatDeclutter()V",
+            )
+            ChatTitleBarRightBindFingerprint.method.hideCallButtonsAtBind()
+            ChatStickerBannerEnabledFingerprint.method.hideInboxWidget("shouldShowChatStickerBanner")
+            ChatSuggestedReplyEnabledFingerprint.method.hideInboxWidget("shouldShowChatAiReplies")
+            ChatSmartReplyIntroEnabledFingerprint.method.hideInboxWidget("shouldShowChatAiReplies")
+            gestures.skipChatGestures(gestureRegister)
+        }
 
         // The group chat prompt at the top of the Inbox. Returning before the update leaves the
         // banner at the INIT state it is built with, which shows nothing.

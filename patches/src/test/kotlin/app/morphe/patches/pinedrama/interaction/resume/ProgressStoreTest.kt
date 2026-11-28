@@ -1,10 +1,12 @@
 package app.morphe.patches.pinedrama.interaction.resume
 
+import app.morphe.Fixtures
 import app.morphe.util.addInstructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.morphe.util.getReference
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcodes
 import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableClassDef
@@ -21,16 +23,40 @@ class ProgressStoreTest {
     /** The names on one build: the holder, its Lazy and its record type. */
     private class Build(val holder: String, val lazy: String, val record: String)
 
-    private val v4623 = Build("LX/0Lze;", "LX/01xP;", "LX/0LxV;")
+    private val v4623 = Build("LX/0Lze;", "LX/0TFw;", "LX/062y;")
     private val v4683 = Build("LX/0M7t;", "LX/019N;", "LX/0M5f;")
+    private val v4803 = Build("LX/0CH1;", "LX/03As;", "LX/0CF8;")
+
+    @Test
+    fun `every declared build's progress callback leads to its store`() {
+        Fixtures.forEachDeclared { apk ->
+            val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
+            val classes = HashMap<String, ClassDef>()
+            for (entry in container.dexEntryNames) {
+                for (classDef in container.getEntry(entry)!!.dexFile.classes) classes.putIfAbsent(classDef.type, classDef)
+            }
+            val progress = classes.getValue(PLAYER_CONTROLLER).methods.single {
+                it.name == "onPlayProgressChange" && it.returnType == "V" &&
+                    it.parameterTypes.map(CharSequence::toString) == listOf("Ljava/lang/String;", "J", "J")
+            }
+            val instructions = progress.implementation!!.instructions.toList()
+            val putIndex = instructions.indexOfLast {
+                it.getReference<MethodReference>()?.let { call ->
+                    call.definingClass == "Landroid/util/LruCache;" && call.name == "put" && call.parameterTypes.size == 2
+                } == true
+            }
+            val store = progressStoreAt(progress, putIndex) { classes[it] }
+            assertTrue("${apk.name}: the store reads no cache", store.readCache(0).isNotBlank())
+        }
+    }
 
     @Test
     fun `the store is read off the put that ends the progress callback`() {
         val store = storeOf(v4623)
-        assertEquals("LX/0Lze;->LIZLLL:LX/01xP;", store.cache.smali())
-        assertEquals("LX/01xP;->getValue()Ljava/lang/Object;", store.cacheValue.smali())
-        assertEquals("invoke-interface", store.cacheValueInvoke)
-        assertEquals("LX/0Lze;->LJ:LX/0LxV;", store.lastRecord.smali())
+        assertEquals("LX/0Lze;->LIZLLL:LX/0TFw;", store.cache?.smali())
+        assertEquals("LX/0TFw;->getValue()Ljava/lang/Object;", store.cacheCall.smali())
+        assertEquals("invoke-interface", store.cacheCallInvoke)
+        assertEquals("LX/0Lze;->LJ:LX/062y;", store.lastRecord.smali())
         assertEquals("LX/0Lze;->LJFF:Ljava/lang/String;", store.lastAid.smali())
     }
 
@@ -39,10 +65,47 @@ class ProgressStoreTest {
         // 46.8.3, where every one of the three classes has another name and LX/0Lze; is a
         // class with no fields at all.
         val store = storeOf(v4683)
-        assertEquals("LX/0M7t;->LIZLLL:LX/019N;", store.cache.smali())
-        assertEquals("LX/019N;->getValue()Ljava/lang/Object;", store.cacheValue.smali())
+        assertEquals("LX/0M7t;->LIZLLL:LX/019N;", store.cache?.smali())
+        assertEquals("LX/019N;->getValue()Ljava/lang/Object;", store.cacheCall.smali())
         assertEquals("LX/0M7t;->LJ:LX/0M5f;", store.lastRecord.smali())
         assertEquals("LX/0M7t;->LJFF:Ljava/lang/String;", store.lastAid.smali())
+    }
+
+    @Test
+    fun `48_0_3's accessor on the holder stands in for the Lazy`() {
+        // 48.0.3 reads the cache through LX/0CH1;->LJFF()Landroid/util/LruCache;, which picks
+        // between the Lazy and an eager static itself, so the host names no Lazy.
+        val build = v4803
+        val store = storeOf(build, progress(build, accessor = true))
+        assertEquals(null, store.cache)
+        assertEquals("LX/0CH1;->LJFF()Landroid/util/LruCache;", store.cacheCall.smali())
+        assertEquals("invoke-static", store.cacheCallInvoke)
+        assertEquals("LX/0CH1;->LJ:LX/0CF8;", store.lastRecord.smali())
+        assertEquals("LX/0CH1;->LJFF:Ljava/lang/String;", store.lastAid.smali())
+        assertEquals(
+            listOf("invoke-static {}, LX/0CH1;->LJFF()Landroid/util/LruCache;", "move-result-object v0"),
+            store.readCache(0).lines(),
+        )
+    }
+
+    @Test
+    fun `the Lazy shape reads the cache the way the host does`() {
+        assertEquals(
+            listOf(
+                "sget-object v0, LX/0Lze;->LIZLLL:LX/0TFw;",
+                "invoke-interface {v0}, LX/0TFw;->getValue()Ljava/lang/Object;",
+                "move-result-object v0",
+                "check-cast v0, Landroid/util/LruCache;",
+            ),
+            storeOf(v4623).readCache(0).lines(),
+        )
+    }
+
+    @Test
+    fun `a static call that answers something other than the cache is refused`() {
+        val build = v4803
+        val progress = progress(build, accessor = true, accessorReturn = "Ljava/lang/Object;")
+        assertRefused("is cast to Ljava/lang/Object;") { storeOf(build, progress) }
     }
 
     @Test
@@ -83,9 +146,11 @@ class ProgressStoreTest {
         build: Build,
         recordSource: String = "${build.holder}->LJ:${build.record}",
         cacheType: String = "Landroid/util/LruCache;",
+        accessor: Boolean = false,
+        accessorReturn: String = "Landroid/util/LruCache;",
     ) = MutableMethod(
         ImmutableMethod(
-            "Lcom/ss/android/ugc/aweme/feed/controller/PlayerController;",
+            PLAYER_CONTROLLER,
             "onPlayProgressChange",
             listOf("Ljava/lang/String;", "J", "J").map { ImmutableMethodParameter(it, null, null) },
             "V",
@@ -102,10 +167,7 @@ class ProgressStoreTest {
                 const-wide/16 v5, 0x0
                 invoke-direct {v14, v0, v1, v5, v6}, ${build.record}-><init>(JJ)V
                 sput-object v14, ${build.holder}->LJ:${build.record}
-                sget-object v5, ${build.holder}->LIZLLL:${build.lazy}
-                invoke-interface {v5}, ${build.lazy}->getValue()Ljava/lang/Object;
-                move-result-object v14
-                check-cast v14, $cacheType
+                ${if (accessor) cacheAccessor(build, accessorReturn) else cacheLazy(build, cacheType)}
                 invoke-virtual {v3}, Lcom/ss/android/ugc/aweme/feed/model/Aweme;->getAid()Ljava/lang/String;
                 move-result-object v6
                 sget-object v5, $recordSource
@@ -114,6 +176,20 @@ class ProgressStoreTest {
             """,
         )
     }
+
+    /** The host's read of the cache before 48.0.3: the holder's Lazy, then a cast. */
+    private fun cacheLazy(build: Build, cacheType: String) = """
+        sget-object v5, ${build.holder}->LIZLLL:${build.lazy}
+        invoke-interface {v5}, ${build.lazy}->getValue()Ljava/lang/Object;
+        move-result-object v14
+        check-cast v14, $cacheType
+    """
+
+    /** 48.0.3's read: the holder's accessor, with a cast only when it answers something wider. */
+    private fun cacheAccessor(build: Build, returnType: String) = """
+        invoke-static {}, ${build.holder}->LJFF()$returnType
+        move-result-object v14
+    """ + if (returnType == "Landroid/util/LruCache;") "" else "check-cast v14, $returnType"
 
     /** The holder's reader: the last record when the aid matches, else the cache's, remembered. */
     private fun reader(build: Build, extra: String = "") = MutableMethod(
@@ -184,5 +260,9 @@ class ProgressStoreTest {
         } catch (refused: PatchException) {
             assertTrue(refused.message.orEmpty(), refused.message.orEmpty().contains(expected))
         }
+    }
+
+    private companion object {
+        const val PLAYER_CONTROLLER = "Lcom/ss/android/ugc/aweme/feed/controller/PlayerController;"
     }
 }

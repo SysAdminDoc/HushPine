@@ -16,7 +16,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -30,13 +30,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -345,7 +345,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -359,13 +359,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -405,7 +405,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -419,13 +419,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -455,7 +455,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -469,13 +469,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -505,7 +505,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -519,13 +519,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -618,7 +618,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -632,13 +632,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -693,7 +693,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -707,13 +707,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -733,7 +733,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -747,13 +747,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -783,7 +783,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -797,13 +797,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -833,7 +833,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -847,13 +847,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -883,7 +883,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -897,13 +897,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -931,7 +931,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -945,13 +945,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -979,7 +979,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -993,13 +993,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1018,7 +1018,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1032,13 +1032,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1058,7 +1058,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1072,13 +1072,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1108,7 +1108,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1122,13 +1122,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1156,7 +1156,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1170,13 +1170,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1196,7 +1196,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1210,13 +1210,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1264,7 +1264,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1278,13 +1278,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1341,7 +1341,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1355,13 +1355,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1425,7 +1425,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1439,13 +1439,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1463,7 +1463,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1477,13 +1477,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1503,7 +1503,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1517,13 +1517,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1553,7 +1553,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1567,13 +1567,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1603,7 +1603,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1617,13 +1617,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1761,7 +1761,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1775,13 +1775,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1811,7 +1811,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1825,13 +1825,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1861,7 +1861,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1875,13 +1875,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1911,7 +1911,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1925,13 +1925,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1959,7 +1959,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -1973,13 +1973,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -1998,7 +1998,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2012,13 +2012,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2038,7 +2038,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2052,13 +2052,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2592,7 +2592,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2606,13 +2606,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2649,7 +2649,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2663,13 +2663,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2687,7 +2687,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2701,13 +2701,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2727,7 +2727,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2741,13 +2741,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2784,7 +2784,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2798,13 +2798,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2824,7 +2824,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2838,13 +2838,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2874,7 +2874,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2888,13 +2888,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2924,7 +2924,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2938,13 +2938,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -2974,7 +2974,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -2988,13 +2988,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3024,7 +3024,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3038,13 +3038,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3074,7 +3074,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3088,13 +3088,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3133,7 +3133,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3147,13 +3147,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3354,7 +3354,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3368,13 +3368,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3431,7 +3431,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3445,13 +3445,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3490,7 +3490,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3504,13 +3504,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3540,7 +3540,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3554,13 +3554,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3590,7 +3590,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3604,13 +3604,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3640,7 +3640,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3654,13 +3654,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3691,7 +3691,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3705,13 +3705,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3768,7 +3768,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3782,13 +3782,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3818,7 +3818,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3832,13 +3832,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3877,7 +3877,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3891,13 +3891,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3925,7 +3925,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3939,13 +3939,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -3965,7 +3965,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -3979,13 +3979,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4024,7 +4024,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4038,13 +4038,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4074,7 +4074,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4088,13 +4088,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4124,7 +4124,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4138,13 +4138,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4183,7 +4183,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4197,13 +4197,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4240,7 +4240,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4254,13 +4254,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4280,7 +4280,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4294,13 +4294,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4330,7 +4330,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4344,13 +4344,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4389,7 +4389,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4403,13 +4403,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4482,7 +4482,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4496,13 +4496,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4522,7 +4522,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4536,13 +4536,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4590,7 +4590,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4604,13 +4604,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4640,7 +4640,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4654,13 +4654,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4690,7 +4690,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4704,13 +4704,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4740,7 +4740,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4754,13 +4754,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4790,7 +4790,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4804,13 +4804,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4849,7 +4849,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4863,13 +4863,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -4953,7 +4953,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -4967,13 +4967,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5003,7 +5003,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5017,13 +5017,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5053,7 +5053,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5067,13 +5067,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5166,7 +5166,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5180,13 +5180,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5241,7 +5241,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5255,13 +5255,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5291,7 +5291,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5305,13 +5305,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5350,7 +5350,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5364,13 +5364,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5400,7 +5400,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5414,13 +5414,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5486,7 +5486,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5500,13 +5500,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5553,7 +5553,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5567,13 +5567,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5697,7 +5697,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5711,13 +5711,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5747,7 +5747,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5761,13 +5761,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5824,7 +5824,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5838,13 +5838,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5927,7 +5927,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5941,13 +5941,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -5977,7 +5977,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -5991,13 +5991,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6045,7 +6045,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6059,13 +6059,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6095,7 +6095,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6109,13 +6109,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6145,7 +6145,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6159,13 +6159,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6195,7 +6195,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6209,13 +6209,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6245,7 +6245,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6259,13 +6259,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6295,7 +6295,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6309,13 +6309,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6345,7 +6345,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6359,13 +6359,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6395,7 +6395,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6409,13 +6409,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6445,7 +6445,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6459,13 +6459,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6495,7 +6495,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6509,13 +6509,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6608,7 +6608,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6622,13 +6622,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6701,7 +6701,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6715,13 +6715,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6741,7 +6741,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6755,13 +6755,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6791,7 +6791,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6805,13 +6805,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6841,7 +6841,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6855,13 +6855,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]
@@ -6891,7 +6891,7 @@
       ],
       "compatiblePackages": {
         "com.ss.android.ttmd.video": [
-          "47.7.3"
+          "48.0.3"
         ]
       },
       "compatibility": [
@@ -6905,13 +6905,13 @@
           ],
           "targets": [
             {
-              "version": "47.7.3",
+              "version": "48.0.3",
               "experimental": false,
               "versionCodes": {
-                "ARM64_V8A": 2024707030,
-                "ARMEABI_V7A": 2024707030,
-                "X86": 2024707030,
-                "X86_64": 2024707030
+                "ARM64_V8A": 2024800030,
+                "ARMEABI_V7A": 2024800030,
+                "X86": 2024800030,
+                "X86_64": 2024800030
               }
             }
           ]

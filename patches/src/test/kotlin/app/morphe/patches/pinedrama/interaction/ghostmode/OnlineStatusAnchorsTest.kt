@@ -27,6 +27,9 @@ import org.junit.Test
  * an interface method taking two Strings and a continuation and answering Object. Two methods
  * would leave the guard on whichever the patch picked, and a body with no such call would be a
  * guard on something that doesn't send.
+ *
+ * <p>An APK without PineDrama's activity status code (48.0.3 ships it in a module the APKMirror
+ * bundle doesn't carry) has neither sender, and then the patch leaves the guard out.
  */
 class OnlineStatusAnchorsTest {
     private val senders = listOf(
@@ -44,6 +47,9 @@ class OnlineStatusAnchorsTest {
                 target.parameterTypes[1] == "Ljava/lang/String;"
         } ?: false
 
+    private fun MultiDexContainer<out DexBackedDexFile>.shipsActivityStatus(): Boolean =
+        dexEntryNames.any { entry -> getEntry(entry)!!.dexFile.classes.any { it.type == ACTIVITY_STATUS_CORE_CLASS } }
+
     private fun taken(fingerprint: Fingerprint, apkName: String, container: MultiDexContainer<out DexBackedDexFile>): List<Method> {
         val found = mutableListOf<Method>()
         for (entry in container.dexEntryNames) {
@@ -57,11 +63,16 @@ class OnlineStatusAnchorsTest {
     }
 
     @Test
-    fun `each declared build has one regular and one irregular activity status sender that calls the report service`() {
+    fun `each declared build has one regular and one irregular activity status sender that calls the report service, or no activity status code`() {
         Fixtures.forEachDeclared { apk ->
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
+            val ships = container.shipsActivityStatus()
             for ((label, fingerprint) in senders) {
                 val found = taken(fingerprint, apk.name, container)
+                if (!ships) {
+                    assertEquals("$label senders in ${apk.name}, which has no activity status code", emptyList<String>(), found.map { it.definingClass })
+                    continue
+                }
                 assertEquals("$label senders: ${found.map { it.definingClass }}", 1, found.size)
                 assertTrue("$label sender does not call the report service", callsReportService(found.single()))
             }
@@ -72,6 +83,7 @@ class OnlineStatusAnchorsTest {
     fun `each sender leaves a local register for the guard on every declared build`() {
         Fixtures.forEachDeclared { apk ->
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
+            if (!container.shipsActivityStatus()) return@forEachDeclared
             for ((label, fingerprint) in senders) {
                 val method = taken(fingerprint, apk.name, container).single()
                 val body = method.implementation!!
@@ -85,6 +97,7 @@ class OnlineStatusAnchorsTest {
     fun `the two senders are different methods and the fingerprints do not match each other`() {
         Fixtures.forEachDeclared { apk ->
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
+            if (!container.shipsActivityStatus()) return@forEachDeclared
             val regular = taken(OnlineStatusRegularReportFingerprint, apk.name, container).single()
             val irregular = taken(OnlineStatusIrregularReportFingerprint, apk.name, container).single()
             assertTrue("one method answers to both tags", regular.definingClass != irregular.definingClass)

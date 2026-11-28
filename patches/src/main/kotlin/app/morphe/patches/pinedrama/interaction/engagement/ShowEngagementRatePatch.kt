@@ -197,9 +197,20 @@ internal fun Method.holderCountSites(): HolderCountSites {
         instructions[index].opcode == Opcode.INVOKE_STATIC && reference?.returnType == "Ljava/lang/CharSequence;" &&
             reference.parameterTypes.map(CharSequence::toString) == NUMBER_FORMATTER_PARAMETERS
     }.map { format ->
-        val number = (instructions[format] as FiveRegisterInstruction).registerD
-        val boxed = instructions.getOrNull(format - 1)
-        val boxing = instructions.getOrNull(format - 2)
+        val call = instructions[format] as FiveRegisterInstruction
+        val number = call.registerD
+        // 48.0.3 loads the formatter's fallback text between the boxing and the call.
+        val fallback = instructions.getOrNull(format - 1)
+        val boxedAt = if (fallback?.opcode == Opcode.CONST_STRING &&
+            (fallback as OneRegisterInstruction).registerA == call.registerE &&
+            fallback.registerA != number
+        ) {
+            format - 2
+        } else {
+            format - 1
+        }
+        val boxed = instructions.getOrNull(boxedAt)
+        val boxing = instructions.getOrNull(boxedAt - 1)
         val cast = instructions.getOrNull(format + 2)
         if (boxed?.opcode != Opcode.MOVE_RESULT_OBJECT || (boxed as OneRegisterInstruction).registerA != number ||
             boxing?.calls("Ljava/lang/Long;", "valueOf") != true ||
@@ -219,7 +230,7 @@ internal fun Method.holderCountSites(): HolderCountSites {
         }
         // Paths may join at the boxing call (the missing-statistics zero does), but nothing may
         // enter between it and the hook, where the value it boxed would be skipped.
-        val boxingAt = format - 2
+        val boxingAt = boxedAt - 1
         instructions.indices.forEach { from ->
             (flow.normal[from] + flow.exceptional[from]).forEach { to ->
                 if (to in boxingAt + 1..insertAt && from != to - 1) {

@@ -37,7 +37,7 @@ class ProfileAvatarGestureHookTest {
     @Test
     fun `own profile native hold preserves its six register body when saving is off`() {
         assertNativeGesture("onClick\$43", 6, """
-            sget-object v3, LX/0lWb;->LIZ:LX/0lWb;
+            sget-object v3, LX/0TRR;->LIZ:LX/0TRR;
             iget-object v0, p0, $listener->l0:Ljava/lang/Object;
             check-cast v0, ${avatarOwner}MyProfileAvatarAssem;
             invoke-virtual { v0 }, ${avatarOwner}ProfileAvatarAssem;->bq()Lcom/ss/android/ugc/aweme/profile/model/User;

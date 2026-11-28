@@ -92,3 +92,8 @@ internal object PitayaLiteStartFingerprint : Fingerprint(
 )
 
 internal const val PITAYA_LITE = "Lcom/bytedance/pitaya/api/PitayaLite;"
+
+/** Any read of Pitaya Lite's settings. With no [PitayaLiteStartFingerprint] match, none means Lite never starts. */
+internal object PitayaLiteSettingsFingerprint : Fingerprint(
+    strings = listOf("pitaya_lite_settings"),
+)

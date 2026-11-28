@@ -29,8 +29,8 @@ private const val PUSH_SERVICE = "Lcom/ss/android/ugc/awemepushlib/interaction/P
 /** Every notification PineDrama posts goes through the suggested video filter, on every declared host. */
 class SuggestedVideoPushBlockFixturesTest {
     @Test
-    fun `each declared host posts its 16 notifications through the filter, the push handler among them`() {
-        val expected = mapOf("47.7.3" to 16)
+    fun `each declared host posts its 15 notifications through the filter, the push handler among them`() {
+        val expected = mapOf("48.0.3" to 15)
         assertEquals(Fixtures.declaredVersions().toSet(), expected.keys)
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)

@@ -146,10 +146,7 @@ val resumeVideoAfterScrollPatch = bytecodePatch(
                 invoke-static {}, $EXTENSION_DESCRIPTOR->shouldResumeVideoAfterScroll()Z
                 move-result v0
                 if-eqz v0, :continue_completion
-                sget-object v0, ${store.cache.smali()}
-                ${store.cacheValueInvoke} {v0}, ${store.cacheValue.smali()}
-                move-result-object v0
-                check-cast v0, Landroid/util/LruCache;
+                ${store.readCache(0)}
                 move-object/from16 v1, p1
                 invoke-virtual {v0, v1}, Landroid/util/LruCache;->remove(Ljava/lang/Object;)Ljava/lang/Object;
                 const/4 v0, 0x0

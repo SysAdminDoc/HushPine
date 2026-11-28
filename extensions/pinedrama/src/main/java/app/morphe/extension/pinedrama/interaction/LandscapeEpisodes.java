@@ -37,19 +37,45 @@ public final class LandscapeEpisodes {
     static final String FAMILY = "full screen episodes";
     static final String SERIES_MODEL =
             "com.ss.android.ugc.aweme.series.innerfeed.viewmodel.SeriesInnerFeedViewModel";
+    /*
+     * The viewer's members this calls. R8 renames them on every build, so the patch finds each by
+     * what it does and writes the build's names into useBuildNames.
+     */
     /** The viewer's own append and prepend, which skip what it already has by video id. */
-    private static final String APPEND = "j4";
-    private static final String PREPEND = "id";
+    private static String append;
+    private static String prepend;
     /**
      * Tells the viewer a load started by itself rather than by a pull past the last page. After a
      * pull its append moves on a page, so left unset every load would skip an episode.
      */
-    private static final String SET_AUTOMATIC = "ns";
+    private static String setAutomatic;
     /** Takes down the spinner a pull started when there's nothing to load. */
-    private static final String LOAD_ENDED = "T3";
+    private static String loadEnded;
     /** The viewer's pager ability, and that ability's current video. */
-    private static final String PAGER_ABILITY = "iA";
-    private static final String CURRENT_ITEM = "LLLIZZ";
+    private static String pagerAbility;
+    private static String currentItem;
+
+    static {
+        useBuildNames();
+    }
+
+    /** The patch writes this body: one {@link #useNames} call with this build's names. */
+    private static void useBuildNames() {}
+
+    static void useNames(
+            String append,
+            String prepend,
+            String setAutomatic,
+            String loadEnded,
+            String pagerAbility,
+            String currentItem) {
+        LandscapeEpisodes.append = append;
+        LandscapeEpisodes.prepend = prepend;
+        LandscapeEpisodes.setAutomatic = setAutomatic;
+        LandscapeEpisodes.loadEnded = loadEnded;
+        LandscapeEpisodes.pagerAbility = pagerAbility;
+        LandscapeEpisodes.currentItem = currentItem;
+    }
     /** The modes the series model's {@code request} takes for its next and previous pages. */
     private static final int MODE_NEXT = 4;
     private static final int MODE_PREVIOUS = 2;
@@ -145,7 +171,7 @@ public final class LandscapeEpisodes {
         viewer = new WeakReference<>(loadLogic);
         lastIndex = index;
         lastCount = count;
-        call(loadLogic, SET_AUTOMATIC, new Class<?>[] {boolean.class}, !manual);
+        call(loadLogic, setAutomatic, new Class<?>[] {boolean.class}, !manual);
         if (nearEnd(index, count)) fetch(loadLogic, true);
         if (nearStart(index)) fetch(loadLogic, false);
         if (manual && !loadingNext) endLoad(loadLogic);
@@ -220,11 +246,11 @@ public final class LandscapeEpisodes {
 
     private static void hand(Object loadLogic, List<?> all, boolean next) {
         List<Object> episodes = withoutAds(all);
-        call(loadLogic, next ? APPEND : PREPEND, new Class<?>[] {List.class, boolean.class}, episodes, true);
+        call(loadLogic, next ? append : prepend, new Class<?>[] {List.class, boolean.class}, episodes, true);
     }
 
     private static void endLoad(Object loadLogic) {
-        call(loadLogic, LOAD_ENDED, new Class<?>[] {Exception.class}, new Exception("can't load more"));
+        call(loadLogic, loadEnded, new Class<?>[] {Exception.class}, new Exception("can't load more"));
     }
 
     private static void call(Object loadLogic, String name, Class<?>[] types, Object... arguments) {
@@ -249,8 +275,8 @@ public final class LandscapeEpisodes {
         portraitRoot = new WeakReference<>(null);
         if (!wasActive || series == null || loadLogic == null || root == null) return;
 
-        Object ability = Reflect.invoke(loadLogic, PAGER_ABILITY);
-        Object current = ability == null ? null : Reflect.invoke(ability, CURRENT_ITEM);
+        Object ability = Reflect.invoke(loadLogic, pagerAbility);
+        Object current = ability == null ? null : Reflect.invoke(ability, currentItem);
         String episode = id(current);
         View pager = indexOf(awemeList(series), episode) < 0 ? null : findPager(root);
         if (pager == null) return;

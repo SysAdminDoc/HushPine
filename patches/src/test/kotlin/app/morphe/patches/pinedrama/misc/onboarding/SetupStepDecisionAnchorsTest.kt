@@ -38,9 +38,11 @@ internal val SKIPPED = setOf(
  * somebody reads what the new step is (consent or taste) before it's left showing by default.
  */
 private val STEP_IDS = setOf(
-    "ad_choice", "ad_subscription", "age_gate", "consent_box_page", "consent_box_page_hu",
-    "content_language", "deep_link", "feed_refresh", "follow_trending_creators", "free_trial",
-    "gender_selection", "interest_list", "interest_sub_tag", "login", "m2_one_tap_login",
+    "ad_choice", "age_gate", "consent_box_page", "consent_box_page_hu",
+    "content_language", "deep_link", "feed_refresh", "follow_trending_creators",
+    // 48.0.3 adds login_routing, a journey that holds the login steps (JOURNEY_LOGIN_ROUTING). It
+    // stays: login is never skipped. It dropped ad_subscription and free_trial.
+    "gender_selection", "interest_list", "interest_sub_tag", "login", "login_routing", "m2_one_tap_login",
     "privacy_for_teens", "private_account", "push_auth_preposition_page", "push_page_advance",
     "push_popup_background", "server_delay", "skippable_login", "slogan_consent_box_page",
     "slogan_page", "store_age_check", "swipe_up",

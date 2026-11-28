@@ -50,7 +50,7 @@
     audit/run-audit.ps1 -Validate
 
 .EXAMPLE
-    audit/run-audit.ps1 -ApplyVerdicts C:\scratch\verdicts.json -Results audit\results\pinedrama-47.7.3.json -OutDir C:\scratch\evidence
+    audit/run-audit.ps1 -ApplyVerdicts C:\scratch\verdicts.json -Results audit\results\pinedrama-48.0.3.json -OutDir C:\scratch\evidence
 #>
 [CmdletBinding()]
 param(

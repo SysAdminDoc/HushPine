@@ -66,14 +66,34 @@ internal const val IS_PHOTO_MODE = "isPhotoMode"
  * (its event type, the second parameter) must be on PineDrama's list, which has the For You and
  * Following feeds, search and other people's profiles but not your own, and the post must not
  * be an ad, a LIVE, paid content or a photo post. 47.0.3 makes the post checks here; 47.1.3 and
- * 47.1.4 call a helper for them.
+ * 47.1.4 call a helper for them. 48.0.3 asks the background play service for the list, the
+ * search type ("video") and the post checks, and the service's real implementation keeps its name.
  */
 internal object BackgroundPlaySceneCheckFingerprint : Fingerprint(
     returnType = "Z",
     parameters = listOf(AWEME, "Ljava/lang/String;", "Ljava/lang/String;"),
-    strings = listOf("search_result", "video"),
+    strings = listOf("search_result"),
     filters = listOf(methodCall(definingClass = "Ljava/util/Set;", name = "contains")),
+    custom = { method, _ ->
+        method.implementation?.instructions?.any {
+            it.getReference<StringReference>()?.string == "video" ||
+                it.getReference<MethodReference>()?.name == SEARCH_TYPE_SUPPORTED
+        } == true
+    },
 )
+
+internal const val BACKGROUND_PLAY_SERVICE_IMPL =
+    "Lcom/ss/android/ugc/aweme/backgroundplay/service/BackgroundPlayServiceImpl;"
+internal const val SEARCH_TYPE_SUPPORTED = "isSearchTypeSupported"
+internal const val POST_SUPPORTED = "isBackgroundPlaySupported"
+
+/** The background play service's post check, as 48.0.3's scene check calls it. */
+internal fun Instruction.isPostSupportedCall(): Boolean =
+    (opcode == Opcode.INVOKE_VIRTUAL || opcode == Opcode.INVOKE_INTERFACE) &&
+        getReference<MethodReference>()?.isPostSupported() == true
+
+internal fun MethodReference.isPostSupported(): Boolean =
+    name == POST_SUPPORTED && returnType == "Z" && parameterTypes.map(CharSequence::toString) == listOf(AWEME)
 
 internal const val AUDIO_MANAGER = "Landroid/media/AudioManager;"
 internal const val FOCUS_LISTENER = "Landroid/media/AudioManager\$OnAudioFocusChangeListener;"
@@ -256,9 +276,14 @@ val backgroundPlayPatch = bytecodePatch(
         val check = BackgroundPlaySceneCheckFingerprint.method
         val checkInstructions = check.implementation!!.instructions.toList()
         val photoCheck = if (checkInstructions.photoModeCall() >= 0) check else {
-            checkInstructions.filter { it.isStaticAwemeCheck() }
+            val helpers = checkInstructions.filter { it.isStaticAwemeCheck() }
                 .map { it.getReference<MethodReference>()!!.getMutableMethod() }
-                .firstOrNull { it.implementation!!.instructions.toList().photoModeCall() >= 0 }
+            // 48.0.3 asks the background play service, whose real implementation rules them out.
+            val service = if (checkInstructions.none { it.isPostSupportedCall() }) emptyList() else {
+                classDefByOrNull(BACKGROUND_PLAY_SERVICE_IMPL)?.let { mutableClassDefBy(BACKGROUND_PLAY_SERVICE_IMPL) }
+                    ?.methods?.filter { it.implementation != null && it.isPostSupported() }.orEmpty()
+            }
+            (helpers + service).firstOrNull { it.implementation!!.instructions.toList().photoModeCall() >= 0 }
                 ?: throw PatchException("Keep playing in the background: the scene check no longer rules out photo posts where it's expected to.")
         }
         photoCheck.apply {

@@ -167,7 +167,14 @@ class StickerCreatorPatchTest {
         assertTrue("fixtures: ${apks.map { it.name }}", apks.containsAll(Fixtures.declared()))
         apks.forEach { apk ->
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
-            check(apk.name, container.dexEntryNames.flatMap { container.getEntry(it)!!.dexFile.classes })
+            val classes = container.dexEntryNames.flatMap { container.getEntry(it)!!.dexFile.classes }
+            // An APK without the sticker panel's code (48.0.3's APKMirror bundle) gets no Create
+            // button, which is only right when the canvas saver is gone with it.
+            if (classes.none { it.type == FAVOURITE_STICKER_PAGE }) {
+                assertEquals("${apk.name}: canvas savers without a sticker panel", 0, taken(CanvasStickerSaverFingerprint, classes).size)
+                return@forEach
+            }
+            check(apk.name, classes)
         }
     }
 }

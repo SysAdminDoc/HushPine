@@ -18,6 +18,9 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 /** The labels a shared video's chat card carries in its message data ("Caution", and a policy title). */
 internal val CHAT_CARD_LABEL_KEYS = listOf("share_video_cover_caution_label", "share_video_cover_policy_title")
+
+/** The chat's shared video card, whose cover callback reads the labels. Part of the DM code. */
+internal const val CHAT_CARD_ASSEM = "Lcom/ss/android/ugc/aweme/im/sdk/chat/ui/aweme/AwemeCardAssem;"
 private const val EXTENSION = "Lapp/morphe/extension/pinedrama/feed/SensitiveWarnings;"
 
 /**

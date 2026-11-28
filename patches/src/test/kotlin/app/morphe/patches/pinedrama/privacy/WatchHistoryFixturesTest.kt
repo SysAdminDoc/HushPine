@@ -25,7 +25,7 @@ class WatchHistoryFixturesTest {
     @Test
     fun `each declared host has exactly one view report and one batch send`() {
         val items = mapOf(
-            "47.7.3" to "LX/0C6w;",
+            "48.0.3" to "LX/0Z6i;",
         )
         assertEquals(Fixtures.declaredVersions().toSet(), items.keys)
         Fixtures.forEachDeclared { apk ->
@@ -74,7 +74,7 @@ class WatchHistoryFixturesTest {
             method(AWEME_STATS_API, "LX/09bN;", static = false,
                 "const-string v0, \"basic_vv_batch_size\"\nconst-string v0, \"homepage_hot\"\nreturn-void")))
         assertFalse("another class reading the same setting", isViewReport(
-            method("LX/0P2X;", "LX/09bN;", static = true,
+            method("LX/0LIx;", "LX/09bN;", static = true,
                 "const-string v0, \"basic_vv_batch_size\"\nconst-string v0, \"homepage_hot\"\nreturn-void")))
 
         val flush = method(AWEME_STATS_API, "Ljava/util/List;", static = true,

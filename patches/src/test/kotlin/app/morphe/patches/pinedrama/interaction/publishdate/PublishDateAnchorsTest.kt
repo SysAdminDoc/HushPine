@@ -19,8 +19,10 @@ import org.junit.Test
  * <p>VideoAuthorInfoVM.paramSync2StateAccept turns the item's createTime into milliseconds and
  * hands it to one of the date formatters, and they meet at one empty check. The hook goes past
  * that check's `if-nez` with the text in v0 and the Aweme in the register its createTime was asked
- * of: v11 on 47.4.3, with nine formatter calls (v10 and eight on 47.1.4, v12 on 47.0.3). The text
- * is read right after the hook, by a small static helper or the row text's append.
+ * of: v11 on 47.4.3, with nine formatter calls (v10 and eight on 47.1.4, v12 on 47.0.3). 48.0.3 has
+ * three formatters feeding v2 and reuses the Aweme's v3 for a date style setting on one path, so there
+ * the hook reads the Aweme off the item params parameter into a free register. The text is read
+ * right after the hook, by a small static helper or the row text's append.
  */
 class PublishDateAnchorsTest {
     @Test
@@ -37,17 +39,23 @@ class PublishDateAnchorsTest {
             val method = taken.single()
 
             val site = runCatching { method.postTimeSite() }.getOrElse { throw AssertionError("$version: ${it.message}", it) }
-            assertEquals("$version: date formatters, text and item registers",
-                Triple(9, 0, 11), Triple(site.formatters, site.textRegister, site.itemRegister))
+            assertEquals("$version: date formatters and text register", 3 to 2, site.formatters to site.textRegister)
 
             val instructions = method.implementation!!.instructions.toList()
             assertEquals("$version: the hook follows the empty check", Opcode.IF_NEZ, instructions[site.insertAt - 1].opcode)
-            val read = instructions.indexOfLast { instruction ->
-                instruction.opcode == Opcode.INVOKE_VIRTUAL &&
-                    instruction.getReference<MethodReference>()?.name == "getCreateTime" &&
-                    (instruction as FiveRegisterInstruction).registerC == site.itemRegister
+            val params = site.paramsRegister
+            if (params == null) {
+                val read = instructions.indexOfLast { instruction ->
+                    instruction.opcode == Opcode.INVOKE_VIRTUAL &&
+                        instruction.getReference<MethodReference>()?.name == "getCreateTime" &&
+                        (instruction as FiveRegisterInstruction).registerC == site.itemRegister
+                }
+                assertTrue("$version: the item's createTime isn't read before the hook", read in 0 until site.insertAt)
+            } else {
+                // The params arrive last, after the state, and nothing in the method writes them.
+                assertEquals("$version: the params parameter", method.implementation!!.registerCount - 1, params)
+                assertTrue("$version: the free item register", site.itemRegister != site.textRegister && site.itemRegister < 16)
             }
-            assertTrue("$version: the item's createTime isn't read before the hook", read in 0 until site.insertAt)
             val next = (site.insertAt until minOf(site.insertAt + 5, instructions.size)).firstOrNull { index ->
                 instructions[index].opcode.name.startsWith("invoke") &&
                     site.textRegister in instructions[index].namedRegisters()

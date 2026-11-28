@@ -177,15 +177,13 @@ class SubtitleDubPreferenceAnchorsTest {
 
     private fun overlayTarget(all: List<ClassDef>): Method = all.asSequence()
         .flatMap { it.methods.asSequence() }
-        .first { method ->
-            val body = method.implementation?.instructions?.toList() ?: return@first false
+        .filter { method ->
             method.parameterTypes.size == 4 && method.parameterTypes[2].toString() == "Ljava/lang/Object;" &&
-                body.any { it.getReference<FieldReference>()?.name == "TRANSLATED" } &&
-                body.any {
-                    it.getReference<MethodReference>()?.definingClass ==
-                        "Lcom/ss/android/ugc/aweme/translation/service/ITranslationKevaService;"
-                }
+                method.returnType.startsWith("L") && method.isFeedOverlayTarget()
         }
+        .toList()
+        .also { assertEquals("one feed overlay target", 1, it.size) }
+        .single()
 
     @Test
     fun `both overlay requests leave two free registers and the target reads every request field`() =

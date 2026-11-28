@@ -42,42 +42,42 @@ import java.util.WeakHashMap;
  * content, which keeps recycled views correct: a hidden row that gets reused for
  * something else is shown again on the next pass.
  *
- * Resource ids are PineDrama 47.7.3's own. Its resource table isn't TikTok's, and a name that exists
+ * Resource ids are PineDrama 48.0.3's own. Its resource table isn't TikTok's, and a name that exists
  * in both is a different view in each.
  * <pre>
- *   hrp   bottom navigation, the Inbox tab (looked up by FeedVisibility)
- *   g7b   the Inbox RecyclerView
- *   l1y   a system notice row, with its title in at1
- *   ltd   the root of a chat row: a single chat, a group chat or the message requests row
- *   oow   the request count, which only the message requests row has
- *   hre   the root of a "Say hi to" row, an account suggested with Follow and a wave
- *   pfk   the title of a chat row or a "Say hi to" row
- *   igv   the suggested accounts section header, holding kje
- *   kje   the suggested accounts section title
- *   dck   remove an account from suggested accounts
- *   d2v   header, add people
- *   fti   header, search
- *   g7d   header, activity status
+ *   id6   bottom navigation, the Inbox tab (looked up by FeedVisibility)
+ *   gv1   the Inbox RecyclerView
+ *   lgt   a system notice row, with its title in bz3
+ *   j1v   the suggested accounts section header, holding kzr
+ *   kzr   the suggested accounts section title
+ *   efk   remove an account from suggested accounts
+ *   e6c   header, add people
+ *   gq8   header, search
+ *   gv3   header, activity status
  * </pre>
  *
- * hrp, g7b, l1y, at1, ltd, pfk, d2v, fti and g7d were read off the S22's live Inbox on 2026-10-27
- * by their descriptions and places. The rest are rows the test account doesn't show, found by the
- * classes and layouts that load them.
+ * The chat rows come from PineDrama's DM code: a chat row (47.7.3's m07), the message requests
+ * count (p03), a "Say hi to" row (huh) and a row's name (pqx). 48.0.3's bundle ships none of
+ * that code, so those groups keep 47.7.3's names, which resolve on no other build, and their
+ * filters stand down on 48.0.3 rather than guess at views nothing in the bundle sets.
+ *
+ * The rest were first read off the S22's live Inbox on 2026-10-27 and are carried from build to
+ * build by the classes and layouts that load them (RuntimeViewIdAnchorsTest).
  */
 public final class InboxFilter {
-    private static final String[] LIST_IDS = {"47.7.3:g_9"};
-    private static final String[] SYSTEM_ROW_IDS = {"47.7.3:l8a"};
+    private static final String[] LIST_IDS = {"48.0.3:gv1"};
+    private static final String[] SYSTEM_ROW_IDS = {"48.0.3:lgt"};
     private static final String[] CHAT_ROW_IDS = {"47.7.3:m07"};
     private static final String[] MESSAGE_REQUESTS_IDS = {"47.7.3:p03"};
     private static final String[] SAY_HI_ROW_IDS = {"47.7.3:huh"};
-    private static final String[] SYSTEM_ROW_TITLE_IDS = {"47.7.3:aw4"};
+    private static final String[] SYSTEM_ROW_TITLE_IDS = {"48.0.3:bz3"};
     private static final String[] USER_ROW_TITLE_IDS = {"47.7.3:pqx"};
-    private static final String[] SUGGESTED_HEADER_IDS = {"47.7.3:ikb"};
-    private static final String[] SUGGESTED_TITLE_IDS = {"47.7.3:kpo"};
-    private static final String[] SUGGESTED_REMOVE_IDS = {"47.7.3:dff"};
-    private static final String[] HEADER_ADD_PEOPLE_IDS = {"47.7.3:d5y"};
-    private static final String[] HEADER_SEARCH_IDS = {"47.7.3:fwa"};
-    private static final String[] HEADER_ACTIVITY_STATUS_IDS = {"47.7.3:g_a"};
+    private static final String[] SUGGESTED_HEADER_IDS = {"48.0.3:j1v"};
+    private static final String[] SUGGESTED_TITLE_IDS = {"48.0.3:kzr"};
+    private static final String[] SUGGESTED_REMOVE_IDS = {"48.0.3:efk"};
+    private static final String[] HEADER_ADD_PEOPLE_IDS = {"48.0.3:e6c"};
+    private static final String[] HEADER_SEARCH_IDS = {"48.0.3:gq8"};
+    private static final String[] HEADER_ACTIVITY_STATUS_IDS = {"48.0.3:gv3"};
 
     /** One dismissal at a time, so bulk clearing does not hammer PineDrama's API. */
     private static final long DISMISS_INTERVAL_MS = 300L;

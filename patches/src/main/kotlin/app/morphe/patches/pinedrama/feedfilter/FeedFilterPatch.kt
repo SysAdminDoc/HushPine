@@ -1075,12 +1075,37 @@ internal fun MutableMethod.raiseFollowFeedFirstReadCount() {
  * it, so the saved post played first and the newest posts were sorted below it. While the switch
  * is on the extension answers true and the hook hands the restore a null cache, which is the path
  * PineDrama takes when nothing was saved: it logs "no_cache" and the fresh read fills the feed.
+ * A restore handed the cache gets it nulled at entry; 48.0.3's list refresh, which asks the cache
+ * service itself, gets each answer passed through the extension, which hands back null instead.
  */
 internal fun MutableMethod.skipSavedFollowingFirstVideo() {
-    requireLocals("Following saved first video", 1)
     if (parameterTypes.firstOrNull()?.toString() != FOLLOWING_CACHE_DESCRIPTOR) {
-        throw PatchException("Following saved first video: $name does not take the saved cache first")
+        val instructions = implementation!!.instructions.toList()
+        val reads = instructions.indices.filter { index ->
+            instructions[index].opcode == Opcode.INVOKE_STATIC &&
+                instructions[index].getReference<MethodReference>()?.isFollowingCacheGetter() == true
+        }
+        if (reads.isEmpty()) {
+            throw PatchException("Following saved first video: $name does not take the saved cache first or read it")
+        }
+        reads.reversed().forEach { index ->
+            val result = instructions.getOrNull(index + 1)
+            if (result?.opcode != Opcode.MOVE_RESULT_OBJECT) {
+                throw PatchException("Following saved first video: $name drops the saved cache it reads at $index")
+            }
+            val cache = (result as OneRegisterInstruction).registerA
+            addInstructions(
+                index + 2,
+                """
+                    invoke-static/range { v$cache .. v$cache }, $FOLLOWING_LATEST_FIRST_CLASS_DESCRIPTOR->savedCache(Ljava/lang/Object;)Ljava/lang/Object;
+                    move-result-object v$cache
+                    check-cast v$cache, $FOLLOWING_CACHE_DESCRIPTOR
+                """,
+            )
+        }
+        return
     }
+    requireLocals("Following saved first video", 1)
     addInstructionsWithLabels(
         0,
         """
@@ -1324,7 +1349,7 @@ private fun MutableMethod.filterChainedCacheDelivery(
     // The block used to do its work in the payload's own register, so both labels it re-enters
     // at were reached with a boolean sitting in a register the native path holds a reference in.
     // On 46.2.3 the instruction at each label writes that register before anything reads it
-    // (index 6 and index 8 of LX/0pqs;->LIZ), so nothing was actually wrong; the block no longer
+    // (index 6 and index 8 of LX/0I4t;->LIZ), so nothing was actually wrong; the block no longer
     // depends on the host doing that. A register of its own also leaves the payload read the
     // patcher branched on exactly as the host wrote it.
     val scratchRegister = getFreeRegisterProvider(

@@ -100,6 +100,9 @@ public class SettingsStatus {
     public static boolean commentSortControlsEnabled = false;
     public static boolean commentsFullHeightEnabled = false;
     public static boolean ghostModeEnabled = false;
+    /** Ghost mode reached PineDrama's activity status report. An APK without PineDrama's DM code
+     *  has no such report, and then Hide online status has nothing to hide. */
+    public static boolean ghostOnlineStatusEnabled = false;
     public static boolean hideFeedFollowButtonEnabled = false;
     public static boolean hideFeedSaveButtonEnabled = false;
     public static boolean keepFavoritesTabEnabled = false;
@@ -456,6 +459,10 @@ public class SettingsStatus {
 
     public static void enableGhostMode() {
         ghostModeEnabled = true;
+    }
+
+    public static void enableGhostOnlineStatus() {
+        ghostOnlineStatusEnabled = true;
     }
 
     public static void enableHideFeedFollowButton() {

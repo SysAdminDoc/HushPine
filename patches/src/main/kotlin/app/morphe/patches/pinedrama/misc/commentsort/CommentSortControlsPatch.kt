@@ -8,6 +8,7 @@ import app.morphe.util.addInstruction
 import app.morphe.util.addInstructions
 import app.morphe.util.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.patch.PatchException
 import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as bytecodePatch
 import app.morphe.patcher.util.smali.ExternalLabel
 import app.morphe.patches.shared.compat.AppCompatibilities
@@ -43,30 +44,35 @@ val commentSortControlsPatch = bytecodePatch(
         )
 
         // The style the rollout hands out decides whether the full sheet or the cut-down row is
-        // built, so the value is read on its way out of the settings lookup. The insert lands
-        // inside the method's try block, so anything thrown out of the extension is swallowed by
-        // the host's own handler and the stock style is used: it fails to the unpatched
-        // behaviour rather than taking the comment sheet down, but it fails silently.
-        val style = CommentSortOptionStyleFingerprint.method
-        val styleInstructions = style.implementation!!.instructions.toList()
-        val stringIndex = styleInstructions.indexOfFirst {
-            it.opcode == Opcode.CONST_STRING &&
-                it.getReference<StringReference>()?.string == "comment_sort_opt_style"
+        // built, so the value is read on its way out of the settings lookup, in every method that
+        // looks it up (48.0.3 has a lazy read and an eager one). The extension call does not
+        // throw; the insert sits inside the lookup's own try or monitor block either way.
+        val styleReads = CommentSortOptionStyleFingerprint.matchAll().map { it.method }
+        if (styleReads.isEmpty()) {
+            throw PatchException("Comment sort controls: PineDrama's $COMMENT_SORT_STYLE_KEY read is not where it was.")
         }
-        check(stringIndex >= 0) {
-            "comment_sort_opt_style is not in the method the fingerprint matched"
+        styleReads.forEach { style ->
+            val styleInstructions = style.implementation!!.instructions.toList()
+            val stringIndex = styleInstructions.indexOfFirst {
+                it.opcode == Opcode.CONST_STRING &&
+                    it.getReference<StringReference>()?.string == COMMENT_SORT_STYLE_KEY
+            }
+            check(stringIndex >= 0) {
+                "$COMMENT_SORT_STYLE_KEY is not in the method the fingerprint matched"
+            }
+            // The answer of the call the key is handed to, followed through the key's register
+            // rather than the first move-result after the string, which any call in between
+            // would own.
+            val resultIndex = style.indexOfLiteralCallResult(stringIndex)
+            val styleRegister = (styleInstructions[resultIndex] as OneRegisterInstruction).registerA
+            style.addInstructions(
+                resultIndex + 1,
+                """
+                    invoke-static/range {v$styleRegister .. v$styleRegister}, $EXTENSION_CLASS_DESCRIPTOR->forceOptionStyle(I)I
+                    move-result v$styleRegister
+                """,
+            )
         }
-        // The answer of the call the key is handed to, followed through the key's register rather
-        // than the first move-result after the string, which any call in between would own.
-        val resultIndex = style.indexOfLiteralCallResult(stringIndex)
-        val styleRegister = (styleInstructions[resultIndex] as OneRegisterInstruction).registerA
-        style.addInstructions(
-            resultIndex + 1,
-            """
-                invoke-static/range {v$styleRegister .. v$styleRegister}, $EXTENSION_CLASS_DESCRIPTOR->forceOptionStyle(I)I
-                move-result v$styleRegister
-            """,
-        )
 
         // A post also has to pass an eligibility check of its own, so the style alone is not
         // enough. Answering true early leaves the original body in place for the switch-off case.

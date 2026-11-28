@@ -37,6 +37,12 @@ class SavedStickersRefreshTest {
         assertTrue("fixtures: ${apks.map { it.name }}", apks.containsAll(Fixtures.declared()))
         apks.forEach { apk ->
             val refreshes = methods(apk).filter { it.name == "invokeSuspend" && it.isSavedStickersRefresh() }
+            // An APK without the sticker panel's code (48.0.3's APKMirror bundle) has no refresh
+            // to raise, and the patch leaves it out there.
+            if (methods(apk).none { it.definingClass == FAVOURITE_STICKER_PAGE }) {
+                assertEquals("${apk.name}: saved stickers refreshes without a sticker panel", 0, refreshes.size)
+                return@forEach
+            }
             assertEquals("${apk.name}: saved stickers refreshes", 1, refreshes.size)
             val method = MutableMethod(refreshes.single())
             method.raiseSavedStickersFirstRead()

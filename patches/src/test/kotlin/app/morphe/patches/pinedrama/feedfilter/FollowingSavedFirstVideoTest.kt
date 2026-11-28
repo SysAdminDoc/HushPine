@@ -10,8 +10,8 @@ import com.android.tools.smali.dexlib2.iface.ClassDef
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.RegisterRangeInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
-import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
@@ -25,8 +25,10 @@ import org.junit.Test
 
 /**
  * The Following feed's restore of last run's saved list (#226): every retained build has one
- * method that takes the saved cache and checks its updateTime, and the hook hands it a null cache
- * when the extension says so, before the method copies its first parameter anywhere.
+ * method that checks the saved cache's updateTime, and the hook hands it a null cache when the
+ * extension says so. Up to 47.7.3 the restore was handed the cache first and the hook nulls that
+ * parameter at entry; 48.0.3's list refresh reads it itself, and every read goes through the
+ * extension.
  */
 class FollowingSavedFirstVideoTest {
     private val extension = "Lapp/morphe/extension/pinedrama/feedfilter/FollowingLatestFirst;"
@@ -39,9 +41,31 @@ class FollowingSavedFirstVideoTest {
             val restores = load(apk).values.flatMap { it.methods }.filter { it.isRestore() }
             assertEquals("${apk.name}: restores ${restores.map { "${it.definingClass}->${it.name}" }}", 1, restores.size)
             val method = MutableMethod(restores.single())
+            val handed = method.parameterTypes.firstOrNull()?.toString() == FOLLOWING_CACHE_DESCRIPTOR
             method.skipSavedFollowingFirstVideo()
 
             val instructions = method.implementation!!.instructions.toList()
+            if (!handed) {
+                // 48.0.3: the list refresh reads the cache itself, and each read passes through the extension.
+                val reads = instructions.indices.filter { index ->
+                    instructions[index].opcode == Opcode.INVOKE_STATIC &&
+                        ((instructions[index] as ReferenceInstruction).reference as MethodReference).let {
+                            it.parameterTypes.isEmpty() && it.returnType == FOLLOWING_CACHE_DESCRIPTOR
+                        }
+                }
+                assertTrue("${apk.name}: no saved cache read", reads.isNotEmpty())
+                reads.forEach { index ->
+                    val cache = (instructions[index + 1] as OneRegisterInstruction).registerA
+                    val wrap = (instructions[index + 2] as ReferenceInstruction).reference as MethodReference
+                    assertEquals(extension, wrap.definingClass)
+                    assertEquals("savedCache", wrap.name)
+                    assertEquals(cache, (instructions[index + 2] as RegisterRangeInstruction).startRegister)
+                    assertEquals(Opcode.MOVE_RESULT_OBJECT, instructions[index + 3].opcode)
+                    assertEquals(cache, (instructions[index + 3] as OneRegisterInstruction).registerA)
+                    assertEquals(Opcode.CHECK_CAST, instructions[index + 4].opcode)
+                }
+                return@forEach
+            }
             val call = (instructions[0] as ReferenceInstruction).reference as MethodReference
             assertEquals(extension, call.definingClass)
             assertEquals("skipSavedFirstVideo", call.name)
@@ -74,14 +98,7 @@ class FollowingSavedFirstVideoTest {
         assertTrue(error.message!!, error.message!!.contains("does not take the saved cache first"))
     }
 
-    private fun Method.isRestore(): Boolean =
-        returnType == "V" &&
-            parameterTypes.map { it.toString() } == listOf(FOLLOWING_CACHE_DESCRIPTOR, "Ljava/util/List;", "Z") &&
-            implementation?.instructions?.any { instruction ->
-                ((instruction as? ReferenceInstruction)?.reference as? FieldReference)?.let {
-                    it.definingClass == FOLLOWING_CACHE_DESCRIPTOR && it.name == "updateTime"
-                } == true
-            } == true
+    private fun Method.isRestore(): Boolean = returnType == "V" && isFollowingCacheRestore()
 
     private fun load(apk: File): Map<String, ClassDef> {
         val container = Fixtures.dexContainer(apk, Opcodes.getDefault())

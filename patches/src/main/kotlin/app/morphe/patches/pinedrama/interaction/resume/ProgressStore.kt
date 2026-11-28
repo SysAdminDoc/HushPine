@@ -31,19 +31,38 @@ import com.android.tools.smali.dexlib2.iface.reference.TypeReference
  * class with no fields at all), so each is read off the host's own code rather than written
  * down. Named here, the injected lines assembled on every build and failed on the first
  * completed video of any build but 46.2.3.
+ *
+ * <p>48.0.3 reads the cache through a static accessor on the holder (`LX/0CH1;->LJFF()` there)
+ * that picks between the Lazy and an eagerly built static under kt_lazy_load_exp, so the host
+ * names no Lazy at all. The patch then reads the cache through that accessor too.
  */
 internal class ProgressStore(
-    /** The static Lazy the cache of positions is built behind. */
-    val cache: FieldReference,
-    /** `getValue()` on that Lazy. */
-    val cacheValue: MethodReference,
-    /** How the host calls it: `invoke-interface` for an interface, which Lazy is. */
-    val cacheValueInvoke: String,
+    /** The static Lazy the cache of positions is built behind, or null when [cacheCall] is the holder's accessor. */
+    val cache: FieldReference?,
+    /** `getValue()` on that Lazy, or the holder's static accessor that answers the cache. */
+    val cacheCall: MethodReference,
+    /** How the host calls it: `invoke-interface` for an interface, which Lazy is, `invoke-static` for the accessor. */
+    val cacheCallInvoke: String,
     /** The record last stored or handed out. */
     val lastRecord: FieldReference,
     /** The aid that record belongs to. */
     val lastAid: FieldReference,
-)
+) {
+    /** The lines that leave the cache, as an `LruCache`, in [register]. */
+    fun readCache(register: Int): String = if (cache == null) {
+        """
+            $cacheCallInvoke {}, ${cacheCall.smali()}
+            move-result-object v$register
+        """
+    } else {
+        """
+            sget-object v$register, ${cache.smali()}
+            $cacheCallInvoke {v$register}, ${cacheCall.smali()}
+            move-result-object v$register
+            check-cast v$register, Landroid/util/LruCache;
+        """
+    }.trimIndent()
+}
 
 internal fun FieldReference.smali() = "$definingClass->$name:$type"
 
@@ -54,7 +73,7 @@ internal fun MethodReference.smali() =
  * The store, read off the host's `onPlayProgressChange` at the `LruCache.put` that ends it.
  *
  * <p>That put takes the cache out of the Lazy (a static of the holder, through `getValue()` and a
- * cast to `LruCache`) and stores the record it has just written into the holder's "last record"
+ * cast to `LruCache`), or from 48.0.3 on out of the holder's static accessor, and stores the record it has just written into the holder's "last record"
  * static. The aid beside it is the one String static the holder's own reader writes next to the
  * record: the reader is the holder's only static `(String)` method handing a record back, and it
  * answers from those two statics before it goes to the cache. Anything that does not line up
@@ -80,20 +99,29 @@ internal fun progressStoreAt(method: Method, putIndex: Int, classOf: (String) ->
     }
     val call = instructions[at - 1] as? FiveRegisterInstruction
         ?: fail("the progress cache does not come out of a plain call.")
-    val cacheValue = call.getReference<MethodReference>()
-    if ((call.opcode != Opcode.INVOKE_INTERFACE && call.opcode != Opcode.INVOKE_VIRTUAL) ||
-        cacheValue == null || cacheValue.name != "getValue" ||
-        cacheValue.parameterTypes.isNotEmpty() || cacheValue.returnType != "Ljava/lang/Object;" ||
-        call.registerCount != 1
+    val cacheCall = call.getReference<MethodReference>()
+        ?: fail("the progress cache does not come out of a method call.")
+    // 48.0.3: the holder's own static accessor, `()Landroid/util/LruCache;`.
+    val accessor = call.opcode == Opcode.INVOKE_STATIC && call.registerCount == 0 &&
+        cacheCall.parameterTypes.isEmpty() && cacheCall.returnType == "Landroid/util/LruCache;"
+    if (!accessor && (
+            (call.opcode != Opcode.INVOKE_INTERFACE && call.opcode != Opcode.INVOKE_VIRTUAL) ||
+                cacheCall.name != "getValue" || cacheCall.parameterTypes.isNotEmpty() ||
+                cacheCall.returnType != "Ljava/lang/Object;" || call.registerCount != 1
+            )
     ) {
-        fail("the progress cache does not come out of a Lazy's getValue().")
+        fail("the progress cache comes out of neither a Lazy's getValue() nor a static accessor.")
     }
-    val cache = instructions.getOrNull(instructions.writerOf(call.registerC, at - 1))
-        ?.takeIf { it.opcode == Opcode.SGET_OBJECT }
-        ?.getReference<FieldReference>()
-        ?.takeIf { it.type == cacheValue.definingClass }
-        ?: fail("the Lazy the progress cache comes out of is not read from a static.")
-    val holder = cache.definingClass
+    val cache = if (accessor) {
+        null
+    } else {
+        instructions.getOrNull(instructions.writerOf(call.registerC, at - 1))
+            ?.takeIf { it.opcode == Opcode.SGET_OBJECT }
+            ?.getReference<FieldReference>()
+            ?.takeIf { it.type == cacheCall.definingClass }
+            ?: fail("the Lazy the progress cache comes out of is not read from a static.")
+    }
+    val holder = cache?.definingClass ?: cacheCall.definingClass
 
     // The record: what the put stores, read out of the holder's own static.
     val lastRecord = instructions.getOrNull(instructions.writerOf(put.registerE, putIndex))
@@ -124,8 +152,12 @@ internal fun progressStoreAt(method: Method, putIndex: Int, classOf: (String) ->
         fail("expected the reader on $holder to write one String static beside the record, found ${aids.size}.")
     }
 
-    val invoke = if (call.opcode == Opcode.INVOKE_INTERFACE) "invoke-interface" else "invoke-virtual"
-    return ProgressStore(cache, cacheValue, invoke, lastRecord, aids.single())
+    val invoke = when (call.opcode) {
+        Opcode.INVOKE_STATIC -> "invoke-static"
+        Opcode.INVOKE_INTERFACE -> "invoke-interface"
+        else -> "invoke-virtual"
+    }
+    return ProgressStore(cache, cacheCall, invoke, lastRecord, aids.single())
 }
 
 /**

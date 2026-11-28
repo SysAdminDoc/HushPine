@@ -81,7 +81,7 @@ internal object PickedLocaleFingerprint : Fingerprint(
 )
 
 /**
- * PineDrama's apply of that language to the app's resources (`X.039Q.LIZIZ`), which its start-up
+ * PineDrama's apply of that language to the app's resources (`X.0bIz.LIZIZ`), which its start-up
  * runs as well, after the point the reword table can already have loaded.
  */
 internal object ApplyPickedLocaleFingerprint : Fingerprint(

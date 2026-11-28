@@ -104,12 +104,14 @@ val searchHistoryPatch = bytecodePatch(
         // Both resolved before anything is written, so a build missing either one leaves the
         // patch unapplied rather than half applied.
         val recorder = SearchHistoryRecordFingerprint.method
-        val manual = ManualSearchRecordFingerprint.method
+        // 48.0.3 dropped ManualSearchPvStore, and with it the per-query log, so there the history
+        // list is the only writer. Where the store is there, its writer is required.
+        val manual = if (classDefByOrNull(MANUAL_SEARCH_PV_STORE) == null) null else ManualSearchRecordFingerprint.method
         SettingsStatusLoadFingerprint.method.addInstruction(
             0,
             "invoke-static {}, Lapp/morphe/extension/pinedrama/settings/SettingsStatus;->enableSearchHistory()V",
         )
         recorder.skipWhenHistoryOff()
-        manual.skipWhenHistoryOff()
+        manual?.skipWhenHistoryOff()
     }
 }

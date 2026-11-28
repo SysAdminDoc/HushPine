@@ -4,6 +4,7 @@
 
 ### Changes
 
+* Retargeted to PineDrama 48.0.3 (version code 2024800030). All 103 patches apply to it, and every patch that hooks the app's own code was checked again against 48.0.3's code. 47.7.3 isn't a target anymore, so update PineDrama before you repatch.
 * The patches are built with Morphe patcher 2.6.0, the one stable Morphe Manager 2.8.0, morphe-desktop 2.4.0 and morphe-cli 2.4.0 ship. The next bundle needs Manager 2.8.0 or newer, or morphe-desktop 2.4.0 from a computer. Older Managers won't load it.
 
 ## 0.3.0 (2026-11-25)

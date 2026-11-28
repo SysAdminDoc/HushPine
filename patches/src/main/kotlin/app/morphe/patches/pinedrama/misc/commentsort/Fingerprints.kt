@@ -25,17 +25,23 @@ internal const val COMMENT_SORT_STYLE_KEY = "comment_sort_opt_style"
  * refuses a second candidate by name instead.
  */
 /**
- * At most one object parameter. The lambda that reads the key was an R8-outlined static body
- * taking its captured receiver up to 46.8.3 and is a zero-parameter instance `invoke()` on
- * 46.9.3; the patch follows the key's register and reads no parameter, so either shape will do.
- * The other carrier of the key on every build is a `()V` settings registrar, which the return
- * type keeps out.
+ * Every read of the style, which the patch hooks one by one.
+ *
+ * <p>The lazy read takes at most one object parameter and answers an object. It was an
+ * R8-outlined static body taking its captured receiver up to 46.8.3, a zero-parameter instance
+ * `invoke()` on 46.9.3, and a body in a merged lambda group on 48.0.3; the patch follows the key's
+ * register and reads no parameter, so any of those shapes will do. 48.0.3 adds an eager read
+ * beside it, a no-argument `()I` getter that `kt_lazy_load_exp` sends the lookup to instead of the
+ * lazy one, so a hook on the lazy read alone would miss half the installs. The other carrier of
+ * the key on every build is a `()V` settings registrar, which neither shape lets in.
  */
 internal object CommentSortOptionStyleFingerprint : Fingerprint(
-    returnType = "L",
     strings = listOf(COMMENT_SORT_STYLE_KEY),
     custom = { method, _ ->
-        method.parameterTypes.size <= 1 && method.parameterTypes.all { it.startsWith("L") }
+        val lazyRead = method.returnType.startsWith("L") &&
+            method.parameterTypes.size <= 1 && method.parameterTypes.all { it.startsWith("L") }
+        val eagerRead = method.returnType == "I" && method.parameterTypes.isEmpty()
+        lazyRead || eagerRead
     },
 )
 

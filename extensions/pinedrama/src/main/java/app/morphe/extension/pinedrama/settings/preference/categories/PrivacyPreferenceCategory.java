@@ -79,14 +79,16 @@ public final class PrivacyPreferenceCategory extends ConditionalPreferenceCatego
         }
         if (SettingsStatus.ghostModeEnabled) {
             addPreference(new GhostModePreference(context));
-            addPreference(new TogglePreference(
-                    context,
-                    "Hide online status",
-                    "Friends won't see a green dot or Active now while you're in PineDrama. Needs "
-                            + "Ghost mode on. Their status may stop updating for you, and your "
-                            + "last status can linger.",
-                    Settings.GHOST_HIDE_ONLINE_STATUS
-            ));
+            if (SettingsStatus.ghostOnlineStatusEnabled) {
+                addPreference(new TogglePreference(
+                        context,
+                        "Hide online status",
+                        "Friends won't see a green dot or Active now while you're in PineDrama. Needs "
+                                + "Ghost mode on. Their status may stop updating for you, and your "
+                                + "last status can linger.",
+                        Settings.GHOST_HIDE_ONLINE_STATUS
+                ));
+            }
             HookStatusPreference diagnostics = new HookStatusPreference(context);
             diagnostics.setKey("action_ghost_mode_diagnostics");
             diagnostics.setTitle(L10n.t(context, "Ghost mode diagnostics"));

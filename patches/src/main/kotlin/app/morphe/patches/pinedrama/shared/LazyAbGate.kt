@@ -325,14 +325,22 @@ internal fun Method.dispatchTarget(group: ClassDef, number: Int): Method? {
  * shape of `getValue` alone, because the interface it is called on is `kotlin.Lazy` under a name
  * R8 assigns per build; what pins it down is the unwrap of a `Number` straight after.
  */
+/** How many static helpers deep [readsLazyAb] follows a gate's read. */
+private const val MAX_HELPER_DEPTH = 2
+
 /**
- * Whether the method reads the lazy value itself, or through one static no-argument helper on
- * its own class that does. 46.9.3 splits the comment sort gate that way: `LIZ(Aweme)Z` asks
- * `LIZIZ()Z` on the same class and the read moved there with it, while the getter the patch
- * hooks kept its shape. One level, on the owner only: a helper elsewhere is some other gate.
+ * Whether the method reads the lazy value itself, or through static no-argument helpers on its
+ * own class that do. 46.9.3 splits the comment sort gate that way: `LIZ(Aweme)Z` asks `LIZIZ()Z`
+ * on the same class and the read moved there with it, while the getter the patch hooks kept its
+ * shape. 48.0.3 adds one more step, `LIZIZ()Z` asking `LIZLLL()I`, which holds both the lazy read
+ * and the eager one `kt_lazy_load_exp` picks between. Two levels, on the owner only: a helper
+ * elsewhere is some other gate.
  */
-internal fun Method.readsLazyAb(owner: ClassDef): Boolean {
+internal fun Method.readsLazyAb(owner: ClassDef): Boolean = readsLazyAb(owner, MAX_HELPER_DEPTH)
+
+private fun Method.readsLazyAb(owner: ClassDef, depth: Int): Boolean {
     if (isLazyAbRead()) return true
+    if (depth == 0) return false
     val helpers = implementation?.instructions
         ?.mapNotNull { it.getReference<MethodReference>() }
         ?.filter { it.definingClass == owner.type && it.parameterTypes.none() }
@@ -341,10 +349,13 @@ internal fun Method.readsLazyAb(owner: ClassDef): Boolean {
         owner.methods.any {
             it.name == helper.name && it.parameterTypes.none() &&
                 it.returnType == helper.returnType && AccessFlags.STATIC.isSet(it.accessFlags) &&
-                it.isLazyAbRead()
+                it.readsLazyAb(owner, depth - 1)
         }
     }
 }
+
+/** The boxes a lazy value's number is unwrapped from: `Number` up to 47.7.3, `Integer` on 48.0.3. */
+private val LAZY_NUMBER_BOXES = setOf("Ljava/lang/Number;", "Ljava/lang/Integer;")
 
 internal fun Method.isLazyAbRead(): Boolean {
     val calls = implementation?.instructions
@@ -354,7 +365,7 @@ internal fun Method.isLazyAbRead(): Boolean {
         it.name == "getValue" && it.returnType == "Ljava/lang/Object;" && it.parameterTypes.none()
     }
     val unwrapsNumber = calls.any {
-        it.definingClass == "Ljava/lang/Number;" && it.name == "intValue" && it.returnType == "I"
+        it.definingClass in LAZY_NUMBER_BOXES && it.name == "intValue" && it.returnType == "I"
     }
     return readsValue && unwrapsNumber
 }

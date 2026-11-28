@@ -205,7 +205,7 @@ internal object StickerPreviewSourceFingerprint : Fingerprint(
     // builds after, its own name `LJ` throughout, and on 47.7.3 it is `LX/0Hw6;->LJI` with a
     // Function2 and a Long appended to the nine parameters it had. So only the leading three are
     // held, and the rest is that it calls the preview bind, by that bind's shape rather than by
-    // its name.
+    // its name. It is DM code: 48.0.3's APKMirror bundle has none, and the patch leaves it out.
     //
     // Instance, because the source hook reads the StickerItem out of p2 and a static method of
     // the same declared parameter list would have the View there.

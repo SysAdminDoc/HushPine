@@ -270,7 +270,7 @@ class LazyAbGateTest {
     fun `the key is found in any no-argument method of a lambda class, not only the first`() {
         // Kotlin adds a bridge invoke()Object beside invoke()String, and R8 can list the bridge
         // first. The bridge holds no string.
-        val lambda = "LX/0abc;"
+        val lambda = "LX/0OiD;"
         val bridge = method("invoke", emptyList(), "Ljava/lang/Object;", 1, owner = lambda).apply {
             addInstructionsWithLabels(
                 0,
@@ -420,8 +420,8 @@ class LazyAbGateTest {
         addInstructionsWithLabels(
             0,
             """
-                sget-object v0, $group->LIZ:LX/01xP;
-                invoke-interface { v0 }, LX/01xP;->getValue()Ljava/lang/Object;
+                sget-object v0, $group->LIZ:LX/0TFw;
+                invoke-interface { v0 }, LX/0TFw;->getValue()Ljava/lang/Object;
                 move-result-object v0
                 check-cast v0, Ljava/lang/Number;
                 $unwrap

@@ -18,10 +18,10 @@ class OptionListsTest {
     @Test
     fun `every list the holder freezes from boxed counts is found, two on 46_2_3 and four on 46_8_3`() {
         val two = holderInit(
-            "LX/0sIr;",
+            "LX/0VJ3;",
             listOf("LJ" to listOf(50, 100, 150, 200), "LJFF" to listOf(60, 120, 240, 480)),
         )
-        assertResults(two, "LX/0sIr;", 2)
+        assertResults(two, "LX/0VJ3;", 2)
 
         val four = holderInit(
             "LX/18A3;",
@@ -37,9 +37,9 @@ class OptionListsTest {
 
     @Test
     fun `a list stored any other way is refused rather than left without the custom entry`() {
-        val init = holderInit("LX/0sIr;", listOf("LJ" to listOf(50, 100)), copiedTo = "LJFF")
+        val init = holderInit("LX/0VJ3;", listOf("LJ" to listOf(50, 100)), copiedTo = "LJFF")
         try {
-            optionListResults(init, "LX/0sIr;")
+            optionListResults(init, "LX/0VJ3;")
             fail("expected a refusal")
         } catch (refused: PatchException) {
             assertTrue(refused.message.orEmpty(), "stores LJFF without freezing it" in refused.message.orEmpty())
@@ -79,7 +79,7 @@ class OptionListsTest {
                 body.append("const/4 v3, $index\n")
                 body.append("aput-object v2, v1, v3\n")
             }
-            body.append("invoke-static {v1}, LX/0n7t;->LJIIJJI([Ljava/lang/Object;)Ljava/util/List;\n")
+            body.append("invoke-static {v1}, LX/0Qmf;->LJIIJJI([Ljava/lang/Object;)Ljava/util/List;\n")
             body.append("move-result-object v0\n")
             body.append("sput-object v0, $holder->$field:Ljava/util/List;\n")
         }

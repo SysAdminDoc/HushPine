@@ -18,7 +18,9 @@ import app.morphe.patches.pinedrama.misc.settings.SettingsStatusLoadFingerprint
 import app.morphe.patches.pinedrama.misc.settings.settingsPatch
 import app.morphe.patches.pinedrama.shared.buildName
 import app.morphe.util.ControlFlow
+import app.morphe.util.getFreeRegisterProvider
 import app.morphe.util.getReference
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -33,6 +35,7 @@ import java.util.BitSet
 private const val EXTENSION_CLASS_DESCRIPTOR =
     "Lapp/morphe/extension/pinedrama/publishdate/AlwaysShowPublishDatePatch;"
 private const val AWEME = "Lcom/ss/android/ugc/aweme/feed/model/Aweme;"
+private const val VIDEO_ITEM_PARAMS = "Lcom/ss/android/ugc/aweme/feed/model/VideoItemParams;"
 private const val WHAT = "Always show publish date"
 private val FORMATTER_CALLS = setOf(
     Opcode.INVOKE_STATIC, Opcode.INVOKE_STATIC_RANGE, Opcode.INVOKE_VIRTUAL, Opcode.INVOKE_VIRTUAL_RANGE,
@@ -63,9 +66,15 @@ val alwaysShowPublishDatePatch = bytecodePatch(
             // The post time text sits after the visibility gates, so it goes in first and the
             // gates' indices still hold.
             val site = postTimeSite()
+            val item = site.paramsRegister?.let { params ->
+                """
+                    invoke-virtual/range { v$params .. v$params }, $VIDEO_ITEM_PARAMS->getAweme()$AWEME
+                    move-result-object v${site.itemRegister}
+                """
+            }.orEmpty()
             addInstructions(
                 site.insertAt,
-                """
+                item + """
                     invoke-static { v${site.textRegister}, v${site.itemRegister} }, $EXTENSION_CLASS_DESCRIPTOR->postTime(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;
                     move-result-object v${site.textRegister}
                 """,
@@ -88,13 +97,16 @@ private fun Instruction.writes(register: Int): Boolean {
 /**
  * Where the author row's post time text is ready: [insertAt] is the first instruction past
  * PineDrama's empty check of [textRegister], and [itemRegister] holds the video's Aweme there.
- * [formatters] counts the date formatters whose text can reach it.
+ * [formatters] counts the date formatters whose text can reach it. When the method reuses the
+ * item's register on the way (48.0.3), [paramsRegister] is the item params parameter, which
+ * nothing writes, and [itemRegister] is a free one the hook reads the Aweme into first.
  */
 internal data class PostTimeSite(
     val insertAt: Int,
     val textRegister: Int,
     val itemRegister: Int,
     val formatters: Int,
+    val paramsRegister: Int? = null,
 )
 
 /**
@@ -107,7 +119,8 @@ internal data class PostTimeSite(
  *
  * The hook reads the item from the register the time was asked of, so every path into the hook
  * has to come through that call with nothing writing the register on the way, and nothing may
- * jump straight to the hooked instruction, which would skip it.
+ * jump straight to the hooked instruction, which would skip it. 48.0.3 reuses that register on
+ * one path, so there the hook asks the item params parameter for its Aweme instead.
  */
 internal fun Method.postTimeSite(): PostTimeSite {
     val flow = ControlFlow.of(this)
@@ -205,11 +218,17 @@ internal fun Method.postTimeSite(): PostTimeSite {
     }
     afterRead.and(beforeHook)
     var on = afterRead.nextSetBit(0)
+    var clobbered: Int? = null
     while (on >= 0) {
         if (instructions[on].writes(itemRegister)) {
-            throw PatchException("$WHAT: instruction $on writes the item's register between its time and the post time text.")
+            clobbered = on
+            break
         }
         on = afterRead.nextSetBit(on + 1)
+    }
+    val paramsRegister = clobbered?.let { at ->
+        paramsRegister()?.takeIf { params -> instructions.none { it.writes(params) } }
+            ?: throw PatchException("$WHAT: instruction $at writes the item's register between its time and the post time text.")
     }
 
     // Code put in front of an instruction runs only for the paths that fall into it: a branch to
@@ -217,11 +236,28 @@ internal fun Method.postTimeSite(): PostTimeSite {
     if (predecessors[insertAt] != listOf(emptyCheck + 2)) {
         throw PatchException("$WHAT: something other than the empty check leads to the post time text.")
     }
-    // The 4-bit invoke names both registers.
-    if (textRegister > 15 || itemRegister > 15) {
-        throw PatchException("$WHAT: v$textRegister or v$itemRegister doesn't fit a short invoke.")
+    val hookItem = if (paramsRegister == null) {
+        itemRegister
+    } else {
+        runCatching { getFreeRegisterProvider(insertAt, 1, textRegister, paramsRegister).getFreeRegister4Bit() }
+            .getOrElse { throw PatchException("$WHAT: no register is free for the item at the post time text.") }
     }
-    return PostTimeSite(insertAt, textRegister, itemRegister, formatters.size)
+    // The 4-bit invoke names both registers.
+    if (textRegister > 15 || hookItem > 15) {
+        throw PatchException("$WHAT: v$textRegister or v$hookItem doesn't fit a short invoke.")
+    }
+    return PostTimeSite(insertAt, textRegister, hookItem, formatters.size, paramsRegister)
+}
+
+/** The register the method's item params parameter arrives in, or null when it takes none. */
+private fun Method.paramsRegister(): Int? {
+    val types = parameterTypes.map { it.toString() }
+    val index = types.indexOf(VIDEO_ITEM_PARAMS)
+    if (index < 0) return null
+    fun words(type: String) = if (type == "J" || type == "D") 2 else 1
+    val self = if (AccessFlags.STATIC.isSet(accessFlags)) 0 else 1
+    val first = implementation!!.registerCount - self - types.sumOf(::words)
+    return first + self + types.take(index).sumOf(::words)
 }
 
 private fun app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.showPostTimeForMainFeeds() {

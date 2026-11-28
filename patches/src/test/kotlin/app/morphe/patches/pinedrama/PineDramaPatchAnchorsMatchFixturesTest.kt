@@ -16,6 +16,7 @@ import app.morphe.patches.pinedrama.interaction.downloads.drawsCommentImageWater
 import app.morphe.patches.pinedrama.interaction.searchsuggestions.isSearchRewardsAccessor
 import app.morphe.patches.pinedrama.interaction.speed.playerManagerSpeedBoundary
 import app.morphe.patches.pinedrama.misc.settings.isSettingsComposeRowsMethod
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
 import app.morphe.patches.pinedrama.misc.optimizer.backendBuilderCall
 import app.morphe.patches.pinedrama.misc.optimizer.framePreparerGateIndex
 import app.morphe.patches.pinedrama.interaction.engagement.ProfileGridBindFingerprint
@@ -135,15 +136,18 @@ class PineDramaPatchAnchorsMatchFixturesTest {
      * calls the preview bind with the sticker in p2. 47.7.3 appended a Function2 and a Long to
      * that method's parameters, the old whole-list fingerprint stopped matching, and the patch
      * failed at apply with every test green, since nothing here held the fingerprint to a build.
+     * The method is the chat's, so an APK without the DM code (48.0.3's bundle) has none.
      */
     @Test
     fun `sticker preview source fingerprint takes one method on every retained fixture`() {
         for (apk in fixtures()) {
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
-            val taken = container.dexEntryNames.asSequence()
-                .flatMap { container.getEntry(it)!!.dexFile.classes.asSequence() }
+            val classes = container.dexEntryNames.asSequence()
+                .flatMap { container.getEntry(it)!!.dexFile.classes.asSequence() }.toList()
+            val taken = classes.asSequence()
                 .flatMap { classDef -> classDef.methods.asSequence().filter { StickerPreviewSourceFingerprint.takes(it, classDef) } }
                 .toList()
+            if (taken.isEmpty() && classes.none { it.type == DM_CHAT_SCREEN_CLASS }) continue
             assertEquals("${apk.name}: sticker preview source ${taken.map { "${it.definingClass}->${it.name}" }}", 1, taken.size)
             assertEquals("${apk.name}: the sticker the hook reads from p2",
                 "Lcom/ss/android/ugc/aweme/im/common/model/StickerItem;", taken.single().parameterTypes[1].toString())
@@ -392,7 +396,7 @@ class PineDramaPatchAnchorsMatchFixturesTest {
      * Show engagement rate hooks the profile grid adapter's bind right after the cell's view count
      * is formatted, and hands the extension the text and the cell's Aweme. One bind per declared
      * build, the item in the register its statistics were asked of, and the text the one the
-     * cell's next setText writes (v1 and v12 on all three builds).
+     * cell's next setText writes (v11 and v10 on 47.7.3, v14 and v13 on 48.0.3).
      */
     @Test
     fun `profile grid view count site resolves on every declared build`() {
@@ -404,7 +408,7 @@ class PineDramaPatchAnchorsMatchFixturesTest {
             assertEquals("profile grid binds", 1, binds.size)
             val bind = binds.single()
             val site = runCatching { bind.gridCountSite() }.getOrElse { throw AssertionError(it.message, it) }
-            assertEquals("text and item registers", 11 to 10, site.textRegister to site.itemRegister)
+            assertEquals("text and item registers", 14 to 13, site.textRegister to site.itemRegister)
             val instructions = bind.implementation!!.instructions.toList()
             val result = instructions[site.insertAt - 1]
             assertEquals(Opcode.MOVE_RESULT_OBJECT, result.opcode)

@@ -45,14 +45,17 @@ internal data class SearchRewardsGetter(val placeholder: String, val loadedResul
 /**
  * PineDrama downloads its search rewards code (the points banner, the coin and their tasks) only
  * where the program runs, and the base APK carries a real-named placeholder for each service.
- * Each service comes from a lazy getter of one shape: it asks whether the "coin" or "incentive"
+ * Each service comes from a getter of one shape (a lazy's invoke, or on 48.0.3 the static helper
+ * that answers the service's interface): it asks whether the "coin" or "incentive"
  * feature is loaded and returns the placeholder if not, then asks pluggableSpi for the real
  * service and falls back to the placeholder again. The coin's service never passes through the
  * static accessor [isSearchRewardsAccessor] covers, which is why the coin stayed (#21). Returns
  * where the first answer lands, or null for any other method.
  */
 internal fun searchRewardsGetter(method: Method): SearchRewardsGetter? {
-    if (method.returnType != "Ljava/lang/Object;") return null
+    // A lazy's invoke answers Object; 48.0.3 moved each body into a static helper that answers the
+    // service's interface, which both its lazy and its synchronized stand-in call.
+    if (!method.returnType.startsWith("L")) return null
     val instructions = method.implementation?.instructions?.toList() ?: return null
     val placeholder = instructions.mapNotNull { instruction ->
         instruction.takeIf { it.opcode == Opcode.NEW_INSTANCE }?.getReference<TypeReference>()?.type

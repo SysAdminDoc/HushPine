@@ -32,7 +32,8 @@ import app.morphe.patcher.Fingerprint
 internal object CheckSimChangeTaskFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Landroid/content/Context;"),
-    strings = listOf("last_sim_info", "last_check_time", "ttac_sim_change_detect"),
+    // 48.0.3 moved the Keva reads and writes of `last_sim_info` into a helper; the event stayed.
+    strings = listOf("ttac_sim_change_detect"),
     custom = { method, classDef ->
         classDef.type == "Lcom/ss/android/ugc/aweme/legoImpl/task/CheckSIMChangeTask;" &&
             method.name == "run"

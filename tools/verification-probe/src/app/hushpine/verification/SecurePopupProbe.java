@@ -119,7 +119,7 @@ final class SecurePopupProbe {
         if ("com.ss.android.ttmd.video".equals(hostPackage)) {
             return new String[]{"X.GWO", "X.Fnj", "X.Ges", "X.GcV"};
         }
-        return new String[]{"X.011c", "X.01oI", "X.011a", "X.01tG"};
+        return new String[]{"X.011c", "X.0lDJ", "X.011a", "X.01tG"};
     }
 
     private static int dp(Activity activity, int value) {

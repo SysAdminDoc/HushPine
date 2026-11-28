@@ -12,6 +12,7 @@ import app.morphe.patches.shared.compat.AppCompatibilities
 import app.morphe.patches.pinedrama.misc.extension.sharedExtensionPatch
 import app.morphe.patches.pinedrama.misc.settings.SettingsStatusLoadFingerprint
 import app.morphe.patches.pinedrama.misc.settings.settingsPatch
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.util.addInstruction
 import app.morphe.util.addInstructionsWithLabels
 import app.morphe.util.addInstructionsAtControlFlowLabel
@@ -166,6 +167,9 @@ val autoStreakPatch = bytecodePatch(
     compatibleWith(*AppCompatibilities.pineDrama())
 
     execute {
+        // The streak sends through the quick reply. Without the DM code there's nothing to send
+        // with, so the patch adds nothing, and the settings row stays hidden.
+        if (!shipsDmClass("Keep a streak going", "the streak messages", QUICK_REPLY_RECEIVER)) return@execute
         val lookup = readyLookupIn(QuickReplySendFingerprint.method).getOrElse {
             throw PatchException("Keep a streak going: the quick reply changed, ${it.message}.")
         }

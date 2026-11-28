@@ -5,6 +5,7 @@
 package app.morphe.patches.pinedrama.privacy
 
 import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.PatchException
 import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as bytecodePatch
 import app.morphe.patches.shared.compat.AppCompatibilities
 import app.morphe.patches.pinedrama.misc.extension.sharedExtensionPatch
@@ -49,5 +50,13 @@ internal fun installAiProfilingSwitch() {
     // Should the plugin arrive another way, its engine still can't attach, and PineDrama's
     // stand-in core keeps answering "host not ready".
     PitayaRealProviderFingerprint.method.returnVoidWhenOn(PATCH, AI_PROFILING_SWITCH)
-    PitayaLiteStartFingerprint.method.returnVoidWhenOn(PATCH, AI_PROFILING_SWITCH)
+    // 48.0.3 never starts Pitaya Lite: nothing reads its settings and only PitayaLite's own class
+    // initializer names the class. A build that reads the settings again has a start to stop.
+    val liteStart = PitayaLiteStartFingerprint.methodOrNull
+    when {
+        liteStart != null -> liteStart.returnVoidWhenOn(PATCH, AI_PROFILING_SWITCH)
+        PitayaLiteSettingsFingerprint.methodOrNull != null ->
+            throw PatchException("$PATCH: PineDrama reads pitaya_lite_settings, but its Pitaya Lite start is not where it was.")
+        else -> println("[$PATCH] This PineDrama never starts Pitaya Lite, so there's no start to stop.")
+    }
 }

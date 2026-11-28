@@ -4,6 +4,7 @@
  */
 package app.morphe.patches.pinedrama.misc.comment
 
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as bytecodePatch
@@ -97,6 +98,8 @@ val loadAllSavedStickersPatch = bytecodePatch(
     compatibleWith(*AppCompatibilities.pineDrama())
 
     execute {
+        // The refresh is in the sticker panel's code, which comes with PineDrama's DM code.
+        if (!shipsDmClass("Load all saved stickers", "the full saved sticker load", FAVOURITE_STICKER_PAGE)) return@execute
         SavedStickersRefreshFingerprint.method.raiseSavedStickersFirstRead()
         registerForBuildDetails("enableSavedStickers")
     }

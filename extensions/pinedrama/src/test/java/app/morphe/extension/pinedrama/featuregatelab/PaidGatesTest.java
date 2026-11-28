@@ -24,7 +24,7 @@ import org.robolectric.annotation.Config;
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 28)
 public class PaidGatesTest {
-    /** Gates PineDrama 47.7.3 registers that open or skip something it sells. */
+    /** Gates PineDrama 48.0.3 registers that open or skip something it sells. */
     private static final String[] PAID = {
             "drama_is_drama_subscribing_local_override_enabled",
             "short_drama_skip_paywall_info_price",

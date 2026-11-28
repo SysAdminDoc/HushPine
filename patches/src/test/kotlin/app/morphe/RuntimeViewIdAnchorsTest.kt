@@ -99,11 +99,17 @@ class RuntimeViewIdAnchorsTest {
             val coverage = coverage(apk, anchors, checkNotNull(compatibility.packageName), version)
             // Every group has had an owner since fdaec7f8. A group that only resolves passes
             // whatever view PineDrama hands its name to next, so a missing owner fails like a broken one.
-            val failures = coverage.filter { it.state != State.OWNED }.map {
+            val failures = coverage.filter { it.state != State.OWNED && it.state != State.DM_CODE }.map {
                 "${it.anchor.lookup}: " +
                     if (it.state == State.UNOWNED) "no owner holds it (${it.detail})" else it.detail
             }
             assertEquals("${apk.name} (the declared $version target)", emptyList<String>(), failures)
+            assertEquals(
+                "${apk.name}: the groups left without a name because the bundle ships no DM code. A group " +
+                    "that has this build's name again loses its DM_CODE_GROUPS entry",
+                DM_CODE_GROUPS.keys.toSortedSet(),
+                coverage.filter { it.state == State.DM_CODE }.map { it.anchor.group }.toSortedSet(),
+            )
             println("${apk.name}: ${coverage.count { it.state == State.OWNED }} owners load their id")
         }
     }
@@ -195,11 +201,11 @@ class RuntimeViewIdAnchorsTest {
     /** Each group handed another group's id on each declared build, by that build's name for it. */
     @Test
     fun `semantic owners reject an unrelated id for every group that needs one`() {
-        val dislike = "comment/CommentTools.java|DISLIKE_BUTTON_IDS|47.7.3:fk1"
-        val dislikeIcon = "comment/CommentTools.java|DISLIKE_ICON_IDS|47.7.3:gzy"
-        val captionText = "captions/CaptionStyle.java|TEXT_IDS|47.7.3:bz9"
+        val dislike = "comment/CommentTools.java|DISLIKE_BUTTON_IDS|48.0.3:ged"
+        val dislikeIcon = "comment/CommentTools.java|DISLIKE_ICON_IDS|48.0.3:hj4"
+        val captionText = "captions/CaptionStyle.java|TEXT_IDS|48.0.3:d1k"
         val wrongNames = mapOf(
-            "47.7.3" to mapOf(dislike to "bz8", dislikeIcon to "bz8", captionText to "fk1"),
+            "48.0.3" to mapOf(dislike to "d1j", dislikeIcon to "d1j", captionText to "ged"),
         )
         assertEquals(Fixtures.declaredVersions().toSet(), wrongNames.keys)
         for ((version, wrong) in wrongNames) {
@@ -251,6 +257,9 @@ class RuntimeViewIdAnchorsTest {
         val owner: Owner?,
         val tell: Tell?,
     ) {
+        /** The line's `source|group`, without its names. */
+        val group: String get() = lookup.substringBeforeLast('|')
+
         /**
          * The names the code resolves on [version], in its order: that build's own, written
          * `47.1.4:g85`, and the real names with no build in front. BuildNames in the shared
@@ -315,7 +324,24 @@ class RuntimeViewIdAnchorsTest {
     /** One place an owner loads an id: the view type it reaches, or the class it is handed to. */
     private class IdUse(val id: Int, val type: String?, val to: String?, val tag: String?, val parentTag: String? = null)
 
-    private enum class State { OWNED, UNOWNED, BROKEN }
+    /** DM_CODE: a group of [DM_CODE_GROUPS] on a build whose bundle ships none of PineDrama's DM code. */
+    private enum class State { OWNED, UNOWNED, BROKEN, DM_CODE }
+
+    /**
+     * A DM code group with no name on this build holds only while its owner is missing with the
+     * rest of the DM code. Once the owner is back the bundle ships that code again, and the group
+     * needs this build's name, read off the new build like any other.
+     */
+    private fun dmCodeMissing(facts: Facts, anchor: Anchor): Coverage {
+        val className = when (val owner = anchor.owner) {
+            is Owner.ClassLiteral -> owner.className
+            is Owner.LayoutClass -> owner.className
+            else -> return Coverage(anchor, State.BROKEN, "a DM code group needs a class owner, not $owner")
+        }
+        return if (facts.loaded[descriptor(className)] == null) Coverage(anchor, State.DM_CODE, "$className is missing with the DM code")
+        else Coverage(anchor, State.BROKEN,
+            "$className is back, so the bundle ships the DM code again: give the group this build's name and drop its DM_CODE_GROUPS entry")
+    }
 
     private class Coverage(
         val anchor: Anchor,
@@ -406,6 +432,7 @@ class RuntimeViewIdAnchorsTest {
             val candidates = used?.let { ids.getValue(it) }.orEmpty()
             val owner = anchor.owner
             when {
+                names.isEmpty() && anchor.group in DM_CODE_GROUPS -> dmCodeMissing(facts, anchor)
                 used == null -> Coverage(anchor, State.BROKEN, "$packageName defines none of $names")
                 // Two entries under one name: an invented short name that is also a real one. The
                 // lookup on the phone lands on one of them, and which one is the platform's choice.
@@ -1011,6 +1038,19 @@ class RuntimeViewIdAnchorsTest {
 
         /** The groups that may look up more than one name, as `source|group|names`, and why. */
         val MORE_THAN_ONE_NAME = mapOf<String, String>(
+        )
+
+        /**
+         * The groups whose owner is PineDrama's DM code, as `source|group`. 47.7.3's bundle carried
+         * that code in split_df_a_dex and 48.0.3's ships no such split, so these views can't be held
+         * on 48.0.3 and keep 47.7.3's names, which resolve on no other build. The list only shrinks:
+         * a bundle that ships the owner again fails until the group has that build's name.
+         */
+        val DM_CODE_GROUPS = mapOf(
+            "inbox/InboxFilter.java|CHAT_ROW_IDS" to "the inbox's chat row, from the DM code's generated inflater",
+            "inbox/InboxFilter.java|MESSAGE_REQUESTS_IDS" to "the message requests row's count",
+            "inbox/InboxFilter.java|SAY_HI_ROW_IDS" to "the say hi row, from the DM chat list widget",
+            "inbox/InboxFilter.java|USER_ROW_TITLE_IDS" to "a chat row's name",
         )
     }
 }

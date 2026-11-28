@@ -34,7 +34,8 @@ private const val CONTROLS = "Lapp/morphe/extension/pinedrama/feed/SensitiveWarn
 /**
  * What hides the caution strip on a video shared into a chat (#258), held to each declared build:
  * one void method reads both labels from the card's extras, and after the patch each read goes
- * through chatCardLabel into the same register before anything else touches it.
+ * through chatCardLabel into the same register before anything else touches it. An APK without
+ * PineDrama's DM code (48.0.3's APKMirror bundle) has no card, and only the writer names the key.
  */
 class ChatCardCautionAnchorsTest {
     @Test
@@ -43,12 +44,19 @@ class ChatCardCautionAnchorsTest {
             val version = Fixtures.versionOf(apk)
             val taken = mutableListOf<Method>()
             val naming = mutableListOf<String>()
+            var hasCard = false
             walk(apk) { classDef, method ->
+                if (classDef.type == CHAT_CARD_ASSEM) hasCard = true
                 val code = method.implementation ?: return@walk
                 if (code.instructions.any { it.getReference<StringReference>()?.string == CHAT_CARD_LABEL_KEYS[0] }) {
                     naming += "${classDef.type}->${method.name}"
                 }
                 if (ChatCardCautionFingerprint.takes(method, classDef)) taken += method
+            }
+            if (!hasCard) {
+                assertEquals("$version: no card, yet taken ${taken.map { it.definingClass + "->" + it.name }}", 0, taken.size)
+                assertEquals("$version: no card, so only the writer names the key: $naming", 1, naming.size)
+                return@forEachDeclared
             }
             assertEquals("$version: taken ${taken.map { it.definingClass + "->" + it.name }} of $naming", 1, taken.size)
             // The writer (the share's send task) and the card are the only two that name the key.

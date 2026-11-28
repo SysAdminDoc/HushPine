@@ -55,10 +55,11 @@ internal object CommentListLoadedFingerprint : Fingerprint(
     },
 )
 
-/** TikTok's one read of feed_translation_reverse, the lazy that keeps it for the process (#143). */
+/**
+ * PineDrama's reads of feed_translation_reverse (#143): the lazy that keeps it for the process, and
+ * on 48.0.3 the synchronized getter that reads it instead while `kt_lazy_load_exp` is below zero.
+ */
 internal object FeedTranslationReverseFingerprint : Fingerprint(
-    returnType = "Ljava/lang/Object;",
-    parameters = listOf(),
     strings = listOf(FEED_TRANSLATION_REVERSE),
     custom = { method, _ -> method.feedTranslationReverseRead() != null },
 )

@@ -144,11 +144,11 @@ class SearchRewardsGettersTest {
             """
         } else {
             """
-                sget-object v2, LX/08FU;->LIZIZ:LX/08FU;
+                sget-object v2, LX/0aoB;->LIZIZ:LX/0aoB;
                 const-string v1, "$feature"
                 const/4 v3, 0x0
                 const/4 v0, 0x0
-                invoke-virtual {v2, v0, v1, v3}, LX/08FU;->LJFF(Landroidx/fragment/app/Fragment;Ljava/lang/String;Z)Z
+                invoke-virtual {v2, v0, v1, v3}, LX/0aoB;->LJFF(Landroidx/fragment/app/Fragment;Ljava/lang/String;Z)Z
             """
         }
         mutable.addInstructionsWithLabels(

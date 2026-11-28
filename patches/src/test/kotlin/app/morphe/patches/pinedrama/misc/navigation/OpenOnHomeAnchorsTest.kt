@@ -5,7 +5,9 @@ import app.morphe.takes
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.Opcodes
 import com.android.tools.smali.dexlib2.iface.ClassDef
+import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.Instruction
+import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
@@ -17,7 +19,8 @@ import org.junit.Test
 /**
  * Issue #6: the patch answers the default landing tab, so every Discover a start can see must come
  * from it, on every declared build. Callers outside its class ask it straight or ask the override
- * reader, which falls back to it. Discover's landing rule is held to that by name, since that rule
+ * reader, which falls back to it. The one exception is the lambda behind the default's lazy holder,
+ * which asks the raw calculation and answers only the default. Discover's landing rule is held to that by name, since that rule
  * is what sent the reporter's starts to Discover, and every write of the override must be Drama, or
  * a start reading the override would still land on Discover.
  */
@@ -51,6 +54,7 @@ class OpenOnHomeAnchorsTest {
                 ((it as? ReferenceInstruction)?.reference as? MethodReference)?.takeIf { call -> call.definingClass == readerClass.type }?.name
             }
             assertEquals("the override reader's fallback", listOf(defaultName), readerCalls)
+            val lazyBodies = readerClass.lazyHolderBodies()
 
             val asked = HashSet<String>()
             val overrideWrites = ArrayList<String>()
@@ -67,6 +71,8 @@ class OpenOnHomeAnchorsTest {
                         val call = reference as? MethodReference ?: continue
                         if (classDef.type == readerClass.type) continue
                         if (call.definingClass != readerClass.type || call.returnType != tabType) continue
+                        // The lazy holder's own body works the default out, and only the default reads the holder.
+                        if ("${classDef.type}->${method.name}" in lazyBodies) continue
                         assertTrue("${classDef.type}->${method.name} asks ${call.name}", call.name in setOf(defaultName, readerName))
                         asked += classDef.type
                     }
@@ -88,5 +94,23 @@ class OpenOnHomeAnchorsTest {
             return instruction.opcode.toString()
         }
         return "unknown"
+    }
+
+    /**
+     * The merged Kotlin lambdas this class's init builds for its lazy holder, as `Type->invoke$n`.
+     * On 48.0.3 the default's lazy path (kt_lazy_load_exp) gets its answer from
+     * `AFtS122S0000000_13.get$arr$(940)`, whose `invoke$940` asks the raw calculation itself.
+     */
+    private fun ClassDef.lazyHolderBodies(): Set<String> {
+        val instructions = methods.firstOrNull { it.name == "<clinit>" }?.implementation?.instructions?.toList() ?: return emptySet()
+        return instructions.withIndex().mapNotNull { (index, instruction) ->
+            val call = ((instruction as? ReferenceInstruction)?.reference as? MethodReference)
+                ?.takeIf { instruction.opcode == Opcode.INVOKE_STATIC && it.name == "get\$arr\$" && it.parameterTypes.map(CharSequence::toString) == listOf("I") }
+                ?: return@mapNotNull null
+            val argument = (instruction as FiveRegisterInstruction).registerC
+            val case = instructions.subList(0, index).lastOrNull { (it as? OneRegisterInstruction)?.registerA == argument }
+                as? NarrowLiteralInstruction ?: return@mapNotNull null
+            "${call.definingClass}->invoke\$${case.narrowLiteral}"
+        }.toSet()
     }
 }

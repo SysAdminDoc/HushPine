@@ -19,6 +19,7 @@ import com.ss.android.ugc.aweme.feed.model.Aweme;
 import com.ss.android.ugc.aweme.series.innerfeed.viewmodel.SeriesInnerFeedViewModel;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +39,11 @@ import java.util.List;
 @Config(sdk = 28)
 public class LandscapeEpisodesTest {
     @Rule public final SettingsContextRule settingsContext = new SettingsContextRule();
+
+    /** What the patch writes in for a build, here the fakes' own names. */
+    @Before public void names() {
+        LandscapeEpisodes.useNames("append", "prepend", "automatic", "loadEnded", "pagerAbility", "current");
+    }
 
     @After public void reset() {
         Settings.LANDSCAPE_EPISODES.resetToDefault();
@@ -137,23 +143,23 @@ public class LandscapeEpisodesTest {
         final List<String> calls = new ArrayList<>();
         FakeAbility ability;
 
-        public FakeAbility iA() {
+        public FakeAbility pagerAbility() {
             return ability;
         }
 
-        public void ns(boolean automatic) {
+        public void automatic(boolean automatic) {
             calls.add("automatic=" + automatic);
         }
 
-        public void j4(List<?> episodes, boolean more) {
+        public void append(List<?> episodes, boolean more) {
             calls.add("append " + episodes.size());
         }
 
-        public void id(List<?> episodes, boolean more) {
+        public void prepend(List<?> episodes, boolean more) {
             calls.add("prepend " + episodes.size());
         }
 
-        public void T3(Exception why) {
+        public void loadEnded(Exception why) {
             calls.add("load ended");
         }
     }
@@ -248,7 +254,7 @@ public class LandscapeEpisodesTest {
             this.current = current;
         }
 
-        public Aweme LLLIZZ() {
+        public Aweme current() {
             return current;
         }
     }

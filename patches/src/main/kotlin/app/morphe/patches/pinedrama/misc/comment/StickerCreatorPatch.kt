@@ -4,6 +4,7 @@
  */
 package app.morphe.patches.pinedrama.misc.comment
 
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patches.pinedrama.misc.settings.configurableBytecodePatch as bytecodePatch
@@ -295,6 +296,9 @@ val createStickersPatch = bytecodePatch(
     compatibleWith(*AppCompatibilities.pineDrama())
 
     execute {
+        // The Saved page and the save call are in the sticker panel's code, which comes with
+        // PineDrama's DM code.
+        if (!shipsDmClass("Create stickers", "the Create button", FAVOURITE_STICKER_PAGE)) return@execute
         val calls = stickerCreatorCalls(
             StickerUploadConfigFingerprint.originalMethod,
             StickerServerParameterFingerprint.originalMethod,

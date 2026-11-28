@@ -56,12 +56,22 @@ class CommentSheetHeightAnchorsTest {
             assertTrue("${apk.name}: the panel reads no sheet mode", modeIndex >= 0)
             val result = instructions[modeIndex + 1]
             assertEquals("${apk.name}: the mode's answer is not moved next", Opcode.MOVE_RESULT, result.opcode)
-            assertEquals("${apk.name}: the mode is not tested next", Opcode.IF_LEZ, instructions[modeIndex + 2].opcode)
             val register = (result as OneRegisterInstruction).registerA
+            // 48.0.3 loads two constants between the move and the test (const/4 v9 and v2 before
+            // `if-lez v0`). The hook goes in right after the move, so those only have to leave
+            // the mode's register alone.
+            val testIndex = (modeIndex + 2..instructions.lastIndex).first { instructions[it].opcode !in CONSTANT_LOADS }
+            for (index in modeIndex + 2 until testIndex) {
+                assertTrue(
+                    "${apk.name}: a constant overwrites the mode before its test",
+                    (instructions[index] as OneRegisterInstruction).registerA != register,
+                )
+            }
+            assertEquals("${apk.name}: the mode is not tested next", Opcode.IF_LEZ, instructions[testIndex].opcode)
             assertEquals(
                 "${apk.name}: the test reads another register",
                 register,
-                (instructions[modeIndex + 2] as OneRegisterInstruction).registerA,
+                (instructions[testIndex] as OneRegisterInstruction).registerA,
             )
 
             // The panel asks the height method by name once the mode passes.
@@ -160,5 +170,10 @@ class CommentSheetHeightAnchorsTest {
             for (classDef in container.getEntry(entry)!!.dexFile.classes) byType.putIfAbsent(classDef.type, classDef)
         }
         return byType.values.asSequence().flatMap { classDef -> classDef.methods.asSequence().map { classDef to it } }
+    }
+
+    private companion object {
+        /** Loads that only write a constant to one register. */
+        val CONSTANT_LOADS = setOf(Opcode.CONST_4, Opcode.CONST_16, Opcode.CONST, Opcode.CONST_HIGH16)
     }
 }

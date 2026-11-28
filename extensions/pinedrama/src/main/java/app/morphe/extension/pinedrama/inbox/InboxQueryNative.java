@@ -205,7 +205,7 @@ final class InboxQueryNative {
             LoadedInboxQuery.Publication publication = surface.metadata.remove(metadata);
             if (publication == null) publication = surface.accepted;
             if (publication == null || !containsBody(aggregate, publication.models)) return;
-            Object generation = Reflect.readField(diff, "LJIIJ");
+            Object generation = Reflect.readField(diff, "LJIILIIL");
             if (!(generation instanceof Integer)) return;
             surface.claims.put(metadata, new Claim(publication, aggregate, (Integer) generation));
         }

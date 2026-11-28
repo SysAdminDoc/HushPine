@@ -9,7 +9,9 @@ package app.morphe.patches.pinedrama.interaction.downloads
 import app.morphe.patcher.patch.BytecodePatchContext
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
 import app.morphe.patches.pinedrama.shared.requireLocals
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.util.addInstructions
 import app.morphe.util.findMutableMethodOf
 import app.morphe.util.getReference
@@ -88,6 +90,8 @@ internal fun MutableMethod.addDmStickerPreviewHook(previewCall: Int) {
 }
 
 internal fun BytecodePatchContext.hookDmStickerPreview() {
+    // The handler is part of the chat screen, which comes with PineDrama's DM code.
+    if (!shipsDmClass("Downloads", "the DM sticker preview's Save", DM_CHAT_SCREEN_CLASS)) return
     val handler = classDefByOrNull(DM_STICKER_HANDLER)
         ?: throw PatchException("Downloads: DM sticker click handler is missing")
     val anchor = dmStickerPreviewAnchor(handler)

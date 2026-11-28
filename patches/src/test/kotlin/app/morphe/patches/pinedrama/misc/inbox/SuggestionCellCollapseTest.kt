@@ -133,7 +133,7 @@ class SuggestionCellCollapseTest {
                 listOf(
                     // if-eqz p0 is 2 code units and the cast 2 more, so +4 is the return.
                     ImmutableInstruction21t(Opcode.IF_EQZ, 1, 4),
-                    ImmutableInstruction21c(Opcode.CHECK_CAST, 1, ImmutableTypeReference("LX/0O5D;")),
+                    ImmutableInstruction21c(Opcode.CHECK_CAST, 1, ImmutableTypeReference("LX/0113;")),
                     ImmutableInstruction10x(Opcode.RETURN_VOID),
                 ),
                 null,

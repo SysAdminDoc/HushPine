@@ -19,6 +19,8 @@ private val reviewedSplashGateInstructionCounts = setOf(
     listOf(4, 4),
     // PineDrama 47.5.3 reads the same two static Booleans without null-checking their holder first.
     listOf(2, 2, 30),
+    // PineDrama 48.0.3 asks two static getters where the large gate read both lazy Booleans itself.
+    listOf(2, 2, 22),
 )
 
 internal fun isReviewedSplashGateShape(instructionCounts: List<Int>): Boolean =

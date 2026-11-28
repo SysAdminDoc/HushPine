@@ -19,6 +19,7 @@ import app.morphe.patches.pinedrama.misc.settings.settingsPatch
 import app.morphe.patches.pinedrama.shared.buildName
 import app.morphe.patches.pinedrama.shared.declaredVersions
 import app.morphe.patches.pinedrama.shared.guardAtEntry
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 
 private const val EXTENSION_CLASS_DESCRIPTOR =
     "Lapp/morphe/extension/pinedrama/feed/SensitiveWarnings;"
@@ -126,8 +127,11 @@ val hideSensitiveWarningsPatch = bytecodePatch(
 
         // A video shared into a chat carries its caution label in the message, written by the
         // sender's app, so the risk model guard never reaches it (#258). ChatCardCautionAnchorsTest
-        // holds the card on declared builds; elsewhere a miss only leaves chats as they are.
-        if (riskModel != null) {
+        // holds the card on declared builds; elsewhere a miss only leaves chats as they are. The
+        // card is DM code, which 48.0.3's APKMirror bundle doesn't carry.
+        if (riskModel != null &&
+            shipsDmClass("Skip content warnings", "chat cards' caution labels", CHAT_CARD_ASSEM)
+        ) {
             val chatCard = ChatCardCautionFingerprint.methodOrNull
             if (chatCard == null && packageMetadata.buildName in declaredVersions()) {
                 throw PatchException("Skip content warnings: the chat card's caution label wasn't found.")

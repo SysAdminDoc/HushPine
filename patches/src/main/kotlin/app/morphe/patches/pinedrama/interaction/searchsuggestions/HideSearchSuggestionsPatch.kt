@@ -55,11 +55,13 @@ internal const val SEARCH_REWARDS_SERVICE =
  * since the feature ships as an optional module, so null is the answer an account without
  * rewards already gets. The accessor's class is renamed on every build (0OHX, 0OS5, 0OID, 0HgS,
  * 0IgL); its return type is a real name and nothing else returns it from a static no-argument
- * method.
+ * method, except on 48.0.3 the banner's own getter in the same class (LX/0EBJ;->LIZIZ), which the
+ * accessor calls. That one asks pluggableSpi for the service, and the accessor never does.
  */
 internal fun isSearchRewardsAccessor(method: Method): Boolean =
     AccessFlags.STATIC.isSet(method.accessFlags) && method.parameterTypes.isEmpty() &&
-        method.returnType == SEARCH_REWARDS_SERVICE && method.implementation != null
+        method.returnType == SEARCH_REWARDS_SERVICE && method.implementation != null &&
+        searchRewardsGetter(method) == null
 
 private object SearchRewardsServiceFingerprint : Fingerprint(
     returnType = SEARCH_REWARDS_SERVICE,
@@ -137,12 +139,16 @@ private object LynxFirstScreenCacheFingerprint : Fingerprint(
  *
  * <p>Four statics together name it: the reader this hooks, the two that answer with a name and a
  * map, and one that writes a value into a gson object. That last signature is what makes the set
- * specific, and exactly one class in the app carries all four on each of the three builds.
+ * specific, and exactly one class in the app carries all four on each of the three builds. 48.0.3
+ * (`LX/09qi;`) swapped the writer's value and name.
  */
 private val LYNX_PARAMETER_SHAPES = setOf(
     "Ljava/lang/String;[]",
     "Ljava/util/Map;[]",
+)
+private val LYNX_PARAMETER_WRITERS = setOf(
     "V[Lcom/google/gson/n;, Ljava/lang/Object;, Ljava/lang/String;]",
+    "V[Lcom/google/gson/n;, Ljava/lang/String;, Ljava/lang/Object;]",
 )
 
 private object LynxParameterFingerprint : Fingerprint(
@@ -153,7 +159,7 @@ private object LynxParameterFingerprint : Fingerprint(
         val statics = classDef.methods
             .filter { AccessFlags.STATIC.value and it.accessFlags != 0 }
             .mapTo(HashSet()) { "${it.returnType}${it.parameterTypes}" }
-        statics.containsAll(LYNX_PARAMETER_SHAPES)
+        statics.containsAll(LYNX_PARAMETER_SHAPES) && statics.any { it in LYNX_PARAMETER_WRITERS }
     },
 )
 
@@ -382,7 +388,7 @@ internal fun MutableMethod.hookReentryVisibility() {
     val read = instructions.getOrNull(keyIndex + 1)
     val reference = read?.getReference<MethodReference>()
     val result = instructions.getOrNull(keyIndex + 2)
-    // The settings reader was named here as LX/0BZD;->LJIIJJI, both of which R8 assigns. Its
+    // The settings reader was named here as LX/0EZp;->LJIIJJI, both of which R8 assigns. Its
     // signature is what identifies it at this call site: two ints, the key this method just
     // loaded, a boolean, and an int back.
     if (read !is FiveRegisterInstruction || read.registerCount != 5 || read.registerF != keyRegister ||

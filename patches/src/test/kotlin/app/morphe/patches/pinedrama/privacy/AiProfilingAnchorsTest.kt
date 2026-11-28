@@ -15,6 +15,7 @@ import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
+import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -46,7 +47,18 @@ class AiProfilingAnchorsTest {
             val lookup = taken(PitayaPluginLookupFingerprint)
             assertTrue("$version: the lookup is not static", lookup.accessFlags and STATIC != 0)
             assertEquals("$version: returnEarly() needs a void method", "V", taken(PitayaRealProviderFingerprint).returnType)
-            assertEquals("$version: returnEarly() needs a void method", "V", taken(PitayaLiteStartFingerprint).returnType)
+            // 48.0.3 never starts Pitaya Lite: no start, no settings read, and nothing but PitayaLite's
+            // own class initializer names the class, so the patch leaves that part out.
+            val liteStarts = classes.values.flatMap { classDef -> classDef.methods.filter { PitayaLiteStartFingerprint.takes(it, classDef) } }
+            assertEquals("$version: Pitaya Lite starts", emptyList<Method>(), liteStarts)
+            val liteNamers = classes.values.filter { it.type != PITAYA_LITE }.flatMap { it.methods }.filter { method ->
+                method.implementation?.instructions?.any { instruction ->
+                    instruction.getReference<MethodReference>()?.definingClass == PITAYA_LITE ||
+                        instruction.getReference<StringReference>()?.string == "pitaya_lite_settings"
+                } == true
+            }
+            assertEquals("$version: what names Pitaya Lite or reads its settings",
+                emptyList<String>(), liteNamers.map { "${it.definingClass}->${it.name}" })
 
             val methods = classes.values.flatMap { it.methods }.filter { it.implementation != null }
             var lookups = 0

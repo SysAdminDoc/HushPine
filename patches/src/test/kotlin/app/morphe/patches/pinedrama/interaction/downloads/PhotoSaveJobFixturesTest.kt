@@ -52,9 +52,9 @@ class PhotoSaveJobFixturesTest {
     /** The image job above does not see Download video's separate native conversion entry. */
     @Test
     fun `each declared conversion is intercepted before native state with only the Aweme argument`() {
-        val owners = mapOf("47.7.3" to "LX/0CHL;")
+        val owners = mapOf("48.0.3" to "LX/0I3P;")
         // The method-id entry call's name is the build's own (47.0.3 obfuscated it), although its owner/proto hold.
-        val frameEntries = mapOf("47.7.3" to "push")
+        val frameEntries = mapOf("48.0.3" to "push")
         Fixtures.forEachDeclared { apk ->
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
             val matches = container.dexEntryNames.asSequence().flatMap { entry ->
@@ -65,7 +65,7 @@ class PhotoSaveJobFixturesTest {
             assertEquals("conversion entries ${matches.map { "${it.definingClass}->${it.name}" }}", 1, matches.size)
             val native = matches.single()
             assertEquals(owners.getValue(Fixtures.versionOf(apk)), native.definingClass)
-            assertEquals("LIZJ", native.name)
+            assertEquals("LJFF", native.name)
             assertTrue(AccessFlags.PUBLIC.isSet(native.accessFlags) && AccessFlags.STATIC.isSet(native.accessFlags))
             assertEquals(listOf("Lcom/ss/android/ugc/aweme/feed/model/Aweme;", "Ljava/lang/String;",
                 "Lkotlin/jvm/functions/Function1;"), native.parameterTypes.map(CharSequence::toString))
@@ -85,7 +85,7 @@ class PhotoSaveJobFixturesTest {
             assertEquals("the native method-id frame starts at entry", 1, push)
             assertTrue("native conversion owns its active flag", original.any {
                 it.opcode == Opcode.SPUT_BOOLEAN && it.getReference<FieldReference>()?.let { field ->
-                    field.definingClass == native.definingClass && field.name == "LIZIZ" && field.type == "Z"
+                    field.definingClass == native.definingClass && field.name == "LJIIL" && field.type == "Z"
                 } == true
             })
             assertTrue("native conversion publishes video progress", original.any {

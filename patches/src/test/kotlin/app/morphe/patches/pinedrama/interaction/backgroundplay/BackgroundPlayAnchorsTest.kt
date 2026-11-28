@@ -42,6 +42,9 @@ class BackgroundPlayAnchorsTest {
         (opcode == Opcode.CONST_STRING || opcode == Opcode.CONST_STRING_JUMBO) &&
             getReference<StringReference>()?.string == key
 
+    private fun Instruction.writesRegister(register: Int) =
+        opcode.setsRegister() && (this as? OneRegisterInstruction)?.registerA == register
+
     @Test
     fun `the mode read and the remembered switch reads resolve on each build`() {
         Fixtures.forEachDeclared { apk ->
@@ -122,12 +125,20 @@ class BackgroundPlayAnchorsTest {
             }
             val call = body[lookup] as FiveRegisterInstruction
 
-            // The set it looks in is PineDrama's scene list, filled with the feeds' event types.
-            val load = body.subList(0, lookup).last { it.opcode == Opcode.SGET_OBJECT && (it as OneRegisterInstruction).registerA == call.registerC }
-            val list = load.getReference<FieldReference>()!!
-            val listed = classes.getValue(list.definingClass).methods.single { it.name == "<clinit>" }.implementation!!.instructions
+            // The set it looks in is PineDrama's scene list, filled with the feeds' event types: a
+            // static list up to 47.7.3, the background play service's answer from 48.0.3 on.
+            val setter = body.subList(0, lookup).last { it.writesRegister(call.registerC) }
+            val listing = if (setter.opcode == Opcode.SGET_OBJECT) {
+                val list = setter.getReference<FieldReference>()!!
+                classes.getValue(list.definingClass).methods.single { it.name == "<clinit>" }
+            } else {
+                val asked = body.subList(0, lookup).last { it.getReference<MethodReference>()?.returnType == "Ljava/util/Set;" }
+                    .getReference<MethodReference>()!!
+                classes.getValue(BACKGROUND_PLAY_SERVICE_IMPL).methods.single { it.name == asked.name && it.parameterTypes.isEmpty() }
+            }
+            val listed = listing.implementation!!.instructions
                 .mapNotNull { instruction -> instruction.getReference<StringReference>()?.string?.takeIf { instruction.loads(it) } }
-            assertTrue("$version: ${list.definingClass} lists $listed",
+            assertTrue("$version: ${listing.definingClass}->${listing.name} lists $listed",
                 listed.containsAll(listOf("homepage_hot", "homepage_follow", "others_homepage")))
 
             // What it looks up is the event type, the second parameter, and the answer lands elsewhere.
@@ -137,14 +148,19 @@ class BackgroundPlayAnchorsTest {
             assertEquals("$version: the lookup's answer is not kept", Opcode.MOVE_RESULT, result.opcode)
             assertNotEquals(call.registerD, (result as OneRegisterInstruction).registerA)
 
-            // Photo posts are ruled out here (47.0.3) or in the one post check it calls (47.1.x).
+            // Photo posts are ruled out here (47.0.3), in the one post check it calls (47.1.x), or
+            // in the background play service's post check (48.0.3).
             val photoCheck = if (body.photoModeCall() >= 0) body else {
+                val service = if (body.none { it.isPostSupportedCall() }) emptyList() else {
+                    classes[BACKGROUND_PLAY_SERVICE_IMPL]?.methods?.filter { it.isPostSupported() }.orEmpty()
+                        .mapNotNull { it.implementation?.instructions?.toList() }
+                }
                 val helpers = body.filter { it.isStaticAwemeCheck() }.mapNotNull { instruction ->
                     val reference = instruction.getReference<MethodReference>()!!
                     classes[reference.definingClass]?.methods?.firstOrNull {
                         it.name == reference.name && it.parameterTypes.map(CharSequence::toString) == listOf(AWEME) && it.returnType == "Z"
                     }?.implementation?.instructions?.toList()
-                }.filter { it.photoModeCall() >= 0 }
+                }.plus(service).filter { it.photoModeCall() >= 0 }
                 assertEquals("$version: post checks ruling out photo posts", 1, helpers.size)
                 helpers.single()
             }

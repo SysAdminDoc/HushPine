@@ -115,10 +115,11 @@ private val APP_AB_INT_PARAMETERS = listOf("I", "I", "Ljava/lang/String;", "Z")
  *
  * At 1 the value takes translation off the videos: on 47.1.4 every check in
  * `CLATranslatabilityServiceImpl` (See translation under a description, translated captions,
- * photo titles, text stickers) asks it first and gives up. PineDrama reads it in one place, a lazy
- * that hands the App AB int getter the key as its third argument and keeps the answer for the
- * process. Only that read counts. The key also sits in PineDrama's list of every AB value and in a
- * debug map, and neither of those is a read.
+ * photo titles, text stickers) asks it first and gives up. PineDrama reads it through a lazy that
+ * hands the App AB int getter the key as its third argument and keeps the answer for the process;
+ * 48.0.3 also reads it the same way in a synchronized getter that stands in for the lazy while
+ * `kt_lazy_load_exp` is below zero. Only those reads count. The key also sits in PineDrama's list
+ * of every AB value and in a debug map, and neither of those is a read.
  */
 internal fun Method.feedTranslationReverseRead(): Int? {
     val instructions = implementation?.instructions?.toList() ?: return null
@@ -173,10 +174,15 @@ internal fun MutableMethod.keepTranslationOnVideos() {
 
 /**
  * Lets the reader keep See translation on videos when PineDrama's server takes it off their account
- * (#143). Fails closed: exactly one method may read the value the way TikTok's lazy does.
+ * (#143). Every method that reads the value the way TikTok's lazy does gets the hook (48.0.3 has
+ * the lazy and a synchronized getter that stands in for it), and fails closed when there's none.
  */
 internal fun BytecodePatchContext.hookFeedTranslations() {
-    FeedTranslationReverseFingerprint.method.keepTranslationOnVideos()
+    val readers = FeedTranslationReverseFingerprint.matchAll().map { it.method }
+    if (readers.isEmpty()) {
+        throw PatchException("Translate comments: PineDrama's $FEED_TRANSLATION_REVERSE read is not where it was.")
+    }
+    readers.forEach { it.keepTranslationOnVideos() }
 }
 
 /**

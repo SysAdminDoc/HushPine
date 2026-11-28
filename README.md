@@ -4,7 +4,7 @@
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-0.3.0-4E9F7C" alt="Version 0.0.1"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License GPL-3.0"></a>
   <img src="https://img.shields.io/badge/platform-Android-3DDC84" alt="Platform Android">
-  <a href="https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/"><img alt="PineDrama 47.7.3" src="https://img.shields.io/badge/PineDrama-47.7.3-2F6B4F"></a>
+  <a href="https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/"><img alt="PineDrama 48.0.3" src="https://img.shields.io/badge/PineDrama-48.0.3-2F6B4F"></a>
   <img src="https://img.shields.io/badge/for-Morphe%20Manager%202.8.0%2B-8A2BE2" alt="For Morphe Manager 2.8.0 or newer">
 </p>
 
@@ -22,7 +22,7 @@ Most switches start off, so a freshly patched PineDrama looks and works the way 
 
 HushPine v0.3.0 contains 103 patches for PineDrama 47.7.3. New in this one: Search your History and Favorites lists, keep a drama's original sound in any app language, and get past PineDrama's sign-in walls. It needs Morphe Manager 2.7.0 or newer.
 
-The main branch contains 103 patches, the same set as v0.3.0.
+The main branch contains 103 patches, the same set as v0.3.0, retargeted to PineDrama 48.0.3.
 
 **[Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine)**
 
@@ -31,7 +31,7 @@ The main branch contains 103 patches, the same set as v0.3.0.
 
 ## Install
 
-1. Get PineDrama 47.7.3 from [APKMirror](https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/pinedrama-short-dramas-47-7-3-release/), the file marked **BUNDLE** (an `.apkm`). Google Play only offers the newest build, which may not be the one HushPine supports. Manager merges the bundle into a single APK for you.
+1. Get PineDrama 48.0.3 from [APKMirror](https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/pinedrama-short-dramas-48-0-3-release/), the file marked **BUNDLE** (an `.apkm`). Google Play only offers the newest build, which may not be the one HushPine supports. Manager merges the bundle into a single APK for you.
 2. Use Morphe Manager 2.8.0 or newer. HushPine bundles after v0.3.0 are built against patcher 2.6.0, which Manager 2.8.0 was the first to ship, and older Managers won't load them (v0.3.0 itself still loads in 2.7.0). morphe-desktop 2.4.0 or newer works from a computer if you give it 2 GB of memory (`java -Xmx2g -jar morphe-desktop-2.4.0-all.jar patch ...`).
 3. Add HushPine as a source. On the phone, open [Add HushPine to Morphe Manager](https://morphe.software/add-source?github=SysAdminDoc%2FHushPine). If **Open in Morphe** leaves you in the browser, open Manager, tap **Sources**, tap **+** and paste `https://github.com/SysAdminDoc/HushPine`. You can also download the `.mpp` file from the [latest release](https://github.com/SysAdminDoc/HushPine/releases/latest) and load it as a local bundle.
 4. Pick the patches. Simple mode selects 93 of the 103. The other 10 need Expert mode in Manager's settings, and they're marked in [Patches](#patches). Manager shows all 103 HushPine patches in categories you can expand or collapse. Leave **Use embedded VM** on under **Settings > Patcher**, since it lets the patcher use whatever memory the phone can spare.
@@ -211,10 +211,10 @@ If PineDrama closes while saves are still going, the next time you open it the d
 ## Supported target
 
 - App: PineDrama, the package `com.ss.android.ttmd.video`
-- Version: [47.7.3](https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/pinedrama-short-dramas-47-7-3-release/), on APKMirror since 2026-11-09.
-- Build: version code 2024707030, arm64-v8a and armeabi-v7a, minSdk 23
-- SHA-256 of the APK every patch was verified against: `6ef06de3af2e4955fa5c5caa899a0fc7d2686d11edab65707b2069cefbc2c3a0` (47.7.3)
-- SHA-256 of the `.apkm` you download: `56dcc03fd721d784042326a06ff9f9c9e63250aab4077d0f6c51a53779f79910`
+- Version: [48.0.3](https://www.apkmirror.com/apk/tiktok-pte-ltd/pinedrama-short-dramas/pinedrama-short-dramas-48-0-3-release/), on APKMirror since 2026-11-27.
+- Build: version code 2024800030, arm64-v8a and armeabi-v7a, minSdk 23
+- SHA-256 of the APK every patch was verified against: `a0c569eb3e6a719d8840302fd78bb8a8901c25b14582632b7d803ceed22f5d11` (48.0.3)
+- SHA-256 of the `.apkm` you download: `1d82e668072fe7f2ce02894f4d3d7c535bacde094ff6ff100e25d6561ee03c3d`
 
 The first hash is the bundle after merging, so yours can differ if your tool merges it another way. Check the `.apkm` with `Get-FileHash -Algorithm SHA256 .\pinedrama.apkm` on Windows or `sha256sum pinedrama.apkm` on Linux and macOS.
 

@@ -5,6 +5,7 @@
 package app.morphe.patches.pinedrama.misc.inbox
 
 import app.morphe.Fixtures
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
 import app.morphe.takes
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -25,13 +26,21 @@ private const val IM_PROXY = "Lcom/ss/android/ugc/aweme/im/IMProxyImpl;"
  * messaging by the names PineDrama kept. The patch copies the quick reply's own sender lookup into
  * the extension, and the extension reaches the rest by reflection, where a rename would only
  * show on a phone as a message that never went. Both are held to each declared build here.
+ *
+ * <p>An APK without PineDrama's DM code (48.0.3's APKMirror bundle) has no quick reply receiver,
+ * and the patch leaves the streak out there. That is only right when the chat screen is gone
+ * with it, so a renamed receiver in an APK that still has DMs fails here instead.
  */
 class AutoStreakAnchorsTest {
     @Test
     fun `the quick reply's send and its sender lookup resolve on each build`() {
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)
-            val receiver = wanted(apk)[QUICK_REPLY_RECEIVER] ?: error("$version: no quick reply receiver")
+            val classes = wanted(apk)
+            val receiver = classes[QUICK_REPLY_RECEIVER] ?: run {
+                assertTrue("$version: no quick reply receiver, but the chat screen is there", DM_CHAT_SCREEN_CLASS !in classes)
+                return@forEachDeclared
+            }
             val sends = receiver.methods.filter { QuickReplySendFingerprint.takes(it, receiver) }
             assertEquals("$version: quick reply sends matched", 1, sends.size)
 
@@ -58,6 +67,8 @@ class AutoStreakAnchorsTest {
         Fixtures.forEachDeclared { apk ->
             val version = Fixtures.versionOf(apk)
             val classes = wanted(apk)
+            // Without the DM code the patch leaves the streak out, so messaging is never started.
+            if (QUICK_REPLY_RECEIVER !in classes) return@forEachDeclared
 
             val manager = classes[SERVICE_MANAGER] ?: error("$version: no ServiceManager")
             assertTrue("$version: no ServiceManager.get()", manager.methods.any {
@@ -119,7 +130,7 @@ class AutoStreakAnchorsTest {
     }
 
     private fun wanted(apk: java.io.File): Map<String, ClassDef> {
-        val names = setOf(QUICK_REPLY_RECEIVER, SERVICE_MANAGER, IM_SERVICE, IM_START_TASK, IM_SERVICE_IMPL, IM_PROXY)
+        val names = setOf(QUICK_REPLY_RECEIVER, SERVICE_MANAGER, IM_SERVICE, IM_START_TASK, IM_SERVICE_IMPL, IM_PROXY, DM_CHAT_SCREEN_CLASS)
         val found = HashMap<String, ClassDef>()
         val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
         for (entry in container.dexEntryNames) {

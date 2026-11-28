@@ -18,10 +18,12 @@ import app.morphe.patches.shared.compat.AppCompatibilities
 import app.morphe.patches.pinedrama.misc.extension.sharedExtensionPatch
 import app.morphe.patches.pinedrama.misc.settings.SettingsStatusLoadFingerprint
 import app.morphe.patches.pinedrama.misc.settings.settingsPatch
+import app.morphe.patches.pinedrama.shared.DM_CHAT_SCREEN_CLASS
 import app.morphe.patches.pinedrama.shared.buildName
 import app.morphe.patches.pinedrama.shared.declaredVersions
 import app.morphe.patches.pinedrama.shared.guardAtEntry
 import app.morphe.patches.pinedrama.shared.requireLocals
+import app.morphe.patches.pinedrama.shared.shipsDmClass
 import app.morphe.util.addInstructionsAtControlFlowLabel
 import app.morphe.util.findFreeRegister
 import app.morphe.util.findInstructionIndicesReversedOrThrow
@@ -247,7 +249,7 @@ val downloadsPatch = bytecodePatch(
             // x register and x then written back as a literal zero, which is only the same
             // drawing because of what this build happens to do: on 46.2.3 the host translates
             // the canvas first and passes one register holding zero as both x and y
-            // (const/4 v0 at 201, drawBitmap {v6, v3, v0, v0, v5} at 202 of LX/0owv;->LIZ).
+            // (const/4 v0 at 201, drawBitmap {v6, v3, v0, v0, v5} at 202 of LX/0QqS;->LIZ).
             // A build that draws at a computed x would have had the watermark moved to the
             // left edge for everyone who keeps it, which is the default.
             val flagReg = findFreeRegister(
@@ -338,7 +340,12 @@ val downloadsPatch = bytecodePatch(
         }
 
         // Preserve the full StickerItem behind PineDrama's reduced preview model for media detection.
-        StickerPreviewSourceFingerprint.method.apply {
+        // The method belongs to the chat's sticker sheet, so an APK without the DM code has none.
+        val stickerSource = StickerPreviewSourceFingerprint.methodOrNull
+            ?: StickerPreviewSourceFingerprint.takeIf {
+                shipsDmClass("Downloads", "the DM sticker preview's full sticker", DM_CHAT_SCREEN_CLASS)
+            }?.method
+        stickerSource?.apply {
             val bindCallIndices = implementation!!.instructions.withIndex()
                 .filter { (_, instruction) ->
                     instruction.getReference<MethodReference>()?.isStickerPreviewBind() == true

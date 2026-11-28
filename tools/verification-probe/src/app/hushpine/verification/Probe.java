@@ -1164,7 +1164,7 @@ public final class Probe extends Instrumentation {
                     }
                     case "layouts": {
                         // Every shown, on-screen view that draws a Layout of its own rather than
-                        // being a TextView (PineDrama's X.09F7 draws captions and descriptions this
+                        // being a TextView (PineDrama's X.0CU3 draws captions and descriptions this
                         // way), with its class, place, size, text size in px and the layout's
                         // lines and width. How the caption size was shown to stay off the other
                         // text; the text itself never leaves the phone.
@@ -1267,7 +1267,7 @@ public final class Probe extends Instrumentation {
                             Object lazy = loader.loadClass("X.0mD7").getField("LIZIZ").get(null);
                             Object config = lazy.getClass().getMethod("getValue").invoke(lazy);
                             Object cap = config == null ? null : config.getClass().getField("enabledMaxFollowers").get(config);
-                            Object me = loader.loadClass("X.02y0").getMethod("LIZ").invoke(null);
+                            Object me = loader.loadClass("X.0ZMk").getMethod("LIZ").invoke(null);
                             Object followers = me == null ? null : me.getClass().getField("historyMaxFollowerCount").get(me);
                             out.append(" followerCap=").append(cap == null ? "5000 (default)" : cap).append(" myHistoryMaxFollowers=").append(followers);
                         } catch (Throwable failure) {
@@ -2521,7 +2521,7 @@ public final class Probe extends Instrumentation {
                     }
                     case "countformat": {
                         // One of PineDrama's static count formatters run with a count the check
-                        // picks, and the text it wrote: -e class X.0EV9 -e method LIZIZ -e count
+                        // picks, and the text it wrote: -e class X.01Bz -e method LIZIZ -e count
                         // 123456. One that takes (long) gets just the count, one that takes
                         // (Aweme, long) the video on screen as well. A check can read what Show
                         // exact counts makes of a big count whatever the feed serves. The class
@@ -4612,7 +4612,7 @@ public final class Probe extends Instrumentation {
                 if (readOnly) return;
                 // 47.5.3's reset callback: LIZ() when the timeout runs out, LIZIZ(installInfo)
                 // when new install info arrives.
-                Class<?> callbackType = loader.loadClass("X.0LRh");
+                Class<?> callbackType = loader.loadClass("X.0kCd");
                 final java.util.concurrent.CountDownLatch answered = new java.util.concurrent.CountDownLatch(1);
                 final String[] outcome = {"no answer"};
                 Object callback = java.lang.reflect.Proxy.newProxyInstance(loader, new Class<?>[]{callbackType},

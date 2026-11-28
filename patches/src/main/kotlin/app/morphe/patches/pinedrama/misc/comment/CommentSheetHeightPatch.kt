@@ -70,13 +70,16 @@ internal object CommentSheetHeightFingerprint : Fingerprint(
  * Where the comment sheet sizes its panel (`DefaultCommentPageContainerFragment.gq1(IZ)V` on
  * 47.4.3). It asks the config for the mode, and when the mode is above 0 it sets the panel's
  * height from the method above and lets the list fill it by weight. A mode of 0 takes a fixed
- * height instead and never asks.
+ * height instead and never asks. 48.0.3 moved the sizing into the sheet's configuration pass
+ * (`eQ(Configuration)V`), which `v20(IZ)V` now only calls.
  */
 internal object CommentPanelSizeFingerprint : Fingerprint(
     definingClass = "Lcom/ss/android/ugc/aweme/commentv2/commentpage/commonvideo/DefaultCommentPageContainerFragment;",
     returnType = "V",
-    parameters = listOf("I", "Z"),
     filters = listOf(fieldAccess(definingClass = "Landroid/widget/LinearLayout\$LayoutParams;", name = "weight")),
+    custom = { method, _ ->
+        method.parameterTypes.map { it.toString() } in listOf(listOf("I", "Z"), listOf("Landroid/content/res/Configuration;"))
+    },
 )
 
 /**

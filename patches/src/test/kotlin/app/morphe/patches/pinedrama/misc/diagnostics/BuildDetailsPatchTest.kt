@@ -20,7 +20,7 @@ import org.junit.rules.TemporaryFolder
 
 class BuildDetailsPatchTest {
     @get:Rule val temporary = TemporaryFolder()
-    private val target = packageMetadata("com.ss.android.ttmd.video", "47.7.3", "2024707030")
+    private val target = packageMetadata("com.ss.android.ttmd.video", "48.0.3", "2024800030")
     private val fingerprint = "A1234567890123456789B" + "c".repeat(43)
 
     @Test fun `bundle manifest paths preserve plus spaces percent and unicode and release the jar`() {

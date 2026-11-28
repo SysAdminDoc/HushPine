@@ -150,20 +150,27 @@ internal fun audioReturnSite(method: Method): AudioReturnSite {
     return AudioReturnSite(returns[0].index, (returns[0].value as OneRegisterInstruction).registerA)
 }
 
-/** Settles which track the caption overlay asks for, from the translation state it's handed. */
+/**
+ * Settles which track the caption overlay asks for, from the translation state it's handed. 48.0.3
+ * added a twin of the same shape for direct messages (`LX/0Z05;`), which is handed a message, not
+ * a video, so the feed's is the one that casts what it's handed to a video.
+ */
 internal object OverlayTargetFingerprint : Fingerprint(
     returnType = "L",
     parameters = listOf("L", "L", OBJECT, "L"),
-    custom = { method, _ ->
-        val code = method.implementation?.instructions
-        code != null && code.any {
-            it.opcode == Opcode.SGET_OBJECT && it.getReference<FieldReference>()?.name == "TRANSLATED"
-        } && code.any {
-            it.opcode == Opcode.INVOKE_INTERFACE &&
-                it.getReference<MethodReference>()?.definingClass == TRANSLATION_KEVA
-        }
-    },
+    custom = { method, _ -> method.isFeedOverlayTarget() },
 )
+
+internal fun Method.isFeedOverlayTarget(): Boolean {
+    val code = implementation?.instructions ?: return false
+    return code.any {
+        it.opcode == Opcode.SGET_OBJECT && it.getReference<FieldReference>()?.name == "TRANSLATED"
+    } && code.any {
+        it.opcode == Opcode.INVOKE_INTERFACE && it.getReference<MethodReference>()?.definingClass == TRANSLATION_KEVA
+    } && code.any {
+        it.opcode == Opcode.CHECK_CAST && it.getReference<TypeReference>()?.type == AWEME_TYPE
+    }
+}
 
 /** Decides whether the overlay shows, and names each reason it hides in the app's log. */
 internal object CaptionDisplayStateFingerprint : Fingerprint(

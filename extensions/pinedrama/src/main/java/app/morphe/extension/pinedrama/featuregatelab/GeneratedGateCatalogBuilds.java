@@ -11,7 +11,7 @@ package app.morphe.extension.pinedrama.featuregatelab;
  * Do not edit: ./gradlew :patches:generateGateCatalog writes it again.
  */
 final class GeneratedGateCatalogBuilds {
-    static final String[] BUILDS = {"47.7.3"};
+    static final String[] BUILDS = {"48.0.3"};
 
     private GeneratedGateCatalogBuilds() {
     }

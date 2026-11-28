@@ -4,6 +4,7 @@ import app.morphe.patcher.FieldAccessFilter
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.MethodCallFilter
 import app.morphe.patches.pinedrama.interaction.ghostmode.ProfileViewReportFingerprint
+import app.morphe.patches.pinedrama.interaction.ghostmode.TYPING_STATUS_SENDER_CLASS
 import app.morphe.patches.pinedrama.interaction.ghostmode.TypingStatusSenderFingerprint
 import app.morphe.patches.pinedrama.interaction.resume.FeedProgressContinueGateFingerprint
 import app.morphe.patches.pinedrama.misc.comment.clipboardTextHelperFingerprint
@@ -28,11 +29,17 @@ import org.junit.Test
  * every retained fixture each one takes exactly the methods it takes without the addition.
  */
 class NarrowedFingerprintsTest {
-    private class Narrowed(val label: String, val fingerprint: Fingerprint, val addedClassAndName: Boolean = false)
+    /** [shippedWith] names the class without which a build has nothing for the fingerprint to take. */
+    private class Narrowed(
+        val label: String,
+        val fingerprint: Fingerprint,
+        val addedClassAndName: Boolean = false,
+        val shippedWith: String? = null,
+    )
 
     private val narrowed = listOf(
         Narrowed("ProfileViewReport", ProfileViewReportFingerprint, addedClassAndName = true),
-        Narrowed("TypingStatusSender", TypingStatusSenderFingerprint, addedClassAndName = true),
+        Narrowed("TypingStatusSender", TypingStatusSenderFingerprint, addedClassAndName = true, shippedWith = TYPING_STATUS_SENDER_CLASS),
         Narrowed("MandatoryLoginService", MandatoryLoginServiceFingerprint, addedClassAndName = true),
         Narrowed("MandatoryLoginService2", MandatoryLoginService2Fingerprint, addedClassAndName = true),
         Narrowed("RefreshRateWrite", RefreshRateWriteFingerprint),
@@ -66,8 +73,10 @@ class NarrowedFingerprintsTest {
             val container = Fixtures.dexContainer(apk, Opcodes.getDefault())
             val taken = narrowed.associateWith { mutableListOf<String>() }
             val narrowTaken = narrowed.associateWith { mutableListOf<String>() }
+            val types = mutableSetOf<String>()
             for (entry in container.dexEntryNames) {
                 for (classDef in container.getEntry(entry)!!.dexFile.classes) {
+                    types += classDef.type
                     for (method in classDef.methods) {
                         for (item in narrowed) {
                             // Adding a condition can only take methods away, so the narrowed
@@ -82,7 +91,7 @@ class NarrowedFingerprintsTest {
             }
             for (item in narrowed) {
                 assertEquals("${apk.name}: ${item.label}", taken.getValue(item), narrowTaken.getValue(item))
-                if (version in declared) {
+                if (version in declared && item.shippedWith.let { it == null || it in types }) {
                     assertTrue("${apk.name}: ${item.label} takes nothing on a declared build", taken.getValue(item).isNotEmpty())
                 }
             }

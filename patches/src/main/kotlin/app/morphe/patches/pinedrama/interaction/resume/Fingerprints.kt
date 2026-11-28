@@ -65,8 +65,19 @@ internal object SeriesResumeStartFingerprint : Fingerprint(
     strings = listOf(" appDiff initialStartTimeMs="),
 )
 
+// 48.0.3 (LX/0CH1;->LIZLLL) added a third String, the caller's tag, and moved the landscape tag
+// into a helper, so it is named by its read of the config's event type list instead.
 internal object FeedProgressResumePositionFingerprint : Fingerprint(
     returnType = "J",
-    parameters = listOf("Lcom/ss/android/ugc/aweme/feed/model/Aweme;", "Ljava/lang/String;"),
-    strings = listOf("landscape_change_keep_tag"),
+    filters = listOf(
+        fieldAccess(
+            definingClass = "Lcom/ss/android/ugc/aweme/feed/experiment/FeedPlayProgressContinueConfig;",
+            name = "event_type_list",
+        ),
+    ),
+    custom = { method, _ ->
+        val parameters = method.parameterTypes.map { it.toString() }
+        parameters.firstOrNull() == "Lcom/ss/android/ugc/aweme/feed/model/Aweme;" &&
+            parameters.size in 2..3 && parameters.drop(1).all { it == "Ljava/lang/String;" }
+    },
 )

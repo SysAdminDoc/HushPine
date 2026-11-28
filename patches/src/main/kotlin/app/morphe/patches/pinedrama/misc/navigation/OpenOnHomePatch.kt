@@ -61,13 +61,24 @@ internal fun Method.isLandingTabReader(tabType: String): Boolean =
  * start's rules ask it straight, the Discover rule and the top tab reorder among them.
  */
 internal fun Method.isLandingTabDefault(tabType: String): Boolean =
-    isStaticTabGetter(tabType) && firstFieldRead()?.let { it.definingClass == definingClass && it.type != tabType } == true
+    isStaticTabGetter(tabType) && lazyHolderRead()?.let { it.definingClass == definingClass && it.type != tabType } == true
 
 private fun Method.isStaticTabGetter(tabType: String) =
     accessFlags and AccessFlags.STATIC.value != 0 && parameterTypes.isEmpty() && returnType == tabType
 
 private fun Method.firstFieldRead(): FieldReference? =
     implementation?.instructions?.firstOrNull()?.takeIf { it.opcode == Opcode.SGET_OBJECT }?.getReference<FieldReference>()
+
+/**
+ * The default's first object read. 48.0.3 puts its kt_lazy_load_exp test in front (`sget` of the
+ * class's int and an `if-gez` to the eager path), so the lazy holder is read third there.
+ */
+private fun Method.lazyHolderRead(): FieldReference? {
+    val instructions = implementation?.instructions?.toList() ?: return null
+    val flagged = instructions.firstOrNull()?.opcode == Opcode.SGET && instructions.getOrNull(1)?.opcode == Opcode.IF_GEZ
+    return instructions.getOrNull(if (flagged) 2 else 0)
+        ?.takeIf { it.opcode == Opcode.SGET_OBJECT }?.getReference<FieldReference>()
+}
 
 /** The object types this class's static methods with no parameters return, the landing tab among them. */
 internal fun ClassDef.staticReturnTypes(): Set<String> =
