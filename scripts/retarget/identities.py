@@ -21,7 +21,7 @@ SHORT_MEMBER_COMPARED = re.compile(r'name\s*==\s*"([A-Za-z][A-Za-z0-9]{0,2})"', 
 SHORT_RESOURCE = re.compile(r'"(?:[0-9]+(?:\.[0-9]+)+:)?([a-z][0-9][a-z0-9]{1,2}|[a-z]{2}[0-9])"', A)
 RESOURCE_LOOKUP = re.compile(r"_IDS?\b|RESOURCE_NAME|getIdentifier\(|\.resolve\(|IDS\b|viewId\(|idOf\(", A)
 RESOURCE_NAME = re.compile(r'"(?:[0-9]+(?:\.[0-9]+)+:)?([a-z][a-z0-9_]{1,2})"', A)
-REAL_NAMES = {"get", "put", "run", "key", "id", "raw", "mp3", "mp4", "m4a", "m4v", "jpg", "png", "h264"}
+REAL_NAMES = {"get", "put", "run", "key", "id", "raw", "mp3", "mp4", "m4a", "m4v", "jpg", "png", "m10n"}
 
 
 def identities(line, extension_tree):
