@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changes
+
+* The patches are built with Morphe patcher 2.6.0, the one stable Morphe Manager 2.8.0, morphe-desktop 2.4.0 and morphe-cli 2.4.0 ship. The next bundle needs Manager 2.8.0 or newer, or morphe-desktop 2.4.0 from a computer. Older Managers won't load it.
+
 ## 0.3.0 (2026-11-25)
 
 ### Features
